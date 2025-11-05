@@ -37,10 +37,10 @@ exit
 docker cp explainability-container:/app/statistics_readable.csv .
 
 #Readable/Neutralの画像ファイル（可視化結果）の取り出し
-docker cp explainability-container:/app/newResults/readable ./newResults/readable
+docker cp explainability-container:/app/newResults/readable ./newResults
 
 #Unreadableの画像ファイル（可視化結果）の取り出し
-docker cp explainability-container:/app/newResults/unreadable ./newResults/unreadable
+docker cp explainability-container:/app/newResults/unreadable ./newResults
 ```
 
 ## 発生したエラーと解決方法
