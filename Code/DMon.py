@@ -1,21 +1,17 @@
-import torch
-from torch import Tensor
-from torch_geometric.graphgym.models import gnn
-from torch_geometric.nn import GCNConv, DenseGraphConv, DMoNPooling
 from math import ceil
 
-from torch_geometric.nn.conv.gcn_conv import gcn_norm
-from torch_geometric.utils import to_dense_batch, to_dense_adj
-from torch.nn import Linear
+import torch
 import torch.nn.functional as F
+from torch import Tensor
+from torch.nn import Linear
+from torch_geometric.nn import DenseGraphConv, DMoNPooling, GCNConv
+from torch_geometric.nn.conv.gcn_conv import gcn_norm
+from torch_geometric.typing import Adj, OptTensor, Size
+from torch_geometric.utils import to_dense_adj, to_dense_batch
 from torch_sparse import SparseTensor
-import torch.nn as nn
-import torch_geometric.nn as gnn
-from torch_geometric.typing import OptPairTensor, Adj, OptTensor, Size
 
 
 class DMon(torch.nn.Module):
-
     def __init__(self, data_args, model_args):
         super().__init__()
 
@@ -30,15 +26,21 @@ class DMon(torch.nn.Module):
         self.conv4 = GCNConv(self.hidden_channels, self.hidden_channels)
 
         num_nodes = ceil(0.5 * self.avg_num_nodes)
-        self.pool1 = DMoNPooling([self.hidden_channels, self.hidden_channels], num_nodes)
+        self.pool1 = DMoNPooling(
+            [self.hidden_channels, self.hidden_channels], num_nodes
+        )
         self.conv2 = DenseGraphConv(self.hidden_channels, self.hidden_channels)
 
         num_nodes = ceil(0.5 * num_nodes)
-        self.pool2 = DMoNPooling([self.hidden_channels, self.hidden_channels], num_nodes)
+        self.pool2 = DMoNPooling(
+            [self.hidden_channels, self.hidden_channels], num_nodes
+        )
         self.conv3 = DenseGraphConv(self.hidden_channels, self.hidden_channels)
 
         num_nodes = ceil(0.5 * num_nodes)
-        self.pool3 = DMoNPooling([self.hidden_channels, self.hidden_channels], num_nodes)
+        self.pool3 = DMoNPooling(
+            [self.hidden_channels, self.hidden_channels], num_nodes
+        )
         self.conv5 = DenseGraphConv(self.hidden_channels, self.hidden_channels)
 
         self.lin1 = Linear(self.hidden_channels, self.mlp_hidden)
@@ -81,14 +83,16 @@ class DMon(torch.nn.Module):
 # torch.nn.ELU()
 # torch.nn.SELU()
 
+
 # 重写一下gcnconv层，继承gcnconv
-class GCNConv(gnn.GCNConv):
+class GCNConv(GCNConv):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.__explain_flow__ = False
 
-    def forward(self, x: Tensor, edge_index: Adj,
-                edge_weight: OptTensor = None) -> Tensor:
+    def forward(
+        self, x: Tensor, edge_index: Adj, edge_weight: OptTensor = None
+    ) -> Tensor:
         """"""
 
         if self.normalize:
@@ -96,8 +100,14 @@ class GCNConv(gnn.GCNConv):
                 cache = self._cached_edge_index
                 if cache is None:
                     edge_index, edge_weight = gcn_norm(  # yapf: disable
-                        edge_index, edge_weight, x.size(self.node_dim),
-                        self.improved, self.add_self_loops, self.flow, x.dtype)
+                        edge_index,
+                        edge_weight,
+                        x.size(self.node_dim),
+                        self.improved,
+                        self.add_self_loops,
+                        self.flow,
+                        x.dtype,
+                    )
                     if self.cached:
                         self._cached_edge_index = (edge_index, edge_weight)
                 else:
@@ -107,8 +117,14 @@ class GCNConv(gnn.GCNConv):
                 cache = self._cached_adj_t
                 if cache is None:
                     edge_index = gcn_norm(  # yapf: disable
-                        edge_index, edge_weight, x.size(self.node_dim),
-                        self.improved, self.add_self_loops, self.flow, x.dtype)
+                        edge_index,
+                        edge_weight,
+                        x.size(self.node_dim),
+                        self.improved,
+                        self.add_self_loops,
+                        self.flow,
+                        x.dtype,
+                    )
                     if self.cached:
                         self._cached_adj_t = edge_index
                 else:
@@ -117,8 +133,7 @@ class GCNConv(gnn.GCNConv):
         x = self.lin(x)
 
         # propagate_type: (x: Tensor, edge_weight: OptTensor)
-        out = self.propagate(edge_index, x=x, edge_weight=edge_weight,
-                             size=None)
+        out = self.propagate(edge_index, x=x, edge_weight=edge_weight, size=None)
 
         if self.bias is not None:
             out = out + self.bias
@@ -129,24 +144,24 @@ class GCNConv(gnn.GCNConv):
         size = self.__check_input__(edge_index, size)
 
         # Run "fused" message and aggregation (if applicable).
-        if (isinstance(edge_index, SparseTensor) and self.fuse
-                and not self._explain):
-            coll_dict = self.__collect__(self.__fused_user_args__, edge_index,
-                                         size, kwargs)
+        if isinstance(edge_index, SparseTensor) and self.fuse and not self._explain:
+            coll_dict = self.__collect__(
+                self.__fused_user_args__, edge_index, size, kwargs
+            )
 
             msg_aggr_kwargs = self.inspector.distribute(
-                'message_and_aggregate', coll_dict)
+                "message_and_aggregate", coll_dict
+            )
             out = self.message_and_aggregate(edge_index, **msg_aggr_kwargs)
 
-            update_kwargs = self.inspector.distribute('update', coll_dict)
+            update_kwargs = self.inspector.distribute("update", coll_dict)
             return self.update(out, **update_kwargs)
 
         # Otherwise, run both functions in separation.
         elif isinstance(edge_index, Tensor) or not self.fuse:
-            coll_dict = self.__collect__(self.__user_args__, edge_index, size,
-                                         kwargs)
+            coll_dict = self.__collect__(self.__user_args__, edge_index, size, kwargs)
 
-            msg_kwargs = self.inspector.distribute('message', coll_dict)
+            msg_kwargs = self.inspector.distribute("message", coll_dict)
             out = self.message(**msg_kwargs)
 
             # For `GNNExplainer`, we require a separate message and aggregate
@@ -171,8 +186,8 @@ class GCNConv(gnn.GCNConv):
                 assert out.size(self.node_dim) == edge_mask.size(0)
                 out = out * edge_mask.view([-1] + [1] * (out.dim() - 1))
 
-            aggr_kwargs = self.inspector.distribute('aggregate', coll_dict)
+            aggr_kwargs = self.inspector.distribute("aggregate", coll_dict)
             out = self.aggregate(out, **aggr_kwargs)
 
-            update_kwargs = self.inspector.distribute('update', coll_dict)
+            update_kwargs = self.inspector.distribute("update", coll_dict)
             return self.update(out, **update_kwargs)

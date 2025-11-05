@@ -1,0 +1,26 @@
+[project]
+name = "explainability"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "dive-into-graphs>=1.1.0",
+    "matplotlib>=3.10.7",
+    "networkx>=3.4.2",
+    "pandas>=2.3.3",
+    "rdkit-pypi>=2022.9.3",
+    "scikit-learn>=1.7.2",
+    "tap>=0.2",
+    "torch>=2.9.0",
+    "torch-geometric>=2.7.0",
+    "torch-sparse>=0.6.16",
+    "torch-scatter>=2.1.0",
+    "torch-cluster>=1.6.0",
+    "transformers>=4.57.1",
+]
+
+[tool.uv.extra-build-dependencies]
+torch-cluster = ["torch"]
+torch-sparse = ["torch"]
+torch-scatter = ["torch"]

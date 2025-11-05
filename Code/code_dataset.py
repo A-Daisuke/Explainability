@@ -1,17 +1,13 @@
-import os.path
+import glob
 import json
+import os.path
+import re
 
+import numpy as np
+import pandas as pd
 import torch
 from torch_geometric.data import Data
-from transformers import AutoTokenizer, AutoModel
-
-import re
-import numpy as np
-import glob
-import pandas as pd
-
-import torch
-import numpy as np
+from transformers import AutoModel, AutoTokenizer
 
 
 def handleJavaCode(filename, code_range):
@@ -20,7 +16,7 @@ def handleJavaCode(filename, code_range):
     1. filename is the original file;
     2. code-range is the range of this node
     """
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         file = f.read()
         file_list = file.replace("\t", " ").split("\n")
         range_file_list = []
@@ -35,14 +31,14 @@ def handleJavaCode(filename, code_range):
         if beginLine == endLine:
             for i in range(0, len(file_list)):
                 if i == beginLine:
-                    range_file_list.append(file_list[i][beginColumn - 1:endColumn])
+                    range_file_list.append(file_list[i][beginColumn - 1 : endColumn])
         else:
             # print(len(file_list))
             for i in range(0, len(file_list)):
                 if i == beginLine:
-                    range_file_list.append(file_list[i][beginColumn - 1:])
+                    range_file_list.append(file_list[i][beginColumn - 1 :])
                 elif i == endLine:
-                    range_file_list.append(file_list[i][0: endColumn])
+                    range_file_list.append(file_list[i][0:endColumn])
                 elif i > beginLine and i < endLine:
                     range_file_list.append(file_list[i])
             # print("kkk")
@@ -53,15 +49,27 @@ def handleJavaCode(filename, code_range):
         for str in range_file_list:
             if str.find("//") != -1:
                 nl_list.append(str)
-            elif str.find("*") != -1 and str.find("/*(MInterface)*/") == -1 and str.find("* 100 )") == -1 \
-                    and str.find("t1.*, t2.*") == -1 and str.find("inner_query.*") == -1 and str.find(
-                "SELECT *") == -1 and str.find("SELECT * ") == -1 \
-                    and str.find("count(*)") == -1 and str.find("2.0 * ") == -1 and str.find(
-                "bodyWeight * 2.0") == -1 and str.find("bodyWeight*-1)") == -1 \
-                    and str.find(" - 1.0) * ") == -1 and str.find(")*(") == -1 and str.find(
-                "/* Here we' go! */") == -1 and str.find(" * 12 )") == -1 \
-                    and str.find("select *") == -1 and str.find("/*Notation.findNotation") == -1 and str.find(
-                "*=") == -1 and str.find("* 100 )") == -1:
+            elif (
+                str.find("*") != -1
+                and str.find("/*(MInterface)*/") == -1
+                and str.find("* 100 )") == -1
+                and str.find("t1.*, t2.*") == -1
+                and str.find("inner_query.*") == -1
+                and str.find("SELECT *") == -1
+                and str.find("SELECT * ") == -1
+                and str.find("count(*)") == -1
+                and str.find("2.0 * ") == -1
+                and str.find("bodyWeight * 2.0") == -1
+                and str.find("bodyWeight*-1)") == -1
+                and str.find(" - 1.0) * ") == -1
+                and str.find(")*(") == -1
+                and str.find("/* Here we' go! */") == -1
+                and str.find(" * 12 )") == -1
+                and str.find("select *") == -1
+                and str.find("/*Notation.findNotation") == -1
+                and str.find("*=") == -1
+                and str.find("* 100 )") == -1
+            ):
                 nl_list.append(str)
             else:
                 code_list.append(str)
@@ -87,7 +95,13 @@ def codeEmbedding(nl_list, code_list, tokenizer, model):
     nl_tokens = tokenizer.tokenize(nl)
     token_list = []
     token_embeddings = []
-    tokens = [tokenizer.cls_token] + nl_tokens + [tokenizer.sep_token] + code_tokens + [tokenizer.sep_token]
+    tokens = (
+        [tokenizer.cls_token]
+        + nl_tokens
+        + [tokenizer.sep_token]
+        + code_tokens
+        + [tokenizer.sep_token]
+    )
     token_list = cutToken(tokens, token_list)
     for token in token_list:
         token_id = tokenizer.convert_tokens_to_ids(token)
@@ -105,7 +119,7 @@ def cutToken(tokens, token_list):
     """
     if len(tokens) > 500:
         token_list.append(tokens[0:500])
-        tokens = tokens[500: len(tokens)]
+        tokens = tokens[500 : len(tokens)]
         cutToken(tokens, token_list)
     else:
         token_list.append(tokens)
@@ -114,35 +128,84 @@ def cutToken(tokens, token_list):
 
 def one_hot_node_type(node_type):
     """
-     Handle 68 kinds of nodes with One-Hot
+    Handle 68 kinds of nodes with One-Hot
     """
     node_type = node_type.replace("com.github.javaparser.ast.", "")
 
-    hot_dict = {'ArrayCreationLevel': 0, 'CompilationUnit': 1, 'Modifier': 2, 'ClassOrInterfaceDeclaration': 3,
-                'ConstructorDeclaration': 4, 'MethodDeclaration': 5, 'Parameter': 6,
-                'VariableDeclarator': 7, 'BlockComment': 8, 'JavadocComment': 9,
-                'LineComment': 10, 'ArrayAccessExpr': 11, 'ArrayCreationExpr': 12,
-                'ArrayInitializerExpr': 13, 'AssignExpr': 14, 'BinaryExpr': 15,
-                'BooleanLiteralExpr': 16, 'CastExpr': 17, 'CharLiteralExpr': 18, 'ClassExpr': 19,
-                'ConditionalExpr': 20, 'DoubleLiteralExpr': 21, 'EnclosedExpr': 22,
-                'FieldAccessExpr': 23, 'InstanceOfExpr': 24, 'IntegerLiteralExpr': 25,
-                'LongLiteralExpr': 26, 'MarkerAnnotationExpr': 27, 'MemberValuePair': 28,
-                'MethodCallExpr': 29, 'Name': 30, 'NameExpr': 31, 'NormalAnnotationExpr': 32,
-                'NullLiteralExpr': 33, 'ObjectCreationExpr': 34, 'SimpleName': 35,
-                'SingleMemberAnnotationExpr': 36, 'StringLiteralExpr': 37, 'SuperExpr': 38,
-                'ThisExpr': 39, 'UnaryExpr': 40, 'VariableDeclarationExpr': 41,
-                'AssertStmt': 42,
-                'BlockStmt': 43, 'BreakStmt': 44, 'CatchClause': 45, 'ContinueStmt': 46,
-                'DoStmt': 47, 'EmptyStmt': 48, 'ExplicitConstructorInvocationStmt': 49,
-                'ExpressionStmt': 50, 'ForEachStmt': 51, 'ForStmt': 52, 'IfStmt': 53,
-                'LabeledStmt': 54, 'LocalClassDeclarationStmt': 55, 'ReturnStmt': 56,
-                'SwitchEntry': 57,
-                'SwitchStmt': 58, 'ThrowStmt': 59, 'TryStmt': 60,
-                'WhileStmt': 61,
-                'ArrayType': 62,
-                'ClassOrInterfaceType': 63, 'PrimitiveType': 64, 'TypeParameter': 65,
-                'VoidType': 66,
-                'WildcardType': 67, 'ElseStmt': 68, 'ElseIfStmt': 69, 'FinallyStmt': 70, 'CatchStmt': 71}
+    hot_dict = {
+        "ArrayCreationLevel": 0,
+        "CompilationUnit": 1,
+        "Modifier": 2,
+        "ClassOrInterfaceDeclaration": 3,
+        "ConstructorDeclaration": 4,
+        "MethodDeclaration": 5,
+        "Parameter": 6,
+        "VariableDeclarator": 7,
+        "BlockComment": 8,
+        "JavadocComment": 9,
+        "LineComment": 10,
+        "ArrayAccessExpr": 11,
+        "ArrayCreationExpr": 12,
+        "ArrayInitializerExpr": 13,
+        "AssignExpr": 14,
+        "BinaryExpr": 15,
+        "BooleanLiteralExpr": 16,
+        "CastExpr": 17,
+        "CharLiteralExpr": 18,
+        "ClassExpr": 19,
+        "ConditionalExpr": 20,
+        "DoubleLiteralExpr": 21,
+        "EnclosedExpr": 22,
+        "FieldAccessExpr": 23,
+        "InstanceOfExpr": 24,
+        "IntegerLiteralExpr": 25,
+        "LongLiteralExpr": 26,
+        "MarkerAnnotationExpr": 27,
+        "MemberValuePair": 28,
+        "MethodCallExpr": 29,
+        "Name": 30,
+        "NameExpr": 31,
+        "NormalAnnotationExpr": 32,
+        "NullLiteralExpr": 33,
+        "ObjectCreationExpr": 34,
+        "SimpleName": 35,
+        "SingleMemberAnnotationExpr": 36,
+        "StringLiteralExpr": 37,
+        "SuperExpr": 38,
+        "ThisExpr": 39,
+        "UnaryExpr": 40,
+        "VariableDeclarationExpr": 41,
+        "AssertStmt": 42,
+        "BlockStmt": 43,
+        "BreakStmt": 44,
+        "CatchClause": 45,
+        "ContinueStmt": 46,
+        "DoStmt": 47,
+        "EmptyStmt": 48,
+        "ExplicitConstructorInvocationStmt": 49,
+        "ExpressionStmt": 50,
+        "ForEachStmt": 51,
+        "ForStmt": 52,
+        "IfStmt": 53,
+        "LabeledStmt": 54,
+        "LocalClassDeclarationStmt": 55,
+        "ReturnStmt": 56,
+        "SwitchEntry": 57,
+        "SwitchStmt": 58,
+        "ThrowStmt": 59,
+        "TryStmt": 60,
+        "WhileStmt": 61,
+        "ArrayType": 62,
+        "ClassOrInterfaceType": 63,
+        "PrimitiveType": 64,
+        "TypeParameter": 65,
+        "VoidType": 66,
+        "WildcardType": 67,
+        "ElseStmt": 68,
+        "ElseIfStmt": 69,
+        "FinallyStmt": 70,
+        "CatchStmt": 71,
+    }
 
     index = hot_dict[node_type]
     all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
@@ -161,11 +224,33 @@ def write_pkl(data_frame: pd.DataFrame, path, file_name):
 
 
 def ConvertToGraph(json_content):
-    STMT = ['AssertStmt', 'BreakStmt', 'ContinueStmt', 'DoStmt', 'ExplicitConstructorInvocationStmt',
-            'ExpressionStmt', 'ForEachStmt', 'ForStmt', 'LabeledStmt', 'LocalClassDeclarationStmt', 'ReturnStmt',
-            'SwitchEntry', 'SwitchStmt', 'ThrowStmt', 'WhileStmt', 'MethodDeclaration']
-    EXPR = ['AssignExpr', 'MethodCallExpr', 'BinaryExpr', 'UnaryExpr', 'VariableDeclarationExpr', 'Parameter']
-    COMMENT = ['JavadocComment', 'LineComment', 'BlockComment']
+    STMT = [
+        "AssertStmt",
+        "BreakStmt",
+        "ContinueStmt",
+        "DoStmt",
+        "ExplicitConstructorInvocationStmt",
+        "ExpressionStmt",
+        "ForEachStmt",
+        "ForStmt",
+        "LabeledStmt",
+        "LocalClassDeclarationStmt",
+        "ReturnStmt",
+        "SwitchEntry",
+        "SwitchStmt",
+        "ThrowStmt",
+        "WhileStmt",
+        "MethodDeclaration",
+    ]
+    EXPR = [
+        "AssignExpr",
+        "MethodCallExpr",
+        "BinaryExpr",
+        "UnaryExpr",
+        "VariableDeclarationExpr",
+        "Parameter",
+    ]
+    COMMENT = ["JavadocComment", "LineComment", "BlockComment"]
     TYPES = STMT + EXPR + COMMENT
 
     graph_raw = json_content["types"][0]["members"][0]
@@ -187,7 +272,6 @@ def ConvertToGraph(json_content):
             createGraph(graph[key], key, index)
 
     def createGraph(graph, name, index):
-
         # 只有是节点！，才会递归
         if "!" in graph.keys():
             noneName = graph["!"].split(".")[-1]
@@ -203,7 +287,6 @@ def ConvertToGraph(json_content):
 
                 for k in graph.keys():
                     loopKeys(graph, k, node_id)
-
 
             elif "TryStmt" in noneName:
                 Vertice_type.append(noneName)
@@ -275,7 +358,6 @@ def ConvertToGraph(json_content):
                         loopKeys(graph, key, node_id)
 
             elif "IfStmt" in noneName:
-
                 # 如果是if stmt，记住，这个最上面的if的范围是它的thenStmt
 
                 if name == "elseStmt":
@@ -283,8 +365,12 @@ def ConvertToGraph(json_content):
 
                 then_range = graph["thenStmt"]["range"]
                 condition = graph["condition"]["range"]
-                if_range = {"beginLine": condition["beginLine"], "beginColumn": condition["beginColumn"] - 8,
-                            "endLine": then_range["endLine"], "endColumn": then_range["endColumn"]}
+                if_range = {
+                    "beginLine": condition["beginLine"],
+                    "beginColumn": condition["beginColumn"] - 8,
+                    "endLine": then_range["endLine"],
+                    "endColumn": then_range["endColumn"],
+                }
                 Vertice_type.append(noneName)
                 Vertice_info.append(if_range)
 
@@ -312,7 +398,6 @@ def ConvertToGraph(json_content):
                 for k in graph.keys():
                     loopKeys(graph, k, node_id)
 
-
             else:
                 Vertice_type.append(noneName)
                 Vertice_info.append(graph["range"])
@@ -327,12 +412,17 @@ def ConvertToGraph(json_content):
 
     createGraph(graph_raw, "graph", -1)
 
-    return {"node_type": Vertice_type, "node_range": Vertice_info, "edge_list": Edge_list, "edge_type": Edge_type}
+    return {
+        "node_type": Vertice_type,
+        "node_range": Vertice_info,
+        "edge_list": Edge_list,
+        "edge_type": Edge_type,
+    }
 
 
 def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
     """
-       Convert json file to Graph Representation
+    Convert json file to Graph Representation
     """
     n_dataset_files = get_directory_files(N_PATHS_AST)
     r_dataset_files = get_directory_files(R_PATHS_AST)
@@ -349,7 +439,9 @@ def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
             graph = ConvertToGraph(content)
             graph_list.append(graph)
             target_list.append(0)
-            code_filename_list.append(os.path.join(R_PATHS_AST, json_file.replace(".json", ".java")))
+            code_filename_list.append(
+                os.path.join(R_PATHS_AST, json_file.replace(".json", ".java"))
+            )
 
     for json_file in n_dataset_files:
         with open(os.path.join(N_PATHS_AST, json_file)) as f:
@@ -358,7 +450,9 @@ def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
             graph = ConvertToGraph(content)
             graph_list.append(graph)
             target_list.append(1)
-            code_filename_list.append(os.path.join(N_PATHS_AST, json_file.replace(".json", ".java")))
+            code_filename_list.append(
+                os.path.join(N_PATHS_AST, json_file.replace(".json", ".java"))
+            )
 
     for json_file in u_dataset_files:
         with open(os.path.join(U_PATHS_AST, json_file)) as f:
@@ -367,15 +461,17 @@ def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
             graph = ConvertToGraph(content)
             graph_list.append(graph)
             target_list.append(2)
-            code_filename_list.append(os.path.join(U_PATHS_AST, json_file.replace(".json", ".java")))
+            code_filename_list.append(
+                os.path.join(U_PATHS_AST, json_file.replace(".json", ".java"))
+            )
 
     return graph_list, target_list, code_filename_list
 
 
 def graph_to_input(graph, fileName, target, tokenizer, model):
     """
-       Convert Graph to Vector Data for train and test, adding extra Extra in this process
-       这里的操作对象是一个图
+    Convert Graph to Vector Data for train and test, adding extra Extra in this process
+    这里的操作对象是一个图
 
     """
     node_type = graph["node_type"]  # node type
@@ -401,43 +497,80 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
     raw_code_list = []
 
     for i in range(len(node_range)):
-
         # 通过node range获得node在真实代码中是哪几行，并获得raw—code 以及 raw-code 通过bert后的结果
         code_range = node_range[i]
         nl_list, code_list = handleJavaCode(fileName, code_range)
         raw_code = nl_list + code_list
         raw_code_list.append(raw_code)  # 原代码
-        node_embedding = codeEmbedding(nl_list, code_list, tokenizer, model)  # 通过bert后
+        node_embedding = codeEmbedding(
+            nl_list, code_list, tokenizer, model
+        )  # 通过bert后
         node_embedding_list.append(node_embedding)
 
         node_type_one_hot = one_hot_node_type(node_type[i])
         node_one_hot_list.append(node_type_one_hot)
 
-        if 'AssignExpr' in node_type[i] \
-                or 'MethodCallExpr' in node_type[i] \
-                or 'BinaryExpr' in node_type[i] \
-                or 'UnaryExpr' in node_type[i]:
-
+        if (
+            "AssignExpr" in node_type[i]
+            or "MethodCallExpr" in node_type[i]
+            or "BinaryExpr" in node_type[i]
+            or "UnaryExpr" in node_type[i]
+        ):
             node_assign_list.append(
-                [i, node_type[i], [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                 re.split(' |\.|\)|\(|\[|\]|\=', "".join(code_list)), code_list])
+                [
+                    i,
+                    node_type[i],
+                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
+                    re.split(" |\.|\)|\(|\[|\]|\=", "".join(code_list)),
+                    code_list,
+                ]
+            )
 
             all_node_list.append(
-                [i, node_type[i].split(".")[-1], [code_range["beginLine"] - 1, code_range["endLine"] - 1], code_list])
+                [
+                    i,
+                    node_type[i].split(".")[-1],
+                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
+                    code_list,
+                ]
+            )
 
-        elif 'VariableDeclarationExpr' in node_type[i] \
-                or node_type[i] == 'Parameter':
+        elif "VariableDeclarationExpr" in node_type[i] or node_type[i] == "Parameter":
             node_declaration_list.append(
-                [i, node_type[i], [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                 re.split(' |\.|\)|\(|\[|\]|\=', "".join(code_list)), code_list])
+                [
+                    i,
+                    node_type[i],
+                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
+                    re.split(" |\.|\)|\(|\[|\]|\=", "".join(code_list)),
+                    code_list,
+                ]
+            )
 
             all_node_list.append(
-                [i, node_type[i], [code_range["beginLine"] - 1, code_range["endLine"] - 1], code_list])
+                [
+                    i,
+                    node_type[i],
+                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
+                    code_list,
+                ]
+            )
         else:
             node_stmt_list.append(
-                [i, node_type[i], [code_range["beginLine"] - 1, code_range["endLine"] - 1], code_list])
+                [
+                    i,
+                    node_type[i],
+                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
+                    code_list,
+                ]
+            )
             all_node_list.append(
-                [i, node_type[i], [code_range["beginLine"] - 1, code_range["endLine"] - 1], code_list])
+                [
+                    i,
+                    node_type[i],
+                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
+                    code_list,
+                ]
+            )
 
     node_declaration_list.sort(key=lambda x: (x[2][0], x[2][1]))
     node_assign_list.sort(key=lambda x: (x[2][0], x[2][1]))
@@ -489,12 +622,20 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
     # print()
     # print(edge_types)
 
-    return node_type, raw_code_list, node_embedding_list, edge_list, edge_types, target, node_one_hot_list
+    return (
+        node_type,
+        raw_code_list,
+        node_embedding_list,
+        edge_list,
+        edge_types,
+        target,
+        node_one_hot_list,
+    )
 
 
 def DataEdgeHandle(declaration_list, assign_list):
     """
-       Handle Extra Data Edge, three ways tested in Ablation Study
+    Handle Extra Data Edge, three ways tested in Ablation Study
     """
 
     data_flow_edge_list = []
@@ -561,12 +702,33 @@ def AddControlByHand(fileName, stmt_node_list):
         remove_line = [[8, 10], [30, 35]]
 
     elif "Scalabrino8.java" in fileName:
-        add_line = [[11, 32], [13, 19], [15, 19], [19, 25], [21, 25], [27, 11], [28, 11]]
+        add_line = [
+            [11, 32],
+            [13, 19],
+            [15, 19],
+            [19, 25],
+            [21, 25],
+            [27, 11],
+            [28, 11],
+        ]
         remove_line = [[28, 32]]
 
     elif "Scalabrino15.java" in fileName:
-        add_line = [[2, 38], [6, 8], [8, 30], [9, 27], [11, 21], [14, 16], [15, 33], [19, 38], [22, 33], [25, 33],
-                    [25, 2], [28, 2], [34, 2]]
+        add_line = [
+            [2, 38],
+            [6, 8],
+            [8, 30],
+            [9, 27],
+            [11, 21],
+            [14, 16],
+            [15, 33],
+            [19, 38],
+            [22, 33],
+            [25, 33],
+            [25, 2],
+            [28, 2],
+            [34, 2],
+        ]
         remove_line = [[7, 8], [15, 16], [19, 21], [25, 27], [28, 30], [31, 33]]
 
     elif "Scalabrino28.java" in fileName:
@@ -593,215 +755,182 @@ def AddControlByHand(fileName, stmt_node_list):
         add_line = [[7, 25], [9, 12], [12, 7], [17, 12], [20, 12], [25, 28]]
         remove_line = [[20, 25]]
 
-
     elif "Scalabrino68.java" in fileName:
         add_line = [[11, 15]]
         remove_line = []
 
     # ==================Unreadable后40个==================
     elif "Scalabrino69.java" in fileName:
-
         add_line = [[23, 26]]
         remove_line = []
 
     elif "Scalabrino74.java" in fileName:
-
         add_line = [[2, 10], [6, 5], [5, 10]]
         remove_line = [[6, 10]]
 
     elif "Scalabrino84.java" in fileName:
-
         add_line = [[13, 18], [22, 25], [25, 28]]
         remove_line = [[16, 18], [23, 25], [26, 28]]
 
     elif "Scalabrino89.java" in fileName:
-
         add_line = [[7, 14], [14, 17], [17, 20], [20, 25]]
         remove_line = [[18, 20], [23, 25]]
 
     elif "Scalabrino96.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino97.java" in fileName:
-
         add_line = [[22, 30]]
         remove_line = []
 
     elif "Scalabrino98.java" in fileName:
-
         add_line = [[20, 29]]
         remove_line = []
 
     elif "Scalabrino109.java" in fileName:
-
         add_line = [[2, 33]]
         remove_line = [[30, 33]]
 
     elif "Scalabrino111.java" in fileName:
-
         add_line = [[4, 7], [9, 13], [13, 17], [17, 22]]
         remove_line = [[5, 7], [10, 13], [14, 17], [19, 22]]
 
     elif "Scalabrino125.java" in fileName:
-
         add_line = [[6, 10], [10, 17]]
         remove_line = [[15, 17]]
 
     elif "Scalabrino126.java" in fileName:
-
         add_line = [[18, 22], [20, 18]]
         remove_line = []
 
     elif "Scalabrino127.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino132.java" in fileName:
-
         add_line = [[18, 21]]
         remove_line = [[19, 21]]
 
     elif "Scalabrino135.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino137.java" in fileName:
-
         add_line = [[13, 22], [22, 29], [20, 13], [16, 20]]
         remove_line = []
 
     elif "Scalabrino140.java" in fileName:
-
         add_line = [[11, 14], [20, 23], [23, 29], [25, 29], [31, 37]]
         remove_line = []
 
     elif "Scalabrino142.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino146.java" in fileName:
-
         add_line = [[14, 20], [20, 26]]
         remove_line = []
 
     elif "Scalabrino148.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino149.java" in fileName:
-
         add_line = [[10, 9], [39, 9]]
         remove_line = []
 
     elif "Scalabrino154.java" in fileName:
-
         add_line = [[16, 25], [17, 20], [26, 29]]
         remove_line = [[22, 25]]
 
-
     elif "Scalabrino155.java" in fileName:
-
-        add_line = [[2, 30], [4, 15], [6, 12], [15, 30], [16, 30], [10, 30], [12, 30], [13, 30], [7, 30], [36, 34],
-                    [38, 34]]
+        add_line = [
+            [2, 30],
+            [4, 15],
+            [6, 12],
+            [15, 30],
+            [16, 30],
+            [10, 30],
+            [12, 30],
+            [13, 30],
+            [7, 30],
+            [36, 34],
+            [38, 34],
+        ]
         remove_line = [[10, 12], [13, 15]]
 
-
     elif "Scalabrino157.java" in fileName:
-
         add_line = [[5, 9], [10, 14], [15, 20]]
         remove_line = [[8, 9], [12, 14], [18, 20]]
 
     elif "Scalabrino158.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino162.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino163.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino167.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino170.java" in fileName:
-
         add_line = [[18, 22]]
         remove_line = []
 
     elif "Scalabrino173.java" in fileName:
-
         add_line = [[12, 15], [16, 18], [17, 22]]
         remove_line = [[17, 18]]
 
     elif "Scalabrino177.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino178.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino179.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino180.java" in fileName:
-
         add_line = [[20, 23], [21, 20]]
         remove_line = []
 
     elif "Scalabrino181.java" in fileName:
-
         add_line = [[20, 27], [25, 34]]
         remove_line = [[25, 27]]
 
     elif "Scalabrino192.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino194.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino196.java" in fileName:
-
         add_line = []
         remove_line = []
 
     elif "Scalabrino197.java" in fileName:
-
         add_line = [[7, 19], [20, 33], [17, 7], [23, 19], [30, 19], [33, 19], [34, 19]]
         remove_line = [[30, 33]]
 
     elif "Scalabrino198.java" in fileName:
-
         add_line = [[6, 28], [8, 11], [11, 14], [14, 24], [9, 14]]
         remove_line = [[9, 11], [22, 24], [25, 28]]
 
     elif "Scalabrino200.java" in fileName:
-
         add_line = []
         remove_line = []
-
 
     # ==================Neutral前30个==================
 
@@ -828,7 +957,17 @@ def AddControlByHand(fileName, stmt_node_list):
         add_line = [[3, 7], [8, 21], [13, 8], [15, 8]]
 
     elif "Scalabrino14.java" in fileName:
-        add_line = [[7, 19], [9, 15], [21, 23], [16, 7], [24, 19], [21, 19], [22, 19], [10, 7], [9, 7]]
+        add_line = [
+            [7, 19],
+            [9, 15],
+            [21, 23],
+            [16, 7],
+            [24, 19],
+            [21, 19],
+            [22, 19],
+            [10, 7],
+            [9, 7],
+        ]
         remove_line = [[10, 15], [16, 19], [22, 23]]
 
     elif "Scalabrino17.java" in fileName:
@@ -864,7 +1003,18 @@ def AddControlByHand(fileName, stmt_node_list):
         remove_line = []
 
     elif "Scalabrino27.java" in fileName:
-        add_line = [[2, 20], [4, 11], [12, 15], [22, 26], [31, 34], [35, 20], [32, 20], [16, 2], [13, 2], [5, 2]]
+        add_line = [
+            [2, 20],
+            [4, 11],
+            [12, 15],
+            [22, 26],
+            [31, 34],
+            [35, 20],
+            [32, 20],
+            [16, 2],
+            [13, 2],
+            [5, 2],
+        ]
         remove_line = [[13, 15], [16, 20], [32, 34]]
 
     elif "Scalabrino29.java" in fileName:
@@ -1071,7 +1221,15 @@ def AddControlByHand(fileName, stmt_node_list):
         remove_line = [[7, 9]]
 
     elif "Scalabrino121.java" in fileName:
-        add_line = [[16, 28], [33, 37], [19, 23], [23, 16], [25, 16], [37, 30], [39, 30]]
+        add_line = [
+            [16, 28],
+            [33, 37],
+            [19, 23],
+            [23, 16],
+            [25, 16],
+            [37, 30],
+            [39, 30],
+        ]
 
     # ==================Neutral后30个==================
 
@@ -1179,7 +1337,6 @@ def AddControlByHand(fileName, stmt_node_list):
         add_line = []
         remove_line = []
 
-
     elif "Scalabrino130.java" in fileName:
         add_line = []
         remove_line = []
@@ -1210,16 +1367,13 @@ def AddControlByHand(fileName, stmt_node_list):
         add_line = []
         remove_line = []
 
-
     elif "Scalabrino6.java" in fileName:
         add_line = [[7, 12], [12, 17]]
         remove_line = [[9, 12], [14, 17]]
 
-
     elif "Scalabrino11.java" in fileName:
         add_line = []
         remove_line = []
-
 
     elif "Scalabrino16.java" in fileName:
         add_line = []
@@ -1237,7 +1391,6 @@ def AddControlByHand(fileName, stmt_node_list):
         add_line = [[12, 15], [15, 18]]
         remove_line = [[13, 15], [16, 18]]
 
-
     elif "Scalabrino35.java" in fileName:
         add_line = []
         remove_line = []
@@ -1251,11 +1404,31 @@ def AddControlByHand(fileName, stmt_node_list):
         remove_line = [[11, 13], [14, 16], [17, 19]]
 
     elif "Scalabrino40.java" in fileName:
-        add_line = [[10, 13], [13, 16], [17, 20], [20, 23], [25, 39], [29, 26], [26, 25], [34, 26], [30, 26], [26, 25]]
+        add_line = [
+            [10, 13],
+            [13, 16],
+            [17, 20],
+            [20, 23],
+            [25, 39],
+            [29, 26],
+            [26, 25],
+            [34, 26],
+            [30, 26],
+            [26, 25],
+        ]
         remove_line = [[11, 13], [14, 16], [18, 20], [21, 23], [31, 34], [35, 39]]
 
     elif "Scalabrino41.java" in fileName:
-        add_line = [[17, 37], [35, 17], [21, 34], [25, 28], [38, 40], [23, 21], [28, 21], [29, 21]]
+        add_line = [
+            [17, 37],
+            [35, 17],
+            [21, 34],
+            [25, 28],
+            [38, 40],
+            [23, 21],
+            [28, 21],
+            [29, 21],
+        ]
         remove_line = [[29, 34], [35, 37], [38, 40]]
 
     elif "Scalabrino42.java" in fileName:
@@ -1267,7 +1440,17 @@ def AddControlByHand(fileName, stmt_node_list):
         remove_line = []
 
     elif "Scalabrino48.java" in fileName:
-        add_line = [[6, 33], [7, 33], [12, 33], [15, 24], [17, 21], [14, 12], [21, 12], [26, 12], [27, 12]]
+        add_line = [
+            [6, 33],
+            [7, 33],
+            [12, 33],
+            [15, 24],
+            [17, 21],
+            [14, 12],
+            [21, 12],
+            [26, 12],
+            [27, 12],
+        ]
         remove_line = [[20, 21], [22, 24], [27, 32]]
 
     elif "Scalabrino53.java" in fileName:
@@ -1402,10 +1585,14 @@ def AddControlByHand(fileName, stmt_node_list):
         remove_line = []
 
     for line in add_line:
-        add_edge.append([findIndex(stmt_node_list, line[0]), findIndex(stmt_node_list, line[1])])
+        add_edge.append(
+            [findIndex(stmt_node_list, line[0]), findIndex(stmt_node_list, line[1])]
+        )
 
     for line in remove_line:
-        remove_edge.append([findIndex(stmt_node_list, line[0]), findIndex(stmt_node_list, line[1])])
+        remove_edge.append(
+            [findIndex(stmt_node_list, line[0]), findIndex(stmt_node_list, line[1])]
+        )
 
     return remove_edge, add_edge
 
@@ -1416,7 +1603,9 @@ if __name__ == "__main__":
     U_PATHS_AST = "Data/Unreadable"
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
     model = AutoModel.from_pretrained("microsoft/codebert-base")
-    graph_list, target_list, code_filename_list = json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST)
+    graph_list, target_list, code_filename_list = json_parse_to_graph(
+        N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
+    )
 
     graph_input = []
     file_input = []
@@ -1424,10 +1613,18 @@ if __name__ == "__main__":
     graph_raw_code_nodes = []
 
     for i in range(len(graph_list)):
-
         # if "Scalabrino84.java" in code_filename_list[i]:
-        node_type, raw_code_list, node_embedding_list, edge_list, edge_types, target, node_one_hot_list = graph_to_input(
-            graph_list[i], code_filename_list[i], target_list[i], tokenizer, model)
+        (
+            node_type,
+            raw_code_list,
+            node_embedding_list,
+            edge_list,
+            edge_types,
+            target,
+            node_one_hot_list,
+        ) = graph_to_input(
+            graph_list[i], code_filename_list[i], target_list[i], tokenizer, model
+        )
         nodes_info = []
 
         # graph_raw_code_nodes.append({"graph_name": code_filename_list[i].split("/")[-1], "graph_nodes_codes": raw_code_list, "graph_nodes_type": node_type})
@@ -1436,13 +1633,15 @@ if __name__ == "__main__":
         for j in range(len(node_embedding_list)):
             node_embedding = np.array(node_embedding_list[j])
             node_embedding = np.mean(node_embedding_list[j], axis=0)
-            node_info = np.concatenate((node_embedding.tolist(), node_one_hot_list[j]), axis=0)
+            node_info = np.concatenate(
+                (node_embedding.tolist(), node_one_hot_list[j]), axis=0
+            )
             nodes_info.append(node_info)
 
         x = torch.tensor(nodes_info)
         x = x.to(torch.float32)
         x_zero = torch.zeros(1000, 840).float()
-        x_zero[:x.size(0), :] = x
+        x_zero[: x.size(0), :] = x
 
         y = torch.tensor([target]).float()
         edge_index = torch.tensor(edge_list)
@@ -1451,11 +1650,14 @@ if __name__ == "__main__":
         # node_type #edge_type
         graph_input.append(graph_data)
 
-    pkl_data = {"file": graph_raw_code_nodes, "input": graph_input, "target": target_input}
+    pkl_data = {
+        "file": graph_raw_code_nodes,
+        "input": graph_input,
+        "target": target_input,
+    }
     cpg_dataset = pd.DataFrame(pkl_data)
 
     # please change the name ("input_XXXXXX.pkl") if necessary
     # the "matrix" is not necessary here, it's for future studying
-    write_pkl(cpg_dataset[["input", "target"]], "", f"input.pkl")
+    write_pkl(cpg_dataset[["input", "target"]], "", "input.pkl")
     print("Build pkl Successfully")
-

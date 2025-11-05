@@ -1,25 +1,34 @@
 import os
+from typing import List
+
 import torch
 from tap import Tap
-from typing import List
 
 
 class DataParser(Tap):
-    dataset_dir: str = '../explanation/input.pkl'
-    dataset_name = 'code_readability_new'
-    num_node_features: int = 794 # two-class classification 840 & three-class classification 740
-    num_classes: int = 3 # 2
+    dataset_dir: str = "explanation/input.pkl"
+    dataset_name = "code_readability_new"
+    num_node_features: int = (
+        794  # two-class classification 840 & three-class classification 740
+    )
+    num_classes: int = 3  # 2
     avg_num_nodes: int = 150
-    data_split_ratio: List = [0.6, 0.2, 0.2]  # the ratio of training, validation and testing set for random split
+    data_split_ratio: List = [
+        0.6,
+        0.2,
+        0.2,
+    ]  # the ratio of training, validation and testing set for random split
     batch_size: int = 15
     seed: int = 1
     k_fold: int = 5
 
 
 class RewardParser(Tap):
-    reward_method: str = 'mc_l_shapley'  # Liberal, gnn_score, mc_shapley, l_shapley， mc_l_shapley
+    reward_method: str = (
+        "mc_l_shapley"  # Liberal, gnn_score, mc_shapley, l_shapley， mc_l_shapley
+    )
     local_raduis: int = 4  # (n-1) hops neighbors for l_shapley
-    subgraph_building_method: str = 'zero_filling'
+    subgraph_building_method: str = "zero_filling"
     sample_num: int = 100  # sample time for monte carlo approximation
 
 
@@ -33,10 +42,10 @@ class TrainParser(Tap):
 
 class ModelParser(Tap):
     device: str = "cpu"
-    checkpoint: str = 'checkpoint'
+    checkpoint: str = "checkpoint"
     hidden_channels: int = 128
     mlp_hidden: int = 64
-    model_name = 'dmon'
+    model_name = "dmon"
 
 
 class MCTSParser(DataParser, ModelParser):
@@ -47,9 +56,9 @@ class MCTSParser(DataParser, ModelParser):
     expand_atoms: int = 12  # # of atoms to expand children
 
     def process_args(self) -> None:
-        self.explain_model_path = os.path.join(self.checkpoint,
-                                               self.dataset_name,
-                                               f"{self.model_name}_best.pth")
+        self.explain_model_path = os.path.join(
+            self.checkpoint, self.dataset_name, f"{self.model_name}_best.pth"
+        )
 
 
 data_args = DataParser().parse_args(known_only=True)
@@ -59,8 +68,8 @@ model_args = ModelParser().parse_args(known_only=True)
 mcts_args = MCTSParser().parse_args(known_only=True)
 reward_args = RewardParser().parse_args(known_only=True)
 
-import torch
 import random
+
 import numpy as np
 
 random_seed = 1234

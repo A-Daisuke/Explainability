@@ -5,15 +5,12 @@ Time: 2020/7/31 11:29
 Project: GNN_benchmark
 Author: Shurui Gui
 """
-import torch
 
+import torch
 from torch_geometric.utils.num_nodes import maybe_num_nodes
 
 
-
-
 class ReadOut(torch.nn.Module):
-
     def __init__(self):
         super().__init__()
 
@@ -44,8 +41,14 @@ def normalize(x: torch.Tensor):
     return x
 
 
-def subgraph(node_idx, num_hops, edge_index, relabel_nodes=False,
-                   num_nodes=None, flow='source_to_target'):
+def subgraph(
+    node_idx,
+    num_hops,
+    edge_index,
+    relabel_nodes=False,
+    num_nodes=None,
+    flow="source_to_target",
+):
     r"""Computes the :math:`k`-hop subgraph of :obj:`edge_index` around node
     :attr:`node_idx`.
     It returns (1) the nodes involved in the subgraph, (2) the filtered
@@ -74,20 +77,21 @@ def subgraph(node_idx, num_hops, edge_index, relabel_nodes=False,
 
     num_nodes = maybe_num_nodes(edge_index, num_nodes)
 
-    assert flow in ['source_to_target', 'target_to_source']
-    if flow == 'target_to_source':
+    assert flow in ["source_to_target", "target_to_source"]
+    if flow == "target_to_source":
         row, col = edge_index
     else:
-        col, row = edge_index # edge_index 0 to 1, col: source, row: target
+        col, row = edge_index  # edge_index 0 to 1, col: source, row: target
 
     node_mask = row.new_empty(num_nodes, dtype=torch.bool)
     edge_mask = row.new_empty(row.size(0), dtype=torch.bool)
 
     if isinstance(node_idx, (int, list, tuple)):
-        node_idx = torch.tensor([node_idx], device=row.device, dtype=torch.int64).flatten()
+        node_idx = torch.tensor(
+            [node_idx], device=row.device, dtype=torch.int64
+        ).flatten()
     else:
         node_idx = node_idx.to(row.device)
-
 
     inv = None
 
@@ -99,7 +103,7 @@ def subgraph(node_idx, num_hops, edge_index, relabel_nodes=False,
             torch.index_select(node_mask, 0, row, out=edge_mask)
             subsets.append(col[edge_mask])
         subset, inv = torch.cat(subsets).unique(return_inverse=True)
-        inv = inv[:node_idx.numel()]
+        inv = inv[: node_idx.numel()]
     else:
         subsets = node_idx
         cur_subsets = node_idx
@@ -109,7 +113,7 @@ def subgraph(node_idx, num_hops, edge_index, relabel_nodes=False,
 
             # node_mask是需要查询的对象，然后查询第0纬度，
             torch.index_select(node_mask, 0, row, out=edge_mask)
-            dedebug  = col[edge_mask]
+            dedebug = col[edge_mask]
             subsets = torch.cat([subsets, col[edge_mask]]).unique()
             if not cur_subsets.equal(subsets):
                 cur_subsets = subsets
@@ -129,7 +133,7 @@ def subgraph(node_idx, num_hops, edge_index, relabel_nodes=False,
     edge_index = edge_index[:, edge_mask]
 
     if relabel_nodes:
-        node_idx = row.new_full((num_nodes, ), -1)
+        node_idx = row.new_full((num_nodes,), -1)
         node_idx[subset] = torch.arange(subset.size(0), device=row.device)
         edge_index = node_idx[edge_index]
 

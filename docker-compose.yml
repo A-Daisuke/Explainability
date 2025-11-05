@@ -1,0 +1,10 @@
+services:
+  explainability-app:
+    build: .
+    container_name: explainability-container
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONPATH=/app
+    stdin_open: true
+    tty: true
