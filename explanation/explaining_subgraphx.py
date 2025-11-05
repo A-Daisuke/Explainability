@@ -175,9 +175,9 @@ def ExplainingPipeline():
     # 2. load best performance state
     ModelLoading(gnnNets, device)
     # save final result
-    save_dir = os.path.join("newResults", "readable")
-    if not os.path.isdir(save_dir):
-        os.mkdir(save_dir)
+    #save_dir = os.path.join("newResults", "readable")
+    #if not os.path.isdir(save_dir):
+    #    os.mkdir(save_dir)
 
     # ----- 回避训练用的数据集，打开训练数据集看看哪些是被用于训练的 ------
     dataloader_list, dataloaderfull_list = get_cross_dataloader(data_args)
@@ -214,6 +214,33 @@ def ExplainingPipeline():
             else:
                 print("------ This graph is not in training set ------")
             # ----- module: load explainer ------
+            #explainer = SubgraphX(
+            #    gnnNets,
+            #    num_classes=3,
+            #    device=device,
+            #    explain_graph=False,
+            #    reward_method="mc_l_shapley",
+            #    save_dir=save_dir,
+            #   filename=data_raw["graph_name"],
+            #)
+
+            # ----- module: classification ------
+            prediction = Classification(gnnNets, dataset, i)
+            y_true_list.append(data_input.y.item())
+            y_pred_list.append(prediction)
+
+            #予測結果に応じて保存先ディレクトリを設定
+            if prediction == 2:
+                print("------ Model believe it is unreadable ------")
+                save_dir = os.path.join("newResults", "unreadable")
+            elif prediction == 1:
+                print("------ Model believe it is neutral ------")
+                save_dir = os.path.join("newResults", "readable")
+            elif prediction == 0:
+                print("------ Model believe it is readable ------")
+                save_dir = os.path.join("newResults", "readable")
+
+             # ----- module: load explainer ------
             explainer = SubgraphX(
                 gnnNets,
                 num_classes=3,
@@ -223,18 +250,13 @@ def ExplainingPipeline():
                 save_dir=save_dir,
                 filename=data_raw["graph_name"],
             )
-
-            # ----- module: classification ------
-            prediction = Classification(gnnNets, dataset, i)
-            y_true_list.append(data_input.y.item())
-            y_pred_list.append(prediction)
             # 目前只考虑对unreadable数据集中的图解释
-            if prediction == 2:
-                print("------ Model believe it is unreadable ------")
-            elif prediction == 1:
-                print("------ Model believe it is neutral ------")
-            elif prediction == 0:
-                print("------ Model believe it is readable ------")
+            #if prediction == 2:
+            #    print("------ Model believe it is unreadable ------")
+            #elif prediction == 1:
+            #    print("------ Model believe it is neutral ------")
+            #elif prediction == 0:
+            #    print("------ Model believe it is readable ------")
 
             # ----- module: explain ------
             max_node = data_input.num_nodes // 2
