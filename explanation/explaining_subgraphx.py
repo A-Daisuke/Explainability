@@ -139,9 +139,9 @@ def recordInCSV(data_record):
     this function writes each row of data into a single csv
     """
     #change!!!
-    #file_path = "statistics_readable.csv"
+    file_path = "statistics_readable.csv"
     #file_path = "statistics_neutral.csv"
-    file_path = "statistics_unreadable.csv"
+    #file_path = "statistics_unreadable.csv"
 
     file_exists = os.path.exists(file_path)
     with open(file_path, mode="w", newline="") as f:
@@ -199,9 +199,9 @@ def ExplainingPipeline():
     # 指定某图
     # data_name = "Scalabrino125.java"
     #change!!!
-    #data_dir = "Dataset/Readable"
+    data_dir = "Dataset/Readable"
     #data_dir = "Dataset/Neutral"
-    data_dir = "Dataset/Unreadable"
+    #data_dir = "Dataset/Unreadable"
 
     # 判断选择图是否是训练集中的图数据
     # if data_name in train_graphs_set:
@@ -213,7 +213,7 @@ def ExplainingPipeline():
     y_true_list = []#実際の正解
     y_pred_list = []#予測結果
     # loop 200 graphs in the dataset
-    for i in range(200):
+    for i in range(len(dataset)):
         # get each graph
         data_input, data_raw = dataset[i]
         # 选择图进行解释以及可视化
@@ -244,7 +244,7 @@ def ExplainingPipeline():
                 save_dir = os.path.join("newResults", "unreadable")
             elif prediction == 1:
                 print("------ Model believe it is neutral ------")
-                save_dir = os.path.join("newResults", "readable")
+                save_dir = os.path.join("newResults", "neutral")
             elif prediction == 0:
                 print("------ Model believe it is readable ------")
                 save_dir = os.path.join("newResults", "readable")
@@ -292,28 +292,48 @@ def ExplainingPipeline():
     target_names = ['readable', 'neutral', 'unreadable']
     print("\n" + "="*30 + "\n")
     print("---混合行列---")
-    cm = confusion_matrix(y_true_list, y_pred_list)
+    cm = confusion_matrix(y_true_list, y_pred_list, labels=[0, 1, 2])
     print(cm)
     if cm.shape == (3, 3):
         # 0: readable (高い), 1: neutral (低い), 2: unreadable (低い)
         
-        # 1. 可読性高い（正解）: 正解=0, 予測=0
-        cat1 = cm[0, 0]
-        
-        # 2. 可読性低いが高いと分類: 正解=1 or 2, 予測=0
-        cat2 = cm[1, 0] + cm[2, 0]
-        
-        # 3. 可読性高いが低いと分類: 正解=0, 予測=1 or 2
-        cat3 = cm[0, 1] + cm[0, 2]
-        
-        # 4. 可読性低い（正解）: 正解=1 or 2, 予測=1 or 2
-        cat4 = cm[1, 1] + cm[1, 2] + cm[2, 1] + cm[2, 2]
-        
-        print("\n--- 2クラス分類 集計 (高い/低い) ---")
-        print(f"  1. 可読性高い（正解）:         {cat1}")
-        print(f"  2. 可読性低いが高いと分類:   {cat2}")
-        print(f"  3. 可読性高いが低いと分類:   {cat3}")
-        print(f"  4. 可読性低い（正解）:         {cat4}")
+        if data_dir == "Dataset/Readable":
+            print("Readableのデータのみ分類")
+            # 1. 可読性高い（正解）: 正解=0, 予測=0
+            cat1 = cm[0, 0]
+            # 2. 可読性高いを中間と分類: 正解=0, 予測=1
+            cat2 = cm[0, 1]
+            # 3. 可読性高いを低いと分類: 正解=0, 予測=2
+            cat3 = cm[0, 2]
+            print(f"1. 可読性高いと分類（正解）:{cat1}")
+            print(f"2. 可読性中間と分類　　　　:{cat2}")
+            print(f"3. 可読性低いと分類　　　　:{cat3}")
+
+
+        elif data_dir == "Dataset/Neutral":
+            print("Neutralのデータのみ分類")
+            # 1. 可読性中間を高いと分類: 正解=1, 予測=0
+            cat1 = cm[1, 0]
+            # 2. 可読性中間（正解）: 正解=1, 予測=1
+            cat2 = cm[1, 1]
+            # 3. 可読性中間を低いと分類: 正解=1, 予測=2
+            cat3 = cm[1, 2]
+            print(f"1. 可読性高いと分類　　　　:{cat1}")
+            print(f"2. 可読性中間と分類（正解）:{cat2}")
+            print(f"3. 可読性低いと分類　　　　:{cat3}")
+
+        elif data_dir == "Dataset/Unreadable":
+            print("Unreadableのデータのみ分類")
+            # 1. 可読性低いを高いと分類: 正解=2, 予測=0
+            cat1 = cm[2, 0]
+            # 2. 可読性低いを中間と分類: 正解=2, 予測=1
+            cat2 = cm[2, 1]
+            # 3. 可読性低い（正解）: 正解=2, 予測=2
+            cat3 = cm[2, 2]
+            print(f"1. 可読性高いと分類　　　　:{cat1}")
+            print(f"2. 可読性中間と分類　　　　:{cat2}")
+            print(f"3. 可読性低いと分類（正解）:{cat3}")
+
     print("\n---精度レポート---")
     print(classification_report(y_true_list, y_pred_list, target_names=target_names, zero_division=0))
     print("="*30 + "\n")
