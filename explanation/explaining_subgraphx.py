@@ -140,8 +140,8 @@ def recordInCSV(data_record):
     """
     #change!!!
     #file_path = "statistics_readable.csv"
-    file_path = "statistics_neutral.csv"
-    #file_path = "statistics_unreadable.csv"
+    #file_path = "statistics_neutral.csv"
+    file_path = "statistics_unreadable.csv"
 
     file_exists = os.path.exists(file_path)
     with open(file_path, mode="w", newline="") as f:
@@ -200,8 +200,8 @@ def ExplainingPipeline():
     # data_name = "Scalabrino125.java"
     #change!!!
     #data_dir = "Dataset/Readable"
-    data_dir = "Dataset/Neutral"
-    #data_dir = "Dataset/Unreadable"
+    #data_dir = "Dataset/Neutral"
+    data_dir = "Dataset/Unreadable"
 
     # 判断选择图是否是训练集中的图数据
     # if data_name in train_graphs_set:
