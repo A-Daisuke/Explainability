@@ -139,8 +139,8 @@ def recordInCSV(data_record):
     this function writes each row of data into a single csv
     """
     #change!!!
-    #file_path = "statistics_readable.csv"
-    file_path = "statistics_neutral.csv"
+    file_path = "statistics_readable.csv"
+    #file_path = "statistics_neutral.csv"
     #file_path = "statistics_unreadable.csv"
 
     file_exists = os.path.exists(file_path)
@@ -199,8 +199,8 @@ def ExplainingPipeline():
     # 指定某图
     # data_name = "Scalabrino125.java"
     #change!!!
-    #data_dir = "Dataset/Readable"
-    data_dir = "Dataset/Neutral"
+    data_dir = "Dataset/Readable"
+    #data_dir = "Dataset/Neutral"
     #data_dir = "Dataset/Unreadable"
 
     # 判断选择图是否是训练集中的图数据
