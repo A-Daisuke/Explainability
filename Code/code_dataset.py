@@ -15,64 +15,82 @@ def handleJavaCode(filename, code_range):
     Extract his code and his comments for each node,
     1. filename is the original file;
     2. code-range is the range of this node
+
+    NOTE: This function supports both Java-style AST ranges (original dataset)
+    and Babel/JS-style AST ranges by checking file extension:
+      - .java : uses original offset (beginLine - 2)
+      - .js/.ts/.jsx/.tsx : uses JS offset (beginLine - 1)
     """
-    with open(filename, "r") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         file = f.read()
         file_list = file.replace("\t", " ").split("\n")
         range_file_list = []
 
-        beginLine = code_range["beginLine"] - 2
-        beginColumn = code_range["beginColumn"]
-        endLine = code_range["endLine"] - 2
-        endColumn = code_range["endColumn"]
+        # decide offset by file extension
+        _, ext = os.path.splitext(filename.lower())
+        if ext == ".java":
+            offset = 2  # original code expects -2 for Java files
+        else:
+            offset = 1  # for JS/TS JSON (Babel) we use -1
+
+        beginLine = code_range.get("beginLine", 1) - offset
+        beginColumn = code_range.get("beginColumn", 1)
+        endLine = code_range.get("endLine", 1) - offset
+        endColumn = code_range.get("endColumn", 1)
 
         if beginLine < 0 or endLine < 0:
             return [], []
         if beginLine == endLine:
             for i in range(0, len(file_list)):
                 if i == beginLine:
-                    range_file_list.append(file_list[i][beginColumn - 1 : endColumn])
+                    # guard slice bounds
+                    line = file_list[i]
+                    start = max(0, beginColumn - 1)
+                    end = min(len(line), endColumn)
+                    range_file_list.append(line[start:end])
         else:
-            # print(len(file_list))
             for i in range(0, len(file_list)):
                 if i == beginLine:
-                    range_file_list.append(file_list[i][beginColumn - 1 :])
+                    line = file_list[i]
+                    start = max(0, beginColumn - 1)
+                    range_file_list.append(line[start:])
                 elif i == endLine:
-                    range_file_list.append(file_list[i][0:endColumn])
+                    line = file_list[i]
+                    end = min(len(line), endColumn)
+                    range_file_list.append(line[0:end])
                 elif i > beginLine and i < endLine:
                     range_file_list.append(file_list[i])
-            # print("kkk")
 
         nl_list = []
         code_list = []
 
-        for str in range_file_list:
-            if str.find("//") != -1:
-                nl_list.append(str)
+        for s in range_file_list:
+            if s.find("//") != -1:
+                nl_list.append(s)
             elif (
-                str.find("*") != -1
-                and str.find("/*(MInterface)*/") == -1
-                and str.find("* 100 )") == -1
-                and str.find("t1.*, t2.*") == -1
-                and str.find("inner_query.*") == -1
-                and str.find("SELECT *") == -1
-                and str.find("SELECT * ") == -1
-                and str.find("count(*)") == -1
-                and str.find("2.0 * ") == -1
-                and str.find("bodyWeight * 2.0") == -1
-                and str.find("bodyWeight*-1)") == -1
-                and str.find(" - 1.0) * ") == -1
-                and str.find(")*(") == -1
-                and str.find("/* Here we' go! */") == -1
-                and str.find(" * 12 )") == -1
-                and str.find("select *") == -1
-                and str.find("/*Notation.findNotation") == -1
-                and str.find("*=") == -1
-                and str.find("* 100 )") == -1
+                s.find("*") != -1
+                and s.find("/*(MInterface)*/") == -1
+                and s.find("* 100 )") == -1
+                and s.find("t1.*, t2.*") == -1
+                and s.find("inner_query.*") == -1
+                and s.find("SELECT *") == -1
+                and s.find("SELECT * ") == -1
+                and s.find("count(*)") == -1
+                and s.find("2.0 * ") == -1
+                and s.find("bodyWeight * 2.0") == -1
+                and s.find("bodyWeight*-1)") == -1
+                and s.find(" - 1.0) * ") == -1
+                and s.find(")*(") == -1
+                and s.find("/* Here we' go! */") == -1
+                and s.find(" * 12 )") == -1
+                and s.find("select *") == -1
+                and s.find("/*Notation.findNotation") == -1
+                and s.find("*=") == -1
+                and s.find("* 100 )") == -1
             ):
-                nl_list.append(str)
+                nl_list.append(s)
             else:
-                code_list.append(str)
+                code_list.append(s)
 
         return nl_list, code_list
 
@@ -81,15 +99,13 @@ def codeEmbedding(nl_list, code_list, tokenizer, model):
     """
     CodeEmbedding the extracted data
     """
-    # print("begin to embedding")
-
     code = ""
     nl = ""
-    for str in code_list:
-        code = code + str
+    for s in code_list:
+        code = code + s
 
-    for str in nl_list:
-        nl = nl + str
+    for s in nl_list:
+        nl = nl + s
 
     code_tokens = tokenizer.tokenize(code)
     nl_tokens = tokenizer.tokenize(nl)
@@ -129,7 +145,9 @@ def cutToken(tokens, token_list):
 def one_hot_node_type(node_type):
     """
     Handle 68 kinds of nodes with One-Hot
+    If node_type is unknown (e.g., Babel node types), return zero-vector to avoid KeyError.
     """
+    # keep original behavior for JavaParser node names
     node_type = node_type.replace("com.github.javaparser.ast.", "")
 
     hot_dict = {
@@ -207,12 +225,17 @@ def one_hot_node_type(node_type):
         "CatchStmt": 71,
     }
 
-    index = hot_dict[node_type]
-    all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
-    node_type_one_hot = all_zero.copy()
-    node_type_one_hot[index] = 1
-    # print(node_type_one_hot)
-    return list(node_type_one_hot)
+    # safe handling: if node_type not in dict, return all-zero vector
+    try:
+        index = hot_dict[node_type]
+        all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
+        node_type_one_hot = all_zero.copy()
+        node_type_one_hot[index] = 1
+        return list(node_type_one_hot)
+    except Exception:
+        # unknown node types (e.g., Babel nodes) -> return zero vector
+        all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
+        return list(all_zero)
 
 
 def get_directory_files(directory):
@@ -420,6 +443,135 @@ def ConvertToGraph(json_content):
     }
 
 
+# -----------------------------
+# New: Babel (JavaScript) support
+# -----------------------------
+def ConvertToGraphFromBabel(ast_json):
+    """
+    Convert Babel AST JSON (produced by @babel/parser) to the same graph dict format:
+    {
+      "node_type": [...],
+      "node_range": [...],  # dicts with beginLine, beginColumn, endLine, endColumn
+      "edge_list": [[],[]],
+      "edge_type": [...]
+    }
+    This function builds parent->child AST edges and preserves loc info (if any).
+    """
+    Vertice_type = []
+    Vertice_info = []
+    Edge_list = [[], []]
+    Edge_type = []
+
+    def createGraph(node, parent_id):
+        if not isinstance(node, dict):
+            return
+        if "type" not in node:
+            # not a direct AST node; explore children
+            for k, v in node.items():
+                if isinstance(v, dict):
+                    createGraph(v, parent_id)
+                elif isinstance(v, list):
+                    for it in v:
+                        createGraph(it, parent_id)
+            return
+
+        node_type = node.get("type", "Unknown")
+        Vertice_type.append(node_type)
+
+        # convert loc to unified range format
+        if "loc" in node and isinstance(node["loc"], dict):
+            loc = node["loc"]
+            # Babel columns are 0-based; convert to 1-based columns for compatibility
+            node_range = {
+                "beginLine": loc["start"].get("line", 1),
+                "beginColumn": loc["start"].get("column", 0) + 1,
+                "endLine": loc["end"].get("line", 1),
+                "endColumn": loc["end"].get("column", 0) + 1,
+            }
+        elif "start" in node and "end" in node:
+            node_range = {"beginLine": 0, "beginColumn": node["start"], "endLine": 0, "endColumn": node["end"]}
+        else:
+            node_range = {"beginLine": 0, "beginColumn": 0, "endLine": 0, "endColumn": 0}
+
+        Vertice_info.append(node_range)
+        node_id = len(Vertice_type) - 1
+
+        if parent_id is not None:
+            Edge_list[0].append(parent_id)
+            Edge_list[1].append(node_id)
+            Edge_type.append("AST")
+
+        # traverse children fields
+        for key, value in node.items():
+            if key in ("loc", "start", "end", "extra", "range"):
+                continue
+            if isinstance(value, dict):
+                createGraph(value, node_id)
+            elif isinstance(value, list):
+                for item in value:
+                    createGraph(item, node_id)
+
+    root = ast_json.get("program", ast_json)
+    createGraph(root, None)
+
+    return {
+        "node_type": Vertice_type,
+        "node_range": Vertice_info,
+        "edge_list": Edge_list,
+        "edge_type": Edge_type,
+    }
+
+
+def json_parse_to_graph_babel(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
+    """
+    Convert Babel JSONs (Dataset_js) to Graph representation.
+    Similar return format to json_parse_to_graph.
+    """
+    def get_json_files(directory):
+        return [f for f in os.listdir(directory) if f.endswith('.json')]
+
+    n_dataset_files = get_json_files(N_PATHS_AST) if os.path.exists(N_PATHS_AST) else []
+    r_dataset_files = get_json_files(R_PATHS_AST) if os.path.exists(R_PATHS_AST) else []
+    u_dataset_files = get_json_files(U_PATHS_AST) if os.path.exists(U_PATHS_AST) else []
+
+    graph_list = []
+    target_list = []
+    code_filename_list = []
+
+    def read_and_convert(json_path):
+        with open(json_path, 'r', encoding='utf-8') as f:
+            content = json.load(f)
+        return ConvertToGraphFromBabel(content)
+
+    for json_file in r_dataset_files:
+        jp = os.path.join(R_PATHS_AST, json_file)
+        print(json_file)
+        graph = read_and_convert(jp)
+        graph_list.append(graph)
+        target_list.append(0)
+        code_filename_list.append(os.path.join(R_PATHS_AST, json_file.replace(".json", ".js")))
+
+    for json_file in n_dataset_files:
+        jp = os.path.join(N_PATHS_AST, json_file)
+        print(json_file)
+        graph = read_and_convert(jp)
+        graph_list.append(graph)
+        target_list.append(1)
+        code_filename_list.append(os.path.join(N_PATHS_AST, json_file.replace(".json", ".js")))
+
+    for json_file in u_dataset_files:
+        jp = os.path.join(U_PATHS_AST, json_file)
+        print(json_file)
+        graph = read_and_convert(jp)
+        graph_list.append(graph)
+        target_list.append(2)
+        code_filename_list.append(os.path.join(U_PATHS_AST, json_file.replace(".json", ".js")))
+
+    return graph_list, target_list, code_filename_list
+# -----------------------------
+# End Babel support
+# -----------------------------
+
 def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
     """
     Convert json file to Graph Representation
@@ -577,15 +729,6 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
     node_stmt_list.sort(key=lambda x: (x[2][0], x[2][1]))
     all_node_list.sort(key=lambda x: (x[2][0], x[2][1]))
 
-    # edge_types = []
-    # edge_list = [[],[]]
-    # # ADD LOGIC FLOWS
-    # if len(all_node_list) > 1:
-    #     for i in range(len(all_node_list) - 1):
-    #         edge_list[0].append(all_node_list[i][0])
-    #         edge_list[1].append(all_node_list[i + 1][0])
-    #         edge_types.append("LOGIC")
-
     data_edge_list = DataEdgeHandle(node_declaration_list, node_assign_list)
     for data_edge in data_edge_list:
         edge_list[0].append(data_edge[0])
@@ -602,8 +745,14 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
     remove_edge, add_edge = AddControlByHand(fileName, node_stmt_list)
 
     for edge in remove_edge:
-        control_edge_list[0].remove(edge[0])
-        control_edge_list[1].remove(edge[1])
+        # guard removal existence
+        if edge[0] in control_edge_list[0] and edge[1] in control_edge_list[1]:
+            # remove first matching pair occurrence
+            for idx in range(len(control_edge_list[0])):
+                if control_edge_list[0][idx] == edge[0] and control_edge_list[1][idx] == edge[1]:
+                    control_edge_list[0].pop(idx)
+                    control_edge_list[1].pop(idx)
+                    break
 
     for edge in add_edge:
         control_edge_list[0].append(edge[0])
@@ -613,14 +762,6 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
         edge_list[0].append(control_edge_list[0][i])
         edge_list[1].append(control_edge_list[1][i])
         edge_types.append("CONTROL")
-
-    # print(node_type)
-    # print()
-    # print(raw_code_list)
-    # print()
-    # print(edge_list)
-    # print()
-    # print(edge_types)
 
     return (
         node_type,
@@ -652,34 +793,6 @@ def DataEdgeHandle(declaration_list, assign_list):
             data_flow.insert(0, decl[0])
             for j in range(len(data_flow) - 1):
                 data_flow_edge_list.append([data_flow[j], data_flow[j + 1]])
-
-    # # TYPE 2
-    # for decl in declaration_list:
-    #     data_flow = []
-    #     flag = False
-    #     for assign in assign_list:
-    #         if decl[2][1] in assign[2]:
-    #             flag = True
-    #             data_flow.append(assign[0])
-    #     if flag:
-    #         data_flow.insert(0, decl[0])
-    #         for j in range(len(data_flow) - 1):
-    #             data_flow_edge_list.append([data_flow[0], data_flow[j + 1]])
-    #
-    # # TYPE 3
-    # for decl in declaration_list:
-    #     data_flow = []
-    #     flag = False
-    #     for assign in assign_list:
-    #         if decl[2][1] in assign[2]:
-    #             flag = True
-    #             data_flow.append(assign[0])
-    #     if flag:
-    #         data_flow.insert(0, decl[0])
-    #         for j in range(len(data_flow) - 1):
-    #             data_flow_edge_list.append([data_flow[j], data_flow[j + 1]])
-    #             if [data_flow[0], data_flow[j + 1]] not in data_flow_edge_list:
-    #                 data_flow_edge_list.append([data_flow[0], data_flow[j + 1]])
 
     return data_flow_edge_list
 
@@ -1597,23 +1710,42 @@ def AddControlByHand(fileName, stmt_node_list):
     return remove_edge, add_edge
 
 
+
 if __name__ == "__main__":
+    import pickle
+
+    # default (original Java dataset) paths
     N_PATHS_AST = "Data/Neutral"
     R_PATHS_AST = "Data/Readable"
     U_PATHS_AST = "Data/Unreadable"
+
+    # JS dataset paths (new)
+    N_PATHS_AST_JS = "Dataset_js/Neutral"
+    R_PATHS_AST_JS = "Dataset_js/Readable"
+    U_PATHS_AST_JS = "Dataset_js/Unreadable"
+
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
     model = AutoModel.from_pretrained("microsoft/codebert-base")
-    graph_list, target_list, code_filename_list = json_parse_to_graph(
-        N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
-    )
 
+    # If Dataset_js exists (JS workflow), prefer it; otherwise fall back to original Java workflow
+    if os.path.exists(R_PATHS_AST_JS) or os.path.exists(N_PATHS_AST_JS) or os.path.exists(U_PATHS_AST_JS):
+        print("Detected Dataset_js directories -> using Babel(JS) JSON loader")
+        graph_list, target_list, code_filename_list = json_parse_to_graph_babel(
+            N_PATHS_AST_JS, R_PATHS_AST_JS, U_PATHS_AST_JS
+        )
+    else:
+        print("Using original Java dataset loader")
+        graph_list, target_list, code_filename_list = json_parse_to_graph(
+            N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
+        )
+
+    # Build graph_input / file_input / target_input lists
     graph_input = []
     file_input = []
     target_input = []
     graph_raw_code_nodes = []
 
     for i in range(len(graph_list)):
-        # if "Scalabrino84.java" in code_filename_list[i]:
         (
             node_type,
             raw_code_list,
@@ -1625,39 +1757,80 @@ if __name__ == "__main__":
         ) = graph_to_input(
             graph_list[i], code_filename_list[i], target_list[i], tokenizer, model
         )
+
+        # store basename of filename for portability (works on Unix/Windows)
+        basename = os.path.basename(code_filename_list[i])
+        graph_raw_code_nodes.append(basename)
+
+        # build node feature matrix (nodes_info) from node embeddings + one-hot
         nodes_info = []
-
-        # graph_raw_code_nodes.append({"graph_name": code_filename_list[i].split("/")[-1], "graph_nodes_codes": raw_code_list, "graph_nodes_type": node_type})
-        graph_raw_code_nodes.append(code_filename_list[i].split("\\")[-1])
-
         for j in range(len(node_embedding_list)):
-            node_embedding = np.array(node_embedding_list[j])
-            node_embedding = np.mean(node_embedding_list[j], axis=0)
-            node_info = np.concatenate(
-                (node_embedding.tolist(), node_one_hot_list[j]), axis=0
-            )
+            # node_embedding_list[j] expected shape: (tokens, embedding_dim) => take mean over tokens
+            # guard against empty embeddings
+            try:
+                node_embedding = np.array(node_embedding_list[j])
+                node_embedding_mean = np.mean(node_embedding, axis=0).tolist()
+            except Exception:
+                node_embedding_mean = [0.0] * 768  # fallback size; downstream code pads/truncates anyway
+
+            node_one_hot = node_one_hot_list[j] if j < len(node_one_hot_list) else [0] * 72
+            node_info = np.concatenate((node_embedding_mean, node_one_hot), axis=0)
             nodes_info.append(node_info)
 
-        x = torch.tensor(nodes_info)
-        x = x.to(torch.float32)
-        x_zero = torch.zeros(1000, 840).float()
-        x_zero[: x.size(0), :] = x
+        # convert to torch tensors and create Data object
+        x = torch.tensor(nodes_info, dtype=torch.float32)
+        edge_index = torch.tensor(edge_list, dtype=torch.long)
+        graph_data = Data(x=x, edge_index=edge_index, y=torch.tensor([target], dtype=torch.float32))
 
-        y = torch.tensor([target]).float()
-        edge_index = torch.tensor(edge_list)
-        graph_data = Data(x=x, edge_index=edge_index, y=target)
         target_input.append(target)
-        # node_type #edge_type
         graph_input.append(graph_data)
 
-    pkl_data = {
+    # Build DataFrame with file,input,target and save to explanation/input.pkl
+    cpg_dataset = pd.DataFrame({
         "file": graph_raw_code_nodes,
         "input": graph_input,
-        "target": target_input,
-    }
-    cpg_dataset = pd.DataFrame(pkl_data)
+        "target": target_input
+    })
 
-    # please change the name ("input_XXXXXX.pkl") if necessary
-    # the "matrix" is not necessary here, it's for future studying
-    write_pkl(cpg_dataset[["input", "target"]], "", "input.pkl")
-    print("Build pkl Successfully")
+    # ensure explanation/ exists and write to explanation/input.pkl
+    os.makedirs("/app/explanation", exist_ok=True)
+    cpg_dataset.to_pickle("/app/explanation/input.pkl")
+    print("Build pkl Successfully -> /app/explanation/input.pkl (rows: {})".format(len(cpg_dataset)))
+
+    # デバッグ: ファイル数を確認
+    print(f"Graph count: {len(graph_list)}")
+    print(f"Target count: {len(target_list)}")
+    print(f"Code files: {code_filename_list[:3]}")  # 最初の3ファイル表示
+
+    # Build graph_input / file_input / target_input lists
+    graph_input = []
+    file_input = []
+    target_input = []
+    graph_raw_code_nodes = []
+
+    for i in range(len(graph_list)):
+        print(f"\nProcessing {i+1}/{len(graph_list)}: {code_filename_list[i]}")
+        
+        # ファイルが存在するか確認
+        if not os.path.exists(code_filename_list[i]):
+            print(f"WARNING: File not found: {code_filename_list[i]}")
+            continue
+            
+        try:
+            (
+                node_type,
+                raw_code_list,
+                node_embedding_list,
+                edge_list,
+                edge_types,
+                target,
+                node_one_hot_list,
+            ) = graph_to_input(
+                graph_list[i], code_filename_list[i], target_list[i], tokenizer, model
+            )
+            # ... (残りの処理)
+        except Exception as e:
+            print(f"ERROR processing {code_filename_list[i]}: {e}")
+            import traceback
+            traceback.print_exc()
+            continue

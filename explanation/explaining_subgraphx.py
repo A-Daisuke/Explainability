@@ -139,9 +139,12 @@ def recordInCSV(data_record):
     this function writes each row of data into a single csv
     """
     #change!!!
-    file_path = "statistics_readable.csv"
+    #file_path = "statistics_readable.csv"
     #file_path = "statistics_neutral.csv"
     #file_path = "statistics_unreadable.csv"
+    file_path = "statistics_js_readable.csv"
+    #file_path = "statistics_js_neutral.csv"
+    #file_path = "statistics_js_unreadable.csv"
 
     file_exists = os.path.exists(file_path)
     with open(file_path, mode="w", newline="") as f:
@@ -199,9 +202,12 @@ def ExplainingPipeline():
     # 指定某图
     # data_name = "Scalabrino125.java"
     #change!!!
-    data_dir = "Dataset/Readable"
+    #data_dir = "Dataset/Readable"
     #data_dir = "Dataset/Neutral"
     #data_dir = "Dataset/Unreadable"
+    data_dir = "Dataset_js/Readable"
+    #data_dir = "Dataset_js/Neutral"
+    #data_dir = "Dataset_js/Unreadable"
 
     # 判断选择图是否是训练集中的图数据
     # if data_name in train_graphs_set:

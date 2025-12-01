@@ -11,10 +11,15 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # まずPyTorchをインストール
-RUN pip install --default-timeout=0 --no-cache-dir torch==1.13.1
+RUN pip install --default-timeout=0 --no-cache-dir torch==2.0.1 --index-url https://download.pytorch.org/whl/cpu
 
 # PyTorch関連のパッケージをインストール
-RUN pip install --default-timeout=0 --no-cache-dir torch-scatter==2.1.0 torch-sparse==0.6.16 torch-cluster==1.6.0 torch-geometric==2.2.0
+RUN pip install --default-timeout=0 --no-cache-dir \
+    torch-scatter \
+    torch-sparse \
+    torch-cluster \
+    torch-geometric \
+    -f https://data.pyg.org/whl/torch-2.1.0+cpu.html
 
 # 残りの依存関係をインストール
 COPY requirements.txt .
