@@ -99,6 +99,7 @@ def codeEmbedding(nl_list, code_list, tokenizer, model):
     """
     CodeEmbedding the extracted data
     """
+    import gc
     code = ""
     nl = ""
     for s in code_list:
@@ -121,18 +122,37 @@ def codeEmbedding(nl_list, code_list, tokenizer, model):
     token_list = cutToken(tokens, token_list)
     for token in token_list:
         token_id = tokenizer.convert_tokens_to_ids(token)
-        context_embeddings = model(torch.tensor(token_id)[None, :])[0]
-        token_embeddings.append(context_embeddings)
+        #メモリ使用量削減
+        with torch.no_grad():
+            context_embeddings = model(torch.tensor(token_id)[None, :])[0]
+            #CPUに移動してからリストに追加
+            token_embeddings.append(context_embeddings.cpu())
+        #処理済みデータは即座に削除
+        del token_id, context_embeddings
 
     torch_tensor = torch.cat(token_embeddings, dim=1)
+    result = torch_tensor.tolist()[0]
 
-    return torch_tensor.tolist()[0]
+    #最後にクリーンアップ
+    del torch_tensor, token_embeddings
+    torch.cuda.empty_cache() if torch.cuda.is_available() else None
+
+    return result
 
 
 def cutToken(tokens, token_list):
     """
-    Cut tokens which are too long
+    Cut tokens which are too long(Iterative version)
     """
+    while len(tokens) > 500:
+        token_list.append(tokens[0:500])
+        tokens = tokens[500:]
+    
+    if tokens:
+        token_list.append(tokens)
+    return token_list
+    '''
+    
     if len(tokens) > 500:
         token_list.append(tokens[0:500])
         tokens = tokens[500 : len(tokens)]
@@ -140,7 +160,7 @@ def cutToken(tokens, token_list):
     else:
         token_list.append(tokens)
     return token_list
-
+    '''
 
 def one_hot_node_type(node_type):
     """
@@ -234,6 +254,178 @@ def one_hot_node_type(node_type):
         return list(node_type_one_hot)
     except Exception:
         # unknown node types (e.g., Babel nodes) -> return zero vector
+        all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
+        return list(all_zero)
+
+#--------------------
+### add babel to java
+#--------------------
+def map_babel_to_java_node_type(babel_node_type):
+    """
+    Map Babel/JavaScript AST node types to Java AST node types for compatibility.
+    Returns the mapped Java node type string.
+    If no mapping exists, returns the original type (will become zero vector in one_hot).
+    """
+    # Babel -> Java mapping
+    mapping = {
+        # Declarations
+        "ClassDeclaration": "ClassOrInterfaceDeclaration",
+        "FunctionDeclaration": "MethodDeclaration",
+        "VariableDeclaration": "VariableDeclarationExpr",
+        "VariableDeclarator": "VariableDeclarator",
+        
+        # Statements
+        "BlockStatement": "BlockStmt",
+        "ExpressionStatement": "ExpressionStmt",
+        "ReturnStatement": "ReturnStmt",
+        "IfStatement": "IfStmt",
+        "WhileStatement": "WhileStmt",
+        "DoWhileStatement": "DoStmt",
+        "ForStatement": "ForStmt",
+        "ForInStatement": "ForEachStmt",
+        "ForOfStatement": "ForEachStmt",
+        "BreakStatement": "BreakStmt",
+        "ContinueStatement": "ContinueStmt",
+        "ThrowStatement": "ThrowStmt",
+        "TryStatement": "TryStmt",
+        "CatchClause": "CatchClause",
+        "SwitchStatement": "SwitchStmt",
+        "SwitchCase": "SwitchEntry",
+        "LabeledStatement": "LabeledStmt",
+        "EmptyStatement": "EmptyStmt",
+        
+        # Expressions
+        "AssignmentExpression": "AssignExpr",
+        "BinaryExpression": "BinaryExpr",
+        "UnaryExpression": "UnaryExpr",
+        "CallExpression": "MethodCallExpr",
+        "MemberExpression": "FieldAccessExpr",
+        "Identifier": "NameExpr",
+        "ThisExpression": "ThisExpr",
+        "NewExpression": "ObjectCreationExpr",
+        "ArrayExpression": "ArrayInitializerExpr",
+        "ObjectExpression": "ObjectCreationExpr",
+        "ConditionalExpression": "ConditionalExpr",
+        "LogicalExpression": "BinaryExpr",
+        "UpdateExpression": "UnaryExpr",
+        
+        # Literals
+        "StringLiteral": "StringLiteralExpr",
+        "NumericLiteral": "IntegerLiteralExpr",
+        "BooleanLiteral": "BooleanLiteralExpr",
+        "NullLiteral": "NullLiteralExpr",
+        
+        # Functions & Methods
+        "FunctionExpression": "MethodDeclaration",
+        "ArrowFunctionExpression": "MethodDeclaration",
+        "ClassMethod": "MethodDeclaration",
+        "ClassProperty": "VariableDeclarator",
+        
+        # Others
+        "Program": "CompilationUnit",
+        "ClassBody": "ClassOrInterfaceDeclaration",
+        "ObjectProperty": "VariableDeclarator",
+        "TemplateLiteral": "StringLiteralExpr",
+        "SpreadElement": "VariableDeclarationExpr",
+    }
+    
+    return mapping.get(babel_node_type, babel_node_type)
+
+
+def one_hot_node_type_with_mapping(node_type):
+    """
+    Enhanced version of one_hot_node_type that supports both Java and Babel node types.
+    First attempts to map Babel types to Java types, then applies one-hot encoding.
+    """
+    # Remove Java parser prefix if present
+    node_type = node_type.replace("com.github.javaparser.ast.", "")
+    
+    # Try to map Babel node type to Java node type
+    mapped_type = map_babel_to_java_node_type(node_type)
+    
+    hot_dict = {
+        "ArrayCreationLevel": 0,
+        "CompilationUnit": 1,
+        "Modifier": 2,
+        "ClassOrInterfaceDeclaration": 3,
+        "ConstructorDeclaration": 4,
+        "MethodDeclaration": 5,
+        "Parameter": 6,
+        "VariableDeclarator": 7,
+        "BlockComment": 8,
+        "JavadocComment": 9,
+        "LineComment": 10,
+        "ArrayAccessExpr": 11,
+        "ArrayCreationExpr": 12,
+        "ArrayInitializerExpr": 13,
+        "AssignExpr": 14,
+        "BinaryExpr": 15,
+        "BooleanLiteralExpr": 16,
+        "CastExpr": 17,
+        "CharLiteralExpr": 18,
+        "ClassExpr": 19,
+        "ConditionalExpr": 20,
+        "DoubleLiteralExpr": 21,
+        "EnclosedExpr": 22,
+        "FieldAccessExpr": 23,
+        "InstanceOfExpr": 24,
+        "IntegerLiteralExpr": 25,
+        "LongLiteralExpr": 26,
+        "MarkerAnnotationExpr": 27,
+        "MemberValuePair": 28,
+        "MethodCallExpr": 29,
+        "Name": 30,
+        "NameExpr": 31,
+        "NormalAnnotationExpr": 32,
+        "NullLiteralExpr": 33,
+        "ObjectCreationExpr": 34,
+        "SimpleName": 35,
+        "SingleMemberAnnotationExpr": 36,
+        "StringLiteralExpr": 37,
+        "SuperExpr": 38,
+        "ThisExpr": 39,
+        "UnaryExpr": 40,
+        "VariableDeclarationExpr": 41,
+        "AssertStmt": 42,
+        "BlockStmt": 43,
+        "BreakStmt": 44,
+        "CatchClause": 45,
+        "ContinueStmt": 46,
+        "DoStmt": 47,
+        "EmptyStmt": 48,
+        "ExplicitConstructorInvocationStmt": 49,
+        "ExpressionStmt": 50,
+        "ForEachStmt": 51,
+        "ForStmt": 52,
+        "IfStmt": 53,
+        "LabeledStmt": 54,
+        "LocalClassDeclarationStmt": 55,
+        "ReturnStmt": 56,
+        "SwitchEntry": 57,
+        "SwitchStmt": 58,
+        "ThrowStmt": 59,
+        "TryStmt": 60,
+        "WhileStmt": 61,
+        "ArrayType": 62,
+        "ClassOrInterfaceType": 63,
+        "PrimitiveType": 64,
+        "TypeParameter": 65,
+        "VoidType": 66,
+        "WildcardType": 67,
+        "ElseStmt": 68,
+        "ElseIfStmt": 69,
+        "FinallyStmt": 70,
+        "CatchStmt": 71,
+    }
+    
+    try:
+        index = hot_dict[mapped_type]
+        all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
+        node_type_one_hot = all_zero.copy()
+        node_type_one_hot[index] = 1
+        return list(node_type_one_hot)
+    except Exception:
+        # Unknown node type -> return zero vector
         all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
         return list(all_zero)
 
@@ -659,7 +851,8 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
         )  # 通过bert后
         node_embedding_list.append(node_embedding)
 
-        node_type_one_hot = one_hot_node_type(node_type[i])
+        #node_type_one_hot = one_hot_node_type(node_type[i])
+        node_type_one_hot = one_hot_node_type_with_mapping(node_type[i])
         node_one_hot_list.append(node_type_one_hot)
 
         if (
@@ -1715,9 +1908,9 @@ if __name__ == "__main__":
     import pickle
 
     # default (original Java dataset) paths
-    N_PATHS_AST = "Data/Neutral"
-    R_PATHS_AST = "Data/Readable"
-    U_PATHS_AST = "Data/Unreadable"
+    N_PATHS_AST = "/app/Dataset/Neutral"
+    R_PATHS_AST = "/app/Dataset/Readable"
+    U_PATHS_AST = "/app/Dataset/Unreadable"
 
     # JS dataset paths (new)
     N_PATHS_AST_JS = "Dataset_js/Neutral"
@@ -1728,16 +1921,16 @@ if __name__ == "__main__":
     model = AutoModel.from_pretrained("microsoft/codebert-base")
 
     # If Dataset_js exists (JS workflow), prefer it; otherwise fall back to original Java workflow
-    if os.path.exists(R_PATHS_AST_JS) or os.path.exists(N_PATHS_AST_JS) or os.path.exists(U_PATHS_AST_JS):
-        print("Detected Dataset_js directories -> using Babel(JS) JSON loader")
-        graph_list, target_list, code_filename_list = json_parse_to_graph_babel(
-            N_PATHS_AST_JS, R_PATHS_AST_JS, U_PATHS_AST_JS
-        )
-    else:
-        print("Using original Java dataset loader")
-        graph_list, target_list, code_filename_list = json_parse_to_graph(
-            N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
-        )
+    #if os.path.exists(R_PATHS_AST_JS) or os.path.exists(N_PATHS_AST_JS) or os.path.exists(U_PATHS_AST_JS):
+    #    print("Detected Dataset_js directories -> using Babel(JS) JSON loader")
+    #    graph_list, target_list, code_filename_list = json_parse_to_graph_babel(
+    #        N_PATHS_AST_JS, R_PATHS_AST_JS, U_PATHS_AST_JS
+    #    )
+    #else:
+    print("Using original Java dataset loader")
+    graph_list, target_list, code_filename_list = json_parse_to_graph(
+        N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
+    )
 
     # Build graph_input / file_input / target_input lists
     graph_input = []
