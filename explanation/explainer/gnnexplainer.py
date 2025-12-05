@@ -87,6 +87,7 @@ class GNNExplainer(ExplainerBase):
             else:
                 h = data.x
             data.x = h
+            data.edge_weight = self.edge_mask.sigmoid()
             raw_preds, _ = self.model(data, **kwargs)
             loss = self.__loss__(raw_preds, ex_label)
             if epoch % 20 == 0 and debug:

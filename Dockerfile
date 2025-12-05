@@ -1,31 +1,31 @@
-FROM python:3.10-slim
+FROM python:3.13-slim
 
-# システムの依存関係をインストール
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# 作業ディレクトリを設定
+# Set work directory
 WORKDIR /app
 
-# まずPyTorchをインストール
-RUN pip install --default-timeout=0 --no-cache-dir torch==1.13.1
+# Install PyTorch
+RUN pip install --default-timeout=0 --no-cache-dir "torch>=2.9.0" --index-url https://download.pytorch.org/whl/cpu
 
-# PyTorch関連のパッケージをインストール
-RUN pip install --default-timeout=0 --no-cache-dir \
-    torch-scatter==2.1.0 \
-    torch-sparse==0.6.16 \
-    torch-cluster==1.6.0 \
-    torch-geometric==2.2.0
+# Install PyTorch Geometric and dependencies
+RUN pip install --default-timeout=0 --no-cache-dir --no-build-isolation \
+    torch-scatter \
+    torch-sparse \
+    torch-cluster \
+    torch-geometric
 
-# 残りの依存関係をインストール
+# Install remaining dependencies
 COPY requirements.txt .
 RUN pip install --default-timeout=0 --no-cache-dir -r requirements.txt
 
-# プロジェクトファイルをコピー
+# Copy project files
 COPY . .
 
-# デフォルトでbashを起動
+# Default command
 CMD ["bash"]

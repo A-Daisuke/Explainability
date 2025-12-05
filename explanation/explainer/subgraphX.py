@@ -1215,7 +1215,7 @@ class SubgraphX(object):
         if self.save:
             if os.path.isfile(os.path.join(self.save_dir, f"{self.filename}.pt")):
                 saved_results = torch.load(
-                    os.path.join(self.save_dir, f"{self.filename}.pt")
+                    os.path.join(self.save_dir, f"{self.filename}.pt"), weights_only=False
                 )
 
         # 对每一个label 0、1、2 都进行一次遍历rollout

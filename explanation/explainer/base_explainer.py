@@ -378,20 +378,24 @@ class ExplainerBase(nn.Module):
             # 这里怎么每次放入model里预测的data都是一样的，没有改变，这不就导致每个值都一样了？
             ori_data = torch.ones(edge_mask.size(), device=self.device)
             self.edge_mask.data = ori_data
+            data.edge_weight = self.edge_mask
             ori_pred = self.model(data)
 
             masked_data = edge_mask
             self.edge_mask.data = masked_data
+            data.edge_weight = self.edge_mask
             masked_pred = self.model(data)
 
             # mask out important elements for fidelity calculation
             maskedout_data = 1.0 - edge_mask
             self.edge_mask.data = maskedout_data  # keep Parameter's id
+            data.edge_weight = self.edge_mask
             maskout_pred = self.model(data)
 
             # zero_mask
             zero_data = torch.zeros(edge_mask.size(), device=self.device)
             self.edge_mask.data = zero_data
+            data.edge_weight = self.edge_mask
             zero_mask_pred = self.model(data)
 
             related_preds.append(
