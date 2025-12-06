@@ -255,15 +255,29 @@ def ExplainingPipeline():
             y_pred_list.append(prediction)
 
             #予測結果に応じて保存先ディレクトリを設定
+            is_js_file = data_raw["graph_name"].endswith(".js")
+
             if prediction == 2:
                 print("------ Model believe it is unreadable ------")
-                save_dir = os.path.join("newResults", "unreadable")
+                if is_js_file:
+                    save_dir = os.path.join("newResults_js", "Unreadable")
+                else:
+                    save_dir = os.path.join("newResults", "unreadable")
             elif prediction == 1:
                 print("------ Model believe it is neutral ------")
-                save_dir = os.path.join("newResults", "neutral")
+                if is_js_file:
+                    save_dir = os.path.join("newResults_js", "Neutral")
+                else:
+                    save_dir = os.path.join("newResults", "neutral")
             elif prediction == 0:
                 print("------ Model believe it is readable ------")
-                save_dir = os.path.join("newResults", "readable")
+                if is_js_file:
+                    save_dir = os.path.join("newResults_js", "Readable")
+                else:
+                    save_dir = os.path.join("newResults", "readable")
+
+            if not os.path.exists(save_dir):
+                os.makedirs(save_dir)
 
              # ----- module: load explainer ------
             explainer = SubgraphX(
