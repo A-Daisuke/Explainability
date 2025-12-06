@@ -89,14 +89,25 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
     #             print('\033[0:34m' + data_raw["graph_nodes_codes"][int(importantIndex)][element][step_find] + '\033[m')
     # find all the critical edges
     node_code_info = data_raw["graph_nodes_codes"]
-    CriticalEdges = [
-        (
-            node_code_info[n_frm][1]["beginLine"] - 1,
-            node_code_info[n_to][1]["beginLine"] - 1,
-        )
-        for (n_frm, n_to) in explaining_result.ori_graph.edges()
-        if n_frm in explaining_result.coalition and n_to in explaining_result.coalition
-    ]
+    CriticalEdges = []
+    for n_frm, n_to in explaining_result.ori_graph.edges():
+        if n_frm in explaining_result.coalition and n_to in explaining_result.coalition:
+            if (
+                len(node_code_info[n_frm]) > 1
+                and isinstance(node_code_info[n_frm][1], dict)
+                and "beginLine" in node_code_info[n_frm][1]
+                and len(node_code_info[n_to]) > 1
+                and isinstance(node_code_info[n_to][1], dict)
+                and "beginLine" in node_code_info[n_to][1]
+            ):
+                CriticalEdges.append(
+                    (
+                        node_code_info[n_frm][1]["beginLine"] - 1,
+                        node_code_info[n_to][1]["beginLine"] - 1,
+                    )
+                )
+            else:
+                CriticalEdges.append((n_frm, n_to))
     CriticalEdgesRaw = [
         (n_frm, n_to)
         for (n_frm, n_to) in explaining_result.ori_graph.edges()
@@ -171,7 +182,7 @@ def ExplainingPipeline():
     device = torch.device(
         "cuda:0" if torch.cuda.is_available() else "cpu"
     )  # initialize device
-    dataset = DatasetLoading("explanation/input.pkl")
+    dataset = DatasetLoading("input.pkl")
 
     # ----- module: load trained model (mainly hgcn, rgcn or ...) ------
     # 1. create model
@@ -199,7 +210,8 @@ def ExplainingPipeline():
     # 指定某图
     # data_name = "Scalabrino125.java"
     #change!!!
-    data_dir = "Dataset/Readable"
+    data_dir = "Dataset_js"
+    # data_dir = "Dataset/Readable"
     #data_dir = "Dataset/Neutral"
     #data_dir = "Dataset/Unreadable"
 
@@ -235,7 +247,11 @@ def ExplainingPipeline():
 
             # ----- module: classification ------
             prediction = Classification(gnnNets, dataset, i)
-            y_true_list.append(data_input.y.item())
+            # y_true_list.append(data_input.y.item())
+            if hasattr(data_input.y, 'item'):
+                y_true_list.append(data_input.y.item())
+            else:
+                y_true_list.append(data_input.y)
             y_pred_list.append(prediction)
 
             #予測結果に応じて保存先ディレクトリを設定
@@ -333,10 +349,24 @@ def ExplainingPipeline():
             print(f"1. 可読性高いと分類　　　　:{cat1}")
             print(f"2. 可読性中間と分類　　　　:{cat2}")
             print(f"3. 可読性低いと分類（正解）:{cat3}")
+        
+        elif data_dir == "Dataset_js":
+            print("Dataset_jsのデータ分類 (ラベルなし/仮ラベル)")
+            # JS data might not have true labels, so confusion matrix might not be meaningful purely for accuracy
+            # But we can print what the model predicted
+            print(cm)
 
     print("\n---精度レポート---")
-    print(classification_report(y_true_list, y_pred_list, target_names=target_names, zero_division=0))
-    print("="*30 + "\n")
+    print(
+        classification_report(
+            y_true_list,
+            y_pred_list,
+            labels=[0, 1, 2],
+            target_names=target_names,
+            zero_division=0,
+        )
+    )
+    print("=" * 30 + "\n")
 
     return data_record
 

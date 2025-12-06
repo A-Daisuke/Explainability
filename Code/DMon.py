@@ -49,7 +49,7 @@ class DMon(torch.nn.Module):
         x = self.conv1(x, edge_index, edge_weight=edge_weight).relu()
 
         x, mask = to_dense_batch(x, batch)
-        adj = to_dense_adj(edge_index, batch, edge_attr=edge_weight)
+        adj = to_dense_adj(edge_index, batch, edge_attr=edge_weight, max_num_nodes=x.size(1))
 
         _, x, adj, sp1, o1, c1 = self.pool1(x, adj, mask)
 

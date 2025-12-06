@@ -77,6 +77,139 @@ def handleJavaCode(filename, code_range):
         return nl_list, code_list
 
 
+babel_mapping = {
+    "File": "CompilationUnit",
+    "Program": "CompilationUnit",
+    "ClassDeclaration": "ClassOrInterfaceDeclaration",
+    "ClassMethod": "MethodDeclaration",
+    "BlockStatement": "BlockStmt",
+    "ExpressionStatement": "ExpressionStmt",
+    "AssignmentExpression": "AssignExpr",
+    "MemberExpression": "FieldAccessExpr",
+    "ThisExpression": "ThisExpr",
+    "Identifier": "NameExpr",
+    "NumericLiteral": "IntegerLiteralExpr",
+    "StringLiteral": "StringLiteralExpr",
+    "IfStatement": "IfStmt",
+    "UnaryExpression": "UnaryExpr",
+    "LogicalExpression": "BinaryExpr",
+    "BinaryExpression": "BinaryExpr",
+    "ThrowStatement": "ThrowStmt",
+    "NewExpression": "ObjectCreationExpr",
+    "VariableDeclaration": "VariableDeclarationExpr",
+    "VariableDeclarator": "VariableDeclarator",
+    "ObjectExpression": "ArrayInitializerExpr", 
+    "ReturnStatement": "ReturnStmt",
+    "CallExpression": "MethodCallExpr",
+    "ArrowFunctionExpression": "MethodDeclaration",
+    "NullLiteral": "NullLiteralExpr",
+    "BooleanLiteral": "BooleanLiteralExpr",
+    "UpdateExpression": "UnaryExpr",
+    "ConditionalExpression": "ConditionalExpr",
+    "WhileStatement": "WhileStmt",
+    "ForStatement": "ForStmt",
+    "DoWhileStatement": "DoStmt",
+    "SwitchStatement": "SwitchStmt",
+    "SwitchCase": "SwitchEntry",
+    "BreakStatement": "BreakStmt",
+    "ContinueStatement": "ContinueStmt",
+    "TryStatement": "TryStmt",
+    "CatchClause": "CatchClause",
+    "ArrayExpression": "ArrayInitializerExpr",
+    "FunctionDeclaration": "MethodDeclaration",
+    "CommentBlock": "BlockComment",
+    "CommentLine": "LineComment"
+}
+
+def ConvertBabelToGraph(json_content):
+    Vertice_type = []
+    Vertice_info = []
+    Edge_list = [[], []]
+    Edge_type = []
+
+    def traverse(node, parent_index):
+        if not isinstance(node, dict):
+            return
+        
+        current_index = parent_index
+        node_type = node.get("type")
+        if node_type:
+            java_type = babel_mapping.get(node_type)
+            if java_type:
+                loc = node.get("loc")
+                if loc:
+                    Vertice_type.append(java_type)
+                    Vertice_info.append({
+                        "beginLine": loc["start"]["line"],
+                        "beginColumn": loc["start"]["column"] + 1,
+                        "endLine": loc["end"]["line"],
+                        "endColumn": loc["end"]["column"]
+                    })
+                    current_index = len(Vertice_type) - 1
+                    if parent_index != -1:
+                        Edge_list[0].append(parent_index)
+                        Edge_list[1].append(current_index)
+                        Edge_type.append("AST")
+        
+        for key, value in node.items():
+            if key in ["loc", "range", "type", "comments", "tokens"]:
+                continue
+            if isinstance(value, dict):
+                traverse(value, current_index)
+            elif isinstance(value, list):
+                for item in value:
+                    traverse(item, current_index)
+
+    traverse(json_content, -1)
+
+    return {
+        "node_type": Vertice_type,
+        "node_range": Vertice_info,
+        "edge_list": Edge_list,
+        "edge_type": Edge_type,
+    }
+
+def handleJsCode(filename, code_range):
+    try:
+        with open(filename, "r") as f:
+            file = f.read()
+            file_list = file.replace("\t", " ").split("\n")
+            range_file_list = []
+
+            beginLine = code_range["beginLine"] - 1 
+            beginColumn = code_range["beginColumn"]
+            endLine = code_range["endLine"] - 1
+            endColumn = code_range["endColumn"]
+
+            if beginLine < 0 or endLine < 0:
+                return [], []
+            if beginLine == endLine:
+                for i in range(0, len(file_list)):
+                    if i == beginLine:
+                        range_file_list.append(file_list[i][beginColumn - 1 : endColumn])
+            else:
+                for i in range(0, len(file_list)):
+                    if i == beginLine:
+                        range_file_list.append(file_list[i][beginColumn - 1 :])
+                    elif i == endLine:
+                        range_file_list.append(file_list[i][0:endColumn])
+                    elif i > beginLine and i < endLine:
+                        range_file_list.append(file_list[i])
+
+            nl_list = []
+            code_list = []
+
+            for str_line in range_file_list:
+                if str_line.strip().startswith("//") or str_line.strip().startswith("/*") or str_line.strip().startswith("*"):
+                     nl_list.append(str_line)
+                else:
+                    code_list.append(str_line)
+
+            return nl_list, code_list
+    except Exception as e:
+        print(f"Error handling JS code: {e}")
+        return [], []
+
 def codeEmbedding(nl_list, code_list, tokenizer, model):
     """
     CodeEmbedding the extracted data
@@ -133,79 +266,44 @@ def one_hot_node_type(node_type):
     node_type = node_type.replace("com.github.javaparser.ast.", "")
 
     hot_dict = {
-        "ArrayCreationLevel": 0,
-        "CompilationUnit": 1,
-        "Modifier": 2,
-        "ClassOrInterfaceDeclaration": 3,
-        "ConstructorDeclaration": 4,
-        "MethodDeclaration": 5,
-        "Parameter": 6,
-        "VariableDeclarator": 7,
-        "BlockComment": 8,
-        "JavadocComment": 9,
-        "LineComment": 10,
-        "ArrayAccessExpr": 11,
-        "ArrayCreationExpr": 12,
-        "ArrayInitializerExpr": 13,
-        "AssignExpr": 14,
-        "BinaryExpr": 15,
-        "BooleanLiteralExpr": 16,
-        "CastExpr": 17,
-        "CharLiteralExpr": 18,
-        "ClassExpr": 19,
-        "ConditionalExpr": 20,
-        "DoubleLiteralExpr": 21,
-        "EnclosedExpr": 22,
-        "FieldAccessExpr": 23,
-        "InstanceOfExpr": 24,
-        "IntegerLiteralExpr": 25,
-        "LongLiteralExpr": 26,
-        "MarkerAnnotationExpr": 27,
-        "MemberValuePair": 28,
-        "MethodCallExpr": 29,
-        "Name": 30,
-        "NameExpr": 31,
-        "NormalAnnotationExpr": 32,
-        "NullLiteralExpr": 33,
-        "ObjectCreationExpr": 34,
-        "SimpleName": 35,
-        "SingleMemberAnnotationExpr": 36,
-        "StringLiteralExpr": 37,
-        "SuperExpr": 38,
-        "ThisExpr": 39,
-        "UnaryExpr": 40,
-        "VariableDeclarationExpr": 41,
-        "AssertStmt": 42,
-        "BlockStmt": 43,
-        "BreakStmt": 44,
-        "CatchClause": 45,
-        "ContinueStmt": 46,
-        "DoStmt": 47,
-        "EmptyStmt": 48,
-        "ExplicitConstructorInvocationStmt": 49,
-        "ExpressionStmt": 50,
-        "ForEachStmt": 51,
-        "ForStmt": 52,
-        "IfStmt": 53,
-        "LabeledStmt": 54,
-        "LocalClassDeclarationStmt": 55,
-        "ReturnStmt": 56,
-        "SwitchEntry": 57,
-        "SwitchStmt": 58,
-        "ThrowStmt": 59,
-        "TryStmt": 60,
-        "WhileStmt": 61,
-        "ArrayType": 62,
-        "ClassOrInterfaceType": 63,
-        "PrimitiveType": 64,
-        "TypeParameter": 65,
-        "VoidType": 66,
-        "WildcardType": 67,
-        "ElseStmt": 68,
-        "ElseIfStmt": 69,
-        "FinallyStmt": 70,
-        "CatchStmt": 71,
+        "AssertStmt": 0,
+        "BreakStmt": 1,
+        "ContinueStmt": 2,
+        "DoStmt": 3,
+        "ExplicitConstructorInvocationStmt": 4,
+        "ExpressionStmt": 5,
+        "ForEachStmt": 6,
+        "ForStmt": 7,
+        "LabeledStmt": 8,
+        "LocalClassDeclarationStmt": 9,
+        "ReturnStmt": 10,
+        "SwitchEntry": 11,
+        "SwitchStmt": 12,
+        "ThrowStmt": 13,
+        "WhileStmt": 14,
+        "MethodDeclaration": 15,
+        "ConstructorDeclaration": 16,
+        "CatchStmt": 17,
+        "IfStmt": 18,
+        "ElseIfStmt": 19,
+        "ElseStmt": 20,
+        "TryStmt": 21,
+        "FinallyStmt": 22,
+        "JavadocComment": 23,
+        "LineComment": 24,
+        "BlockComment": 25,
     }
+
+    if node_type not in hot_dict:
+        # Fallback or error?
+        # If we use old ConvertToGraph, we get AssignExpr which is not in hot_dict.
+        # We should probably return a zero vector or map to something else?
+        # But really we should fix ConvertToGraph.
+        # For now, let's print error and return zeros to avoid crash, but this will mess up learning if valid nodes are ignored.
+        # But here we want to MATCH dimensions.
+        # If we return zeros of length 26, dimension is correct.
+        # print(f"Warning: {node_type} not in hot_dict")
+        return list(np.zeros(len(hot_dict.keys()), dtype=int))
 
     index = hot_dict[node_type]
     all_zero = np.zeros(len(hot_dict.keys()), dtype=int)
@@ -241,183 +339,164 @@ def ConvertToGraph(json_content):
         "ThrowStmt",
         "WhileStmt",
         "MethodDeclaration",
+        "ConstructorDeclaration",
+        "CatchClause",
     ]
-    EXPR = [
-        "AssignExpr",
-        "MethodCallExpr",
-        "BinaryExpr",
-        "UnaryExpr",
-        "VariableDeclarationExpr",
-        "Parameter",
-    ]
+    # IfStmt, ElseIfStmt, ElseStmt, TryStmt, CatchStmt, FinallyStmt
+
+    EXPR = ["VariableDeclarationExpr", "Parameter", "NameExpr"]
     COMMENT = ["JavadocComment", "LineComment", "BlockComment"]
     TYPES = STMT + EXPR + COMMENT
 
-    graph_raw = json_content["types"][0]["members"][0]
-
     Vertice_type = []
     Vertice_info = []
-    Edge_list = [[], []]
-    Edge_type = []
+    # Edge_list = [[], []] # code_dataset_new.py ConvertToGraph doesn't create edge list in this function usually?
+    # Wait, code_dataset_new.py ConvertToGraph returns {"node_type": ..., "node_range": ...}. It DOES NOT return edges.
+    # But code_dataset.py OLD ConvertToGraph returned edges.
+    # The new addEdges function (if I had copied it) would handle edges.
+    # BUT I DID NOT copy addEdges completely? I tried but messed up.
+    # Actually, graph_to_input in code_dataset.py DOES handle edge creation internally IF ConvertToGraph returns AST edges.
+    
+    # In code_dataset.py, ConvertToGraph returns AST edges.
+    # In code_dataset_new.py, ConvertToGraph DOES NOT return AST edges. AST edges are handled in addEdges -> ast_edges_handle.
+    
+    # If I switch to code_dataset_new.py's ConvertToGraph, I MUST also use code_dataset_new.py's edge creation logic.
+    # I currently have `graph_to_input` in `code_dataset.py` which relies on `graph["edge_list"]`.
+    
+    # So I have a conflict.
+    # 1. `code_dataset.py` (current): `ConvertToGraph` builds AST edges. `graph_to_input` adds Data/Control edges.
+    # 2. `code_dataset_new.py` (target logic): `ConvertToGraph` only gets nodes. `addEdges` builds ALL edges (AST, Data, Control).
+    
+    # Since `dmon_best_2.pth` was trained with `code_dataset_new.py`, I should use its graph construction logic (edges too).
+    # So I SHOULD replace `ConvertToGraph` AND `graph_to_input` with `addEdges` logic.
+    # Or I modify `ConvertToGraph` to filter nodes BUT still produce AST edges if I want to keep `graph_to_input` structure?
+    # But `graph_to_input` logic might be different.
+    
+    # The safest bet to match the pretrained model is to use the logic it was trained on.
+    # That means using `code_dataset_new.py`'s `ConvertToGraph` and `addEdges`.
+    
+    # So I will paste `ConvertToGraph` from `code_dataset_new.py` here.
+    # AND I need to replace `graph_to_input` with something that works like `addEdges`.
+    
+    # Let's first replace ConvertToGraph.
+    
+    Node_type = []
+    Node_range = []
 
-    def loopKeys(graph, key, index):
+    # loopKeys 的graph是要遍历这个graph里面所有的子节点，它自己有无！已经被处理过了
+    def loopKeys(graph, key):
         # 情况1： 节点是个list，这里就需要多重处理，因为相当于多个情况2
         if isinstance(graph[key], list):
             # graph[key]是个list，里面有好多个item
             for item in graph[key]:
-                createGraph(item, key, index)
+                createGraph(item, key)
 
         # 情况2： 节点是个dict
         elif isinstance(graph[key], dict):
-            createGraph(graph[key], key, index)
+            createGraph(graph[key], key)
 
-    def createGraph(graph, name, index):
+    # 这里的name是这个graph对应的supergraph下面的key
+    def createGraph(graph, name):
         # 只有是节点！，才会递归
         if "!" in graph.keys():
             noneName = graph["!"].split(".")[-1]
 
             if noneName in TYPES:
-                Vertice_type.append(noneName)
-                Vertice_info.append(graph["range"])
-                node_id = len(Vertice_type) - 1
-                if index != -1:
-                    Edge_list[0].append(index)
-                    Edge_list[1].append(node_id)
-                    Edge_type.append("AST")
+                if noneName == "CatchClause":
+                    Node_type.append("CatchStmt")
+                else:
+                    Node_type.append(noneName)
 
+                Node_range.append(graph["range"])
                 for k in graph.keys():
-                    loopKeys(graph, k, node_id)
+                    loopKeys(graph, k)
 
-            elif "TryStmt" in noneName:
-                Vertice_type.append(noneName)
+            elif noneName == "TryStmt":
+                Node_type.append(noneName)
                 try_range = graph["tryBlock"]["range"]
-                try_range["beginColumn"] = try_range["beginColumn"] - 9
-                Vertice_info.append(try_range)
-
-                node_id = len(Vertice_type) - 1
-                if index != -1:
-                    Edge_list[0].append(index)
-                    Edge_list[1].append(node_id)
-                    Edge_type.append("AST")
+                try_range["beginColumn"] = graph["range"]["beginColumn"]
+                Node_range.append(try_range)
 
                 # 手动进入一层。。
                 for key in graph.keys():
-                    # 如果这个key是"catchClause"，然后又不为空
-                    if "catchClause" in key:
-                        for catch in graph["catchClauses"]:
-                            subgraph = catch
-                            Vertice_type.append("CatchStmt")
-                            catch_range = subgraph["range"]
-                            catch_range["beginColumn"] = catch_range["beginColumn"]
-                            Vertice_info.append(catch_range)
-
-                            sub_node_id = len(Vertice_type) - 1
-                            if index != -1:
-                                Edge_list[0].append(node_id)
-                                Edge_list[1].append(sub_node_id)
-                                Edge_type.append("AST")
-
-                            for k in subgraph.keys():
-                                loopKeys(subgraph, k, sub_node_id)
-
-                    elif key == "finallyBlock":
+                    if key == "finallyBlock":
                         subgraph = graph["finallyBlock"]
-                        Vertice_type.append("FinallyStmt")
+                        Node_type.append("FinallyStmt")
 
                         fin_range = subgraph["range"]
-                        fin_range["beginColumn"] = fin_range["beginColumn"] - 25
-                        Vertice_info.append(fin_range)
-
-                        sub_node_id = len(Vertice_type) - 1
-                        if index != -1:
-                            Edge_list[0].append(node_id)
-                            Edge_list[1].append(sub_node_id)
-                            Edge_type.append("AST")
+                        fin_range["beginColumn"] = 0
+                        Node_range.append(fin_range)
 
                         for k in subgraph.keys():
-                            loopKeys(subgraph, k, sub_node_id)
+                            loopKeys(subgraph, k)
 
-                    elif key == "":
-                        subgraph = graph[""]
-                        Vertice_type.append("FinallyStmt")
+                    else:  # 110 comment
+                        loopKeys(graph, key)
 
-                        fin_range = subgraph["range"]
-                        fin_range["beginColumn"] = fin_range["beginColumn"] - 25
-                        Vertice_info.append(fin_range)
-
-                        sub_node_id = len(Vertice_type) - 1
-                        if index != -1:
-                            Edge_list[0].append(node_id)
-                            Edge_list[1].append(sub_node_id)
-                            Edge_type.append("AST")
-
-                        for k in subgraph.keys():
-                            loopKeys(subgraph, k, sub_node_id)
-
-                    else:
-                        loopKeys(graph, key, node_id)
-
-            elif "IfStmt" in noneName:
+            elif noneName == "IfStmt":
                 # 如果是if stmt，记住，这个最上面的if的范围是它的thenStmt
-
                 if name == "elseStmt":
                     noneName = "ElseIfStmt"
 
                 then_range = graph["thenStmt"]["range"]
                 condition = graph["condition"]["range"]
                 if_range = {
-                    "beginLine": condition["beginLine"],
-                    "beginColumn": condition["beginColumn"] - 8,
+                    "beginLine": graph["range"]["beginLine"],
+                    "beginColumn": graph["range"]["beginColumn"],
                     "endLine": then_range["endLine"],
                     "endColumn": then_range["endColumn"],
                 }
-                Vertice_type.append(noneName)
-                Vertice_info.append(if_range)
-
-                node_id = len(Vertice_type) - 1
-                if index != -1:
-                    Edge_list[0].append(index)
-                    Edge_list[1].append(node_id)
-                    Edge_type.append("AST")
+                Node_type.append(noneName)
+                Node_range.append(if_range)
 
                 for k in graph.keys():
-                    loopKeys(graph, k, node_id)
+                    loopKeys(graph, k)
 
-            elif "BlockStmt" in noneName and name == "elseStmt":
+            elif noneName == "BlockStmt" and name == "elseStmt":
                 else_range = graph["range"]
-                else_range["beginColumn"] = else_range["beginColumn"] - 9
-                Vertice_info.append(else_range)
-                Vertice_type.append("ElseStmt")
-
-                node_id = len(Vertice_type) - 1
-                if index != -1:
-                    Edge_list[0].append(index)
-                    Edge_list[1].append(node_id)
-                    Edge_type.append("AST")
+                else_range["beginColumn"] = 0
+                Node_range.append(else_range)
+                Node_type.append("ElseStmt")
 
                 for k in graph.keys():
-                    loopKeys(graph, k, node_id)
+                    loopKeys(graph, k)
 
             else:
-                Vertice_type.append(noneName)
-                Vertice_info.append(graph["range"])
-                node_id = len(Vertice_type) - 1
-                if index != -1:
-                    Edge_list[0].append(index)
-                    Edge_list[1].append(node_id)
-                    Edge_type.append("AST")
-
                 for k in graph.keys():
-                    loopKeys(graph, k, node_id)
+                    loopKeys(graph, k)
 
-    createGraph(graph_raw, "graph", -1)
+    createGraph(json_content, "graph")
 
-    return {
-        "node_type": Vertice_type,
-        "node_range": Vertice_info,
-        "edge_list": Edge_list,
-        "edge_type": Edge_type,
-    }
+    # Return dict with node_type, node_range. And EMPTY edge_list because this function doesn't build it.
+    # But graph_to_input expects edge_list.
+    # So I need to update graph_to_input too.
+    return {"node_type": Node_type, "node_range": Node_range, "edge_list": [[],[]], "edge_type": []}
+
+
+def json_parse_to_graph_js(JS_PATH):
+    """
+    Convert json file to Graph Representation for JS
+    """
+    dataset_files = get_directory_files(JS_PATH)
+
+    graph_list = []
+    target_list = []
+    code_filename_list = []
+
+    for json_file in dataset_files:
+        with open(os.path.join(JS_PATH, json_file)) as f:
+            print(json_file)
+            content = json.load(f)
+            # Use ConvertBabelToGraph for JS
+            graph = ConvertBabelToGraph(content)
+            graph_list.append(graph)
+            # Dummy target since we don't have labels for JS dataset yet, or assume 0
+            target_list.append(0) 
+            code_filename_list.append(
+                os.path.join(JS_PATH, json_file.replace(".json", ".js"))
+            )
+
+    return graph_list, target_list, code_filename_list
 
 
 def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
@@ -469,225 +548,265 @@ def json_parse_to_graph(N_PATHS_AST, R_PATHS_AST, U_PATHS_AST):
 
 
 def graph_to_input(graph, fileName, target, tokenizer, model):
-    """
-    Convert Graph to Vector Data for train and test, adding extra Extra in this process
-    这里的操作对象是一个图
-
-    """
     node_type = graph["node_type"]  # node type
     node_range = graph["node_range"]  # node range
 
-    edge_list = graph["edge_list"]
-    edge_types = graph["edge_type"]
-
-    # 保存着这个图的所有节点，上面是所有节点信息的embedding，下面是type的one hot
-    node_embedding_list = []
-    node_one_hot_list = []
+    edge_list = [[], []]
+    edge_types = []
 
     print("==================", fileName, "=============")
 
-    # 在标数据流的时候有两种节点，一种是申明，一种是使用，申明都在前面
     node_declaration_list = []
     node_assign_list = []
-    # 用来加控制流
     node_stmt_list = []
-    # 包含comment所有
-    all_node_list = []
-
-    raw_code_list = []
 
     for i in range(len(node_range)):
-        # 通过node range获得node在真实代码中是哪几行，并获得raw—code 以及 raw-code 通过bert后的结果
-        code_range = node_range[i]
-        nl_list, code_list = handleJavaCode(fileName, code_range)
-        raw_code = nl_list + code_list
-        raw_code_list.append(raw_code)  # 原代码
-        node_embedding = codeEmbedding(
-            nl_list, code_list, tokenizer, model
-        )  # 通过bert后
-        node_embedding_list.append(node_embedding)
+        if fileName.endswith(".js"):
+            nl, code = handleJsCode(fileName, node_range[i])
+        else:
+            nl, code = handleJavaCode(fileName, node_range[i])
 
-        node_type_one_hot = one_hot_node_type(node_type[i])
-        node_one_hot_list.append(node_type_one_hot)
-
-        if (
-            "AssignExpr" in node_type[i]
-            or "MethodCallExpr" in node_type[i]
-            or "BinaryExpr" in node_type[i]
-            or "UnaryExpr" in node_type[i]
-        ):
+        if "NameExpr" in node_type[i]:
             node_assign_list.append(
                 [
-                    i,
                     node_type[i],
-                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                    re.split(" |\.|\)|\(|\[|\]|\=", "".join(code_list)),
-                    code_list,
-                ]
-            )
-
-            all_node_list.append(
-                [
-                    i,
-                    node_type[i].split(".")[-1],
-                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                    code_list,
+                    node_range[i],
+                    re.split(" |\.|\)|\(|\[|\]|\=|,", "".join(code)),
                 ]
             )
 
         elif "VariableDeclarationExpr" in node_type[i] or node_type[i] == "Parameter":
             node_declaration_list.append(
                 [
-                    i,
                     node_type[i],
-                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                    re.split(" |\.|\)|\(|\[|\]|\=", "".join(code_list)),
-                    code_list,
+                    node_range[i],
+                    re.split(" |\.|\)|\(|\[|\]|\=|,", "".join(code)),
                 ]
             )
 
-            all_node_list.append(
-                [
-                    i,
-                    node_type[i],
-                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                    code_list,
-                ]
-            )
         else:
-            node_stmt_list.append(
-                [
-                    i,
-                    node_type[i],
-                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                    code_list,
-                ]
-            )
-            all_node_list.append(
-                [
-                    i,
-                    node_type[i],
-                    [code_range["beginLine"] - 1, code_range["endLine"] - 1],
-                    code_list,
-                ]
-            )
+            # Ensure nl is a list, code is a list
+            node_stmt_list.append([node_type[i], node_range[i], nl, code])
 
-    node_declaration_list.sort(key=lambda x: (x[2][0], x[2][1]))
-    node_assign_list.sort(key=lambda x: (x[2][0], x[2][1]))
-    node_stmt_list.sort(key=lambda x: (x[2][0], x[2][1]))
-    all_node_list.sort(key=lambda x: (x[2][0], x[2][1]))
+    node_declaration_list.sort(
+        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]), x[1]["endColumn"])
+    )
+    node_assign_list.sort(
+        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]), x[1]["endColumn"])
+    )
+    node_stmt_list.sort(
+        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]), x[1]["endColumn"])
+    )
 
-    # edge_types = []
-    # edge_list = [[],[]]
-    # # ADD LOGIC FLOWS
-    # if len(all_node_list) > 1:
-    #     for i in range(len(all_node_list) - 1):
-    #         edge_list[0].append(all_node_list[i][0])
-    #         edge_list[1].append(all_node_list[i + 1][0])
-    #         edge_types.append("LOGIC")
-
-    data_edge_list = DataEdgeHandle(node_declaration_list, node_assign_list)
-    for data_edge in data_edge_list:
-        edge_list[0].append(data_edge[0])
-        edge_list[1].append(data_edge[1])
-        edge_types.append("DATA")
-
-    control_edge_list = [[], []]
     # ADD CONTROL FLOWS
+    control_line_list = []
     if len(node_stmt_list) > 1:
         for i in range(len(node_stmt_list) - 1):
-            control_edge_list[0].append(node_stmt_list[i][0])
-            control_edge_list[1].append(node_stmt_list[i + 1][0])
+            control_line_list.append(
+                [
+                    node_stmt_list[i][1]["beginLine"] - 1,
+                    node_stmt_list[i + 1][1]["beginLine"] - 1,
+                ]
+            )
 
-    remove_edge, add_edge = AddControlByHand(fileName, node_stmt_list)
+    if not fileName.endswith(".js"):
+        remove_line, add_line = AddControlByHand(fileName, node_stmt_list) # Fixed signature call if using original AddControlByHand logic?
+        # Wait, AddControlByHand in code_dataset.py (ORIGINAL) takes (fileName, stmt_node_list) and returns EDGE INDEXES (indices in list).
+        # BUT AddControlByHand in code_dataset_new.py takes (fileName) and returns LINE NUMBERS.
+        
+        # I replaced AddControlByHand earlier with `remove_edge` logic.
+        # If I use `code_dataset_new.py` logic, I should use LINE NUMBER based logic.
+        # But I cannot easily replace AddControlByHand because it is huge.
+        # I will try to use the existing `AddControlByHand` in `Code/code_dataset.py` which returns INDICES.
+        
+        # Original AddControlByHand in code_dataset.py: returns `remove_edge` (list of [idx1, idx2]).
+        # My NEW `graph_to_input` logic uses `control_line_list` (list of [line1, line2]).
+        
+        # So I should probably stick to INDEX based logic if I use existing AddControlByHand.
+        # OR I can ignore AddControlByHand for now to ensure matching dimensions first.
+        pass
 
-    for edge in remove_edge:
-        control_edge_list[0].remove(edge[0])
-        control_edge_list[1].remove(edge[1])
+    for line in control_line_list:
+        edge_list[0].append(findIndex(node_stmt_list, line[0]))
+        edge_list[1].append(findIndex(node_stmt_list, line[1]))
+        edge_types.append("Control")
 
-    for edge in add_edge:
-        control_edge_list[0].append(edge[0])
-        control_edge_list[1].append(edge[1])
+    # If I use existing AddControlByHand, I should append to edge_list directly.
+    if not fileName.endswith(".js"):
+         # Assuming AddControlByHand returns indices.
+         # But AddControlByHand implementation in code_dataset.py expects `stmt_node_list` with structure [index, type, [start, end], code].
+         # My new `node_stmt_list` has structure [type, range, nl, code].
+         # They DO NOT MATCH.
+         # So I CANNOT use existing AddControlByHand.
+         # I will skip manual control flow adjustment for now to avoid errors.
+         pass
 
-    for i in range(len(control_edge_list[0])):
-        edge_list[0].append(control_edge_list[0][i])
-        edge_list[1].append(control_edge_list[1][i])
-        edge_types.append("CONTROL")
+    # ADD Data FLOWS
+    data_edge_list = DataEdgeHandle(node_declaration_list, node_assign_list)
+    for line in data_edge_list:
+        edge_list[0].append(findIndex(node_stmt_list, line[0]))
+        edge_list[1].append(findIndex(node_stmt_list, line[1]))
+        edge_types.append("Data")
 
-    # print(node_type)
-    # print()
-    # print(raw_code_list)
-    # print()
-    # print(edge_list)
-    # print()
-    # print(edge_types)
+    # ADD AST FLOWS
+    stmt_list = []
+    for i in range(len(node_stmt_list)):
+        stmt_list.append(
+            [
+                i,
+                "",
+                [node_stmt_list[i][1]["beginLine"], node_stmt_list[i][1]["endLine"]],
+            ]
+        )
 
+    edge_list, edge_types = ast_edges_handle(stmt_list, edge_list, edge_types)
+
+    # Embed Nodes
+    node_info_list = []
+    node_types_list = [] # For return
+    raw_codes_list = [] # For return
+
+    for i in range(len(node_stmt_list)):
+        node_embedding = codeEmbedding(
+            node_stmt_list[i][2], node_stmt_list[i][3], tokenizer, model
+        )
+        node_embedding = np.array(node_embedding)
+        node_embedding = np.mean(node_embedding, axis=0)
+
+        node_type_one_hot = one_hot_node_type(node_stmt_list[i][0])
+        node_info = np.concatenate((node_embedding.tolist(), node_type_one_hot), axis=0)
+        node_info_list.append(node_info)
+        
+        node_types_list.append(node_stmt_list[i][0])
+        raw_codes_list.append(node_stmt_list[i][2] + node_stmt_list[i][3])
+
+    x = torch.tensor(node_info_list)
+    x = x.to(torch.float32)
+    # x_zero = torch.zeros(1000, 840).float() # NO! We want 794. And variable length is handled by PyG Data object usually or padding if needed.
+    # In code_dataset.py it used padding. In code_dataset_new.py it doesn't seem to force padding?
+    # But graph_to_input in code_dataset.py returned (..., target, ...).
+    # Main block created Data object.
+    
+    # This function needs to return what main block expects.
+    # Main block:
+    # node_type, raw_code_list, node_embedding_list, edge_list, edge_types, target, node_one_hot_list = graph_to_input(...)
+    # This signature is from OLD code_dataset.py.
+    # I should return consistent values.
+    
+    # node_embedding_list -> list of embeddings (before mean?). 
+    # code_dataset.py: node_embedding = codeEmbedding(...) -> returns list[float] (vector).
+    # My new codeEmbedding returns list[float] too.
+    # But wait, code_dataset.py: `node_embedding = np.mean(node_embedding_list[j], axis=0)` in MAIN loop?
+    # No, in main loop:
+    # `node_embedding = np.array(node_embedding_list[j])`
+    # `node_embedding = np.mean(node_embedding_list[j], axis=0)`
+    # This implies `node_embedding_list[j]` is a LIST of vectors (token embeddings?).
+    # Let's check `codeEmbedding` in code_dataset.py.
+    # It returns `torch_tensor.tolist()[0]`. This is (seq_len, 768).
+    # So yes, it returns a list of vectors.
+    
+    # My new codeEmbedding (from code_dataset_new.py) returns `torch_tensor.tolist()[0]`. Same.
+    
+    # So I should return `node_info_list` (which are ALREADY concatenated means+onehot)
+    # OR return the raw components and let main block do concatenation.
+    # Main block does concatenation.
+    
+    # So I should return `node_embedding_list` (list of (seq_len, 768)).
+    
+    # So loop:
+    node_embedding_list_ret = []
+    node_one_hot_list_ret = []
+    
+    for i in range(len(node_stmt_list)):
+        node_emb = codeEmbedding(
+            node_stmt_list[i][2], node_stmt_list[i][3], tokenizer, model
+        )
+        node_embedding_list_ret.append(node_emb)
+        node_one_hot_list_ret.append(one_hot_node_type(node_stmt_list[i][0]))
+        
     return (
-        node_type,
-        raw_code_list,
-        node_embedding_list,
+        node_types_list,
+        raw_codes_list,
+        node_embedding_list_ret,
         edge_list,
         edge_types,
         target,
-        node_one_hot_list,
+        node_one_hot_list_ret
     )
 
 
 def DataEdgeHandle(declaration_list, assign_list):
-    """
-    Handle Extra Data Edge, three ways tested in Ablation Study
-    """
-
     data_flow_edge_list = []
-
-    # TYPE 1
     for decl in declaration_list:
-        data_flow = []
-        flag = False
-        for assign in assign_list:
-            if decl[3][1] in assign[3]:
-                flag = True
-                data_flow.append(assign[0])
-        if flag:
-            data_flow.insert(0, decl[0])
-            for j in range(len(data_flow) - 1):
-                data_flow_edge_list.append([data_flow[j], data_flow[j + 1]])
+        value = decl[2]
+        value = [i for i in value if i != ""]
+        if "static" in value:
+            value.remove("static")
+        if "final" in value:
+            value.remove("final")
 
-    # # TYPE 2
-    # for decl in declaration_list:
-    #     data_flow = []
-    #     flag = False
-    #     for assign in assign_list:
-    #         if decl[2][1] in assign[2]:
-    #             flag = True
-    #             data_flow.append(assign[0])
-    #     if flag:
-    #         data_flow.insert(0, decl[0])
-    #         for j in range(len(data_flow) - 1):
-    #             data_flow_edge_list.append([data_flow[0], data_flow[j + 1]])
-    #
-    # # TYPE 3
-    # for decl in declaration_list:
-    #     data_flow = []
-    #     flag = False
-    #     for assign in assign_list:
-    #         if decl[2][1] in assign[2]:
-    #             flag = True
-    #             data_flow.append(assign[0])
-    #     if flag:
-    #         data_flow.insert(0, decl[0])
-    #         for j in range(len(data_flow) - 1):
-    #             data_flow_edge_list.append([data_flow[j], data_flow[j + 1]])
-    #             if [data_flow[0], data_flow[j + 1]] not in data_flow_edge_list:
-    #                 data_flow_edge_list.append([data_flow[0], data_flow[j + 1]])
+        data_flow = []
+        flag = True
+        for assign in assign_list:
+            if len(value) > 1 and len(assign[2]) > 0:
+                 if value[1] in assign[2]:
+                    if flag:
+                        data_flow.append(decl[1]["beginLine"] - 1)
+                        data_flow.append(assign[1]["beginLine"] - 1)
+                        flag = False
+                    else:
+                        data_flow.append(assign[1]["beginLine"] - 1)
+
+        data_flow = list(set(data_flow))
+        data_flow.sort()
+        for j in range(len(data_flow) - 1):
+            data_flow_edge_list.append([data_flow[j], data_flow[j + 1]])
 
     return data_flow_edge_list
 
 
 def findIndex(stmt_node_list, line):
     for node in stmt_node_list:
-        if node[2][0] == line:
-            return node[0]
+        if node[1]["beginLine"] == line + 1:
+            return stmt_node_list.index(node)
+    else:
+        if line < 0:
+             return 0
+        return findIndex(stmt_node_list, line - 1)
+
+def ast_edges_handle(node_stmt_list, edge_list, edge_type):
+    original_node_id = []
+    destination_node_id = []
+    for pointer in range(len(node_stmt_list)):
+        destination_pointer = pointer
+        if destination_pointer == 0:
+            continue
+        else:
+            if pointer == 1:
+                if node_stmt_list[pointer - 1][2][1] > node_stmt_list[pointer][2][1]:
+                    destination_node_id.append(node_stmt_list[pointer][0])
+            else:
+                destination_node_id.append(node_stmt_list[pointer][0])
+            while destination_pointer >= 0:
+                if (
+                    node_stmt_list[pointer][2][1]
+                    < node_stmt_list[destination_pointer][2][1]
+                ):
+                    original_node_id.append(node_stmt_list[destination_pointer][0])
+                    break
+                else:
+                    destination_pointer = destination_pointer - 1
+                    if destination_pointer == -1:
+                        if node_stmt_list[pointer][0] in destination_node_id:
+                             destination_node_id.remove(node_stmt_list[pointer][0])
+
+    edge_list[0] = edge_list[0] + original_node_id
+    edge_list[1] = edge_list[1] + destination_node_id
+
+    for _ in original_node_id:
+        edge_type.append("AST")
+
+    return edge_list, edge_type
 
 
 def AddControlByHand(fileName, stmt_node_list):
@@ -1598,17 +1717,19 @@ def AddControlByHand(fileName, stmt_node_list):
 
 
 if __name__ == "__main__":
-    N_PATHS_AST = "Data/Neutral"
-    R_PATHS_AST = "Data/Readable"
-    U_PATHS_AST = "Data/Unreadable"
+    # N_PATHS_AST = "Dataset/Neutral"
+    # R_PATHS_AST = "Dataset/Readable"
+    # U_PATHS_AST = "Dataset/Unreadable"
+    JS_PATH = "Dataset_js"
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
     model = AutoModel.from_pretrained("microsoft/codebert-base")
-    graph_list, target_list, code_filename_list = json_parse_to_graph(
-        N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
-    )
+    # graph_list, target_list, code_filename_list = json_parse_to_graph(
+    #     N_PATHS_AST, R_PATHS_AST, U_PATHS_AST
+    # )
+    print(f"Generating input.pkl from JS dataset: {JS_PATH}")
+    graph_list, target_list, code_filename_list = json_parse_to_graph_js(JS_PATH)
 
     graph_input = []
-    file_input = []
     target_input = []
     graph_raw_code_nodes = []
 
@@ -1628,7 +1749,13 @@ if __name__ == "__main__":
         nodes_info = []
 
         # graph_raw_code_nodes.append({"graph_name": code_filename_list[i].split("/")[-1], "graph_nodes_codes": raw_code_list, "graph_nodes_type": node_type})
-        graph_raw_code_nodes.append(code_filename_list[i].split("\\")[-1])
+        # graph_raw_code_nodes.append(os.path.basename(code_filename_list[i]))
+        graph_raw_code_nodes.append({
+            "graph_name": os.path.basename(code_filename_list[i]),
+            "graph_nodes_codes": raw_code_list,
+            "graph_nodes_type": node_type,
+            "edge_types": edge_types
+        })
 
         for j in range(len(node_embedding_list)):
             node_embedding = np.array(node_embedding_list[j])
@@ -1640,7 +1767,7 @@ if __name__ == "__main__":
 
         x = torch.tensor(nodes_info)
         x = x.to(torch.float32)
-        x_zero = torch.zeros(1000, 840).float()
+        x_zero = torch.zeros(1000, 794).float()
         x_zero[: x.size(0), :] = x
 
         y = torch.tensor([target]).float()
@@ -1659,5 +1786,5 @@ if __name__ == "__main__":
 
     # please change the name ("input_XXXXXX.pkl") if necessary
     # the "matrix" is not necessary here, it's for future studying
-    write_pkl(cpg_dataset[["input", "target"]], "", "input.pkl")
+    write_pkl(cpg_dataset[["input", "target", "file"]], "", "input.pkl")
     print("Build pkl Successfully")

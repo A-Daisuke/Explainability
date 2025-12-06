@@ -604,11 +604,21 @@ class PlotUtils(object):
         node_labels = {}
         for i in range(len(index)):
             # node_labels[i] = type_labels[all_node_types.index(nodes_types[i])]
-            node_labels[i] = (
-                str(index[i][1]["beginLine"] - 1)
-                + ":"
-                + type_labels[all_node_types.index(nodes_types[i])]
-            )
+            if (
+                len(index[i]) > 1
+                and isinstance(index[i][1], dict)
+                and "beginLine" in index[i][1]
+            ):
+                line_num = str(index[i][1]["beginLine"] - 1)
+            else:
+                line_num = "?"
+
+            try:
+                type_label = type_labels[all_node_types.index(nodes_types[i])]
+            except ValueError:
+                type_label = nodes_types[i]
+
+            node_labels[i] = line_num + ":" + type_label
 
         self.plot_subgraph(
             graph,
