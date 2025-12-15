@@ -1,5 +1,5 @@
-// parse_js/parse_dir.js
-// usage: node parse_js/parse_dir.js <input_dir> <output_dir>
+// parse_js/parse_dir.mjs
+// usage: node parse_js/parse_dir.mjs <input_dir> <output_dir>
 
 import fs from "fs";
 import path from "path";
@@ -7,7 +7,7 @@ import { execSync } from "child_process";
 
 const [,, inputDir, outputDir] = process.argv;
 if (!inputDir || !outputDir) {
-  console.error("Usage: node parse_js/parse_dir.js <input_dir> <output_dir>");
+  console.error("Usage: node parse_js/parse_dir.mjs <input_dir> <output_dir>");
   process.exit(1);
 }
 
@@ -28,7 +28,7 @@ for (const file of files) {
 
   console.log(`→ Parsing: ${file}`);
   execSync(
-    `node ${path.join('parse_js','parse_file.js')} "${inPath}" "${outPath}"`,
+    `node ${path.join('parse_js','parse_file.mjs')} "${inPath}" "${outPath}"`,
     { stdio: "inherit" }
   );
 }

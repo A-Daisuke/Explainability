@@ -1,5 +1,5 @@
 // parse_js/parse_file.js
-// usage: node parse_js/parse_file.js input.js output.json
+// usage: node parse_js/parse_file.mjs input.js output.json
 
 import fs from "fs";
 import { parse } from "@babel/parser";
@@ -8,7 +8,7 @@ const inputPath = process.argv[2];
 const outputPath = process.argv[3];
 
 if (!inputPath || !outputPath) {
-  console.error("Usage: node parse_js/parse_file.js <input.js> <output.json>");
+  console.error("Usage: node parse_js/parse_file.mjs <input.js> <output.json>");
   process.exit(1);
 }
 
