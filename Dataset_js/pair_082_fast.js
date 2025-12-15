@@ -1,0 +1,13 @@
+var VAR_10 = "variableValue",
+  VAR_11,
+  VAR_1 = 1,
+  VAR_2 = 2,
+  VAR_3 = 1,
+  VAR_4 = 2,
+  VAR_5 = 3,
+  VAR_6 = true,
+  VAR_8 = 2;
+function FUNCTION_1() {}
+function FUNCTION_2() {}
+function FUNCTION_3() {}
+VAR_11 = VAR_10 === "variableValue" ? true : false;

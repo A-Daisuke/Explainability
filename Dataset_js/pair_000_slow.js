@@ -8,10 +8,10 @@ function FUNCTION_2() {
     alert("hi");
   };
 }
-var FUNCTION_4 = function () {
+function FUNCTION_3() {
   var VAR_1 = "hi";
   return function () {
     alert(VAR_1);
   };
-};
-var VAR_2 = FUNCTION_4();
+}
+var VAR_2 = FUNCTION_3();
