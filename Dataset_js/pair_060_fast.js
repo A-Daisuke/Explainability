@@ -1,10 +1,11 @@
-let VAR_1 = {
-  KEY_1: "test",
-  KEY_2: ["test1", "test2", "test3", "test4", "test5", "test6"],
-};
-function FUNCTION_1(VAR_2) {
-  for (let VAR_4 = 0; VAR_4 < VAR_2.length; VAR_4++) {
-    let VAR_5 = VAR_2[VAR_4];
-  }
+var VAR_1 = [],
+  VAR_2 = 0;
+for (VAR_2 = 0; VAR_2 <= 10000; VAR_2 += 1) {
+  VAR_1.push(VAR_2);
 }
-FUNCTION_1(VAR_1.KEY_2);
+function FUNCTION_1(VAR_3) {
+  VAR_2 += VAR_3;
+}
+for (var VAR_5 = 0, VAR_6 = VAR_1.length; VAR_5 < VAR_6; VAR_5++) {
+  VAR_2 += VAR_1[VAR_5];
+}

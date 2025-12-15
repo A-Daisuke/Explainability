@@ -1,20 +1,10 @@
-var VAR_1 = [
-  false,
-  1,
-  "2",
-  "three",
-  { KEY_1: 4 },
-  [5],
-  /six/,
-  String("7"),
-  "8".toString(),
-  !"nine",
-  true,
-];
-function FUNCTION_1(VAR_2) {
-  return VAR_2.toString();
+var VAR_1 = 200,
+  VAR_2 = VAR_1;
+var VAR_3 = [];
+while (VAR_2--) {
+  VAR_3.push(0);
 }
-var VAR_3 = "";
-for (var VAR_4 = -1; Object.prototype.hasOwnProperty.call(VAR_1, (VAR_4 += 1)); ) {
-  VAR_3 = VAR_3 + VAR_4 + " = " + VAR_1[VAR_4] + " (" + FUNCTION_1(VAR_1[VAR_4]) + "), ";
+FUNCTION_1(100);
+function FUNCTION_1(VAR_4) {
+  return Array.apply(null, new Array(VAR_4)).map(Number.prototype.valueOf, 0);
 }

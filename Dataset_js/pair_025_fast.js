@@ -1,25 +1,15 @@
-var VAR_1 = 0,
-  VAR_2 = "q",
-  VAR_3 = ["1", 2, "3", 4, "5", "6", 7];
-switch (VAR_2) {
-  case "a":
-    VAR_1 = "1";
-    break;
-  case "b":
-    VAR_1 = 2;
-    break;
-  case "c":
-    VAR_1 = "3";
-    break;
-  case "g":
-    VAR_1 = "4";
-    break;
-  case 5:
-    VAR_1 = "5";
-    break;
-  case "q4":
-    VAR_1 = "6";
-    break;
-    Default: VAR_1 = 7;
-    break;
+var VAR_1 = [].VAR_1;
+function FUNCTION_1() {
+  return VAR_1.call(arguments);
 }
+function FUNCTION_2() {
+  var VAR_2 = arguments.length,
+    VAR_3 = Array(VAR_2);
+  while (VAR_2--) VAR_3[VAR_4] = arguments[VAR_2];
+  return VAR_3;
+}
+function FUNCTION_3() {
+  arguments.VAR_5 = Array.prototype;
+  return arguments;
+}
+FUNCTION_3(1, 2);

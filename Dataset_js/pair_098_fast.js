@@ -1,15 +1,11 @@
-var VAR_1 = {
-  0: 0,
-  1: 1,
-  2: 2,
-  3: 3,
-  4: 4,
+FUNCTION_2 = function (VAR_3) {
+  return VAR_3.KEY_1 + VAR_3.KEY_2 + VAR_3.KEY_3;
 };
-var VAR_2 = [0, 1, 2, 3, 4];
-var VAR_3 = 0;
-var VAR_6 = 0;
-var VAR_10 = VAR_2.length;
-var VAR_11 = setInterval(function () {
-  VAR_3++;
-  if (VAR_6++ >= VAR_10) clearInterval(VAR_11);
-}, 0);
+for (var VAR_1 = 0; VAR_1 < 1000; VAR_1++) {
+  var VAR_2 = {
+    KEY_1: Math.random(),
+    KEY_2: "string",
+    KEY_3: 123,
+  };
+  FUNCTION_2(VAR_2);
+}

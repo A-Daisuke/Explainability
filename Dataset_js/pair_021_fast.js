@@ -1,21 +1,14 @@
-var VAR_3 = {
-  "&": "&#38;",
-  "<": "&#60;",
-  ">": "&#62;",
-  '"': "&#34;",
-  "'": "&#39;",
-};
 function FUNCTION_1(VAR_1) {
-  return String(VAR_1 || "").replace(/[<>'"]|(?:&(?!\w+;))/g, function (VAR_4) {
-    return VAR_3[VAR_4];
-  });
+  let VAR_2 = 0;
+  let VAR_4 = 1;
+  let VAR_7;
+  let VAR_6 = [];
+  for (let VAR_8 = 0; VAR_8 < VAR_1; VAR_8++) {
+    VAR_7 = VAR_4 + VAR_2;
+    VAR_4 = VAR_2;
+    VAR_2 = VAR_7;
+    VAR_6.push(VAR_2);
+  }
+  return VAR_6;
 }
-function FUNCTION_2(VAR_2) {
-  return String(VAR_2 || "")
-    .replace(/&(?!\w+;)/g, "&#38;")
-    .replace(/</g, "&#60;")
-    .replace(/>/g, "&#62;")
-    .replace(/"/g, "&#34;")
-    .replace(/'/g, "&#39;");
-}
-FUNCTION_1("1 & 2 < 3 > 4 ' 5 \" 6 & 7 < 8 > 9 ' 10 \"");
+FUNCTION_1(10);

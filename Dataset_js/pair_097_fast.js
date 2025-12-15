@@ -1,15 +1,15 @@
-var VAR_1 = [
-    "10",
-    "010",
-    "0010",
-    "9007199254740992",
-    "5555555555555555",
-    "000111123348880",
-    "-10",
-    "-9007199254740992",
-    "-6666611220000888",
-  ],
-  VAR_2;
-for (VAR_2 = 0; VAR_2 < VAR_1.length; VAR_2++) {
-  +VAR_1[VAR_2];
-}
+var VAR_1,
+  VAR_2,
+  VAR_3,
+  VAR_4,
+  VAR_6,
+  VAR_7;
+VAR_1 = "test";
+VAR_2 = "test2";
+String.prototype.FUNCTION_1 = function () {
+  return this;
+};
+VAR_4 = VAR_1.FUNCTION_1();
+VAR_6 = new String("test");
+VAR_7 = new String("test2");
+VAR_3 = VAR_1.concat(VAR_2);

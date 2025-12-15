@@ -1,12 +1,41 @@
-function FUNCTION_1(VAR_1, VAR_3, VAR_4) {
-  return VAR_1 + VAR_3 + VAR_4;
+var VAR_1 = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
+var VAR_2 = 0,
+  VAR_3,
+  VAR_4;
+for (var VAR_5 = 0, VAR_6 = VAR_1.length; VAR_5 < VAR_6; ++VAR_5) {
+  VAR_4 = VAR_1[VAR_5];
+  if (typeof VAR_4 === "number") {
+    VAR_2 += VAR_4;
+  }
 }
-function FUNCTION_2() {
-  return arguments[0] + arguments[1] + arguments[2];
-}
-var VAR_2 = {
-  KEY_1: 45,
-  KEY_2: 66,
-  KEY_3: 102,
-};
-FUNCTION_1(45, 66, 102);

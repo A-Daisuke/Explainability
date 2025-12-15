@@ -1,14 +1,11 @@
-var VAR_1 = 1,
-  VAR_2 = 2,
-  VAR_3 = 1,
-  VAR_4 = 2,
-  VAR_5 = 3,
-  VAR_6 = true,
-  VAR_7 = [1, 2, 3, 4, 5, 6],
-  VAR_8 = 2;
-function FUNCTION_1() {}
-function FUNCTION_2() {}
-function FUNCTION_3() {}
-var VAR_9;
-var VAR_10;
-var VAR_11 = 3;
+var VAR_1 = { KEY_1: 1 };
+var FUNCTION_1 = function () {
+  VAR_1.KEY_1++;
+};
+var VAR_2 = function () {
+  this.KEY_1++;
+}.bind(VAR_1);
+var VAR_3 = function () {
+  this.KEY_1++;
+}.bind(VAR_1);
+VAR_3();

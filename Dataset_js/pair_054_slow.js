@@ -1,10 +1,15 @@
-let VAR_1 = [];
-for (let VAR_2 = 0; VAR_2 < 1000; VAR_2++) {
-  VAR_1.push({
-    KEY_1: VAR_2 / 100,
-    KEY_2: Math.random(),
-  });
+function FUNCTION_1(VAR_1) {
+  if (!VAR_1) {
+    return false;
+  }
+  if (["false", "0", "null"].includes(VAR_1)) {
+    return false;
+  }
+  return true;
 }
-let VAR_3 = VAR_1.slice();
-while (VAR_3[0].KEY_1 < 5) VAR_3.shift();
-if (VAR_3.length !== 500) throw new Error();
+FUNCTION_1("");
+FUNCTION_1("false");
+FUNCTION_1("null");
+FUNCTION_1("0");
+FUNCTION_1("1");
+FUNCTION_1("true");

@@ -49,6 +49,15 @@ def Classification(model, dataset, graph_index):
     # get each graph
     data_input, data_raw = dataset[graph_index]
     print("Explaining graph: ", data_raw["graph_name"])
+    
+    # DEBUG
+    print(f"DEBUG: x shape: {data_input.x.shape}")
+    print(f"DEBUG: edge_index shape: {data_input.edge_index.shape}")
+    if data_input.edge_index.numel() > 0:
+        print(f"DEBUG: edge_index max: {data_input.edge_index.max()}")
+        print(f"DEBUG: edge_index min: {data_input.edge_index.min()}")
+    else:
+        print("DEBUG: edge_index is empty")
 
     # 选择图进行解释以及可视化
     probs, _ = model(data_input)

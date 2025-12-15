@@ -1,19 +1,11 @@
-function FUNCTION_1(VAR_1) {
-  VAR_1 = Number(VAR_1) + 1000000;
-  var VAR_2 = 0,
-    VAR_3 = 0;
-  if (VAR_1 > 1999999) return false;
-  VAR_2 += VAR_1 % 10;
-  VAR_1 = Math.floor(VAR_1 / 10);
-  VAR_2 += VAR_1 % 10;
-  VAR_1 = Math.floor(VAR_1 / 10);
-  VAR_2 += VAR_1 % 10;
-  VAR_1 = Math.floor(VAR_1 / 10);
-  VAR_3 += VAR_1 % 10;
-  VAR_1 = Math.floor(VAR_1 / 10);
-  VAR_3 += VAR_1 % 10;
-  VAR_1 = Math.floor(VAR_1 / 10);
-  VAR_3 += VAR_1 % 10;
-  return VAR_2 == VAR_3;
-}
-FUNCTION_1("123123");
+VAR_1 = "there are a lot of ways :)";
+VAR_2 = "there are :100: people, you know? :)";
+VAR_3 =
+  ":) yes, I think it is ok :). But you know, there are seven of them, right? :o";
+VAR_4 = /\:/;
+String.prototype.VAR_5 =
+  String.prototype.VAR_5 ||
+  function (VAR_6) {
+    return ~this.indexOf(VAR_6);
+  };
+!~VAR_2.indexOf(":");

@@ -1,11 +1,43 @@
-const VAR_1 = "val1";
-const VAR_2 = "val2";
-const VAR_3 = "val3";
-const VAR_4 = "val4";
-const VAR_5 = "val5";
-const VAR_6 = "str1"
-  .concat(VAR_1, "str2")
-  .concat(VAR_2, "str3")
-  .concat(VAR_3, "str4")
-  .concat(VAR_4, "str5")
-  .concat(VAR_5);
+var VAR_1 = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
+var VAR_2 = 0,
+  VAR_3;
+for (var VAR_4 = 0, VAR_5 = VAR_1.length; VAR_4 < VAR_5; ++VAR_4) {
+  VAR_6 = VAR_1[VAR_4];
+  if (!isNaN(VAR_6)) {
+    VAR_3 = parseFloat(VAR_6);
+    if (!isNaN(VAR_3)) {
+      VAR_2 += VAR_3;
+    }
+  }
+}

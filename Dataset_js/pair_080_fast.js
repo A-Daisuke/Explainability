@@ -1,18 +1,20 @@
-var VAR_1 = 0;
-function FUNCTION_3(VAR_4) {
-  VAR_1 += 1;
-  return !!VAR_4;
-}
-function FUNCTION_1(VAR_2) {
-  VAR_1 += 1;
-  return Boolean(VAR_2);
-}
-function FUNCTION_2(VAR_3) {
-  VAR_1 += 1;
-  return ~~VAR_3;
-}
-function FUNCTION_4(VAR_5) {
-  VAR_1 += 1;
-  return VAR_5;
-}
-FUNCTION_3(1) && FUNCTION_3(0);
+var VAR_1 = [
+  {
+    KEY_1: "Joe",
+    KEY_2: 17,
+  },
+  {
+    KEY_3: "Bob",
+    KEY_4: 17,
+  },
+  {
+    KEY_5: "Carl",
+    KEY_6: 35,
+  },
+];
+var VAR_5 = VAR_1.map(function (VAR_6) {
+  return VAR_6.KEY_2;
+});
+VAR_5 = VAR_5.filter(function (VAR_7, VAR_8) {
+  return VAR_5.indexOf(VAR_7) == VAR_8;
+});

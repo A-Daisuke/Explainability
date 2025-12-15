@@ -1,18 +1,18 @@
-function FUNCTION_1(VAR_1) {
-  var VAR_2;
-  if (typeof VAR_1 === "string") {
-    VAR_2 = VAR_1;
+var VAR_1 = [];
+for (var VAR_2 = 1; VAR_2 < 500; VAR_2++) VAR_1.push(VAR_2);
+var VAR_3 = [];
+for (var VAR_4 = 1; VAR_2 < 10; VAR_2++) VAR_3.push(VAR_2);
+function FUNCTION_1(VAR_5) {}
+var VAR_6 = 0,
+  VAR_7 = VAR_1.length;
+for (; VAR_2 < VAR_7; VAR_2++) {
+  var VAR_8 = VAR_1[VAR_2];
+  var VAR_9 = 0,
+    VAR_10 = VAR_3.length,
+    VAR_11;
+  for (; VAR_9 < VAR_10; VAR_9++) {
+    VAR_11 = VAR_3[VAR_9];
+    FUNCTION_1(VAR_11);
   }
+  FUNCTION_1(VAR_8);
 }
-function FUNCTION_2(VAR_3) {
-  var VAR_4;
-  if (Object.prototype.toString.apply(VAR_3) === "[object String]") {
-    VAR_4 = VAR_3;
-  }
-}
-function FUNCTION_3(VAR_5) {
-  var VAR_6;
-  VAR_6 = VAR_5;
-}
-VAR_7 = 1000000000;
-FUNCTION_2("Lorem Ipsum");

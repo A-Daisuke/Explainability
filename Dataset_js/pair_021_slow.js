@@ -1,21 +1,18 @@
 function FUNCTION_1(VAR_1) {
-  return String(VAR_1 || "")
-    .replace(/&(?!\w+;)/g, "&#38;")
-    .split("<")
-    .join("&#60;")
-    .split(">")
-    .join("&#62;")
-    .split('"')
-    .join("&#34;")
-    .split("'")
-    .join("&#39;");
+  const VAR_2 = 1.61803398875;
+  const VAR_3 = [1, 1, 2];
+  let VAR_4 = 0;
+  let VAR_5 = VAR_3[VAR_3.length - 1];
+  let VAR_6 = [];
+  while (VAR_4 < VAR_3.length) {
+    VAR_6.push(VAR_3[VAR_4]);
+    VAR_4++;
+  }
+  while (VAR_4 < VAR_1) {
+    VAR_5 = Math.round(VAR_5 * VAR_2);
+    VAR_6.push(VAR_5);
+    VAR_4++;
+  }
+  return VAR_6;
 }
-function FUNCTION_2(VAR_2) {
-  return String(VAR_2 || "")
-    .replace(/&(?!\w+;)/g, "&#38;")
-    .replace(/</g, "&#60;")
-    .replace(/>/g, "&#62;")
-    .replace(/"/g, "&#34;")
-    .replace(/'/g, "&#39;");
-}
-FUNCTION_1("1 & 2 < 3 > 4 ' 5 \" 6 & 7 < 8 > 9 ' 10 \"");
+FUNCTION_1(10);

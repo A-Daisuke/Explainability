@@ -1,16 +1,10 @@
-var VAR_1 = [],
-  VAR_2 = [],
-  VAR_3 = [],
-  VAR_4 = 100,
-  VAR_5 = 10000,
-  VAR_6 = 100000;
-while (VAR_4--) {
-  VAR_1.push(Math.random());
+function FUNCTION_1(VAR_1) {
+  var VAR_2 = VAR_1 || "";
+  var VAR_3 =
+    typeof VAR_2 == "string" ? VAR_2.split("") : VAR_2;
+  VAR_3.sort(function (VAR_4, VAR_5) {
+    return VAR_4.charCodeAt(0) - VAR_5.charCodeAt(0);
+  });
+  return VAR_3.join("").replace(/(.)\1+/g, "$1");
 }
-while (VAR_5--) {
-  VAR_2.push(Math.random());
-}
-while (VAR_6--) {
-  VAR_3.push(Math.random());
-}
-VAR_3.slice();
+FUNCTION_1("foo");

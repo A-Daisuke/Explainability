@@ -1,16 +1,11 @@
-function FUNCTION_1(VAR_1) {
-  let VAR_2 = 0;
-  let VAR_3 = [];
-  function FUNCTION_2(VAR_4) {
-    if (VAR_4 <= 1) {
-      return 1;
-    } else {
-      return FUNCTION_2(VAR_4 - 1) + FUNCTION_2(VAR_4 - 2);
-    }
-  }
-  while (VAR_2 < VAR_1) {
-    VAR_3.push(FUNCTION_2(VAR_2++));
-  }
-  return VAR_3;
+var VAR_1 = "multi.part.string";
+var VAR_2 = ".";
+function FUNCTION_1(VAR_3, VAR_4) {
+  var VAR_5 = VAR_3.indexOf(VAR_4);
+  return VAR_5 > -1 ? VAR_3.substring(VAR_5 + VAR_4.length) : VAR_3;
 }
-FUNCTION_1(10);
+String.prototype.FUNCTION_2 = function (VAR_6) {
+  var VAR_7 = this.indexOf(VAR_6);
+  return VAR_7 > -1 ? this.substring(VAR_7 + VAR_4.length) : this;
+};
+VAR_1.split(VAR_2, 1)[0];

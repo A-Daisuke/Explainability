@@ -1,21 +1,20 @@
-function FUNCTION_1(VAR_1) {
-  var VAR_2 = 1,
-    VAR_3 = 1;
-  var FUNCTION_2 = function () {
-    if (VAR_1 == 1 || VAR_1 == 2) return 1;
-    if (VAR_1) {
-      var VAR_4 = VAR_2;
-      VAR_2 = VAR_3;
-      VAR_3 = VAR_4 + VAR_3;
-      VAR_1--;
-      FUNCTION_2();
-    }
-    return VAR_2 + VAR_3;
-  };
-  return FUNCTION_2();
+var VAR_1 = [];
+for (var VAR_2 = 0; VAR_2 < 100000; VAR_2++) {
+  VAR_1.push("hello world");
 }
-function FUNCTION_3(VAR_5) {
-  if (VAR_5 == 1 || VAR_5 == 2) return 1;
-  else return FUNCTION_3(VAR_5 - 1) + FUNCTION_3(VAR_5 - 2);
+var VAR_3 = new Map();
+for (var VAR_4 = 0; VAR_2 < 100000; VAR_2++) {
+  VAR_3.set(VAR_2, "hello world");
 }
-FUNCTION_1(999);
+for (var VAR_5 of VAR_3.values()) {
+  VAR_5.trim();
+}
+for (var VAR_6 = 10000; VAR_2 < 20000; VAR_2++) {
+  VAR_3.delete(VAR_2);
+}
+for (var VAR_7 = 10000; VAR_2 < 20000; VAR_2++) {
+  VAR_3.set(VAR_2, "hello");
+}
+for (var VAR_8 of VAR_3.values()) {
+  VAR_5.trim();
+}

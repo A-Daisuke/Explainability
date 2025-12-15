@@ -1,15 +1,13 @@
-var FUNCTION_1 = function (VAR_1) {
-  return typeof VAR_1 === "string";
-};
-var VAR_2 = {};
-VAR_2.FUNCTION_2 = function (VAR_3) {
-  return this + VAR_3;
-};
-var FUNCTION_3 = function (VAR_4) {
-  if (typeof VAR_4 === "string") {
-    return (VAR_4.VAR_5 = VAR_2);
-  } else {
+function FUNCTION_1() {
+  var VAR_1 = "0";
+  var VAR_2 = [];
+  for (var VAR_3 = 0; VAR_3 < 1000; VAR_3++) {
+    var VAR_4 = VAR_1.split(",");
+    var VAR_5 = VAR_4[VAR_4.length - 1];
+    if (VAR_5) {
+      VAR_2.push(VAR_5);
+    }
+    VAR_1 += "," + VAR_3;
   }
-};
-var VAR_6 = FUNCTION_3("Hello World");
-var VAR_7 = VAR_6.FUNCTION_2("Hello World");
+}
+FUNCTION_1();

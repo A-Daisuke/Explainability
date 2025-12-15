@@ -1,12 +1,16 @@
-var VAR_1 = 1024 * 32;
-var VAR_2 = 3 * 1024;
-var VAR_3 = new ArrayBuffer(VAR_1);
-var VAR_4 = new Uint32Array(VAR_3, 0, VAR_2);
-var VAR_5 = new Uint8Array(VAR_3, 0, VAR_2 * 4);
-var VAR_6 = 0;
-while (VAR_6 < VAR_2) {
-  VAR_4[VAR_6++] = Math.random() * (1 << 16);
-  VAR_4[VAR_6++] = Math.random() * (1 << 32);
-  VAR_4[VAR_6++] = Math.random() * (1 << 32);
+var VAR_1 = 100,
+  VAR_2 = 125,
+  VAR_3 = 0.3;
+function FUNCTION_1(VAR_4, VAR_5, VAR_6) {
+  VAR_1 *= VAR_3;
+  return Math.round(255 - ((255 - VAR_1) * (255 - VAR_2)) / 255);
 }
-Array.prototype.map.call(VAR_5, String.fromCharCode).join("");
+function FUNCTION_2(VAR_7, VAR_8, VAR_9) {
+  VAR_1 *= VAR_3;
+  return (255 - ((255 - VAR_1) * (255 - VAR_2)) / 255) >> 0;
+}
+function FUNCTION_3(VAR_10, VAR_11, VAR_12) {
+  VAR_1 *= VAR_3;
+  return 255 - (((255 - VAR_1) * (255 - VAR_2)) >> 8);
+}
+FUNCTION_2(VAR_1, VAR_3, VAR_2);

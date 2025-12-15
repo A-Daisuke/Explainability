@@ -1,10 +1,11 @@
-function FUNCTION_2() {
-  this.VAR_5 = new ArrayBuffer(1000);
-  this.VAR_6 = new Int8Array(this.VAR_5);
-}
-function FUNCTION_1() {
-  this.VAR_5 = new ArrayBuffer(1000);
-  this.VAR_6 = new Int8Array(this.VAR_5);
-  this.VAR_3 = new Uint8Array(this.VAR_5);
-}
-new FUNCTION_2();
+var VAR_1 = [];
+VAR_1[0] = 1 << 0;
+VAR_1[1] = 1 << 1;
+VAR_1[2] = 1 << 2;
+VAR_1[3] = 1 << 3;
+VAR_1[4] = 1 << 4;
+VAR_1[5] = 1 << 5;
+VAR_1[6] = 1 << 6;
+VAR_1[7] = 1 << 7;
+VAR_1[8] = 1 << 8;
+VAR_1[9] = 1 << 9;

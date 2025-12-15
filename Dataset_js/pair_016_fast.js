@@ -1,13 +1,10 @@
-"use strict";
-var VAR_1 = Math.random();
-class CLASS_1 {
-  KEY_1(VAR_4) {
-    this.VAR_7 = `Error code ${VAR_4}`;
+var VAR_1 = ["a", "b", "c", "d"],
+  VAR_8 = [],
+  VAR_9 = VAR_1.length;
+for (i in VAR_1) {
+  for (var VAR_10 = i; VAR_10 < VAR_9; VAR_10++) {
+    if (VAR_1[i] != VAR_1[VAR_10]) {
+      VAR_8.push(VAR_1[i] + " - " + VAR_1[VAR_10]);
+    }
   }
 }
-class CLASS_2 {
-  KEY_2(VAR_5) {
-    this.VAR_7 = "Error code " + VAR_4;
-  }
-}
-var VAR_8 = { KEY_3: "Error code " + VAR_1 };

@@ -1,10 +1,15 @@
-var VAR_1;
+var VAR_1 = "variableValue",
+  VAR_2,
+  VAR_3 = 1,
+  VAR_4 = 2,
+  VAR_9 = 1,
+  VAR_10 = 2,
+  VAR_11 = 3,
+  VAR_5 = true,
+  VAR_7 = 2;
 function FUNCTION_1() {}
-var VAR_2 = (function () {})();
-function FUNCTION_2(VAR_3) {
-  return VAR_1 == FUNCTION_1();
-}
-function FUNCTION_4(VAR_5) {
-  return VAR_1 == (function () {})();
-}
-VAR_1 == VAR_2;
+function FUNCTION_2() {}
+function FUNCTION_3() {}
+VAR_9++;
+VAR_11--;
+VAR_10 *= 10;

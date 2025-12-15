@@ -1,13 +1,25 @@
-var VAR_1 = [],
-  VAR_2 = [];
-VAR_1.VAR_3 = 100000;
-VAR_2.VAR_4 = VAR_1.VAR_3;
-var VAR_5 = new Uint8Array(800000);
-var VAR_6 = new Uint8Array(800000);
-var VAR_7 = new Uint32Array(200000);
-var VAR_8 = new Uint32Array(200000);
-var VAR_9 = new Float64Array(100000);
-var VAR_10 = new Float64Array(100000);
-for (var VAR_11 = 0, VAR_12 = VAR_10.VAR_3; VAR_11 < VAR_12; VAR_11++) {
-  VAR_9[VAR_13] = VAR_10[VAR_11];
-}
+VAR_1 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+VAR_2 = new Float32Array(VAR_1);
+FUNCTION_1 = function () {
+  this.VAR_3 =
+    this.VAR_4 =
+    this.VAR_5 =
+    this.VAR_6 =
+    this.VAR_7 =
+    this.VAR_8 =
+    this.VAR_9 =
+    this.VAR_10 =
+    this.VAR_11 =
+      0;
+};
+var VAR_12 = {
+  KEY_1: 0,
+  KEY_2: 0,
+  KEY_3: 0,
+  KEY_4: 0,
+  KEY_5: 0,
+  KEY_6: 0,
+  KEY_7: 0,
+  KEY_8: 0,
+  KEY_9: 0,
+};

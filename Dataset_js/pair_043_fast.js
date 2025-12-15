@@ -1,10 +1,11 @@
-var VAR_1 = undefined;
-try {
-  if (Math.random() > 1e-20) {
-    VAR_1 = +new Date();
-  } else {
-    throw Error();
-  }
-} catch (VAR_2) {
-  VAR_1 = null;
-}
+var VAR_2 = "A very simple string",
+  VAR_3 = 10,
+  VAR_4 = ["An array of strings", "Two of them"],
+  VAR_5 = {
+    KEY_1: "value",
+    KEY_2: "other value",
+  };
+VAR_2.toString();
+VAR_3.toString();
+VAR_4.toString();
+VAR_5.toString();

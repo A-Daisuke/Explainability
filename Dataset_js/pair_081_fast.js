@@ -1,16 +1,12 @@
-var FUNCTION_2 = function (VAR_2) {
-  VAR_2(VAR_3);
-  VAR_2(VAR_4);
+var FUNCTION_1 = function (VAR_1, VAR_2) {
+  VAR_1 = VAR_1 + "";
+  if (VAR_2 <= 0) return "";
+  if (VAR_2 % 2) return FUNCTION_1(VAR_1, VAR_2 - 1) + VAR_1;
+  var VAR_3 = FUNCTION_1(VAR_1, VAR_2 / 2);
+  return VAR_3 + VAR_3;
 };
-var VAR_3 = "x",
-  VAR_4 = "y";
-var VAR_5 = {
-  KEY_1: 0,
-  KEY_2: 0,
-};
-var VAR_6 = ["x", "y"];
-for (var VAR_8 in {
-  KEY_3: 0,
-  KEY_4: 0,
-}) {
-}
+FUNCTION_1(12, 2);
+FUNCTION_1(2, 2);
+FUNCTION_1(2, 3);
+FUNCTION_1(10, 5);
+FUNCTION_1(10, 30);

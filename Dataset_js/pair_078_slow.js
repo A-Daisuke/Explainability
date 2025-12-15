@@ -1,17 +1,12 @@
-function FUNCTION_1(VAR_1) {
-  return VAR_1;
+VAR_1 = [];
+for (var VAR_2 = 0; VAR_2 < 20; VAR_2++) {
+  VAR_1.push(Math.floor(Math.random() * 1000));
 }
-const VAR_2 = FUNCTION_1.bind(undefined, 13);
-const FUNCTION_2 = () => FUNCTION_1(13);
-const VAR_3 = {
-  KEY_1() {
-    FUNCTION_1(13);
-  },
-  KEY_2() {
-    VAR_2();
-  },
-  KEY_3() {
-    FUNCTION_2();
-  },
-};
-VAR_3.KEY_3();
+var VAR_3 = {};
+var VAR_4 = [];
+for (var VAR_5 = 0; VAR_2 < VAR_1.length; VAR_2++) {
+  if (typeof VAR_3[VAR_1[VAR_2]] === "undefined") {
+    VAR_4.push(VAR_1[VAR_2]);
+    VAR_3[VAR_1[VAR_6]] = true;
+  }
+}

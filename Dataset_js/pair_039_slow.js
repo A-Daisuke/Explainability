@@ -1,12 +1,11 @@
-var VAR_1 = [
-  12, 35, 45, 95, 78, 65, 12, 20, 84, 5, 354, 102, 84, 5, 365, 9, 423, 984,
-];
-var VAR_2 = 0,
-  VAR_3 = 0,
-  VAR_4 = VAR_1.VAR_4;
-(function () {
-  if (VAR_3 < VAR_4) {
-    VAR_2 += VAR_1[VAR_3];
-    arguments.callee(++VAR_3);
-  }
-})();
+var VAR_1 = 1000;
+var FUNCTION_1 = function (VAR_2, VAR_3, VAR_4) {
+  this.VAR_5 = VAR_2;
+  this.VAR_6 = VAR_3;
+  this.VAR_7 = VAR_4;
+};
+var VAR_8 = [];
+for (var VAR_9 = 0; VAR_9 < VAR_1; ++VAR_9) {
+  VAR_8[VAR_8.VAR_10] = VAR_9;
+  VAR_8[VAR_8.VAR_11] = VAR_9;
+}

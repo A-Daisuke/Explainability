@@ -1,18 +1,15 @@
-var VAR_1 = "last",
-  VAR_2 = "notThere";
-var VAR_3 = /^(first|last)$/,
-  VAR_4 =
-    /^(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|last)$/;
-var VAR_5 = {
-  KEY_1: true,
-  KEY_2: true,
-  KEY_3: true,
-  KEY_4: true,
-  KEY_5: true,
-  KEY_6: true,
-  KEY_7: true,
-  KEY_8: true,
-  KEY_9: true,
-  KEY_10: true,
+FUNCTION_1 = function (VAR_1, VAR_2) {
+  if (VAR_1.hasOwnProperty(VAR_2)) {
+    return VAR_1[VAR_2];
+  } else if (VAR_1.__proto__) {
+    return FUNCTION_1(VAR_1.__proto__, VAR_2);
+  }
 };
-VAR_3.test(VAR_2);
+var FUNCTION_2 = function (VAR_3) {
+  this.VAR_4 = VAR_3;
+};
+var VAR_5 = new FUNCTION_2("Smith");
+for (var VAR_6 = 0; VAR_6 < 1000; VAR_6++) {
+  FUNCTION_1(VAR_5, "name");
+  FUNCTION_1(VAR_5, "toString");
+}

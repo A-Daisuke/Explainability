@@ -1,21 +1,21 @@
-var VAR_1 = 10000;
-function FUNCTION_1(VAR_2, VAR_3) {
-  if (VAR_2 !== VAR_3) {
-    throw new Error(`Not equals, actual:'${VAR_2}', expected '${VAR_3}'.`);
+function FUNCTION_1(VAR_1) {
+  var VAR_2 = [];
+  for (var VAR_3 in VAR_1) {
+    if (VAR_1.hasOwnProperty(VAR_3)) {
+      VAR_2.push([VAR_3, VAR_1[VAR_3]]);
+    }
   }
+  return VAR_2;
 }
-var VAR_4 = {
-  KEY_1: 0,
-  KEY_2: function () {
-    this.KEY_1 += 1;
-  },
-};
-var VAR_5 = new Proxy(VAR_4, {
-  KEY_3: function (VAR_6, VAR_7, VAR_8) {
-    return VAR_4[VAR_7];
-  },
+FUNCTION_1({
+  KEY_1: 1,
+  KEY_2: 1,
+  KEY_3: 1,
+  KEY_4: 1,
+  KEY_5: 1,
+  KEY_6: 1,
+  KEY_7: 1,
+  KEY_8: 1,
+  KEY_9: 1,
+  KEY_10: 1,
 });
-for (var VAR_9 = 0; VAR_9 < VAR_1; VAR_9 += 1) {
-  VAR_5.KEY_2();
-}
-FUNCTION_1(VAR_5.KEY_1, VAR_1);

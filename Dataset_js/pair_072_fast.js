@@ -1,14 +1,17 @@
-var VAR_1 = 10000;
-function FUNCTION_1(VAR_2, VAR_3) {
-  if (VAR_2 !== VAR_3) {
-    throw new Error(`Not equals, actual:'${VAR_2}', expected '${VAR_3}'.`);
-  }
+function FUNCTION_1(VAR_1) {
+  return Object.keys(VAR_1).map(function (VAR_4, VAR_5) {
+    return [VAR_5, VAR_4];
+  });
 }
-var VAR_10 = 0;
-function FUNCTION_2(VAR_11, VAR_12, VAR_13) {
-  VAR_10 += VAR_11 + VAR_12 + VAR_13;
-}
-for (var VAR_9 = 0; VAR_9 < VAR_1; VAR_9 += 1) {
-  FUNCTION_2(1, -1, 1);
-}
-FUNCTION_1(VAR_10, VAR_1);
+FUNCTION_1({
+  KEY_1: 1,
+  KEY_2: 1,
+  KEY_3: 1,
+  KEY_4: 1,
+  KEY_5: 1,
+  KEY_6: 1,
+  KEY_7: 1,
+  KEY_8: 1,
+  KEY_9: 1,
+  KEY_10: 1,
+});

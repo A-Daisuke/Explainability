@@ -1,11 +1,13 @@
-const VAR_1 = [
-  " SELECT * FROM Foo",
-  "select foo, bar FROM Baz JOIN Bazz ON Baz.id = Bazz.bazId",
-  "INSERT INTO Foo VALUES (1, 2, 3)",
-  "UPDATE Baz SET bar = 1729 WHERE active = 1",
-  "DROP TABLE Foo",
-];
-const FUNCTION_1 = () =>
-  VAR_1[Math.floor(Math.random() * VAR_1.length)];
-const VAR_2 = FUNCTION_1();
-const VAR_3 = VAR_2.split(" ")[0].toLowerCase() === "select";
+function FUNCTION_1(VAR_1, VAR_2) {
+  this.VAR_3 = VAR_1;
+  this.VAR_4 = VAR_2;
+}
+(function () {
+  var VAR_5 = 0;
+  var VAR_6 = [];
+  while (VAR_5++ < 5000) {
+    var VAR_7 = new FUNCTION_1(VAR_5, VAR_5);
+    VAR_6.push(VAR_7);
+  }
+  if (VAR_6.length != 5000) throw new Error();
+})();

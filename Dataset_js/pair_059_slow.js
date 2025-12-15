@@ -1,18 +1,23 @@
-var VAR_1 = null;
-var VAR_2 = [null];
-function FUNCTION_1() {
-  return VAR_1;
-}
-function FUNCTION_2(VAR_3) {
-  VAR_2.push(VAR_3);
-}
-function FUNCTION_3() {
-  VAR_2.pop();
-}
-function FUNCTION_4() {
-  return VAR_2[VAR_2.length - 1];
-}
-FUNCTION_2("apple");
-FUNCTION_2("banana");
-FUNCTION_3();
-FUNCTION_3();
+var VAR_1 = {
+  KEY_1: function () {
+    return this.KEY_2;
+  },
+  KEY_2: {
+    KEY_3: "sdasfasfasdfasdf",
+    KEY_4: "sdasfasfasdfasdf",
+    KEY_5: "sdasfasfasdfasdf",
+  },
+  KEY_6: function () {
+    return this.KEY_2.KEY_3;
+  },
+  KEY_7: function () {
+    return this.KEY_2.KEY_4;
+  },
+  KEY_8: function () {
+    return this.KEY_2.KEY_5;
+  },
+};
+var VAR_2 = {};
+VAR_2.KEY_3 = VAR_1.KEY_6();
+VAR_2.KEY_4 = VAR_1.KEY_7();
+VAR_2.KEY_5 = VAR_1.KEY_8();

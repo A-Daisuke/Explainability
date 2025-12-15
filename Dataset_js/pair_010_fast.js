@@ -1,11 +1,12 @@
-var VAR_1 = [],
-  VAR_2 = 5000;
-while (VAR_2--) {
-  VAR_1[VAR_2 - 1] = VAR_2;
+function FUNCTION_2(VAR_2) {
+  var VAR_3 = document.createElement("a");
+  VAR_3.VAR_4 = VAR_2;
+  return VAR_3.hostname;
 }
-var FUNCTION_1 = function (VAR_3) {
-  VAR_3 = VAR_3;
-};
-Object.keys(VAR_1).reduce(function (VAR_5) {
-  return FUNCTION_1(VAR_1[VAR_5]);
-}, []);
+var VAR_6 = /https?:\/\/([\w\d]+\.[\w\d]{2,})/i;
+function FUNCTION_1(VAR_1) {
+  return VAR_6.exec(VAR_1)[1];
+}
+var VAR_5 =
+  "http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls/9744104#9744104";
+FUNCTION_1(VAR_5);

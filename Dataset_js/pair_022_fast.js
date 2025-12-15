@@ -1,22 +1,15 @@
-var VAR_1 = [];
-var VAR_2 = 100;
-for (var VAR_3 = 0; VAR_3 < VAR_2; VAR_3++) {
-  VAR_1.push({
-    KEY_1: Math.random(),
-    KEY_2: "abc",
-  });
-}
-function FUNCTION_1(VAR_4) {
-  var VAR_5 = [];
-  for (var VAR_6 = 0; VAR_3 < VAR_2; VAR_3++) {
-    VAR_5.push({
-      KEY_3: Math.random(),
-      KEY_4: "abc",
-    });
+function FUNCTION_1(VAR_2) {
+  var VAR_7 = VAR_2.toUpperCase();
+  if (VAR_7 === VAR_2) {
+    return true;
   }
-  return VAR_5;
+  return false;
 }
-var VAR_7 = FUNCTION_1(100);
-for (var VAR_8 = 0; VAR_3 < 100; VAR_3++) {
-  VAR_1.push(VAR_5[VAR_3]);
+var VAR_4 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+function FUNCTION_2(VAR_5) {
+  return VAR_4.indexOf(VAR_5) !== -1;
 }
+function FUNCTION_3(VAR_6) {
+  return new RegExp(VAR_6).test(VAR_4);
+}
+FUNCTION_1("Z");

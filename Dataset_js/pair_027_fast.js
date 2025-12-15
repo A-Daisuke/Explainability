@@ -1,11 +1,11 @@
-var VAR_6 = Math.sqrt(5),
-  VAR_7 = (1 + VAR_6) / 2,
-  VAR_8 = (1 - VAR_6) / 2;
-function FUNCTION_1(VAR_1) {
-  return Math.round((Math.pow(VAR_7, VAR_1) + Math.pow(VAR_8, VAR_1)) / VAR_6 + 0.08);
+var VAR_1 = [];
+for (var VAR_2 = 0; VAR_2 < 100000; VAR_2++) {
+  VAR_1.push("hello world");
 }
-function FUNCTION_3(VAR_5) {
-  if (VAR_5 == 1 || VAR_5 == 2) return 1;
-  else return FUNCTION_3(VAR_5 - 1) + FUNCTION_3(VAR_5 - 2);
+var VAR_3 = new Map();
+for (var VAR_4 = 0; VAR_2 < 100000; VAR_2++) {
+  VAR_3.set(VAR_2, "hello world");
 }
-FUNCTION_1(999);
+for (var VAR_5 of VAR_3.values()) {
+  VAR_5.trim();
+}

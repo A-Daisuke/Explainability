@@ -1,16 +1,46 @@
-function FUNCTION_1(VAR_1) {
-  return VAR_1.KEY_1 + VAR_1.KEY_2 + VAR_1.KEY_3;
+var VAR_1 = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+];
+var VAR_2 = 0,
+  VAR_3,
+  VAR_4;
+for (var VAR_5 = 0, VAR_6 = VAR_1.length; VAR_5 < VAR_6; ++VAR_5) {
+  VAR_4 = VAR_1[VAR_5];
+  if (VAR_4.constructor === Number) {
+    VAR_2 += VAR_4;
+  } else if (!isNaN(VAR_4)) {
+    VAR_3 = parseFloat(VAR_4);
+    if (!isNaN(VAR_3)) {
+      VAR_2 += VAR_3;
+    }
+  }
 }
-function FUNCTION_2() {
-  return arguments[0] + arguments[1] + arguments[2];
-}
-var VAR_2 = {
-  KEY_1: 45,
-  KEY_2: 66,
-  KEY_3: 102,
-};
-FUNCTION_1({
-  KEY_4: 45,
-  KEY_5: 66,
-  KEY_6: 102,
-});

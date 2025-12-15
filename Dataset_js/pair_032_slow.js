@@ -1,10 +1,16 @@
-var VAR_1 = [{ KEY_1: "thing" }, { KEY_2: "thing2" }, { KEY_3: "thing3" }];
-function FUNCTION_1(VAR_2) {
-  return VAR_1.map(function (VAR_3) {
-    return VAR_3;
-  });
+function FUNCTION_1(VAR_1, VAR_2) {
+  var VAR_3 = VAR_2.VAR_3;
+  if (VAR_3 === 0) {
+    console.log(VAR_1);
+  } else {
+    for (var VAR_4 = 0; VAR_4 < VAR_3; VAR_4++) {
+      var VAR_5 = VAR_1.slice();
+      VAR_5.push(VAR_2[VAR_4]);
+      FUNCTION_1(
+        VAR_5,
+        VAR_2.slice(0, VAR_4).concat(VAR_2.slice(VAR_4 + 1, VAR_3)),
+      );
+    }
+  }
 }
-function FUNCTION_2(VAR_4) {
-  return VAR_2.slice();
-}
-FUNCTION_1(VAR_1);
+FUNCTION_1([], [1, 2, 3, 4, 5]);

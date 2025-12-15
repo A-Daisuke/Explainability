@@ -1,14 +1,23 @@
-var VAR_1 = {
-  KEY_1: { KEY_2: 0 },
-  KEY_3: "https://www.google.com",
-  KEY_4: "#location",
-  KEY_5:
-    "?location=&bav=on.2,or.r_cp.&emsg=NCSR&noj=1&ei=x-mFU5WIGoHMsQTR0YLACg",
-  KEY_6: "/webhp",
-  KEY_7: "",
-  KEY_8: "www.google.com",
-  KEY_9: "www.google.com",
-  KEY_10: "https:",
-  KEY_11: "https://www.google.com/webhp?location=&bav=on.2,or.r_cp.&emsg=NCSR&noj=1&ei=x-mFU5WIGoHMsQTR0YLACg#location",
-};
-var VAR_2 = VAR_1.KEY_11.split("#")[0];
+var VAR_1 = [
+  "read",
+  "write",
+  "tickle",
+  "join",
+  "delete",
+  "insert",
+  "render",
+  "publish",
+  "copy",
+  "jog",
+  "madonna",
+  "light",
+];
+var VAR_2 = "publish";
+var VAR_3 = false;
+for (var VAR_4 = 0; VAR_4 < VAR_1.length; VAR_4++) {
+  if (VAR_1[VAR_4] === VAR_2) {
+    VAR_3 = true;
+    break;
+  }
+}
+var VAR_5 = VAR_3;

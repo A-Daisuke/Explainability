@@ -1,13 +1,20 @@
-var VAR_1 = 1,
-  VAR_2 = 2,
-  VAR_3 = 1,
-  VAR_4 = 2,
-  VAR_5 = 3,
-  VAR_6 = true,
-  VAR_7 = [1, 2, 3, 4, 5, 6],
-  VAR_8 = 2;
-function FUNCTION_1() {}
-function FUNCTION_2() {}
-function FUNCTION_3() {}
-for (var VAR_9 in VAR_7) {
+var VAR_1 = [
+  false,
+  1,
+  "2",
+  "three",
+  { KEY_1: 4 },
+  [5],
+  /six/,
+  String("7"),
+  "8".toString(),
+  !"nine",
+  true,
+];
+function FUNCTION_1(VAR_2) {
+  return VAR_2.toString();
+}
+var VAR_3 = "";
+for (var VAR_4 = VAR_1.length - 1; Object.prototype.hasOwnProperty.call(VAR_1, VAR_4); --VAR_4) {
+  VAR_3 = VAR_3 + VAR_4 + " = " + VAR_1[VAR_4] + " (" + FUNCTION_1(VAR_1[VAR_4]) + "), ";
 }

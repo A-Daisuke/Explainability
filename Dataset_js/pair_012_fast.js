@@ -1,19 +1,16 @@
-var VAR_1 = {
-  KEY_1: { KEY_2: 0 },
-  KEY_3: "https://www.google.com",
-  KEY_4: "#location",
-  KEY_5:
-    "?location=&bav=on.2,or.r_cp.&emsg=NCSR&noj=1&ei=x-mFU5WIGoHMsQTR0YLACg",
-  KEY_6: "/webhp",
-  KEY_7: "",
-  KEY_8: "www.google.com",
-  KEY_9: "www.google.com",
-  KEY_10: "https:",
-  KEY_11: "https://www.google.com/webhp?location=&bav=on.2,or.r_cp.&emsg=NCSR&noj=1&ei=x-mFU5WIGoHMsQTR0YLACg#location",
+var VAR_6 = {
+  KEY_1: null,
+  KEY_2: null,
+  KEY_3: null,
+  KEY_4: null,
+  KEY_5: null,
+  KEY_6: null,
+  KEY_7: null,
+  KEY_8: null,
+  KEY_9: null,
+  KEY_10: null,
+  KEY_11: null,
+  KEY_12: null,
 };
-var VAR_2 =
-  VAR_1.KEY_10 +
-  "//" +
-  VAR_1.KEY_9 +
-  VAR_1.KEY_6 +
-  VAR_1.KEY_5;
+var VAR_2 = "publish";
+var VAR_7 = typeof VAR_6[VAR_2] != "undefined";

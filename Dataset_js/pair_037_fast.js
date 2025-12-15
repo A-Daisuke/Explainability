@@ -1,10 +1,11 @@
-function FUNCTION_1() {
-  return 10 + 15 + "whatever" === "hurga";
-}
-function FUNCTION_2() {
-  FUNCTION_1();
-}
-function FUNCTION_3() {
-  FUNCTION_2();
-}
-10 + 15 + "whatever" === "hurga";
+var VAR_1 = "  f o o b a r  ";
+String.prototype.FUNCTION_1 = function trim() {
+  return this.replace(/^\s+|\s+$/g, "");
+};
+(function () {
+  var VAR_2 = /^\s+|\s+$/g;
+  String.prototype.FUNCTION_2 = function trim() {
+    return this.replace(VAR_2, "");
+  };
+})();
+var VAR_3 = VAR_1.trim();

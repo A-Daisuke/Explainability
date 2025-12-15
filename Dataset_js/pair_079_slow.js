@@ -1,15 +1,21 @@
-function FUNCTION_1(VAR_1) {
-  return VAR_1 / Math.pow(10, Math.ceil(Math.log(VAR_1) / Math.LN10));
+var VAR_1 = [
+  false,
+  1,
+  "2",
+  "three",
+  { KEY_1: 4 },
+  [5],
+  /six/,
+  String("7"),
+  "8".toString(),
+  !"nine",
+  true,
+];
+function FUNCTION_1(VAR_2) {
+  return VAR_2.toString();
 }
-function FUNCTION_2(VAR_2) {
-  function FUNCTION_3(VAR_3) {
-    var VAR_4 = 1;
-    while (VAR_2 > 1) {
-      VAR_2 /= 10;
-      ++VAR_4;
-    }
-    return VAR_4;
-  }
-  return VAR_2 / Math.pow(10, FUNCTION_3(VAR_2));
+var VAR_3 = "";
+var VAR_4 = VAR_1.length;
+while (Object.prototype.hasOwnProperty.call(VAR_1, --VAR_4)) {
+  VAR_3 = VAR_3 + VAR_4 + " = " + VAR_1[VAR_4] + " (" + FUNCTION_1(VAR_1[VAR_4]) + "), ";
 }
-FUNCTION_1(132232);

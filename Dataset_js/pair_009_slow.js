@@ -1,13 +1,17 @@
-var VAR_1 = "ab12";
-function FUNCTION_1(VAR_2, VAR_3) {
-  VAR_2 = VAR_2.charAt(VAR_3);
-  return VAR_2.length === 1 && VAR_2.match(/[a-z]/i);
-}
-var VAR_4 = /[a-z]/i;
-function FUNCTION_2(VAR_5, VAR_6) {
-  var VAR_7 = VAR_2.charAt(VAR_6);
-  return VAR_4.test(VAR_7);
-}
-for (var VAR_8 = 0; VAR_8 < 4; VAR_8++) {
-  FUNCTION_1(VAR_1, VAR_8);
-}
+var VAR_1,
+  VAR_2,
+  VAR_3,
+  VAR_4,
+  VAR_5,
+  VAR_6,
+  VAR_7;
+VAR_1 = "test";
+VAR_2 = "test2";
+String.prototype.FUNCTION_1 = function () {
+  return this;
+};
+VAR_4 = VAR_1.FUNCTION_1();
+VAR_5 = VAR_2.FUNCTION_1();
+VAR_6 = new String("test");
+VAR_7 = new String("test2");
+VAR_3 = VAR_4 + VAR_5;

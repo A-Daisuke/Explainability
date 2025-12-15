@@ -1,16 +1,14 @@
-var VAR_1 = [
-  {
-    KEY_1: "Nome 1",
-    KEY_2: "25",
-  },
-  {
-    KEY_3: "Nome 2",
-    KEY_4: "23",
-  },
-];
-function FUNCTION_1(VAR_4, VAR_5) {
-  for (var VAR_6 = 0; VAR_6 < VAR_4.length; VAR_6++) VAR_5.apply(VAR_4[VAR_6]);
-}
-FUNCTION_1(VAR_1, function () {
-  var VAR_7 = "Nome: " + this.KEY_1 + " - Idade: " + this.KEY_2;
-});
+var VAR_1 = ["abc", "abc", "abc"];
+var VAR_2 = ["", "abc", "abc"];
+var VAR_6 = ["", "", "abc"];
+var VAR_4 = [undefined, undefined, "abc"];
+var FUNCTION_2 = function (VAR_7, VAR_8, VAR_9) {
+  if (VAR_7 !== undefined) {
+    return VAR_7;
+  }
+  if (VAR_8 !== undefined) {
+    return VAR_8;
+  }
+  return VAR_9;
+};
+FUNCTION_2(VAR_6[0], VAR_6[1], VAR_6[2]);

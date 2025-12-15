@@ -1,13 +1,20 @@
-var VAR_1 = [];
-for (var VAR_2 = 0, VAR_3 = 10000; VAR_2 < VAR_3; VAR_2 += 1) {
-  VAR_1.push({ KEY_1: VAR_2 });
+function FUNCTION_2(VAR_2) {
+  if (!FUNCTION_2.VAR_3) FUNCTION_2.VAR_3 = {};
+  if (VAR_2 <= 2) return VAR_2;
+  return (
+    FUNCTION_2.VAR_3[VAR_2] ||
+    (FUNCTION_2.VAR_3[VAR_4] = FUNCTION_2(VAR_2 - 2) + FUNCTION_2(VAR_2 - 1))
+  );
 }
-var VAR_4 = 0;
-for (var VAR_5 = 0, VAR_6 = VAR_1.length; VAR_2 < VAR_3; VAR_2 += 1) {
-  Object.defineProperty(VAR_1[VAR_2], "value", {
-    KEY_2: function (VAR_7) {
-      return VAR_7 * 2;
-    },
-  });
-  VAR_4 += VAR_1[VAR_2].KEY_1;
+function FUNCTION_1(VAR_1) {
+  var VAR_5 = 0;
+  var VAR_6 = 1;
+  var VAR_7;
+  while (VAR_1--) {
+    VAR_7 = VAR_5 + VAR_6;
+    VAR_5 = VAR_6;
+    VAR_6 = VAR_7;
+  }
+  return VAR_7;
 }
+FUNCTION_1(10);

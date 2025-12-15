@@ -1,28 +1,12 @@
-function FUNCTION_1(VAR_1, VAR_2, VAR_3) {
-  var VAR_4 = VAR_2.split(".");
-  if (!VAR_1) {
-    return VAR_3;
-  }
-  var VAR_8 = 0,
-    VAR_9,
-    VAR_10 = VAR_4.length;
-  VAR_4.map(function (VAR_11) {
-    if (VAR_8 > VAR_10) {
-      return VAR_9;
-    }
-    VAR_9 = VAR_1[VAR_11];
-    VAR_8++;
-  });
+function FUNCTION_1() {
+  var VAR_1 = undefined;
 }
-FUNCTION_1(
-  {
-    KEY_1: {
-      KEY_2: {
-        KEY_3: "Antonio",
-        KEY_4: 12,
-      },
-    },
-  },
-  "response.body",
-  [],
-);
+var VAR_2 = 10000;
+function FUNCTION_2(VAR_8) {
+  var VAR_3 = VAR_8;
+}
+function FUNCTION_3(VAR_5) {
+  var VAR_6 = VAR_5;
+  for (var VAR_7 = 1; VAR_7 < VAR_2; VAR_7++) if (VAR_6);
+}
+FUNCTION_2();

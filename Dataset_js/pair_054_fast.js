@@ -1,12 +1,21 @@
-let VAR_1 = [];
-for (let VAR_2 = 0; VAR_2 < 1000; VAR_2++) {
-  VAR_1.push({
-    KEY_1: VAR_2 / 100,
-    KEY_2: Math.random(),
-  });
+function FUNCTION_1(VAR_1) {
+  if (!VAR_1) {
+    return false;
+  }
+  if (VAR_1 === "false") {
+    return false;
+  }
+  if (VAR_1 === "0") {
+    return false;
+  }
+  if (VAR_1 === "null") {
+    return false;
+  }
+  return true;
 }
-let VAR_3 = VAR_1.slice();
-let VAR_4 = 0;
-while (VAR_3[VAR_4].KEY_1 < 5) VAR_4++;
-VAR_3.splice(0, VAR_4);
-if (VAR_3.length !== 500) throw new Error();
+FUNCTION_1("");
+FUNCTION_1("false");
+FUNCTION_1("null");
+FUNCTION_1("0");
+FUNCTION_1("1");
+FUNCTION_1("true");

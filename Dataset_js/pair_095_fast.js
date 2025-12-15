@@ -1,10 +1,10 @@
-var VAR_1 = Array(1000);
-VAR_1[304] = "foo";
-VAR_1[400] = "bar";
-VAR_1[700] = "bar";
-var VAR_5,
-  VAR_4 = "";
-for (VAR_5 in VAR_1) {
-  if (isNaN(VAR_5)) continue;
-  VAR_4 += VAR_1[VAR_5];
+function FUNCTION_1() {
+  return Math.round(123.321 * 100) / 100;
 }
+function FUNCTION_2() {
+  return +(123.321).toLocaleString("pt-BR", {
+    KEY_1: 2,
+    KEY_2: 2,
+  });
+}
+FUNCTION_1();

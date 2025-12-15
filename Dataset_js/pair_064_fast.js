@@ -1,17 +1,12 @@
-var VAR_1 = [],
-  VAR_2 = [],
-  VAR_3 = [],
-  VAR_4 = 100,
-  VAR_5 = 10000,
-  VAR_6 = 100000;
-while (VAR_4--) {
-  VAR_1.push(Math.random());
+let VAR_1 = 1000;
+function FUNCTION_1(VAR_2) {
+  let VAR_3 = Array(VAR_2);
+  for (let VAR_4 = 0; VAR_4 < VAR_2; ++VAR_4) {
+    VAR_3[VAR_5] = VAR_4;
+  }
+  return VAR_3;
 }
-while (VAR_5--) {
-  VAR_2.push(Math.random());
+function FUNCTION_2(VAR_6) {
+  return Array(VAR_6).fill(0);
 }
-while (VAR_6--) {
-  VAR_3.push(Math.random());
-}
-var VAR_7 = VAR_2.slice();
-VAR_7.splice(0, VAR_7.length);
+FUNCTION_2(VAR_1);

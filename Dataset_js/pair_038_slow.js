@@ -1,13 +1,12 @@
-var VAR_1 = [
-  {
-    KEY_1: "Nome 1",
-    KEY_2: "25",
-  },
-  {
-    KEY_3: "Nome 2",
-    KEY_4: "23",
-  },
-];
-for (var VAR_2 in VAR_1) {
-  var VAR_3 = "Nome: " + VAR_1[VAR_2].KEY_1 + " - Idade: " + VAR_1[VAR_2].KEY_2;
-}
+var VAR_1 = ["abc", "abc", "abc"];
+var VAR_2 = ["", "abc", "abc"];
+var VAR_3 = [undefined, "abc", "abc"];
+var VAR_4 = [undefined, undefined, "abc"];
+var FUNCTION_1 = function () {
+  for (var VAR_5 = 0; VAR_5 < arguments.length; ++VAR_5) {
+    if (arguments[VAR_5] !== undefined) {
+      return arguments[VAR_5];
+    }
+  }
+};
+FUNCTION_1(VAR_3[0], VAR_3[1], VAR_3[2]);

@@ -1,10 +1,16 @@
-function FUNCTION_1(VAR_1, VAR_2, VAR_3, VAR_4) {
-  return Math.pow(VAR_1 - VAR_3, 2) + Math.pow(VAR_3 - VAR_4, 2);
+var VAR_1 = [
+  Math.PI,
+  1,
+  -5295,
+  -(1 / 3),
+  80204.224094852,
+  9492923,
+  4092,
+  Math.random(),
+  Math.random() + 1,
+  Math.random() * Math.random() * 1000,
+  3.000000000000001,
+];
+for (var VAR_2 = 0, VAR_3 = VAR_1.length; VAR_2 < VAR_3; VAR_2++) {
+  Math.floor(VAR_1[VAR_2]);
 }
-function FUNCTION_2(VAR_5, VAR_6, VAR_7, VAR_8) {
-  return (VAR_5 - VAR_7) * (VAR_5 - VAR_7) + (VAR_7 - VAR_8) * (VAR_7 - VAR_8);
-}
-function FUNCTION_3(VAR_9, VAR_10, VAR_11, VAR_12) {
-  return Math.sqrt((VAR_9 - VAR_11) * (VAR_9 - VAR_11) + (VAR_11 - VAR_12) * (VAR_11 - VAR_12));
-}
-FUNCTION_3(100, 200, 300, 400);

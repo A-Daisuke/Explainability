@@ -1,13 +1,15 @@
-this.VAR_1 = "foo";
-var VAR_2 = this;
-function FUNCTION_1() {
-  var VAR_3 = VAR_2.VAR_1;
+var VAR_1 = [
+  { KEY_1: "a" },
+  { KEY_2: "b" },
+  { KEY_3: "c" },
+  { KEY_4: "d" },
+  { KEY_5: "e" },
+  { KEY_6: "f" },
+  { KEY_7: "g" },
+  { KEY_8: "h" },
+  { KEY_9: "i" },
+  { KEY_10: "j" },
+];
+while (VAR_1.length > 0) {
+  VAR_1.pop();
 }
-function FUNCTION_2(VAR_4) {
-  var VAR_5 = VAR_4.VAR_1;
-}
-VAR_6 = this;
-function FUNCTION_3() {
-  var VAR_7 = this.VAR_1;
-}
-FUNCTION_3.bind(this)();

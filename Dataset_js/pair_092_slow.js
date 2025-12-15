@@ -1,13 +1,15 @@
-var VAR_1 = [
-  "aaa",
-  "aaa/aaa",
-  "aaa/aaa/aaa",
-  "aaa/",
-  "/aaa",
-  "aaa//aaa",
-  "//////",
-  "",
-];
-VAR_1.map(function (VAR_2) {
-  return VAR_2.match(/(\u002f)/) ? VAR_2.substring(0, VAR_2.indexOf("/")) : VAR_2;
-});
+var VAR_1 = {};
+VAR_1.VAR_2 = {};
+VAR_1.VAR_2.VAR_3 = {};
+VAR_1.VAR_2.VAR_3.VAR_4 = {
+  KEY_1: 1,
+  KEY_2: 2,
+  KEY_3: 3,
+  KEY_4: 4,
+  KEY_5: 5,
+};
+VAR_1.VAR_2.VAR_3.VAR_4.KEY_1;
+VAR_1.VAR_2.VAR_3.VAR_4.KEY_2;
+VAR_1.VAR_2.VAR_3.VAR_4.KEY_3;
+VAR_1.VAR_2.VAR_3.VAR_4.KEY_4;
+VAR_1.VAR_2.VAR_3.VAR_4.KEY_5;

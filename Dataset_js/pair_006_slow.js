@@ -1,18 +1,13 @@
-function FUNCTION_1(VAR_1, VAR_2, VAR_3) {
-  return VAR_3 === 0 ? VAR_1 : FUNCTION_1(VAR_2 + VAR_1, VAR_2, --VAR_3);
+var VAR_1 = [
+  {
+    KEY_1: "Nome 1",
+    KEY_2: "25",
+  },
+  {
+    KEY_3: "Nome 2",
+    KEY_4: "23",
+  },
+];
+for (var VAR_2 in VAR_1) {
+  var VAR_3 = "Nome: " + VAR_1[VAR_2].KEY_1 + " - Idade: " + VAR_1[VAR_2].KEY_2;
 }
-function FUNCTION_2(VAR_4, VAR_5, VAR_6) {
-  if (VAR_6 === 0) return VAR_4;
-  VAR_4 = VAR_5 + VAR_4;
-  return FUNCTION_2(VAR_4, VAR_5, --VAR_6);
-}
-function FUNCTION_3(VAR_7, VAR_8, VAR_9) {
-  return (
-    Array.apply(null, Array(VAR_9))
-      .map(function (VAR_10) {
-        return VAR_8;
-      })
-      .join("") + VAR_7
-  );
-}
-FUNCTION_3("a", "x", 1000);

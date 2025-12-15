@@ -1,11 +1,13 @@
-const VAR_1 = Array(1000).fill({
-  KEY_1: "kyle",
-  KEY_2: "fdjis@fido.com",
-  KEY_3: "dingo",
-});
-const VAR_2 = [];
-VAR_1.forEach((VAR_3) => {
-  if (VAR_3.KEY_1) VAR_2.push(VAR_3.KEY_1);
-  if (VAR_3.KEY_2) VAR_2.push(VAR_3.KEY_2);
-  if (VAR_3.KEY_3) VAR_2.push(VAR_3.KEY_3);
-});
+var VAR_1 = "aaaaa",
+  VAR_2 = "bbbbb",
+  VAR_3 = "ccccc",
+  VAR_4 = "ddddd",
+  VAR_5 = "eeeee",
+  VAR_6 = "fffff";
+function FUNCTION_1() {
+  return [VAR_1, VAR_2, VAR_3, VAR_4, VAR_5, VAR_6].join("");
+}
+function FUNCTION_2() {
+  return VAR_1.concat(VAR_2, VAR_3, VAR_4, VAR_5, VAR_6);
+}
+FUNCTION_1();

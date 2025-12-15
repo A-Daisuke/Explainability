@@ -1,18 +1,17 @@
-var VAR_1 = [123, 456];
-var VAR_2 = 1230456;
-function FUNCTION_1(VAR_3, VAR_4) {
-  return 1000 * VAR_3 + VAR_4;
+var VAR_1 = [
+  ...Array(1000).fill(null),
+  ...Array(100).fill("foo"),
+  ...Array(100).fill(null),
+  ...Array(100).fill("bar"),
+  ...Array(1000).fill(null),
+];
+const FUNCTION_1 = (VAR_2) => !!VAR_2;
+function FUNCTION_2() {
+  const VAR_3 = VAR_1.findIndex(FUNCTION_1);
+  VAR_1.reverse();
+  const VAR_4 = VAR_1.findIndex(FUNCTION_1);
+  return VAR_1
+    .reverse()
+    .slice(VAR_3, VAR_1.length - VAR_4);
 }
-function FUNCTION_2(VAR_5) {
-  return (VAR_2 / 1000) | 0;
-}
-function FUNCTION_3(VAR_6) {
-  return VAR_2 % 100;
-}
-function FUNCTION_4(VAR_7, VAR_8) {
-  return {
-    KEY_1: VAR_7,
-    KEY_2: VAR_8,
-  };
-}
-FUNCTION_2(VAR_2) + FUNCTION_3(VAR_2);
+FUNCTION_2(VAR_1);

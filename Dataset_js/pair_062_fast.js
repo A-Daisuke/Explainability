@@ -1,18 +1,21 @@
-var FUNCTION_1 = function (VAR_1) {
-  return VAR_1 == 0 ? 1 : VAR_1 * FUNCTION_1(VAR_1 - 1);
-};
-var FUNCTION_2 = function (VAR_2) {
-  return (function (VAR_3) {
-    return VAR_3(VAR_3);
-  })(function (VAR_4) {
-    return function () {
-      return VAR_2(VAR_4(VAR_4)).apply(null, arguments);
-    };
-  });
-};
-var VAR_5 = FUNCTION_2(function (VAR_6) {
-  return function (VAR_7) {
-    return VAR_1 == 0 ? 1 : VAR_1 * VAR_6(VAR_1 - 1);
-  };
-});
-FUNCTION_1(20);
+var VAR_1 = 1000;
+do {
+  VAR_1--;
+  VAR_2 = VAR_1.toString();
+  if (VAR_2[0] === VAR_2[2]) {
+    if (FUNCTION_1(VAR_1)) {
+      console.log(VAR_1);
+      break;
+    }
+  }
+} while (true);
+function FUNCTION_1(VAR_3) {
+  for (var VAR_4 = 1; VAR_4 <= VAR_3 / 2; VAR_4 = VAR_4 + 2) {
+    if (VAR_3 % VAR_4 == 0) {
+      if (VAR_4 !== 1) {
+        return false;
+      }
+    }
+  }
+  return true;
+}

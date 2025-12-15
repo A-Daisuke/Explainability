@@ -1,11 +1,14 @@
-var VAR_1 = "ASP.NET",
-  VAR_2 = "PHP";
-if (!String.prototype.FUNCTION_1) {
-  String.prototype.FUNCTION_1 = function () {
-    var VAR_3 = arguments;
-    return this.replace(/{(\d+)}/g, function (VAR_4, VAR_5) {
-      return typeof VAR_3[VAR_5] !== "undefined" ? VAR_3[VAR_5] : VAR_4;
-    });
-  };
-}
-"".concat(VAR_1, " is dead, but ".concat(VAR_2, " is alive! "));
+(function (VAR_6, VAR_7) {
+  var VAR_8 = 0;
+  for (var VAR_9 = 0; VAR_9 < 1000; ++VAR_9) {
+    for (var VAR_10 = 0; VAR_10 < VAR_6; ++VAR_10) {
+      if (VAR_7[0][0] != VAR_10) {
+        VAR_7[0][0] -= VAR_7[1][0];
+        VAR_7[0][1] -= VAR_7[1][1];
+      }
+    }
+  }
+})(100, [
+  [10, 10],
+  [1, 1],
+]);
