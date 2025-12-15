@@ -430,7 +430,7 @@ def ConvertToGraph(json_content):
 
 def json_parse_to_graph_js(JS_PATH):
     dataset_files = get_directory_files(JS_PATH)
-    dataset_files = dataset_files[:50]
+    # dataset_files = dataset_files[:50]
     
     graph_list = []
     target_list = []
