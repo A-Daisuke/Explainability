@@ -3,6 +3,7 @@ import os.path
 
 import pandas as pd
 import torch
+import time
 from torch.utils.data import DataLoader
 
 from Code.configures import data_args, model_args
@@ -295,6 +296,15 @@ def ExplainingPipeline():
                 os.makedirs(save_dir)
 
              # ----- module: load explainer ------
+            # explainer = SubgraphX(
+            #     gnnNets,
+            #     num_classes=3,
+            #     device=device,
+            #     explain_graph=False,
+            #     reward_method="mc_l_shapley",
+            #     save_dir=save_dir,
+            #     filename=data_raw["graph_name"],
+            # )
             explainer = SubgraphX(
                 gnnNets,
                 num_classes=3,
@@ -303,6 +313,9 @@ def ExplainingPipeline():
                 reward_method="mc_l_shapley",
                 save_dir=save_dir,
                 filename=data_raw["graph_name"],
+                rollout=10,        # デフォルト20 -> 10 (探索回数を減らす)
+                sample_num=50,     # デフォルト100 -> 50 (サンプリング数を減らす)
+                expand_atoms=10,   # デフォルト14 -> 10 (分岐数を減らす)
             )
             # 目前只考虑对unreadable数据集中的图解释
             #if prediction == 2:
