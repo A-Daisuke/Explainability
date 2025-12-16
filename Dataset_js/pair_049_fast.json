@@ -1,7 +1,7 @@
 {
   "type": "File",
   "start": 0,
-  "end": 387,
+  "end": 646,
   "loc": {
     "start": {
       "line": 1,
@@ -9,20 +9,20 @@
       "index": 0
     },
     "end": {
-      "line": 53,
+      "line": 57,
       "column": 0,
-      "index": 387
+      "index": 646
     }
   },
   "range": [
     0,
-    387
+    646
   ],
   "errors": [],
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 387,
+    "end": 646,
     "loc": {
       "start": {
         "line": 1,
@@ -30,22 +30,22 @@
         "index": 0
       },
       "end": {
-        "line": 53,
+        "line": 57,
         "column": 0,
-        "index": 387
+        "index": 646
       }
     },
     "range": [
       0,
-      387
+      646
     ],
     "sourceType": "module",
     "interpreter": null,
     "body": [
       {
-        "type": "ExpressionStatement",
+        "type": "VariableDeclaration",
         "start": 0,
-        "end": 386,
+        "end": 645,
         "loc": {
           "start": {
             "line": 1,
@@ -53,1480 +53,1667 @@
             "index": 0
           },
           "end": {
-            "line": 52,
-            "column": 11,
-            "index": 386
+            "line": 56,
+            "column": 2,
+            "index": 645
           }
         },
         "range": [
           0,
-          386
+          645
         ],
-        "expression": {
-          "type": "AssignmentExpression",
-          "start": 0,
-          "end": 385,
-          "loc": {
-            "start": {
-              "line": 1,
-              "column": 0,
-              "index": 0
-            },
-            "end": {
-              "line": 52,
-              "column": 10,
-              "index": 385
-            }
-          },
-          "range": [
-            0,
-            385
-          ],
-          "operator": "=",
-          "left": {
-            "type": "Identifier",
-            "start": 0,
-            "end": 5,
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 6,
+            "end": 644,
             "loc": {
               "start": {
                 "line": 1,
-                "column": 0,
-                "index": 0
+                "column": 6,
+                "index": 6
               },
               "end": {
-                "line": 1,
-                "column": 5,
-                "index": 5
-              },
-              "identifierName": "VAR_1"
-            },
-            "range": [
-              0,
-              5
-            ],
-            "name": "VAR_1"
-          },
-          "right": {
-            "type": "CallExpression",
-            "start": 8,
-            "end": 385,
-            "loc": {
-              "start": {
-                "line": 1,
-                "column": 8,
-                "index": 8
-              },
-              "end": {
-                "line": 52,
-                "column": 10,
-                "index": 385
+                "line": 56,
+                "column": 1,
+                "index": 644
               }
             },
             "range": [
-              8,
-              385
+              6,
+              644
             ],
-            "callee": {
-              "type": "MemberExpression",
-              "start": 8,
-              "end": 381,
+            "id": {
+              "type": "Identifier",
+              "start": 6,
+              "end": 15,
               "loc": {
                 "start": {
                   "line": 1,
-                  "column": 8,
-                  "index": 8
+                  "column": 6,
+                  "index": 6
                 },
                 "end": {
-                  "line": 52,
-                  "column": 6,
-                  "index": 381
+                  "line": 1,
+                  "column": 15,
+                  "index": 15
+                },
+                "identifierName": "Benchmark"
+              },
+              "range": [
+                6,
+                15
+              ],
+              "name": "Benchmark"
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "start": 18,
+              "end": 644,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 18,
+                  "index": 18
+                },
+                "end": {
+                  "line": 56,
+                  "column": 1,
+                  "index": 644
                 }
               },
               "range": [
-                8,
-                381
+                18,
+                644
               ],
-              "object": {
-                "type": "ArrayExpression",
-                "start": 8,
-                "end": 376,
-                "loc": {
-                  "start": {
-                    "line": 1,
-                    "column": 8,
-                    "index": 8
+              "properties": [
+                {
+                  "type": "ObjectProperty",
+                  "start": 24,
+                  "end": 642,
+                  "loc": {
+                    "start": {
+                      "line": 2,
+                      "column": 4,
+                      "index": 24
+                    },
+                    "end": {
+                      "line": 55,
+                      "column": 5,
+                      "index": 642
+                    }
                   },
-                  "end": {
-                    "line": 52,
-                    "column": 1,
-                    "index": 376
-                  }
-                },
-                "range": [
-                  8,
-                  376
-                ],
-                "extra": {
-                  "trailingComma": 373
-                },
-                "elements": [
-                  {
-                    "type": "StringLiteral",
-                    "start": 12,
-                    "end": 18,
+                  "range": [
+                    24,
+                    642
+                  ],
+                  "method": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 24,
+                    "end": 27,
                     "loc": {
                       "start": {
                         "line": 2,
-                        "column": 2,
-                        "index": 12
+                        "column": 4,
+                        "index": 24
                       },
                       "end": {
                         "line": 2,
-                        "column": 8,
-                        "index": 18
-                      }
-                    },
-                    "range": [
-                      12,
-                      18
-                    ],
-                    "extra": {
-                      "rawValue": "base",
-                      "raw": "\"base\""
-                    },
-                    "value": "base"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 22,
-                    "end": 25,
-                    "loc": {
-                      "start": {
-                        "line": 3,
-                        "column": 2,
-                        "index": 22
+                        "column": 7,
+                        "index": 27
                       },
-                      "end": {
-                        "line": 3,
-                        "column": 5,
-                        "index": 25
-                      }
+                      "identifierName": "run"
                     },
                     "range": [
-                      22,
-                      25
+                      24,
+                      27
                     ],
-                    "extra": {
-                      "rawValue": "1",
-                      "raw": "\"1\""
-                    },
-                    "value": "1"
+                    "name": "run"
                   },
-                  {
-                    "type": "StringLiteral",
+                  "computed": false,
+                  "shorthand": false,
+                  "value": {
+                    "type": "FunctionExpression",
                     "start": 29,
-                    "end": 32,
+                    "end": 642,
                     "loc": {
                       "start": {
-                        "line": 4,
-                        "column": 2,
+                        "line": 2,
+                        "column": 9,
                         "index": 29
                       },
                       "end": {
-                        "line": 4,
+                        "line": 55,
                         "column": 5,
-                        "index": 32
+                        "index": 642
                       }
                     },
                     "range": [
                       29,
-                      32
+                      642
                     ],
-                    "extra": {
-                      "rawValue": "2",
-                      "raw": "\"2\""
-                    },
-                    "value": "2"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 36,
-                    "end": 39,
-                    "loc": {
-                      "start": {
-                        "line": 5,
-                        "column": 2,
-                        "index": 36
+                    "id": null,
+                    "generator": false,
+                    "async": false,
+                    "params": [],
+                    "body": {
+                      "type": "BlockStatement",
+                      "start": 40,
+                      "end": 642,
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 20,
+                          "index": 40
+                        },
+                        "end": {
+                          "line": 55,
+                          "column": 5,
+                          "index": 642
+                        }
                       },
-                      "end": {
-                        "line": 5,
-                        "column": 5,
-                        "index": 39
-                      }
-                    },
-                    "range": [
-                      36,
-                      39
-                    ],
-                    "extra": {
-                      "rawValue": "3",
-                      "raw": "\"3\""
-                    },
-                    "value": "3"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 43,
-                    "end": 46,
-                    "loc": {
-                      "start": {
-                        "line": 6,
-                        "column": 2,
-                        "index": 43
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 5,
-                        "index": 46
-                      }
-                    },
-                    "range": [
-                      43,
-                      46
-                    ],
-                    "extra": {
-                      "rawValue": "4",
-                      "raw": "\"4\""
-                    },
-                    "value": "4"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 50,
-                    "end": 53,
-                    "loc": {
-                      "start": {
-                        "line": 7,
-                        "column": 2,
-                        "index": 50
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 5,
-                        "index": 53
-                      }
-                    },
-                    "range": [
-                      50,
-                      53
-                    ],
-                    "extra": {
-                      "rawValue": "5",
-                      "raw": "\"5\""
-                    },
-                    "value": "5"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 57,
-                    "end": 60,
-                    "loc": {
-                      "start": {
-                        "line": 8,
-                        "column": 2,
-                        "index": 57
-                      },
-                      "end": {
-                        "line": 8,
-                        "column": 5,
-                        "index": 60
-                      }
-                    },
-                    "range": [
-                      57,
-                      60
-                    ],
-                    "extra": {
-                      "rawValue": "6",
-                      "raw": "\"6\""
-                    },
-                    "value": "6"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 64,
-                    "end": 67,
-                    "loc": {
-                      "start": {
-                        "line": 9,
-                        "column": 2,
-                        "index": 64
-                      },
-                      "end": {
-                        "line": 9,
-                        "column": 5,
-                        "index": 67
-                      }
-                    },
-                    "range": [
-                      64,
-                      67
-                    ],
-                    "extra": {
-                      "rawValue": "7",
-                      "raw": "\"7\""
-                    },
-                    "value": "7"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 71,
-                    "end": 74,
-                    "loc": {
-                      "start": {
-                        "line": 10,
-                        "column": 2,
-                        "index": 71
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 5,
-                        "index": 74
-                      }
-                    },
-                    "range": [
-                      71,
-                      74
-                    ],
-                    "extra": {
-                      "rawValue": "8",
-                      "raw": "\"8\""
-                    },
-                    "value": "8"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 78,
-                    "end": 81,
-                    "loc": {
-                      "start": {
-                        "line": 11,
-                        "column": 2,
-                        "index": 78
-                      },
-                      "end": {
-                        "line": 11,
-                        "column": 5,
-                        "index": 81
-                      }
-                    },
-                    "range": [
-                      78,
-                      81
-                    ],
-                    "extra": {
-                      "rawValue": "9",
-                      "raw": "\"9\""
-                    },
-                    "value": "9"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 85,
-                    "end": 91,
-                    "loc": {
-                      "start": {
-                        "line": 12,
-                        "column": 2,
-                        "index": 85
-                      },
-                      "end": {
-                        "line": 12,
-                        "column": 8,
-                        "index": 91
-                      }
-                    },
-                    "range": [
-                      85,
-                      91
-                    ],
-                    "extra": {
-                      "rawValue": "base",
-                      "raw": "\"base\""
-                    },
-                    "value": "base"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 95,
-                    "end": 98,
-                    "loc": {
-                      "start": {
-                        "line": 13,
-                        "column": 2,
-                        "index": 95
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 5,
-                        "index": 98
-                      }
-                    },
-                    "range": [
-                      95,
-                      98
-                    ],
-                    "extra": {
-                      "rawValue": "1",
-                      "raw": "\"1\""
-                    },
-                    "value": "1"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 102,
-                    "end": 105,
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 2,
-                        "index": 102
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 5,
-                        "index": 105
-                      }
-                    },
-                    "range": [
-                      102,
-                      105
-                    ],
-                    "extra": {
-                      "rawValue": "2",
-                      "raw": "\"2\""
-                    },
-                    "value": "2"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 109,
-                    "end": 112,
-                    "loc": {
-                      "start": {
-                        "line": 15,
-                        "column": 2,
-                        "index": 109
-                      },
-                      "end": {
-                        "line": 15,
-                        "column": 5,
-                        "index": 112
-                      }
-                    },
-                    "range": [
-                      109,
-                      112
-                    ],
-                    "extra": {
-                      "rawValue": "3",
-                      "raw": "\"3\""
-                    },
-                    "value": "3"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 116,
-                    "end": 119,
-                    "loc": {
-                      "start": {
-                        "line": 16,
-                        "column": 2,
-                        "index": 116
-                      },
-                      "end": {
-                        "line": 16,
-                        "column": 5,
-                        "index": 119
-                      }
-                    },
-                    "range": [
-                      116,
-                      119
-                    ],
-                    "extra": {
-                      "rawValue": "4",
-                      "raw": "\"4\""
-                    },
-                    "value": "4"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 123,
-                    "end": 126,
-                    "loc": {
-                      "start": {
-                        "line": 17,
-                        "column": 2,
-                        "index": 123
-                      },
-                      "end": {
-                        "line": 17,
-                        "column": 5,
-                        "index": 126
-                      }
-                    },
-                    "range": [
-                      123,
-                      126
-                    ],
-                    "extra": {
-                      "rawValue": "5",
-                      "raw": "\"5\""
-                    },
-                    "value": "5"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 130,
-                    "end": 133,
-                    "loc": {
-                      "start": {
-                        "line": 18,
-                        "column": 2,
-                        "index": 130
-                      },
-                      "end": {
-                        "line": 18,
-                        "column": 5,
-                        "index": 133
-                      }
-                    },
-                    "range": [
-                      130,
-                      133
-                    ],
-                    "extra": {
-                      "rawValue": "6",
-                      "raw": "\"6\""
-                    },
-                    "value": "6"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 137,
-                    "end": 140,
-                    "loc": {
-                      "start": {
-                        "line": 19,
-                        "column": 2,
-                        "index": 137
-                      },
-                      "end": {
-                        "line": 19,
-                        "column": 5,
-                        "index": 140
-                      }
-                    },
-                    "range": [
-                      137,
-                      140
-                    ],
-                    "extra": {
-                      "rawValue": "7",
-                      "raw": "\"7\""
-                    },
-                    "value": "7"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 144,
-                    "end": 147,
-                    "loc": {
-                      "start": {
-                        "line": 20,
-                        "column": 2,
-                        "index": 144
-                      },
-                      "end": {
-                        "line": 20,
-                        "column": 5,
-                        "index": 147
-                      }
-                    },
-                    "range": [
-                      144,
-                      147
-                    ],
-                    "extra": {
-                      "rawValue": "8",
-                      "raw": "\"8\""
-                    },
-                    "value": "8"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 151,
-                    "end": 154,
-                    "loc": {
-                      "start": {
-                        "line": 21,
-                        "column": 2,
-                        "index": 151
-                      },
-                      "end": {
-                        "line": 21,
-                        "column": 5,
-                        "index": 154
-                      }
-                    },
-                    "range": [
-                      151,
-                      154
-                    ],
-                    "extra": {
-                      "rawValue": "9",
-                      "raw": "\"9\""
-                    },
-                    "value": "9"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 158,
-                    "end": 164,
-                    "loc": {
-                      "start": {
-                        "line": 22,
-                        "column": 2,
-                        "index": 158
-                      },
-                      "end": {
-                        "line": 22,
-                        "column": 8,
-                        "index": 164
-                      }
-                    },
-                    "range": [
-                      158,
-                      164
-                    ],
-                    "extra": {
-                      "rawValue": "base",
-                      "raw": "\"base\""
-                    },
-                    "value": "base"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 168,
-                    "end": 171,
-                    "loc": {
-                      "start": {
-                        "line": 23,
-                        "column": 2,
-                        "index": 168
-                      },
-                      "end": {
-                        "line": 23,
-                        "column": 5,
-                        "index": 171
-                      }
-                    },
-                    "range": [
-                      168,
-                      171
-                    ],
-                    "extra": {
-                      "rawValue": "1",
-                      "raw": "\"1\""
-                    },
-                    "value": "1"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 175,
-                    "end": 178,
-                    "loc": {
-                      "start": {
-                        "line": 24,
-                        "column": 2,
-                        "index": 175
-                      },
-                      "end": {
-                        "line": 24,
-                        "column": 5,
-                        "index": 178
-                      }
-                    },
-                    "range": [
-                      175,
-                      178
-                    ],
-                    "extra": {
-                      "rawValue": "2",
-                      "raw": "\"2\""
-                    },
-                    "value": "2"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 182,
-                    "end": 185,
-                    "loc": {
-                      "start": {
-                        "line": 25,
-                        "column": 2,
-                        "index": 182
-                      },
-                      "end": {
-                        "line": 25,
-                        "column": 5,
-                        "index": 185
-                      }
-                    },
-                    "range": [
-                      182,
-                      185
-                    ],
-                    "extra": {
-                      "rawValue": "3",
-                      "raw": "\"3\""
-                    },
-                    "value": "3"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 189,
-                    "end": 192,
-                    "loc": {
-                      "start": {
-                        "line": 26,
-                        "column": 2,
-                        "index": 189
-                      },
-                      "end": {
-                        "line": 26,
-                        "column": 5,
-                        "index": 192
-                      }
-                    },
-                    "range": [
-                      189,
-                      192
-                    ],
-                    "extra": {
-                      "rawValue": "4",
-                      "raw": "\"4\""
-                    },
-                    "value": "4"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 196,
-                    "end": 199,
-                    "loc": {
-                      "start": {
-                        "line": 27,
-                        "column": 2,
-                        "index": 196
-                      },
-                      "end": {
-                        "line": 27,
-                        "column": 5,
-                        "index": 199
-                      }
-                    },
-                    "range": [
-                      196,
-                      199
-                    ],
-                    "extra": {
-                      "rawValue": "5",
-                      "raw": "\"5\""
-                    },
-                    "value": "5"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 203,
-                    "end": 206,
-                    "loc": {
-                      "start": {
-                        "line": 28,
-                        "column": 2,
-                        "index": 203
-                      },
-                      "end": {
-                        "line": 28,
-                        "column": 5,
-                        "index": 206
-                      }
-                    },
-                    "range": [
-                      203,
-                      206
-                    ],
-                    "extra": {
-                      "rawValue": "6",
-                      "raw": "\"6\""
-                    },
-                    "value": "6"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 210,
-                    "end": 213,
-                    "loc": {
-                      "start": {
-                        "line": 29,
-                        "column": 2,
-                        "index": 210
-                      },
-                      "end": {
-                        "line": 29,
-                        "column": 5,
-                        "index": 213
-                      }
-                    },
-                    "range": [
-                      210,
-                      213
-                    ],
-                    "extra": {
-                      "rawValue": "7",
-                      "raw": "\"7\""
-                    },
-                    "value": "7"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 217,
-                    "end": 220,
-                    "loc": {
-                      "start": {
-                        "line": 30,
-                        "column": 2,
-                        "index": 217
-                      },
-                      "end": {
-                        "line": 30,
-                        "column": 5,
-                        "index": 220
-                      }
-                    },
-                    "range": [
-                      217,
-                      220
-                    ],
-                    "extra": {
-                      "rawValue": "8",
-                      "raw": "\"8\""
-                    },
-                    "value": "8"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 224,
-                    "end": 227,
-                    "loc": {
-                      "start": {
-                        "line": 31,
-                        "column": 2,
-                        "index": 224
-                      },
-                      "end": {
-                        "line": 31,
-                        "column": 5,
-                        "index": 227
-                      }
-                    },
-                    "range": [
-                      224,
-                      227
-                    ],
-                    "extra": {
-                      "rawValue": "9",
-                      "raw": "\"9\""
-                    },
-                    "value": "9"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 231,
-                    "end": 237,
-                    "loc": {
-                      "start": {
-                        "line": 32,
-                        "column": 2,
-                        "index": 231
-                      },
-                      "end": {
-                        "line": 32,
-                        "column": 8,
-                        "index": 237
-                      }
-                    },
-                    "range": [
-                      231,
-                      237
-                    ],
-                    "extra": {
-                      "rawValue": "base",
-                      "raw": "\"base\""
-                    },
-                    "value": "base"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 241,
-                    "end": 244,
-                    "loc": {
-                      "start": {
-                        "line": 33,
-                        "column": 2,
-                        "index": 241
-                      },
-                      "end": {
-                        "line": 33,
-                        "column": 5,
-                        "index": 244
-                      }
-                    },
-                    "range": [
-                      241,
-                      244
-                    ],
-                    "extra": {
-                      "rawValue": "1",
-                      "raw": "\"1\""
-                    },
-                    "value": "1"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 248,
-                    "end": 251,
-                    "loc": {
-                      "start": {
-                        "line": 34,
-                        "column": 2,
-                        "index": 248
-                      },
-                      "end": {
-                        "line": 34,
-                        "column": 5,
-                        "index": 251
-                      }
-                    },
-                    "range": [
-                      248,
-                      251
-                    ],
-                    "extra": {
-                      "rawValue": "2",
-                      "raw": "\"2\""
-                    },
-                    "value": "2"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 255,
-                    "end": 258,
-                    "loc": {
-                      "start": {
-                        "line": 35,
-                        "column": 2,
-                        "index": 255
-                      },
-                      "end": {
-                        "line": 35,
-                        "column": 5,
-                        "index": 258
-                      }
-                    },
-                    "range": [
-                      255,
-                      258
-                    ],
-                    "extra": {
-                      "rawValue": "3",
-                      "raw": "\"3\""
-                    },
-                    "value": "3"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 262,
-                    "end": 265,
-                    "loc": {
-                      "start": {
-                        "line": 36,
-                        "column": 2,
-                        "index": 262
-                      },
-                      "end": {
-                        "line": 36,
-                        "column": 5,
-                        "index": 265
-                      }
-                    },
-                    "range": [
-                      262,
-                      265
-                    ],
-                    "extra": {
-                      "rawValue": "4",
-                      "raw": "\"4\""
-                    },
-                    "value": "4"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 269,
-                    "end": 272,
-                    "loc": {
-                      "start": {
-                        "line": 37,
-                        "column": 2,
-                        "index": 269
-                      },
-                      "end": {
-                        "line": 37,
-                        "column": 5,
-                        "index": 272
-                      }
-                    },
-                    "range": [
-                      269,
-                      272
-                    ],
-                    "extra": {
-                      "rawValue": "5",
-                      "raw": "\"5\""
-                    },
-                    "value": "5"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 276,
-                    "end": 279,
-                    "loc": {
-                      "start": {
-                        "line": 38,
-                        "column": 2,
-                        "index": 276
-                      },
-                      "end": {
-                        "line": 38,
-                        "column": 5,
-                        "index": 279
-                      }
-                    },
-                    "range": [
-                      276,
-                      279
-                    ],
-                    "extra": {
-                      "rawValue": "6",
-                      "raw": "\"6\""
-                    },
-                    "value": "6"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 283,
-                    "end": 286,
-                    "loc": {
-                      "start": {
-                        "line": 39,
-                        "column": 2,
-                        "index": 283
-                      },
-                      "end": {
-                        "line": 39,
-                        "column": 5,
-                        "index": 286
-                      }
-                    },
-                    "range": [
-                      283,
-                      286
-                    ],
-                    "extra": {
-                      "rawValue": "7",
-                      "raw": "\"7\""
-                    },
-                    "value": "7"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 290,
-                    "end": 293,
-                    "loc": {
-                      "start": {
-                        "line": 40,
-                        "column": 2,
-                        "index": 290
-                      },
-                      "end": {
-                        "line": 40,
-                        "column": 5,
-                        "index": 293
-                      }
-                    },
-                    "range": [
-                      290,
-                      293
-                    ],
-                    "extra": {
-                      "rawValue": "8",
-                      "raw": "\"8\""
-                    },
-                    "value": "8"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 297,
-                    "end": 300,
-                    "loc": {
-                      "start": {
-                        "line": 41,
-                        "column": 2,
-                        "index": 297
-                      },
-                      "end": {
-                        "line": 41,
-                        "column": 5,
-                        "index": 300
-                      }
-                    },
-                    "range": [
-                      297,
-                      300
-                    ],
-                    "extra": {
-                      "rawValue": "9",
-                      "raw": "\"9\""
-                    },
-                    "value": "9"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 304,
-                    "end": 310,
-                    "loc": {
-                      "start": {
-                        "line": 42,
-                        "column": 2,
-                        "index": 304
-                      },
-                      "end": {
-                        "line": 42,
-                        "column": 8,
-                        "index": 310
-                      }
-                    },
-                    "range": [
-                      304,
-                      310
-                    ],
-                    "extra": {
-                      "rawValue": "base",
-                      "raw": "\"base\""
-                    },
-                    "value": "base"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 314,
-                    "end": 317,
-                    "loc": {
-                      "start": {
-                        "line": 43,
-                        "column": 2,
-                        "index": 314
-                      },
-                      "end": {
-                        "line": 43,
-                        "column": 5,
-                        "index": 317
-                      }
-                    },
-                    "range": [
-                      314,
-                      317
-                    ],
-                    "extra": {
-                      "rawValue": "1",
-                      "raw": "\"1\""
-                    },
-                    "value": "1"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 321,
-                    "end": 324,
-                    "loc": {
-                      "start": {
-                        "line": 44,
-                        "column": 2,
-                        "index": 321
-                      },
-                      "end": {
-                        "line": 44,
-                        "column": 5,
-                        "index": 324
-                      }
-                    },
-                    "range": [
-                      321,
-                      324
-                    ],
-                    "extra": {
-                      "rawValue": "2",
-                      "raw": "\"2\""
-                    },
-                    "value": "2"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 328,
-                    "end": 331,
-                    "loc": {
-                      "start": {
-                        "line": 45,
-                        "column": 2,
-                        "index": 328
-                      },
-                      "end": {
-                        "line": 45,
-                        "column": 5,
-                        "index": 331
-                      }
-                    },
-                    "range": [
-                      328,
-                      331
-                    ],
-                    "extra": {
-                      "rawValue": "3",
-                      "raw": "\"3\""
-                    },
-                    "value": "3"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 335,
-                    "end": 338,
-                    "loc": {
-                      "start": {
-                        "line": 46,
-                        "column": 2,
-                        "index": 335
-                      },
-                      "end": {
-                        "line": 46,
-                        "column": 5,
-                        "index": 338
-                      }
-                    },
-                    "range": [
-                      335,
-                      338
-                    ],
-                    "extra": {
-                      "rawValue": "4",
-                      "raw": "\"4\""
-                    },
-                    "value": "4"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 342,
-                    "end": 345,
-                    "loc": {
-                      "start": {
-                        "line": 47,
-                        "column": 2,
-                        "index": 342
-                      },
-                      "end": {
-                        "line": 47,
-                        "column": 5,
-                        "index": 345
-                      }
-                    },
-                    "range": [
-                      342,
-                      345
-                    ],
-                    "extra": {
-                      "rawValue": "5",
-                      "raw": "\"5\""
-                    },
-                    "value": "5"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 349,
-                    "end": 352,
-                    "loc": {
-                      "start": {
-                        "line": 48,
-                        "column": 2,
-                        "index": 349
-                      },
-                      "end": {
-                        "line": 48,
-                        "column": 5,
-                        "index": 352
-                      }
-                    },
-                    "range": [
-                      349,
-                      352
-                    ],
-                    "extra": {
-                      "rawValue": "6",
-                      "raw": "\"6\""
-                    },
-                    "value": "6"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 356,
-                    "end": 359,
-                    "loc": {
-                      "start": {
-                        "line": 49,
-                        "column": 2,
-                        "index": 356
-                      },
-                      "end": {
-                        "line": 49,
-                        "column": 5,
-                        "index": 359
-                      }
-                    },
-                    "range": [
-                      356,
-                      359
-                    ],
-                    "extra": {
-                      "rawValue": "7",
-                      "raw": "\"7\""
-                    },
-                    "value": "7"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 363,
-                    "end": 366,
-                    "loc": {
-                      "start": {
-                        "line": 50,
-                        "column": 2,
-                        "index": 363
-                      },
-                      "end": {
-                        "line": 50,
-                        "column": 5,
-                        "index": 366
-                      }
-                    },
-                    "range": [
-                      363,
-                      366
-                    ],
-                    "extra": {
-                      "rawValue": "8",
-                      "raw": "\"8\""
-                    },
-                    "value": "8"
-                  },
-                  {
-                    "type": "StringLiteral",
-                    "start": 370,
-                    "end": 373,
-                    "loc": {
-                      "start": {
-                        "line": 51,
-                        "column": 2,
-                        "index": 370
-                      },
-                      "end": {
-                        "line": 51,
-                        "column": 5,
-                        "index": 373
-                      }
-                    },
-                    "range": [
-                      370,
-                      373
-                    ],
-                    "extra": {
-                      "rawValue": "9",
-                      "raw": "\"9\""
-                    },
-                    "value": "9"
+                      "range": [
+                        40,
+                        642
+                      ],
+                      "body": [
+                        {
+                          "type": "ExpressionStatement",
+                          "start": 46,
+                          "end": 636,
+                          "loc": {
+                            "start": {
+                              "line": 3,
+                              "column": 4,
+                              "index": 46
+                            },
+                            "end": {
+                              "line": 54,
+                              "column": 15,
+                              "index": 636
+                            }
+                          },
+                          "range": [
+                            46,
+                            636
+                          ],
+                          "expression": {
+                            "type": "AssignmentExpression",
+                            "start": 46,
+                            "end": 635,
+                            "loc": {
+                              "start": {
+                                "line": 3,
+                                "column": 4,
+                                "index": 46
+                              },
+                              "end": {
+                                "line": 54,
+                                "column": 14,
+                                "index": 635
+                              }
+                            },
+                            "range": [
+                              46,
+                              635
+                            ],
+                            "operator": "=",
+                            "left": {
+                              "type": "Identifier",
+                              "start": 46,
+                              "end": 51,
+                              "loc": {
+                                "start": {
+                                  "line": 3,
+                                  "column": 4,
+                                  "index": 46
+                                },
+                                "end": {
+                                  "line": 3,
+                                  "column": 9,
+                                  "index": 51
+                                },
+                                "identifierName": "VAR_1"
+                              },
+                              "range": [
+                                46,
+                                51
+                              ],
+                              "name": "VAR_1"
+                            },
+                            "right": {
+                              "type": "CallExpression",
+                              "start": 54,
+                              "end": 635,
+                              "loc": {
+                                "start": {
+                                  "line": 3,
+                                  "column": 12,
+                                  "index": 54
+                                },
+                                "end": {
+                                  "line": 54,
+                                  "column": 14,
+                                  "index": 635
+                                }
+                              },
+                              "range": [
+                                54,
+                                635
+                              ],
+                              "callee": {
+                                "type": "MemberExpression",
+                                "start": 54,
+                                "end": 631,
+                                "loc": {
+                                  "start": {
+                                    "line": 3,
+                                    "column": 12,
+                                    "index": 54
+                                  },
+                                  "end": {
+                                    "line": 54,
+                                    "column": 10,
+                                    "index": 631
+                                  }
+                                },
+                                "range": [
+                                  54,
+                                  631
+                                ],
+                                "object": {
+                                  "type": "ArrayExpression",
+                                  "start": 54,
+                                  "end": 626,
+                                  "loc": {
+                                    "start": {
+                                      "line": 3,
+                                      "column": 12,
+                                      "index": 54
+                                    },
+                                    "end": {
+                                      "line": 54,
+                                      "column": 5,
+                                      "index": 626
+                                    }
+                                  },
+                                  "range": [
+                                    54,
+                                    626
+                                  ],
+                                  "extra": {
+                                    "trailingComma": 619
+                                  },
+                                  "elements": [
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 62,
+                                      "end": 68,
+                                      "loc": {
+                                        "start": {
+                                          "line": 4,
+                                          "column": 6,
+                                          "index": 62
+                                        },
+                                        "end": {
+                                          "line": 4,
+                                          "column": 12,
+                                          "index": 68
+                                        }
+                                      },
+                                      "range": [
+                                        62,
+                                        68
+                                      ],
+                                      "extra": {
+                                        "rawValue": "base",
+                                        "raw": "\"base\""
+                                      },
+                                      "value": "base"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 76,
+                                      "end": 79,
+                                      "loc": {
+                                        "start": {
+                                          "line": 5,
+                                          "column": 6,
+                                          "index": 76
+                                        },
+                                        "end": {
+                                          "line": 5,
+                                          "column": 9,
+                                          "index": 79
+                                        }
+                                      },
+                                      "range": [
+                                        76,
+                                        79
+                                      ],
+                                      "extra": {
+                                        "rawValue": "1",
+                                        "raw": "\"1\""
+                                      },
+                                      "value": "1"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 87,
+                                      "end": 90,
+                                      "loc": {
+                                        "start": {
+                                          "line": 6,
+                                          "column": 6,
+                                          "index": 87
+                                        },
+                                        "end": {
+                                          "line": 6,
+                                          "column": 9,
+                                          "index": 90
+                                        }
+                                      },
+                                      "range": [
+                                        87,
+                                        90
+                                      ],
+                                      "extra": {
+                                        "rawValue": "2",
+                                        "raw": "\"2\""
+                                      },
+                                      "value": "2"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 98,
+                                      "end": 101,
+                                      "loc": {
+                                        "start": {
+                                          "line": 7,
+                                          "column": 6,
+                                          "index": 98
+                                        },
+                                        "end": {
+                                          "line": 7,
+                                          "column": 9,
+                                          "index": 101
+                                        }
+                                      },
+                                      "range": [
+                                        98,
+                                        101
+                                      ],
+                                      "extra": {
+                                        "rawValue": "3",
+                                        "raw": "\"3\""
+                                      },
+                                      "value": "3"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 109,
+                                      "end": 112,
+                                      "loc": {
+                                        "start": {
+                                          "line": 8,
+                                          "column": 6,
+                                          "index": 109
+                                        },
+                                        "end": {
+                                          "line": 8,
+                                          "column": 9,
+                                          "index": 112
+                                        }
+                                      },
+                                      "range": [
+                                        109,
+                                        112
+                                      ],
+                                      "extra": {
+                                        "rawValue": "4",
+                                        "raw": "\"4\""
+                                      },
+                                      "value": "4"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 120,
+                                      "end": 123,
+                                      "loc": {
+                                        "start": {
+                                          "line": 9,
+                                          "column": 6,
+                                          "index": 120
+                                        },
+                                        "end": {
+                                          "line": 9,
+                                          "column": 9,
+                                          "index": 123
+                                        }
+                                      },
+                                      "range": [
+                                        120,
+                                        123
+                                      ],
+                                      "extra": {
+                                        "rawValue": "5",
+                                        "raw": "\"5\""
+                                      },
+                                      "value": "5"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 131,
+                                      "end": 134,
+                                      "loc": {
+                                        "start": {
+                                          "line": 10,
+                                          "column": 6,
+                                          "index": 131
+                                        },
+                                        "end": {
+                                          "line": 10,
+                                          "column": 9,
+                                          "index": 134
+                                        }
+                                      },
+                                      "range": [
+                                        131,
+                                        134
+                                      ],
+                                      "extra": {
+                                        "rawValue": "6",
+                                        "raw": "\"6\""
+                                      },
+                                      "value": "6"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 142,
+                                      "end": 145,
+                                      "loc": {
+                                        "start": {
+                                          "line": 11,
+                                          "column": 6,
+                                          "index": 142
+                                        },
+                                        "end": {
+                                          "line": 11,
+                                          "column": 9,
+                                          "index": 145
+                                        }
+                                      },
+                                      "range": [
+                                        142,
+                                        145
+                                      ],
+                                      "extra": {
+                                        "rawValue": "7",
+                                        "raw": "\"7\""
+                                      },
+                                      "value": "7"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 153,
+                                      "end": 156,
+                                      "loc": {
+                                        "start": {
+                                          "line": 12,
+                                          "column": 6,
+                                          "index": 153
+                                        },
+                                        "end": {
+                                          "line": 12,
+                                          "column": 9,
+                                          "index": 156
+                                        }
+                                      },
+                                      "range": [
+                                        153,
+                                        156
+                                      ],
+                                      "extra": {
+                                        "rawValue": "8",
+                                        "raw": "\"8\""
+                                      },
+                                      "value": "8"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 164,
+                                      "end": 167,
+                                      "loc": {
+                                        "start": {
+                                          "line": 13,
+                                          "column": 6,
+                                          "index": 164
+                                        },
+                                        "end": {
+                                          "line": 13,
+                                          "column": 9,
+                                          "index": 167
+                                        }
+                                      },
+                                      "range": [
+                                        164,
+                                        167
+                                      ],
+                                      "extra": {
+                                        "rawValue": "9",
+                                        "raw": "\"9\""
+                                      },
+                                      "value": "9"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 175,
+                                      "end": 181,
+                                      "loc": {
+                                        "start": {
+                                          "line": 14,
+                                          "column": 6,
+                                          "index": 175
+                                        },
+                                        "end": {
+                                          "line": 14,
+                                          "column": 12,
+                                          "index": 181
+                                        }
+                                      },
+                                      "range": [
+                                        175,
+                                        181
+                                      ],
+                                      "extra": {
+                                        "rawValue": "base",
+                                        "raw": "\"base\""
+                                      },
+                                      "value": "base"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 189,
+                                      "end": 192,
+                                      "loc": {
+                                        "start": {
+                                          "line": 15,
+                                          "column": 6,
+                                          "index": 189
+                                        },
+                                        "end": {
+                                          "line": 15,
+                                          "column": 9,
+                                          "index": 192
+                                        }
+                                      },
+                                      "range": [
+                                        189,
+                                        192
+                                      ],
+                                      "extra": {
+                                        "rawValue": "1",
+                                        "raw": "\"1\""
+                                      },
+                                      "value": "1"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 200,
+                                      "end": 203,
+                                      "loc": {
+                                        "start": {
+                                          "line": 16,
+                                          "column": 6,
+                                          "index": 200
+                                        },
+                                        "end": {
+                                          "line": 16,
+                                          "column": 9,
+                                          "index": 203
+                                        }
+                                      },
+                                      "range": [
+                                        200,
+                                        203
+                                      ],
+                                      "extra": {
+                                        "rawValue": "2",
+                                        "raw": "\"2\""
+                                      },
+                                      "value": "2"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 211,
+                                      "end": 214,
+                                      "loc": {
+                                        "start": {
+                                          "line": 17,
+                                          "column": 6,
+                                          "index": 211
+                                        },
+                                        "end": {
+                                          "line": 17,
+                                          "column": 9,
+                                          "index": 214
+                                        }
+                                      },
+                                      "range": [
+                                        211,
+                                        214
+                                      ],
+                                      "extra": {
+                                        "rawValue": "3",
+                                        "raw": "\"3\""
+                                      },
+                                      "value": "3"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 222,
+                                      "end": 225,
+                                      "loc": {
+                                        "start": {
+                                          "line": 18,
+                                          "column": 6,
+                                          "index": 222
+                                        },
+                                        "end": {
+                                          "line": 18,
+                                          "column": 9,
+                                          "index": 225
+                                        }
+                                      },
+                                      "range": [
+                                        222,
+                                        225
+                                      ],
+                                      "extra": {
+                                        "rawValue": "4",
+                                        "raw": "\"4\""
+                                      },
+                                      "value": "4"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 233,
+                                      "end": 236,
+                                      "loc": {
+                                        "start": {
+                                          "line": 19,
+                                          "column": 6,
+                                          "index": 233
+                                        },
+                                        "end": {
+                                          "line": 19,
+                                          "column": 9,
+                                          "index": 236
+                                        }
+                                      },
+                                      "range": [
+                                        233,
+                                        236
+                                      ],
+                                      "extra": {
+                                        "rawValue": "5",
+                                        "raw": "\"5\""
+                                      },
+                                      "value": "5"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 244,
+                                      "end": 247,
+                                      "loc": {
+                                        "start": {
+                                          "line": 20,
+                                          "column": 6,
+                                          "index": 244
+                                        },
+                                        "end": {
+                                          "line": 20,
+                                          "column": 9,
+                                          "index": 247
+                                        }
+                                      },
+                                      "range": [
+                                        244,
+                                        247
+                                      ],
+                                      "extra": {
+                                        "rawValue": "6",
+                                        "raw": "\"6\""
+                                      },
+                                      "value": "6"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 255,
+                                      "end": 258,
+                                      "loc": {
+                                        "start": {
+                                          "line": 21,
+                                          "column": 6,
+                                          "index": 255
+                                        },
+                                        "end": {
+                                          "line": 21,
+                                          "column": 9,
+                                          "index": 258
+                                        }
+                                      },
+                                      "range": [
+                                        255,
+                                        258
+                                      ],
+                                      "extra": {
+                                        "rawValue": "7",
+                                        "raw": "\"7\""
+                                      },
+                                      "value": "7"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 266,
+                                      "end": 269,
+                                      "loc": {
+                                        "start": {
+                                          "line": 22,
+                                          "column": 6,
+                                          "index": 266
+                                        },
+                                        "end": {
+                                          "line": 22,
+                                          "column": 9,
+                                          "index": 269
+                                        }
+                                      },
+                                      "range": [
+                                        266,
+                                        269
+                                      ],
+                                      "extra": {
+                                        "rawValue": "8",
+                                        "raw": "\"8\""
+                                      },
+                                      "value": "8"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 277,
+                                      "end": 280,
+                                      "loc": {
+                                        "start": {
+                                          "line": 23,
+                                          "column": 6,
+                                          "index": 277
+                                        },
+                                        "end": {
+                                          "line": 23,
+                                          "column": 9,
+                                          "index": 280
+                                        }
+                                      },
+                                      "range": [
+                                        277,
+                                        280
+                                      ],
+                                      "extra": {
+                                        "rawValue": "9",
+                                        "raw": "\"9\""
+                                      },
+                                      "value": "9"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 288,
+                                      "end": 294,
+                                      "loc": {
+                                        "start": {
+                                          "line": 24,
+                                          "column": 6,
+                                          "index": 288
+                                        },
+                                        "end": {
+                                          "line": 24,
+                                          "column": 12,
+                                          "index": 294
+                                        }
+                                      },
+                                      "range": [
+                                        288,
+                                        294
+                                      ],
+                                      "extra": {
+                                        "rawValue": "base",
+                                        "raw": "\"base\""
+                                      },
+                                      "value": "base"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 302,
+                                      "end": 305,
+                                      "loc": {
+                                        "start": {
+                                          "line": 25,
+                                          "column": 6,
+                                          "index": 302
+                                        },
+                                        "end": {
+                                          "line": 25,
+                                          "column": 9,
+                                          "index": 305
+                                        }
+                                      },
+                                      "range": [
+                                        302,
+                                        305
+                                      ],
+                                      "extra": {
+                                        "rawValue": "1",
+                                        "raw": "\"1\""
+                                      },
+                                      "value": "1"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 313,
+                                      "end": 316,
+                                      "loc": {
+                                        "start": {
+                                          "line": 26,
+                                          "column": 6,
+                                          "index": 313
+                                        },
+                                        "end": {
+                                          "line": 26,
+                                          "column": 9,
+                                          "index": 316
+                                        }
+                                      },
+                                      "range": [
+                                        313,
+                                        316
+                                      ],
+                                      "extra": {
+                                        "rawValue": "2",
+                                        "raw": "\"2\""
+                                      },
+                                      "value": "2"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 324,
+                                      "end": 327,
+                                      "loc": {
+                                        "start": {
+                                          "line": 27,
+                                          "column": 6,
+                                          "index": 324
+                                        },
+                                        "end": {
+                                          "line": 27,
+                                          "column": 9,
+                                          "index": 327
+                                        }
+                                      },
+                                      "range": [
+                                        324,
+                                        327
+                                      ],
+                                      "extra": {
+                                        "rawValue": "3",
+                                        "raw": "\"3\""
+                                      },
+                                      "value": "3"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 335,
+                                      "end": 338,
+                                      "loc": {
+                                        "start": {
+                                          "line": 28,
+                                          "column": 6,
+                                          "index": 335
+                                        },
+                                        "end": {
+                                          "line": 28,
+                                          "column": 9,
+                                          "index": 338
+                                        }
+                                      },
+                                      "range": [
+                                        335,
+                                        338
+                                      ],
+                                      "extra": {
+                                        "rawValue": "4",
+                                        "raw": "\"4\""
+                                      },
+                                      "value": "4"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 346,
+                                      "end": 349,
+                                      "loc": {
+                                        "start": {
+                                          "line": 29,
+                                          "column": 6,
+                                          "index": 346
+                                        },
+                                        "end": {
+                                          "line": 29,
+                                          "column": 9,
+                                          "index": 349
+                                        }
+                                      },
+                                      "range": [
+                                        346,
+                                        349
+                                      ],
+                                      "extra": {
+                                        "rawValue": "5",
+                                        "raw": "\"5\""
+                                      },
+                                      "value": "5"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 357,
+                                      "end": 360,
+                                      "loc": {
+                                        "start": {
+                                          "line": 30,
+                                          "column": 6,
+                                          "index": 357
+                                        },
+                                        "end": {
+                                          "line": 30,
+                                          "column": 9,
+                                          "index": 360
+                                        }
+                                      },
+                                      "range": [
+                                        357,
+                                        360
+                                      ],
+                                      "extra": {
+                                        "rawValue": "6",
+                                        "raw": "\"6\""
+                                      },
+                                      "value": "6"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 368,
+                                      "end": 371,
+                                      "loc": {
+                                        "start": {
+                                          "line": 31,
+                                          "column": 6,
+                                          "index": 368
+                                        },
+                                        "end": {
+                                          "line": 31,
+                                          "column": 9,
+                                          "index": 371
+                                        }
+                                      },
+                                      "range": [
+                                        368,
+                                        371
+                                      ],
+                                      "extra": {
+                                        "rawValue": "7",
+                                        "raw": "\"7\""
+                                      },
+                                      "value": "7"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 379,
+                                      "end": 382,
+                                      "loc": {
+                                        "start": {
+                                          "line": 32,
+                                          "column": 6,
+                                          "index": 379
+                                        },
+                                        "end": {
+                                          "line": 32,
+                                          "column": 9,
+                                          "index": 382
+                                        }
+                                      },
+                                      "range": [
+                                        379,
+                                        382
+                                      ],
+                                      "extra": {
+                                        "rawValue": "8",
+                                        "raw": "\"8\""
+                                      },
+                                      "value": "8"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 390,
+                                      "end": 393,
+                                      "loc": {
+                                        "start": {
+                                          "line": 33,
+                                          "column": 6,
+                                          "index": 390
+                                        },
+                                        "end": {
+                                          "line": 33,
+                                          "column": 9,
+                                          "index": 393
+                                        }
+                                      },
+                                      "range": [
+                                        390,
+                                        393
+                                      ],
+                                      "extra": {
+                                        "rawValue": "9",
+                                        "raw": "\"9\""
+                                      },
+                                      "value": "9"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 401,
+                                      "end": 407,
+                                      "loc": {
+                                        "start": {
+                                          "line": 34,
+                                          "column": 6,
+                                          "index": 401
+                                        },
+                                        "end": {
+                                          "line": 34,
+                                          "column": 12,
+                                          "index": 407
+                                        }
+                                      },
+                                      "range": [
+                                        401,
+                                        407
+                                      ],
+                                      "extra": {
+                                        "rawValue": "base",
+                                        "raw": "\"base\""
+                                      },
+                                      "value": "base"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 415,
+                                      "end": 418,
+                                      "loc": {
+                                        "start": {
+                                          "line": 35,
+                                          "column": 6,
+                                          "index": 415
+                                        },
+                                        "end": {
+                                          "line": 35,
+                                          "column": 9,
+                                          "index": 418
+                                        }
+                                      },
+                                      "range": [
+                                        415,
+                                        418
+                                      ],
+                                      "extra": {
+                                        "rawValue": "1",
+                                        "raw": "\"1\""
+                                      },
+                                      "value": "1"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 426,
+                                      "end": 429,
+                                      "loc": {
+                                        "start": {
+                                          "line": 36,
+                                          "column": 6,
+                                          "index": 426
+                                        },
+                                        "end": {
+                                          "line": 36,
+                                          "column": 9,
+                                          "index": 429
+                                        }
+                                      },
+                                      "range": [
+                                        426,
+                                        429
+                                      ],
+                                      "extra": {
+                                        "rawValue": "2",
+                                        "raw": "\"2\""
+                                      },
+                                      "value": "2"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 437,
+                                      "end": 440,
+                                      "loc": {
+                                        "start": {
+                                          "line": 37,
+                                          "column": 6,
+                                          "index": 437
+                                        },
+                                        "end": {
+                                          "line": 37,
+                                          "column": 9,
+                                          "index": 440
+                                        }
+                                      },
+                                      "range": [
+                                        437,
+                                        440
+                                      ],
+                                      "extra": {
+                                        "rawValue": "3",
+                                        "raw": "\"3\""
+                                      },
+                                      "value": "3"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 448,
+                                      "end": 451,
+                                      "loc": {
+                                        "start": {
+                                          "line": 38,
+                                          "column": 6,
+                                          "index": 448
+                                        },
+                                        "end": {
+                                          "line": 38,
+                                          "column": 9,
+                                          "index": 451
+                                        }
+                                      },
+                                      "range": [
+                                        448,
+                                        451
+                                      ],
+                                      "extra": {
+                                        "rawValue": "4",
+                                        "raw": "\"4\""
+                                      },
+                                      "value": "4"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 459,
+                                      "end": 462,
+                                      "loc": {
+                                        "start": {
+                                          "line": 39,
+                                          "column": 6,
+                                          "index": 459
+                                        },
+                                        "end": {
+                                          "line": 39,
+                                          "column": 9,
+                                          "index": 462
+                                        }
+                                      },
+                                      "range": [
+                                        459,
+                                        462
+                                      ],
+                                      "extra": {
+                                        "rawValue": "5",
+                                        "raw": "\"5\""
+                                      },
+                                      "value": "5"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 470,
+                                      "end": 473,
+                                      "loc": {
+                                        "start": {
+                                          "line": 40,
+                                          "column": 6,
+                                          "index": 470
+                                        },
+                                        "end": {
+                                          "line": 40,
+                                          "column": 9,
+                                          "index": 473
+                                        }
+                                      },
+                                      "range": [
+                                        470,
+                                        473
+                                      ],
+                                      "extra": {
+                                        "rawValue": "6",
+                                        "raw": "\"6\""
+                                      },
+                                      "value": "6"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 481,
+                                      "end": 484,
+                                      "loc": {
+                                        "start": {
+                                          "line": 41,
+                                          "column": 6,
+                                          "index": 481
+                                        },
+                                        "end": {
+                                          "line": 41,
+                                          "column": 9,
+                                          "index": 484
+                                        }
+                                      },
+                                      "range": [
+                                        481,
+                                        484
+                                      ],
+                                      "extra": {
+                                        "rawValue": "7",
+                                        "raw": "\"7\""
+                                      },
+                                      "value": "7"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 492,
+                                      "end": 495,
+                                      "loc": {
+                                        "start": {
+                                          "line": 42,
+                                          "column": 6,
+                                          "index": 492
+                                        },
+                                        "end": {
+                                          "line": 42,
+                                          "column": 9,
+                                          "index": 495
+                                        }
+                                      },
+                                      "range": [
+                                        492,
+                                        495
+                                      ],
+                                      "extra": {
+                                        "rawValue": "8",
+                                        "raw": "\"8\""
+                                      },
+                                      "value": "8"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 503,
+                                      "end": 506,
+                                      "loc": {
+                                        "start": {
+                                          "line": 43,
+                                          "column": 6,
+                                          "index": 503
+                                        },
+                                        "end": {
+                                          "line": 43,
+                                          "column": 9,
+                                          "index": 506
+                                        }
+                                      },
+                                      "range": [
+                                        503,
+                                        506
+                                      ],
+                                      "extra": {
+                                        "rawValue": "9",
+                                        "raw": "\"9\""
+                                      },
+                                      "value": "9"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 514,
+                                      "end": 520,
+                                      "loc": {
+                                        "start": {
+                                          "line": 44,
+                                          "column": 6,
+                                          "index": 514
+                                        },
+                                        "end": {
+                                          "line": 44,
+                                          "column": 12,
+                                          "index": 520
+                                        }
+                                      },
+                                      "range": [
+                                        514,
+                                        520
+                                      ],
+                                      "extra": {
+                                        "rawValue": "base",
+                                        "raw": "\"base\""
+                                      },
+                                      "value": "base"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 528,
+                                      "end": 531,
+                                      "loc": {
+                                        "start": {
+                                          "line": 45,
+                                          "column": 6,
+                                          "index": 528
+                                        },
+                                        "end": {
+                                          "line": 45,
+                                          "column": 9,
+                                          "index": 531
+                                        }
+                                      },
+                                      "range": [
+                                        528,
+                                        531
+                                      ],
+                                      "extra": {
+                                        "rawValue": "1",
+                                        "raw": "\"1\""
+                                      },
+                                      "value": "1"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 539,
+                                      "end": 542,
+                                      "loc": {
+                                        "start": {
+                                          "line": 46,
+                                          "column": 6,
+                                          "index": 539
+                                        },
+                                        "end": {
+                                          "line": 46,
+                                          "column": 9,
+                                          "index": 542
+                                        }
+                                      },
+                                      "range": [
+                                        539,
+                                        542
+                                      ],
+                                      "extra": {
+                                        "rawValue": "2",
+                                        "raw": "\"2\""
+                                      },
+                                      "value": "2"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 550,
+                                      "end": 553,
+                                      "loc": {
+                                        "start": {
+                                          "line": 47,
+                                          "column": 6,
+                                          "index": 550
+                                        },
+                                        "end": {
+                                          "line": 47,
+                                          "column": 9,
+                                          "index": 553
+                                        }
+                                      },
+                                      "range": [
+                                        550,
+                                        553
+                                      ],
+                                      "extra": {
+                                        "rawValue": "3",
+                                        "raw": "\"3\""
+                                      },
+                                      "value": "3"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 561,
+                                      "end": 564,
+                                      "loc": {
+                                        "start": {
+                                          "line": 48,
+                                          "column": 6,
+                                          "index": 561
+                                        },
+                                        "end": {
+                                          "line": 48,
+                                          "column": 9,
+                                          "index": 564
+                                        }
+                                      },
+                                      "range": [
+                                        561,
+                                        564
+                                      ],
+                                      "extra": {
+                                        "rawValue": "4",
+                                        "raw": "\"4\""
+                                      },
+                                      "value": "4"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 572,
+                                      "end": 575,
+                                      "loc": {
+                                        "start": {
+                                          "line": 49,
+                                          "column": 6,
+                                          "index": 572
+                                        },
+                                        "end": {
+                                          "line": 49,
+                                          "column": 9,
+                                          "index": 575
+                                        }
+                                      },
+                                      "range": [
+                                        572,
+                                        575
+                                      ],
+                                      "extra": {
+                                        "rawValue": "5",
+                                        "raw": "\"5\""
+                                      },
+                                      "value": "5"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 583,
+                                      "end": 586,
+                                      "loc": {
+                                        "start": {
+                                          "line": 50,
+                                          "column": 6,
+                                          "index": 583
+                                        },
+                                        "end": {
+                                          "line": 50,
+                                          "column": 9,
+                                          "index": 586
+                                        }
+                                      },
+                                      "range": [
+                                        583,
+                                        586
+                                      ],
+                                      "extra": {
+                                        "rawValue": "6",
+                                        "raw": "\"6\""
+                                      },
+                                      "value": "6"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 594,
+                                      "end": 597,
+                                      "loc": {
+                                        "start": {
+                                          "line": 51,
+                                          "column": 6,
+                                          "index": 594
+                                        },
+                                        "end": {
+                                          "line": 51,
+                                          "column": 9,
+                                          "index": 597
+                                        }
+                                      },
+                                      "range": [
+                                        594,
+                                        597
+                                      ],
+                                      "extra": {
+                                        "rawValue": "7",
+                                        "raw": "\"7\""
+                                      },
+                                      "value": "7"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 605,
+                                      "end": 608,
+                                      "loc": {
+                                        "start": {
+                                          "line": 52,
+                                          "column": 6,
+                                          "index": 605
+                                        },
+                                        "end": {
+                                          "line": 52,
+                                          "column": 9,
+                                          "index": 608
+                                        }
+                                      },
+                                      "range": [
+                                        605,
+                                        608
+                                      ],
+                                      "extra": {
+                                        "rawValue": "8",
+                                        "raw": "\"8\""
+                                      },
+                                      "value": "8"
+                                    },
+                                    {
+                                      "type": "StringLiteral",
+                                      "start": 616,
+                                      "end": 619,
+                                      "loc": {
+                                        "start": {
+                                          "line": 53,
+                                          "column": 6,
+                                          "index": 616
+                                        },
+                                        "end": {
+                                          "line": 53,
+                                          "column": 9,
+                                          "index": 619
+                                        }
+                                      },
+                                      "range": [
+                                        616,
+                                        619
+                                      ],
+                                      "extra": {
+                                        "rawValue": "9",
+                                        "raw": "\"9\""
+                                      },
+                                      "value": "9"
+                                    }
+                                  ]
+                                },
+                                "computed": false,
+                                "property": {
+                                  "type": "Identifier",
+                                  "start": 627,
+                                  "end": 631,
+                                  "loc": {
+                                    "start": {
+                                      "line": 54,
+                                      "column": 6,
+                                      "index": 627
+                                    },
+                                    "end": {
+                                      "line": 54,
+                                      "column": 10,
+                                      "index": 631
+                                    },
+                                    "identifierName": "join"
+                                  },
+                                  "range": [
+                                    627,
+                                    631
+                                  ],
+                                  "name": "join"
+                                }
+                              },
+                              "arguments": [
+                                {
+                                  "type": "StringLiteral",
+                                  "start": 632,
+                                  "end": 634,
+                                  "loc": {
+                                    "start": {
+                                      "line": 54,
+                                      "column": 11,
+                                      "index": 632
+                                    },
+                                    "end": {
+                                      "line": 54,
+                                      "column": 13,
+                                      "index": 634
+                                    }
+                                  },
+                                  "range": [
+                                    632,
+                                    634
+                                  ],
+                                  "extra": {
+                                    "rawValue": "",
+                                    "raw": "\"\""
+                                  },
+                                  "value": ""
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ],
+                      "directives": []
+                    }
                   }
-                ]
-              },
-              "computed": false,
-              "property": {
-                "type": "Identifier",
-                "start": 377,
-                "end": 381,
-                "loc": {
-                  "start": {
-                    "line": 52,
-                    "column": 2,
-                    "index": 377
-                  },
-                  "end": {
-                    "line": 52,
-                    "column": 6,
-                    "index": 381
-                  },
-                  "identifierName": "join"
-                },
-                "range": [
-                  377,
-                  381
-                ],
-                "name": "join"
-              }
-            },
-            "arguments": [
-              {
-                "type": "StringLiteral",
-                "start": 382,
-                "end": 384,
-                "loc": {
-                  "start": {
-                    "line": 52,
-                    "column": 7,
-                    "index": 382
-                  },
-                  "end": {
-                    "line": 52,
-                    "column": 9,
-                    "index": 384
-                  }
-                },
-                "range": [
-                  382,
-                  384
-                ],
-                "extra": {
-                  "rawValue": "",
-                  "raw": "\"\""
-                },
-                "value": ""
-              }
-            ]
+                }
+              ]
+            }
           }
-        }
+        ],
+        "kind": "const"
       }
     ],
     "directives": [],

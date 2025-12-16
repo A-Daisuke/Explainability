@@ -312,7 +312,7 @@ def one_hot_node_type(node_type):
 
 
 def get_directory_files(directory):
-    return [os.path.basename(file) for file in glob.glob(f"{directory}/*.json")]
+    return sorted([os.path.basename(file) for file in glob.glob(f"{directory}/*.json")])
 
 
 def write_pkl(data_frame: pd.DataFrame, path, file_name):
@@ -430,6 +430,7 @@ def ConvertToGraph(json_content):
 
 def json_parse_to_graph_js(JS_PATH):
     dataset_files = get_directory_files(JS_PATH)
+    dataset_files.sort()
     # dataset_files = dataset_files[:50]
     
     graph_list = []
