@@ -1,12 +1,16 @@
-var VAR_1 = [],
-  VAR_2 = 0;
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-VAR_1[VAR_2++] = "something";
-var VAR_3 = VAR_1.join("");
+const Benchmark = {
+    run: function() {
+    var VAR_1 = [],
+      VAR_2 = 0;
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    VAR_1[VAR_2++] = "something";
+    var VAR_3 = VAR_1.join("");
+    }
+};

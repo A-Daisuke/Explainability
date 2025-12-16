@@ -180,6 +180,12 @@ def get_dataloader(data_args):
 
     dataloader = dict()
     dataloader["train"] = DataLoader(train, batch_size=batch_size, shuffle=True)
-    dataloader["valid"] = DataLoader(valid, batch_size=batch_size, shuffle=True)
-    dataloader["test"] = DataLoader(test, batch_size=batch_size, shuffle=True)
+    dataloader["valid"] = DataLoader(valid, batch_size=batch_size, shuffle=False)
+    dataloader["test"] = DataLoader(test, batch_size=batch_size, shuffle=False)
     return dataloader
+
+
+def get_full_dataloader(data_args):
+    dataset = pd.read_pickle(data_args.dataset_dir)
+    dataset = InputDataset(dataset)
+    return DataLoader(dataset, batch_size=data_args.batch_size, shuffle=False)

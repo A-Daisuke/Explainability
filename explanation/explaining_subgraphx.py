@@ -3,6 +3,7 @@ import os.path
 
 import pandas as pd
 import torch
+from torch.utils.data import DataLoader
 
 from Code.configures import data_args, model_args
 from Code.DMon import DMon
@@ -20,7 +21,13 @@ def DatasetLoading(pkl_path):
     return a CodeDataset object,
     which can be used in classification task
     """
+    print(f"Loading dataset from: {pkl_path}")
     pkl_file = pd.read_pickle(pkl_path)
+
+    # Sort by graph_name to ensure deterministic order
+    pkl_file['sort_key'] = pkl_file['file'].apply(lambda x: x['graph_name'])
+    pkl_file = pkl_file.sort_values(by='sort_key').reset_index(drop=True)
+
     input_file = pkl_file["input"]  # dataset - data file
     raw_file = pkl_file["file"]  # dataset - raw file
     dataset = CodeDataset(input_file, raw_file)
@@ -204,13 +211,13 @@ def ExplainingPipeline():
     #    os.mkdir(save_dir)
 
     # ----- 回避训练用的数据集，打开训练数据集看看哪些是被用于训练的 ------
-    dataloader_list, dataloaderfull_list = get_cross_dataloader(data_args)
+    # dataloader_list, dataloaderfull_list = get_cross_dataloader(data_args)
     # 选第几折
-    dataloader_exposed = dataloaderfull_list[1]
-    train_graphs_set = set()
-    for train_graph in dataloader_exposed["train"]:
-        for graph in train_graph["graph_name"]:
-            train_graphs_set.add(graph)
+    # dataloader_exposed = dataloaderfull_list[1]
+    # train_graphs_set = set()
+    # for train_graph in dataloader_exposed["train"]:
+    #     for graph in train_graph["graph_name"]:
+    #         train_graphs_set.add(graph)
 
     # ----- module: feed graph data into trained model for classification task ------
     # final result
@@ -234,15 +241,14 @@ def ExplainingPipeline():
     y_true_list = []#実際の正解
     y_pred_list = []#予測結果
     # loop 200 graphs in the dataset
-    for i in range(len(dataset)):
-        # get each graph
-        data_input, data_raw = dataset[i]
+    loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
+    for i, (data_input, data_raw) in enumerate(loader):
         # 选择图进行解释以及可视化
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
-            if data_raw["graph_name"] in train_graphs_set:
-                print("------ This graph is in training set ------")
-            else:
-                print("------ This graph is not in training set ------")
+            # if data_raw["graph_name"] in train_graphs_set:
+            #     print("------ This graph is in training set ------")
+            # else:
+            #     print("------ This graph is not in training set ------")
             # ----- module: load explainer ------
             #explainer = SubgraphX(
             #    gnnNets,
