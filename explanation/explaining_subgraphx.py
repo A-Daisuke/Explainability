@@ -56,8 +56,9 @@ def Classification(model, dataset, graph_index):
     """
     # get each graph
     data_input, data_raw = dataset[graph_index]
-    print("Explaining graph: ", data_raw["graph_name"])
+    print("分析対象のデータ: ", data_raw["graph_name"])
     
+    """
     # DEBUG
     print(f"DEBUG: x shape: {data_input.x.shape}")
     print(f"DEBUG: edge_index shape: {data_input.edge_index.shape}")
@@ -66,6 +67,7 @@ def Classification(model, dataset, graph_index):
         print(f"DEBUG: edge_index min: {data_input.edge_index.min()}")
     else:
         print("DEBUG: edge_index is empty")
+    """
 
     # 选择图进行解释以及可视化
     probs, _ = model(data_input)
@@ -244,6 +246,7 @@ def ExplainingPipeline():
     # loop 200 graphs in the dataset
     loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
     for i, (data_input, data_raw) in enumerate(loader):
+        t_start_data = time.time()
         # 选择图进行解释以及可视化
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
             # if data_raw["graph_name"] in train_graphs_set:
@@ -274,19 +277,22 @@ def ExplainingPipeline():
             is_js_file = data_raw["graph_name"].endswith(".js")
 
             if prediction == 2:
-                print("------ Model believe it is unreadable ------")
+            #    print("------ Model believe it is unreadable ------")
+                print("------ モデルの予測結果：unreadable ------")
                 if is_js_file:
                     save_dir = os.path.join("newResults_js", "Unreadable")
                 else:
                     save_dir = os.path.join("newResults", "unreadable")
             elif prediction == 1:
-                print("------ Model believe it is neutral ------")
+            #    print("------ Model believe it is neutral ------")
+                print("------ モデルの予測結果：neutral ------")
                 if is_js_file:
                     save_dir = os.path.join("newResults_js", "Neutral")
                 else:
                     save_dir = os.path.join("newResults", "neutral")
             elif prediction == 0:
-                print("------ Model believe it is readable ------")
+            #    print("------ Model believe it is readable ------")
+                print("------ モデルの予測結果：readable ------")
                 if is_js_file:
                     save_dir = os.path.join("newResults_js", "Readable")
                 else:
@@ -346,6 +352,9 @@ def ExplainingPipeline():
 
             # ----- module: expose source code ------
             ExposedSource(explaining_result, data_raw, edge_list, data_record)
+            t_end_data = time.time()
+            print(f"処理にかかった時間({data_raw['graph_name']}): {t_end_data - t_start_data:.3f} 秒")
+            print("")
 
     target_names = ['readable', 'neutral', 'unreadable']
     print("\n" + "="*30 + "\n")

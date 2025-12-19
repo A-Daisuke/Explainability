@@ -865,10 +865,10 @@ class MCTS(object):
             print(f"The rollout in graph is {self.n_rollout}")
         # question？ roll out次数默认是10哎？需要roll这么多次吗
         for rollout_idx in range(self.n_rollout):
-            t_rollout = time.time()
+    #        t_rollout = time.time()
             # 探索构建MCTS tree，从root开始，root是原图，然后开始不断拓展枝叶
             self.mcts_rollout(self.root)
-            print(f"Rollout {rollout_idx} time: {time.time() - t_rollout:.4f}s")
+    #        print(f"Rollout {rollout_idx} time: {time.time() - t_rollout:.4f}s")
             if verbose:
                 print(
                     f"At the {rollout_idx} rollout, {len(self.state_map)} states that have been explored."
@@ -1118,9 +1118,9 @@ class SubgraphX(object):
                     data.x, data.edge_index, score_func=payoff_func
                 )
                 # 解释result在此！！！
-                t_mcts1 = time.time()
+    #            t_mcts1 = time.time()
                 results = self.mcts_state_map.mcts(verbose=self.verbose)
-                print(f"MCTS execution time: {time.time() - t_mcts1:.4f}s")
+    #            print(f"MCTS execution time: {time.time() - t_mcts1:.4f}s")
 
             # l sharply score
             value_func = GnnNetsGC2valueFunc(self.model, target_class=label)
@@ -1147,9 +1147,9 @@ class SubgraphX(object):
                 )
                 self.mcts_state_map.set_score_func(payoff_func)
                 # 解释result在此！！！
-                t_mcts = time.time()
+    #            t_mcts = time.time()
                 results = self.mcts_state_map.mcts(verbose=self.verbose)
-                print(f"MCTS execution time: {time.time() - t_mcts:.4f}s")
+    #            print(f"MCTS execution time: {time.time() - t_mcts:.4f}s")
 
             tree_node_x = find_closest_node_result(results, max_nodes=max_nodes)
 
@@ -1237,7 +1237,7 @@ class SubgraphX(object):
 
         # 对每一个label 0、1、2 都进行一次遍历rollout
         for label_idx, label in enumerate(ex_labels):
-            t_start_label = time.time()
+    #        t_start_label = time.time()
             results, related_pred = self.explain(
                 data,
                 label=label,
@@ -1245,7 +1245,7 @@ class SubgraphX(object):
                 node_idx=node_idx,
                 saved_MCTSInfo_list=saved_results,
             )
-            print(f"ラベルごとのループ時間{label}：{time.time() - t_start_label:.4f}秒")
+    #        print(f"ラベルごとのループ時間{label}：{time.time() - t_start_label:.4f}秒")
             related_preds.append(related_pred)
             # 最终获得的explanation是一个list，包含很多个result，一般最终需要的结果就是prediction对应的那个index
             explanation_results.append(results)
