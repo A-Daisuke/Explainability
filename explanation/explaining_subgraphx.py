@@ -112,7 +112,8 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
     for n_frm, n_to in explaining_result.ori_graph.edges():
         if n_frm in explaining_result.coalition and n_to in explaining_result.coalition:
             if (
-                len(node_code_info[n_frm]) > 1
+                n_frm < len(node_code_info) and n_to < len(node_code_info)
+                and len(node_code_info[n_frm]) > 1
                 and isinstance(node_code_info[n_frm][1], dict)
                 and "beginLine" in node_code_info[n_frm][1]
                 and len(node_code_info[n_to]) > 1
@@ -140,7 +141,12 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
     for criticalindex in range(len(CriticalEdges)):
         # find index of edge in all edges
         index = edgeList.index(CriticalEdgesRaw[criticalindex])
-        print(f"{CriticalEdges[criticalindex]}, Type: {data_raw['edge_types'][index]}")
+        
+        edge_type = "Unknown"
+        if index < len(data_raw['edge_types']):
+            edge_type = data_raw['edge_types'][index]
+            
+        print(f"{CriticalEdges[criticalindex]}, Type: {edge_type}")
     row_data = [
         data_raw["graph_name"],
         len(node_code_info),

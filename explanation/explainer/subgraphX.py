@@ -287,7 +287,17 @@ class PlotUtils(object):
         # 对应subgraph edge color
         critical_edge_colors = []
         for edge in edgeList:
-            critical_edge_colors.append(subgraph_edge_color[edgelist.index(edge)])
+            if isinstance(subgraph_edge_color, list):
+                try:
+                    idx = edgelist.index(edge)
+                    if idx < len(subgraph_edge_color):
+                        critical_edge_colors.append(subgraph_edge_color[idx])
+                    else:
+                        critical_edge_colors.append("black")
+                except ValueError:
+                    critical_edge_colors.append("black")
+            else:
+                critical_edge_colors.append(subgraph_edge_color)
 
         pos = nx.kamada_kawai_layout(graph, scale=10)
         pos_nodelist = {k: v for k, v in pos.items() if k in nodelist}
@@ -580,9 +590,24 @@ class PlotUtils(object):
 
         node_color = "#f3eabe"
 
-        colors = []
-        for _ in nodes_types:
-            colors.append(node_color)
+        # Create a temporary colors list based on the full data_raw nodes_types length
+        # This list represents colors for all original nodes according to data_raw
+        temp_colors_from_raw = []
+        for _ in nodes_types: # nodes_types comes from data_raw["graph_nodes_type"]
+            temp_colors_from_raw.append(node_color)
+        
+        # Prepare the final 'colors' list specifically for the 'graph' being plotted.
+        # This ensures 'colors' has exactly 'graph.number_of_nodes()' elements.
+        final_colors_for_graph = []
+        for n_id in graph.nodes(): # Iterate through the actual nodes in the graph to be plotted
+            if n_id < len(temp_colors_from_raw):
+                # If the node ID is within the range of original data_raw types, use its color
+                final_colors_for_graph.append(temp_colors_from_raw[n_id])
+            else:
+                # Fallback: If a node ID in 'graph' is not covered by 'nodes_types'
+                # (e.g., due to re-indexing or inconsistencies in data_raw), assign a default color.
+                final_colors_for_graph.append("gray") 
+        colors = final_colors_for_graph # Assign the correctly sized and mapped colors list
 
         edges_types = data_raw["edge_types"]
         all_edge_types = ["AST", "Data", "Control"]
@@ -620,6 +645,9 @@ class PlotUtils(object):
                 type_label = nodes_types[i]
 
             node_labels[i] = line_num + ":" + type_label
+
+        # 追加：グラフに含まれるノードのラベルのみにフィルタリング
+        node_labels = {k: v for k, v in node_labels.items() if k in graph.nodes()}
 
         self.plot_subgraph(
             graph,
