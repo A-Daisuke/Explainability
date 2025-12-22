@@ -558,7 +558,7 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
         
     return (
         node_types_list,
-        raw_codes_list,
+        node_stmt_list,
         node_embedding_list_ret,
         edge_list,
         edge_types,
