@@ -78,7 +78,7 @@ def handleJavaCode(filename, code_range):
 
         return nl_list, code_list
 
-
+"""
 babel_mapping = {
     "File": "CompilationUnit",
     "Program": "CompilationUnit",
@@ -122,6 +122,47 @@ babel_mapping = {
     "CommentBlock": "BlockComment",
     "CommentLine": "LineComment",
     "FunctionExpression": "MethodDeclaration" 
+}
+"""
+babel_mapping = {
+# --- 文 (Statements) -> 簡略化された型へ ---
+    "BlockStatement": "BlockStmt",
+    "ExpressionStatement": "ExpressionStmt",
+    "IfStatement": "IfStmt",
+    "ReturnStatement": "ReturnStmt",
+    "WhileStatement": "WhileStmt",
+    "ForStatement": "ForStmt",
+    "DoWhileStatement": "DoStmt",
+    "SwitchStatement": "SwitchStmt",
+    "SwitchCase": "SwitchEntry",
+    "BreakStatement": "BreakStmt",
+    "ContinueStatement": "ContinueStmt",
+    "TryStatement": "TryStmt",
+    "ThrowStatement": "ThrowStmt",
+    "CatchClause": "CatchStmt", # JavaParserのCatchStmtに対応
+    
+    # --- 関数定義 (MethodDeclarationとして扱う) ---
+    "FunctionDeclaration": "MethodDeclaration",
+    "FunctionExpression": "MethodDeclaration",
+    "ArrowFunctionExpression": "MethodDeclaration",
+    "ClassMethod": "MethodDeclaration",
+
+    # --- データフロー解析用 (表示はされないがグラフ構築に必要) ---
+    "VariableDeclaration": "ExpressionStmt",          # 文として表示させる
+    "VariableDeclarator": "VariableDeclarationExpr",  # データフロー解析用
+    "Identifier": "NameExpr",                         # 変数使用の追跡用
+    "CommentLine": "LineComment",
+    
+    # --- その他、必要であれば ---
+    # "Program": "CompilationUnit", 
+
+    # --- 削除するもの (Javaと同様にするためノード化しない) ---
+    # "BinaryExpression", "CallExpression", "AssignmentExpression",
+    # "MemberExpression", "UnaryExpression", "UpdateExpression",
+    # "NewExpression", "ArrayExpression", "ObjectExpression",
+    # "NumericLiteral", "StringLiteral", "BooleanLiteral", "NullLiteral",
+    # "VariableDeclarator" (親のVariableDeclarationでカバーするため不要)
+    # "ClassDeclaration" (JavaではMethodの中身を見ているためClass自体はノード化しないことが多い)
 }
 
 def ConvertBabelToGraph(json_content):
@@ -717,7 +758,8 @@ if __name__ == "__main__":
 
         # please change the name ("input_XXXXXX.pkl") if necessary
         # the "matrix" is not necessary here, it's for future studying
-        write_pkl(cpg_dataset[["input", "target", "file"]], "", "input.pkl")
+        root_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+        write_pkl(cpg_dataset[["input", "target", "file"]], root_path + "/", "input.pkl")
         print(f"Build pkl Successfully. Total graphs: {len(graph_input)}")
         
         # Verification

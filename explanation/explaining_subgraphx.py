@@ -207,7 +207,8 @@ def ExplainingPipeline():
     device = torch.device(
         "cuda:0" if torch.cuda.is_available() else "cpu"
     )  # initialize device
-    dataset = DatasetLoading("input.pkl")
+    root_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+    dataset = DatasetLoading(os.path.join(root_dir, "input.pkl"))
 
     # ----- module: load trained model (mainly hgcn, rgcn or ...) ------
     # 1. create model
