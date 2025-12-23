@@ -635,7 +635,8 @@ class PlotUtils(object):
                 and isinstance(index[i][1], dict)
                 and "beginLine" in index[i][1]
             ):
-                line_num = str(index[i][1]["beginLine"] - 1)
+            #    line_num = str(index[i][1]["beginLine"] - 1)
+                line_num = str(index[i][1]["beginLine"] )
             else:
                 line_num = "?"
 

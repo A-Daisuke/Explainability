@@ -122,8 +122,10 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
             ):
                 CriticalEdges.append(
                     (
-                        node_code_info[n_frm][1]["beginLine"] - 1,
-                        node_code_info[n_to][1]["beginLine"] - 1,
+                    #    node_code_info[n_frm][1]["beginLine"] - 1,
+                    #    node_code_info[n_to][1]["beginLine"] - 1,
+                        node_code_info[n_frm][1]["beginLine"] ,
+                        node_code_info[n_to][1]["beginLine"] ,
                     )
                 )
             else:
