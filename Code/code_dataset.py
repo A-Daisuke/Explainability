@@ -152,6 +152,7 @@ babel_mapping = {
     "VariableDeclarator": "VariableDeclarationExpr",  # データフロー解析用
     "Identifier": "NameExpr",                         # 変数使用の追跡用
     "CommentLine": "LineComment",
+    "CommentBlock": "BlockComment",
     
     # --- その他、必要であれば ---
     # "Program": "CompilationUnit", 
