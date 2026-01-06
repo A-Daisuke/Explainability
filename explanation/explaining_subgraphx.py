@@ -62,7 +62,10 @@ def Classification(model, dataset, graph_index):
     # 予測結果を取得
     prediction = probs.squeeze().argmax(-1).item()
 
-    return prediction
+    probs_squeezed = probs.squeeze()
+    prediction_score = probs_squeezed[0].item() * 1.0 + probs_squeezed[1].item() * 0.5 + probs_squeezed[2].item() * 0.0
+
+    return prediction, prediction_score
 
 
 def Explain(explainer, prediction, data, max_nodes):
@@ -207,6 +210,10 @@ def ExplainingPipeline():
     data_record = []
     y_true_list = []#実際の正解
     y_pred_list = []#予測結果
+    result_list = []#結果を格納するリスト
+
+    label_mapping = {0: "readable", 1: "neutral", 2: "unreadable"} 
+
     # データセット内の200個のグラフをループ
     loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
     for i, (data_input, data_raw) in enumerate(loader):
@@ -215,13 +222,20 @@ def ExplainingPipeline():
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
             
             # ----- モジュール: 分類 ------
-            prediction = Classification(gnnNets, dataset, i)
+            prediction, prediction_score = Classification(gnnNets, dataset, i)
             # y_true_list.append(data_input.y.item())
             if hasattr(data_input.y, 'item'):
                 y_true_list.append(data_input.y.item())
             else:
                 y_true_list.append(data_input.y)
             y_pred_list.append(prediction)
+
+            # 予測結果をリストに追加
+            result_list.append({
+                "name": data_raw["graph_name"],
+                "label": label_mapping[prediction],
+                "score": prediction_score
+            })
 
             #予測結果に応じて保存先ディレクトリを設定
             is_js_file = data_raw["graph_name"].endswith(".js")
@@ -244,6 +258,7 @@ def ExplainingPipeline():
                     save_dir = os.path.join("newResults_js", "Readable")
                 else:
                     save_dir = os.path.join("newResults", "readable")
+            print(f"予測スコア: {prediction_score:.4f}")
 
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
@@ -257,9 +272,9 @@ def ExplainingPipeline():
                 reward_method="mc_l_shapley",
                 save_dir=save_dir,
                 filename=data_raw["graph_name"],
-                rollout=10,        # デフォルト20 -> 10 (探索回数を減らす)
-                sample_num=50,     # デフォルト100 -> 50 (サンプリング数を減らす)
-                expand_atoms=10,   # デフォルト14 -> 10 (分岐数を減らす)
+                rollout=20,        # デフォルト20 -> 10 (探索回数を減らす)
+                sample_num=100,     # デフォルト100 -> 50 (サンプリング数を減らす)
+                expand_atoms=14,   # デフォルト14 -> 10 (分岐数を減らす)
             )
 
             # ----- モジュール: 説明 ------
@@ -286,7 +301,15 @@ def ExplainingPipeline():
             t_end_data = time.time()
             print(f"処理にかかった時間({data_raw['graph_name']}): {t_end_data - t_start_data:.3f} 秒")
             print("")
+    
+    sorted_results = sorted(result_list, key=lambda x: x['score'], reverse=True)
+    print("----- モデルの予測結果一覧 (スコア順) -----")
+    print("ファイル名, 予測結果, 予測スコア")
+    for res in sorted_results:
+        print(f"{sorted_results.index(res)+1}. {res['name']}, {res['label']}, {res['score']:.4f}")
 
+    # ----- モジュール: 分類レポートの生成 ------
+    '''
     target_names = ['readable', 'neutral', 'unreadable']
     print("\n" + "="*30 + "\n")
     print("---混合行列---")
@@ -349,6 +372,7 @@ def ExplainingPipeline():
         )
     )
     print("=" * 30 + "\n")
+    '''
 
     return data_record
 
