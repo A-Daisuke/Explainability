@@ -17,28 +17,27 @@ from sklearn.metrics import classification_report, confusion_matrix
 
 def DatasetLoading(pkl_path):
     """
-    --- module ---
-    load dataset (pkl file),
-    return a CodeDataset object,
-    which can be used in classification task
+    --- モジュール ---
+    データセット（pklファイル）を読み込み、
+    分類タスクで使用できるCodeDatasetオブジェクトを返します
     """
     print(f"Loading dataset from: {pkl_path}")
     pkl_file = pd.read_pickle(pkl_path)
 
-    # Sort by graph_name to ensure deterministic order
+    # graph_nameでソートして順序を確定させる
     pkl_file['sort_key'] = pkl_file['file'].apply(lambda x: x['graph_name'])
     pkl_file = pkl_file.sort_values(by='sort_key').reset_index(drop=True)
 
-    input_file = pkl_file["input"]  # dataset - data file
-    raw_file = pkl_file["file"]  # dataset - raw file
+    input_file = pkl_file["input"]  # データセット - データファイル
+    raw_file = pkl_file["file"]  # データセット - 生ファイル
     dataset = CodeDataset(input_file, raw_file)
     return dataset
 
 
 def ModelLoading(model, device):
     """
-    --- module ---
-    load model (gnn model with the best performance)
+    --- モジュール ---
+    モデル（最高性能のGNNモデル）を読み込みます
     """
     checkpoint_best = torch.load(
         os.path.join("Code", "checkpoint", "code_hh", "dmon_best_2.pth"),
@@ -51,27 +50,16 @@ def ModelLoading(model, device):
 
 def Classification(model, dataset, graph_index):
     """
-    --- module ---
-    feed data into model for classification task
+    --- モジュール ---
+    分類タスクのためにデータをモデルに入力します
     """
-    # get each graph
+    # 各グラフを取得
     data_input, data_raw = dataset[graph_index]
     print("分析対象のデータ: ", data_raw["graph_name"])
     
-    """
-    # DEBUG
-    print(f"DEBUG: x shape: {data_input.x.shape}")
-    print(f"DEBUG: edge_index shape: {data_input.edge_index.shape}")
-    if data_input.edge_index.numel() > 0:
-        print(f"DEBUG: edge_index max: {data_input.edge_index.max()}")
-        print(f"DEBUG: edge_index min: {data_input.edge_index.min()}")
-    else:
-        print("DEBUG: edge_index is empty")
-    """
-
-    # 选择图进行解释以及可视化
+    # 説明および可視化のためにグラフを選択
     probs, _ = model(data_input)
-    # get prediction result
+    # 予測結果を取得
     prediction = probs.squeeze().argmax(-1).item()
 
     return prediction
@@ -79,14 +67,14 @@ def Classification(model, dataset, graph_index):
 
 def Explain(explainer, prediction, data, max_nodes):
     """
-    --- module ---
-    explainer gives explanation based on prediction of gnn
+    --- モジュール ---
+    explainerはGNNの予測に基づいて説明を提供します
     """
     _, explanation_results, related_preds = explainer(data, max_nodes=max_nodes)
     result = find_closest_node_result(
         explanation_results[prediction], max_nodes=max_nodes
     )
-    # store edge list
+    # エッジリストを保存
     edge_list = []
     raw_egdeList = result.data.edge_index.numpy().tolist()
     for j in range(len(raw_egdeList[0])):
@@ -97,16 +85,10 @@ def Explain(explainer, prediction, data, max_nodes):
 
 def ExposedSource(explaining_result, data_raw, edgeList, data_record):
     """
-    --- module ---
-    get explanations: important index, important edges, code snippets
+    --- モジュール ---
+    説明（重要なインデックス、重要なエッジ、コードスニペット）を取得します
     """
-    # find all the critical nodes and code snippets
-    # for importantIndex in explaining_result.coalition:
-    #     print("(", importantIndex, ")", end="\n")
-    #     for element in range(2, 4):
-    #         for step_find in range(len(data_raw["graph_nodes_codes"][int(importantIndex)][element])):
-    #             print('\033[0:34m' + data_raw["graph_nodes_codes"][int(importantIndex)][element][step_find] + '\033[m')
-    # find all the critical edges
+    # すべての重要なエッジを検索
     node_code_info = data_raw["graph_nodes_codes"]
     CriticalEdges = []
     for n_frm, n_to in explaining_result.ori_graph.edges():
@@ -122,8 +104,6 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
             ):
                 CriticalEdges.append(
                     (
-                    #    node_code_info[n_frm][1]["beginLine"] - 1,
-                    #    node_code_info[n_to][1]["beginLine"] - 1,
                         node_code_info[n_frm][1]["beginLine"] ,
                         node_code_info[n_to][1]["beginLine"] ,
                     )
@@ -135,13 +115,9 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
         for (n_frm, n_to) in explaining_result.ori_graph.edges()
         if n_frm in explaining_result.coalition and n_to in explaining_result.coalition
     ]
-    # for EdgeTuple1, index in zip(edgeList, range(len(edgeList))):
-    #     for CriticalTuple in CriticalEdges:
-    #         EdgeTupleConfer = (node_code_info[EdgeTuple1[0]][1]['beginLine'], node_code_info[EdgeTuple1[1]][1]['beginLine'])
-    #         if operator.eq(EdgeTupleConfer, CriticalTuple):
-    #             print(EdgeTupleConfer, " index: ", index, " Type: ", data_raw['edge_types'][index])
+
     for criticalindex in range(len(CriticalEdges)):
-        # find index of edge in all edges
+        # すべてのエッジ内でのエッジのインデックスを検索
         index = edgeList.index(CriticalEdgesRaw[criticalindex])
         
         edge_type = "Unknown"
@@ -174,9 +150,9 @@ def ExposedSource(explaining_result, data_raw, edgeList, data_record):
 
 def recordInCSV(data_record):
     """
-    this function writes each row of data into a single csv
+    この関数はデータの各行を単一のCSVに書き込みます
     """
-    #change!!!
+    # 必要に応じて切り替え
     file_path = "statistics_readable.csv"
     #file_path = "statistics_neutral.csv"
     #file_path = "statistics_unreadable.csv"
@@ -202,78 +178,43 @@ def recordInCSV(data_record):
 
 def ExplainingPipeline():
     """
-    the entire pipeline of explanation; the classification task is based on graph
+    説明のパイプライン全体。分類タスクはグラフに基づいています
     """
 
-    # ----- module: load dataset ------
+    # ----- モジュール: データセットの読み込み ------
     device = torch.device(
         "cuda:0" if torch.cuda.is_available() else "cpu"
-    )  # initialize device
+    )  # デバイスの初期化
     root_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
     dataset = DatasetLoading(os.path.join(root_dir, "input.pkl"))
 
-    # ----- module: load trained model (mainly hgcn, rgcn or ...) ------
-    # 1. create model
+    # ----- モジュール: 学習済みモデルの読み込み (主にhgcn, rgcnなど) ------
+    # 1. モデルの作成
     gnnNets = DMon(data_args, model_args)
-    # 2. load best performance state
+    # 2. 最高性能の状態を読み込み
     ModelLoading(gnnNets, device)
-    # save final result
-    #save_dir = os.path.join("newResults", "readable")
-    #if not os.path.isdir(save_dir):
-    #    os.mkdir(save_dir)
 
-    # ----- 回避训练用的数据集，打开训练数据集看看哪些是被用于训练的 ------
-    # dataloader_list, dataloaderfull_list = get_cross_dataloader(data_args)
-    # 选第几折
-    # dataloader_exposed = dataloaderfull_list[1]
-    # train_graphs_set = set()
-    # for train_graph in dataloader_exposed["train"]:
-    #     for graph in train_graph["graph_name"]:
-    #         train_graphs_set.add(graph)
-
-    # ----- module: feed graph data into trained model for classification task ------
-    # final result
+    # ----- モジュール: 分類タスクのためにグラフデータを学習済みモデルに入力 ------
+    # 最終結果
     final_result = []
 
-    # 指定某图
-    # data_name = "Scalabrino125.java"
-    #change!!!
+    # 指定某データディレクトリ（必要に応じて切り替え）
     data_dir = "Dataset_js"
     # data_dir = "Dataset/Readable"
-    #data_dir = "Dataset/Neutral"
-    #data_dir = "Dataset/Unreadable"
-
-    # 判断选择图是否是训练集中的图数据
-    # if data_name in train_graphs_set:
-    #     print("------ This graph is in training set ------")
-    # else:
-    #     print("------ This graph is not in training set ------")
+    # data_dir = "Dataset/Neutral"
+    # data_dir = "Dataset/Unreadable"
 
     data_record = []
     y_true_list = []#実際の正解
     y_pred_list = []#予測結果
-    # loop 200 graphs in the dataset
+    # データセット内の200個のグラフをループ
     loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
     for i, (data_input, data_raw) in enumerate(loader):
         t_start_data = time.time()
-        # 选择图进行解释以及可视化
+        # 説明および可視化のためにグラフを選択
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
-            # if data_raw["graph_name"] in train_graphs_set:
-            #     print("------ This graph is in training set ------")
-            # else:
-            #     print("------ This graph is not in training set ------")
-            # ----- module: load explainer ------
-            #explainer = SubgraphX(
-            #    gnnNets,
-            #    num_classes=3,
-            #    device=device,
-            #    explain_graph=False,
-            #    reward_method="mc_l_shapley",
-            #    save_dir=save_dir,
-            #   filename=data_raw["graph_name"],
-            #)
-
-            # ----- module: classification ------
+            
+            # ----- モジュール: 分類 ------
             prediction = Classification(gnnNets, dataset, i)
             # y_true_list.append(data_input.y.item())
             if hasattr(data_input.y, 'item'):
@@ -286,21 +227,18 @@ def ExplainingPipeline():
             is_js_file = data_raw["graph_name"].endswith(".js")
 
             if prediction == 2:
-            #    print("------ Model believe it is unreadable ------")
                 print("------ モデルの予測結果：unreadable ------")
                 if is_js_file:
                     save_dir = os.path.join("newResults_js", "Unreadable")
                 else:
                     save_dir = os.path.join("newResults", "unreadable")
             elif prediction == 1:
-            #    print("------ Model believe it is neutral ------")
                 print("------ モデルの予測結果：neutral ------")
                 if is_js_file:
                     save_dir = os.path.join("newResults_js", "Neutral")
                 else:
                     save_dir = os.path.join("newResults", "neutral")
             elif prediction == 0:
-            #    print("------ Model believe it is readable ------")
                 print("------ モデルの予測結果：readable ------")
                 if is_js_file:
                     save_dir = os.path.join("newResults_js", "Readable")
@@ -310,16 +248,7 @@ def ExplainingPipeline():
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
 
-             # ----- module: load explainer ------
-            # explainer = SubgraphX(
-            #     gnnNets,
-            #     num_classes=3,
-            #     device=device,
-            #     explain_graph=False,
-            #     reward_method="mc_l_shapley",
-            #     save_dir=save_dir,
-            #     filename=data_raw["graph_name"],
-            # )
+             # ----- モジュール: explainerの読み込み ------
             explainer = SubgraphX(
                 gnnNets,
                 num_classes=3,
@@ -332,22 +261,15 @@ def ExplainingPipeline():
                 sample_num=50,     # デフォルト100 -> 50 (サンプリング数を減らす)
                 expand_atoms=10,   # デフォルト14 -> 10 (分岐数を減らす)
             )
-            # 目前只考虑对unreadable数据集中的图解释
-            #if prediction == 2:
-            #    print("------ Model believe it is unreadable ------")
-            #elif prediction == 1:
-            #    print("------ Model believe it is neutral ------")
-            #elif prediction == 0:
-            #    print("------ Model believe it is readable ------")
 
-            # ----- module: explain ------
+            # ----- モジュール: 説明 ------
             max_node = data_input.num_nodes // 2
             explaining_result, results, related_preds, edge_list = Explain(
                 explainer, prediction, data_input, max_node
             )
             final_result.append(related_preds[prediction])
 
-            # ----- module: visualization ------
+            # ----- モジュール: 可視化 ------
             plotutils = PlotUtils(dataset_name="code_readability")
             explainer.visualization(
                 results,
@@ -359,7 +281,7 @@ def ExplainingPipeline():
                 save_dir=save_dir,
             )
 
-            # ----- module: expose source code ------
+            # ----- モジュール: ソースコードの公開 ------
             ExposedSource(explaining_result, data_raw, edge_list, data_record)
             t_end_data = time.time()
             print(f"処理にかかった時間({data_raw['graph_name']}): {t_end_data - t_start_data:.3f} 秒")
@@ -432,8 +354,7 @@ def ExplainingPipeline():
 
 
 if __name__ == "__main__":
-    # max nodes control the critical nodes in the graph
+    # max nodesはグラフ内の重要なノードを制御します
     data_record = ExplainingPipeline()
-    #delete'#'
     recordInCSV(data_record)
     print("ok!")
