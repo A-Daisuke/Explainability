@@ -1,0 +1,14 @@
+const Benchmark = {
+    run: function() {
+        var VAR_1 = true;
+        var VAR_2 = 1;
+        var VAR_3 = "";
+        var VAR_4;
+        var VAR_5 = "undefined";
+        (typeof VAR_1)[0] == "u";
+        (typeof VAR_2)[0] == "u";
+        (typeof VAR_3)[0] == "u";
+        (typeof VAR_4)[0] == "u";
+        (typeof x)[0] == "u";
+    }
+};
