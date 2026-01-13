@@ -1,5 +1,7 @@
 import csv
 import os.path
+import json
+import re
 
 import pandas as pd
 import torch
@@ -183,6 +185,17 @@ def ExplainingPipeline():
     """
     説明のパイプライン全体。分類タスクはグラフに基づいています
     """
+    # --- JSONファイルの読み込みとマッピング作成 ---
+    root_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+    mb_json_path = os.path.join(root_dir, "microbenchmark", "mb_speed_diff_sort.json")
+
+    id_to_meditime = {}
+    if os.path.exists(mb_json_path):
+        with open(mb_json_path, 'r') as f:
+            mb_data = json.load(f)
+            for entry in mb_data:
+                # IDをキーにして mediTime を保存
+                id_to_meditime[entry['id']] = entry.get('slow-fast_mediTime', 'N/A')
 
     # ----- モジュール: データセットの読み込み ------
     device = torch.device(
@@ -217,7 +230,7 @@ def ExplainingPipeline():
     # データセット内の200個のグラフをループ
     loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
     for i, (data_input, data_raw) in enumerate(loader):
-        t_start_data = time.time()
+#        t_start_data = time.time()
         # 説明および可視化のためにグラフを選択
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
             
@@ -230,11 +243,20 @@ def ExplainingPipeline():
                 y_true_list.append(data_input.y)
             y_pred_list.append(prediction)
 
+            # ----- ファイル名からIDを抽出して mediTime を取得 -----
+            graph_name = data_raw["graph_name"]
+            mediTime = 'N/A'
+            match = re.search(r"pair_(\d+)_", graph_name)
+            if match:
+                file_id = int(match.group(1))
+                mediTime = id_to_meditime.get(file_id, 'N/A')
+
             # 予測結果をリストに追加
             result_list.append({
                 "name": data_raw["graph_name"],
                 "label": label_mapping[prediction],
-                "score": prediction_score
+                "score": prediction_score,
+                "mediTime": mediTime
             })
 
             #予測結果に応じて保存先ディレクトリを設定
@@ -262,6 +284,8 @@ def ExplainingPipeline():
 
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
+
+            '''説明をしないためコメントアウト
 
              # ----- モジュール: explainerの読み込み ------
             explainer = SubgraphX(
@@ -301,78 +325,57 @@ def ExplainingPipeline():
             t_end_data = time.time()
             print(f"処理にかかった時間({data_raw['graph_name']}): {t_end_data - t_start_data:.3f} 秒")
             print("")
+            '''
     
     sorted_results = sorted(result_list, key=lambda x: x['score'], reverse=True)
     print("----- モデルの予測結果一覧 (スコア順) -----")
-    print("ファイル名, 予測結果, 予測スコア")
-    for res in sorted_results:
-        print(f"{sorted_results.index(res)+1}. {res['name']}, {res['label']}, {res['score']:.4f}")
+    print("ファイル名, 予測結果, 予測スコア, 実行時間の差（fast-slow）")
+    
+    sorted_export_data = []
+    for i, res in enumerate(sorted_results):
+        print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}, {res['mediTime']}")
+        sorted_export_data.append({
+            "Rank": i + 1,
+            "File Name": res['name'],
+            "Prediction": res['label'],
+            "Score": res['score'],
+            "MediTime": res['mediTime']
+        })
 
-    # ----- モジュール: 分類レポートの生成 ------
-    '''
-    target_names = ['readable', 'neutral', 'unreadable']
-    print("\n" + "="*30 + "\n")
-    print("---混合行列---")
-    cm = confusion_matrix(y_true_list, y_pred_list, labels=[0, 1, 2])
-    print(cm)
-    if cm.shape == (3, 3):
-        # 0: readable (高い), 1: neutral (低い), 2: unreadable (低い)
-        
-        if data_dir == "Dataset/Readable":
-            print("Readableのデータのみ分類")
-            # 1. 可読性高い（正解）: 正解=0, 予測=0
-            cat1 = cm[0, 0]
-            # 2. 可読性高いを中間と分類: 正解=0, 予測=1
-            cat2 = cm[0, 1]
-            # 3. 可読性高いを低いと分類: 正解=0, 予測=2
-            cat3 = cm[0, 2]
-            print(f"1. 可読性高いと分類（正解）:{cat1}")
-            print(f"2. 可読性中間と分類　　　　:{cat2}")
-            print(f"3. 可読性低いと分類　　　　:{cat3}")
+    print("\n----- ペアごとのスコア差 (Slow - Fast) と実行時間差 -----")
+    print("ペアID, 可読性スコアの差 (Slow - Fast), 実行時間差 (Slow - Fast)")
 
+    pair_data = {}
+    for res in result_list:
+        name = res['name']
+        match = re.search(r"pair_(\d+)_(slow|fast)", name)
+        if match:
+            pair_id = int(match.group(1))
+            type_ = match.group(2)
+            if pair_id not in pair_data:
+                pair_data[pair_id] = {'slow': None, 'fast': None, 'mediTime': res['mediTime']}
+            pair_data[pair_id][type_] = res['score']
 
-        elif data_dir == "Dataset/Neutral":
-            print("Neutralのデータのみ分類")
-            # 1. 可読性中間を高いと分類: 正解=1, 予測=0
-            cat1 = cm[1, 0]
-            # 2. 可読性中間（正解）: 正解=1, 予測=1
-            cat2 = cm[1, 1]
-            # 3. 可読性中間を低いと分類: 正解=1, 予測=2
-            cat3 = cm[1, 2]
-            print(f"1. 可読性高いと分類　　　　:{cat1}")
-            print(f"2. 可読性中間と分類（正解）:{cat2}")
-            print(f"3. 可読性低いと分類　　　　:{cat3}")
+    pair_export_data = []
+    for pair_id in sorted(pair_data.keys()):
+        data = pair_data[pair_id]
+        if data['slow'] is not None and data['fast'] is not None:
+            score_diff = data['slow'] - data['fast']
+            print(f"pair{pair_id}, {score_diff:.4f}, {data['mediTime']}")
+            pair_export_data.append({
+                "Pair ID": f"pair{pair_id}",
+                "Score Diff (Slow - Fast)": score_diff,
+                "MediTime (Slow - Fast)": data['mediTime']
+            })
 
-        elif data_dir == "Dataset/Unreadable":
-            print("Unreadableのデータのみ分類")
-            # 1. 可読性低いを高いと分類: 正解=2, 予測=0
-            cat1 = cm[2, 0]
-            # 2. 可読性低いを中間と分類: 正解=2, 予測=1
-            cat2 = cm[2, 1]
-            # 3. 可読性低い（正解）: 正解=2, 予測=2
-            cat3 = cm[2, 2]
-            print(f"1. 可読性高いと分類　　　　:{cat1}")
-            print(f"2. 可読性中間と分類　　　　:{cat2}")
-            print(f"3. 可読性低いと分類（正解）:{cat3}")
-        
-        elif data_dir == "Dataset_js":
-            print("Dataset_jsのデータ分類 (ラベルなし/仮ラベル)")
-            # JS data might not have true labels, so confusion matrix might not be meaningful purely for accuracy
-            # But we can print what the model predicted
-            print(cm)
-
-    print("\n---精度レポート---")
-    print(
-        classification_report(
-            y_true_list,
-            y_pred_list,
-            labels=[0, 1, 2],
-            target_names=target_names,
-            zero_division=0,
-        )
-    )
-    print("=" * 30 + "\n")
-    '''
+    # Excel出力
+    try:
+        with pd.ExcelWriter('explanation_results.xlsx') as writer:
+            pd.DataFrame(sorted_export_data).to_excel(writer, sheet_name='Sorted Results', index=False)
+            pd.DataFrame(pair_export_data).to_excel(writer, sheet_name='Pair Differences', index=False)
+        print("\nExcel file 'explanation_results.xlsx' has been generated.")
+    except Exception as e:
+        print(f"\nFailed to generate Excel file: {e}")
 
     return data_record
 
