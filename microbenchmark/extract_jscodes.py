@@ -93,7 +93,7 @@ def extract_filtered_js_pairs(input_file, output_dir, num_pairs=200, min_lines=1
 # --- 設定 ---
 INPUT_FILE = 'mb_speed_diff_sort.json'
 OUTPUT_DIR = 'extracted_js_10lines'  # 分かりやすくフォルダ名を変更しています
-NUM_PAIRS = 100
+NUM_PAIRS = 500
 MIN_LINES = 10
 
 if __name__ == "__main__":

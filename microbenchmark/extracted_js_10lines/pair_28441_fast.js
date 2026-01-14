@@ -1,0 +1,38 @@
+const Benchmark = {
+    run: function() {
+        var VAR_1 =
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test" +
+          "Test";
+    }
+};

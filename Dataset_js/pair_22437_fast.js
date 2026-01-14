@@ -1,0 +1,19 @@
+const Benchmark = {
+    run: function() {
+        let VAR_1 = null;
+        let VAR_2 = null;
+        let VAR_3 = null;
+        let VAR_4 = null;
+        let VAR_5 = null;
+        let VAR_6 = 1;
+        let VAR_7 = 123;
+        let VAR_8 = 242342376823;
+        let VAR_9 = 2342342;
+        let VAR_10 = 234234728934923230;
+        VAR_1 = "" + VAR_6;
+        VAR_2 = "" + VAR_7;
+        VAR_3 = "" + VAR_8;
+        VAR_4 = "" + VAR_9;
+        VAR_5 = "" + VAR_10;
+    }
+};
