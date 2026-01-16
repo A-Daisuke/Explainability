@@ -342,8 +342,8 @@ def ExplainingPipeline():
             "MediTime": res['mediTime']
         })
 
-    print("\n----- ペアごとのスコア差 (Slow - Fast) と実行時間差 -----")
-    print("ペアID, 可読性スコアの差 (Slow - Fast), 実行時間差 (Slow - Fast)")
+    print("\n----- ペアごとのスコア差 (Fast - Slow) と実行時間差 -----")
+    print("ペアID, 可読性スコアの差 (Fast - Slow), 実行時間差 (Slow - Fast)")
 
     pair_data = {}
     for res in result_list:
@@ -360,11 +360,11 @@ def ExplainingPipeline():
     for pair_id in sorted(pair_data.keys()):
         data = pair_data[pair_id]
         if data['slow'] is not None and data['fast'] is not None:
-            score_diff = data['slow'] - data['fast']
+            score_diff = data['fast'] - data['slow']
             print(f"pair{pair_id}, {score_diff:.4f}, {data['mediTime']}")
             pair_export_data.append({
                 "Pair ID": f"pair{pair_id}",
-                "Score Diff (Slow - Fast)": score_diff,
+                "Score Diff (Fast - Slow)": score_diff,
                 "MediTime (Slow - Fast)": data['mediTime']
             })
 
