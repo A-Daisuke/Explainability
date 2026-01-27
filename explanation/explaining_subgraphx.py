@@ -214,8 +214,10 @@ def ExplainingPipeline():
     # 最終結果
     final_result = []
 
+    #change!!!
     # 指定某データディレクトリ（必要に応じて切り替え）
-    data_dir = "Dataset_js"
+    #data_dir = "Dataset_js"
+    data_dir = "Dataset_js_repository"
     # data_dir = "Dataset/Readable"
     # data_dir = "Dataset/Neutral"
     # data_dir = "Dataset/Unreadable"

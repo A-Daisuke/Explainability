@@ -1585,6 +1585,7 @@ def get_one_sample(json_path, java_path):
 
 
 if __name__ == "__main__":
+    sっあ
     N_PATHS_AST = "Dataset/Neutral"
     R_PATHS_AST = "Dataset/Readable"
     U_PATHS_AST = "Dataset/Unreadable"

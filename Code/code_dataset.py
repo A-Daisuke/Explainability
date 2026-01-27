@@ -684,11 +684,13 @@ def ast_edges_handle(node_stmt_list, edge_list, edge_type):
 
 
 if __name__ == "__main__":
+    #change!!!
     # N_PATHS_AST = "Dataset/Neutral"
     # R_PATHS_AST = "Dataset/Readable"
     # U_PATHS_AST = "Dataset/Unreadable"
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    JS_PATH = os.path.join(script_dir, "../Dataset_js")
+  #  JS_PATH = os.path.join(script_dir, "../Dataset_js")
+    JS_PATH = os.path.join(script_dir, "../Dataset_js_repository")
     
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
     model = AutoModel.from_pretrained("microsoft/codebert-base")
