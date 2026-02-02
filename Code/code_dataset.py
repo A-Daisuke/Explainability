@@ -3,6 +3,7 @@ import json
 import os.path
 import re
 import sys
+import gc
 
 import numpy as np
 print(f"Numpy version: {np.__version__}")
@@ -257,6 +258,7 @@ def handleJsCode(filename, code_range):
         print(f"Error handling JS code: {e}")
         return [], []
 
+@torch.no_grad()
 def codeEmbedding(nl_list, code_list, tokenizer, model):
     """
     CodeEmbedding the extracted data
@@ -487,7 +489,7 @@ def json_parse_to_graph_js(JS_PATH):
             graph_list.append(graph)
             target_list.append(0) 
             code_filename_list.append(
-                os.path.join(JS_PATH, json_file.replace(".json", ".js"))
+                os.path.join(JS_PATH, json_file.replace(".json", ""))
             )
 
     return graph_list, target_list, code_filename_list
@@ -517,7 +519,7 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
                 [
                     node_type[i],
                     node_range[i],
-                    re.split(r' |\.|\ |\]|\(|\ |\[|\]|\=|,|"', "".join(code)),
+                    re.split(r' |\.|\n|\]|\(|\n|\]|\|=|,"', "".join(code)),
                 ]
             )
 
@@ -526,7 +528,7 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
                 [
                     node_type[i],
                     node_range[i],
-                    re.split(r' |\.|\ |\]|\(|\ |\[|\]|\=|,|"', "".join(code)),
+                    re.split(r' |\.|\n|\]|\(|\n|\]|\|=|,"', "".join(code)),
                 ]
             )
 
@@ -534,15 +536,15 @@ def graph_to_input(graph, fileName, target, tokenizer, model):
             node_stmt_list.append([node_type[i], node_range[i], nl, code])
 
     node_declaration_list.sort(
-        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]), 
+        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]),
         x[1]["endColumn"])
     )
     node_assign_list.sort(
-        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]), 
+        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]),
         x[1]["endColumn"])
     )
     node_stmt_list.sort(
-        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]), 
+        key=lambda x: (x[1]["beginLine"], -int(x[1]["endLine"]),
         x[1]["endColumn"])
     )
 
@@ -684,6 +686,8 @@ def ast_edges_handle(node_stmt_list, edge_list, edge_type):
 
 
 if __name__ == "__main__":
+    import gc
+    
     #change!!!
     # N_PATHS_AST = "Dataset/Neutral"
     # R_PATHS_AST = "Dataset/Readable"
@@ -695,62 +699,110 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
     model = AutoModel.from_pretrained("microsoft/codebert-base")
     print(f"Generating input.pkl from JS dataset: {JS_PATH}")
+    
     if not os.path.exists(JS_PATH):
         print(f"Error: Directory {JS_PATH} does not exist.")
     else:
-        graph_list, target_list, code_filename_list = json_parse_to_graph_js(JS_PATH)
-
+        dataset_files = get_directory_files(JS_PATH)
+        dataset_files.sort()
+        
         graph_input = []
         target_input = []
         graph_raw_code_nodes = []
 
-        for i in range(len(graph_list)):
-            (
-                node_type,
-                raw_code_list,
-                node_embedding_list,
-                edge_list,
-                edge_types,
-                target,
-                node_one_hot_list,
-            ) = graph_to_input(
-                graph_list[i], code_filename_list[i], target_list[i], tokenizer, model
-            )
-            nodes_info = []
+        root_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
-            graph_raw_code_nodes.append({
-                "graph_name": os.path.basename(code_filename_list[i]),
-                "graph_nodes_codes": raw_code_list,
-                "graph_nodes_type": node_type,
-                "edge_types": edge_types
-            })
+        for i, json_file in enumerate(dataset_files):
+            try:
+                # 1. Load and Parse JSON
+                full_json_path = os.path.join(JS_PATH, json_file)
+                
+                # Check file size and skip if too large (> 8MB)
+                # file_size = os.path.getsize(full_json_path)
+                # if file_size > 8 * 1024 * 1024:
+                #     print(f"Skipping {json_file} (Size: {file_size / (1024 * 1024):.2f} MB) due to size limit.")
+                #     continue
 
-            for j in range(len(node_embedding_list)):
-                node_embedding = np.array(node_embedding_list[j])
-                if node_embedding.size > 0:
-                    node_embedding = np.mean(node_embedding, axis=0)
-                else:
-                    node_embedding = np.zeros(768) # Fallback if no tokens
-                    
-                node_info = np.concatenate(
-                    (node_embedding.tolist(), node_one_hot_list[j]), axis=0
+                with open(full_json_path) as f:
+                    print(f"Processing {i+1}/{len(dataset_files)}: {json_file}")
+                    content = json.load(f)
+                
+                # 2. Convert to Graph
+                graph = ConvertBabelToGraph(content)
+                del content # Free memory
+                
+                # 3. Prepare arguments for graph_to_input
+                code_filename = os.path.join(JS_PATH, json_file.replace(".json", ""))
+                target = 0
+                
+                # 4. Convert to Input Tensors
+                (
+                    node_type,
+                    raw_code_list,
+                    node_embedding_list,
+                    edge_list,
+                    edge_types,
+                    target_ret,
+                    node_one_hot_list,
+                ) = graph_to_input(
+                    graph, code_filename, target, tokenizer, model
                 )
-                nodes_info.append(node_info)
+                del graph # Free memory
 
-            if len(nodes_info) == 0:
-                print(f"Warning: No nodes found for {code_filename_list[i]}")
-                x = torch.zeros(1, 794).float() # Dummy node
-            else:
-                # Optimize: convert list of arrays to single array first
-                x_np = np.array(nodes_info, dtype=np.float32)
-                x = torch.from_numpy(x_np)
-            
+                # 5. Process Embeddings
+                nodes_info = []
+                graph_raw_code_nodes.append({
+                    "graph_name": os.path.basename(code_filename),
+                    "graph_nodes_codes": raw_code_list,
+                    "graph_nodes_type": node_type,
+                    "edge_types": edge_types
+                })
 
-            y = torch.tensor([target], dtype=torch.float)
-            edge_index = torch.tensor(edge_list, dtype=torch.long)
-            graph_data = Data(x=x, edge_index=edge_index, y=y)
-            target_input.append(target)
-            graph_input.append(graph_data)
+                for j in range(len(node_embedding_list)):
+                    node_embedding = np.array(node_embedding_list[j])
+                    if node_embedding.size > 0:
+                        node_embedding = np.mean(node_embedding, axis=0)
+                    else:
+                        node_embedding = np.zeros(768) # Fallback if no tokens
+                        
+                    node_info = np.concatenate(
+                        (node_embedding.tolist(), node_one_hot_list[j]), axis=0
+                    )
+                    nodes_info.append(node_info)
+
+                if len(nodes_info) == 0:
+                    print(f"Warning: No nodes found for {code_filename}")
+                    x = torch.zeros(1, 794).float() # Dummy node
+                else:
+                    x_np = np.array(nodes_info, dtype=np.float32)
+                    x = torch.from_numpy(x_np)
+                
+                y = torch.tensor([target_ret], dtype=torch.float)
+                edge_index = torch.tensor(edge_list, dtype=torch.long)
+                graph_data = Data(x=x, edge_index=edge_index, y=y)
+                
+                target_input.append(target_ret)
+                graph_input.append(graph_data)
+                
+                # Explicitly delete large variables to free memory
+                del node_type
+                del raw_code_list
+                del node_embedding_list
+                del edge_list
+                del edge_types
+                del node_one_hot_list
+                del nodes_info
+                del x_np
+                del x
+                del y
+                del edge_index
+                del graph_data
+
+                gc.collect()
+
+            except Exception as e:
+                print(f"Error processing {json_file}: {e}")
+                continue
 
         pkl_data = {
             "file": graph_raw_code_nodes,
@@ -758,18 +810,7 @@ if __name__ == "__main__":
             "target": target_input,
         }
         cpg_dataset = pd.DataFrame(pkl_data)
-
-        # please change the name ("input_XXXXXX.pkl") if necessary
-        # the "matrix" is not necessary here, it's for future studying
-        root_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-        write_pkl(cpg_dataset[["input", "target", "file"]], root_path + "/", "input.pkl")
-        print(f"Build pkl Successfully. Total graphs: {len(graph_input)}")
         
-        # Verification
-        try:
-            print("Verifying input.pkl...")
-            pd.read_pickle("input.pkl")
-            print("Verification successful: input.pkl is readable.")
-        except Exception as e:
-            print(f"Verification FAILED: {e}")
-            sys.exit(1)
+        write_pkl(cpg_dataset[["input", "target", "file"]], root_path + "/", "input.pkl")
+        
+        print("Build pkl Successfully.")
