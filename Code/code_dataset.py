@@ -732,7 +732,13 @@ if __name__ == "__main__":
                 del content # Free memory
                 
                 # 3. Prepare arguments for graph_to_input
-                code_filename = os.path.join(JS_PATH, json_file.replace(".json", ""))
+                # Remove .json extension
+                base_name = json_file.replace(".json", "")
+                # Ensure .js extension is present
+                if not base_name.endswith(".js"):
+                    base_name += ".js"
+                
+                code_filename = os.path.join(JS_PATH, base_name)
                 target = 0
                 
                 # 4. Convert to Input Tensors

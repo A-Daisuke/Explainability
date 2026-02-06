@@ -232,7 +232,7 @@ def ExplainingPipeline():
     # データセット内の200個のグラフをループ
     loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
     for i, (data_input, data_raw) in enumerate(loader):
-#        t_start_data = time.time()
+        t_start_data = time.time()
         # 説明および可視化のためにグラフを選択
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
             
@@ -261,33 +261,45 @@ def ExplainingPipeline():
                 "mediTime": mediTime
             })
 
-            #予測結果に応じて保存先ディレクトリを設定
+            # 予測結果に応じて保存先ディレクトリを設定
             is_js_file = data_raw["graph_name"].endswith(".js")
+
+            # スコアに基づくサブディレクトリ名の決定
+            score_val = int(prediction_score * 100)
+            if score_val == 100:
+                score_range_dir = "100"
+            else:
+                lower_bound = (score_val // 10) * 10
+                upper_bound = lower_bound + 9
+                score_range_dir = f"{lower_bound}-{upper_bound}"
 
             if prediction == 2:
                 print("------ モデルの予測結果：unreadable ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Unreadable")
+                    save_dir = os.path.join("newResults_js", "Unreadable", score_range_dir)
+                    #save_dir = os.path.join("newResults_js_repository", "Unreadable", score_range_dir)
                 else:
-                    save_dir = os.path.join("newResults", "unreadable")
+                    save_dir = os.path.join("newResults", "unreadable", score_range_dir)
             elif prediction == 1:
                 print("------ モデルの予測結果：neutral ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Neutral")
+                    save_dir = os.path.join("newResults_js", "Neutral", score_range_dir)
+                    #save_dir = os.path.join("newResults_js_repository", "Neutral", score_range_dir)
                 else:
-                    save_dir = os.path.join("newResults", "neutral")
+                    save_dir = os.path.join("newResults", "neutral", score_range_dir)
             elif prediction == 0:
                 print("------ モデルの予測結果：readable ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Readable")
+                    save_dir = os.path.join("newResults_js", "Readable", score_range_dir)
+                    #save_dir = os.path.join("newResults_js_repository", "Readable", score_range_dir)
                 else:
-                    save_dir = os.path.join("newResults", "readable")
+                    save_dir = os.path.join("newResults", "readable", score_range_dir)
             print(f"予測スコア: {prediction_score:.4f}")
 
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
 
-            '''説明をしないためコメントアウト
+        #    '''説明をしないためコメントアウト
 
              # ----- モジュール: explainerの読み込み ------
             explainer = SubgraphX(
@@ -327,15 +339,17 @@ def ExplainingPipeline():
             t_end_data = time.time()
             print(f"処理にかかった時間({data_raw['graph_name']}): {t_end_data - t_start_data:.3f} 秒")
             print("")
-            '''
+        #    '''
     
     sorted_results = sorted(result_list, key=lambda x: x['score'], reverse=True)
     print("----- モデルの予測結果一覧 (スコア順) -----")
-    print("ファイル名, 予測結果, 予測スコア, 実行時間の差（fast-slow）")
+    #print("ファイル名, 予測結果, 予測スコア, 実行時間の差（fast-slow）")
+    print("ファイル名, 予測結果, 予測スコア")
     
     sorted_export_data = []
     for i, res in enumerate(sorted_results):
-        print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}, {res['mediTime']}")
+        #print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}, {res['mediTime']}")
+        print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}")
         sorted_export_data.append({
             "Rank": i + 1,
             "File Name": res['name'],
