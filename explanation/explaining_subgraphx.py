@@ -216,11 +216,12 @@ def ExplainingPipeline():
 
     #change!!!
     # 指定某データディレクトリ（必要に応じて切り替え）
-    data_dir = "Dataset_js"
+    #data_dir = "Dataset_js"
     #data_dir = "Dataset_js_repository"
     # data_dir = "Dataset/Readable"
     # data_dir = "Dataset/Neutral"
     # data_dir = "Dataset/Unreadable"
+    data_dir = "method_dataset/pair1/Date_now"
 
     data_record = []
     y_true_list = []#実際の正解
@@ -277,22 +278,25 @@ def ExplainingPipeline():
             if prediction == 2:
                 print("------ モデルの予測結果：unreadable ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Unreadable", score_range_dir)
+                    #save_dir = os.path.join("newResults_js", "Unreadable", score_range_dir)
                     #save_dir = os.path.join("newResults_js_repository", "Unreadable", score_range_dir)
+                    save_dir = os.path.join("method_dataset/pair1/Date_now", "Unreadable", score_range_dir)
                 else:
                     save_dir = os.path.join("newResults", "unreadable", score_range_dir)
             elif prediction == 1:
                 print("------ モデルの予測結果：neutral ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Neutral", score_range_dir)
+                    #save_dir = os.path.join("newResults_js", "Neutral", score_range_dir)
                     #save_dir = os.path.join("newResults_js_repository", "Neutral", score_range_dir)
+                    save_dir = os.path.join("method_dataset/pair1/Date_now", "Neutral", score_range_dir)
                 else:
                     save_dir = os.path.join("newResults", "neutral", score_range_dir)
             elif prediction == 0:
                 print("------ モデルの予測結果：readable ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Readable", score_range_dir)
+                    #save_dir = os.path.join("newResults_js", "Readable", score_range_dir)
                     #save_dir = os.path.join("newResults_js_repository", "Readable", score_range_dir)
+                    save_dir = os.path.join("method_dataset/pair1/Date_now", "Readable", score_range_dir)
                 else:
                     save_dir = os.path.join("newResults", "readable", score_range_dir)
             print(f"予測スコア: {prediction_score:.4f}")
