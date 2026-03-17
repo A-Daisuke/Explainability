@@ -1,0 +1,60 @@
+function __method_wrapper__() {
+  visitImport(imported) {
+    this.return++;
+
+    var path = this.visit(imported.path).first
+      , nodeName = imported.once ? 'require' : 'import'
+      , found
+      , literal;
+
+    this.return--;
+    debug('import %s', path);
+
+    // url() passed
+    if ('url' == path.name) {
+      if (imported.once) throw new Error('You cannot @require a url');
+
+      return imported;
+    }
+
+    // Ensure string
+    if (!path.string) throw new Error('@' + nodeName + ' string expected');
+
+    var name = path = path.string;
+
+    // Absolute URL or hash
+    if (/(?:url\s*\(\s*)?['"]?(?:#|(?:https?:)?\/\/)/i.test(path)) {
+      if (imported.once) throw new Error('You cannot @require a url');
+      return imported;
+    }
+
+    // Literal
+    if (/\.css(?:"|$)/.test(path)) {
+      literal = true;
+      if (!imported.once && !this.includeCSS) {
+        return imported;
+      }
+    }
+
+    // support optional .styl
+    if (!literal && !/\.styl$/i.test(path)) path += '.styl';
+
+    // Lookup
+    found = utils.find(path, this.paths, this.filename);
+    if (!found) {
+      found = utils.lookupIndex(name, this.paths, this.filename);
+    }
+
+    // Throw if import failed
+    if (!found) throw new Error('failed to locate @' + nodeName + ' file ' + path);
+
+    var block = new nodes.Block;
+
+    for (var i = 0, len = found.length; i < len; ++i) {
+      block.push(importFile.call(this, imported, found[i], literal));
+    }
+
+    return block;
+  };
+
+}

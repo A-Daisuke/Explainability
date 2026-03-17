@@ -1,0 +1,19 @@
+function __method_wrapper__() {
+        ProcManExecVariant.implementation = function(cmd, env, directory, stdin, stdout, stderr, redirect) {
+            var fake_cmd = cmd;
+            for (var i = 0; i < cmd.length; i = i + 1) {
+                var tmp_cmd = cmd[i];
+                if (tmp_cmd.indexOf("getprop") != -1 || tmp_cmd == "mount" || tmp_cmd.indexOf("build.prop") != -1 || tmp_cmd == "id") {
+                    var fake_cmd = ["grep"];
+                    send("Bypass " + cmdarr + " command");
+                }
+
+                if (tmp_cmd == "su") {
+                    var fake_cmd = ["justafakecommandthatcannotexistsusingthisshouldthowanexceptionwheneversuiscalled"];
+                    send("Bypass " + cmdarr + " command");
+                }
+            }
+            return ProcManExecVariant.call(this, fake_cmd, env, directory, stdin, stdout, stderr, redirect);
+        };
+
+}

@@ -57,7 +57,7 @@ def Classification(model, dataset, graph_index):
     """
     # 各グラフを取得
     data_input, data_raw = dataset[graph_index]
-    print("分析対象のデータ: ", data_raw["graph_name"])
+    print(f"分析対象のデータ ({graph_index+1}/{len(dataset)}): {data_raw['graph_name']}")    
     
     # 説明および可視化のためにグラフを選択
     probs, _ = model(data_input)
@@ -216,8 +216,8 @@ def ExplainingPipeline():
 
     #change!!!
     # 指定某データディレクトリ（必要に応じて切り替え）
-    #data_dir = "Dataset_js"
-    data_dir = "Dataset_js_repository"
+    data_dir = "Dataset_js"
+    #data_dir = "Dataset_js_repository"
     # data_dir = "Dataset/Readable"
     # data_dir = "Dataset/Neutral"
     # data_dir = "Dataset/Unreadable"
@@ -273,6 +273,7 @@ def ExplainingPipeline():
                 upper_bound = lower_bound + 9
                 score_range_dir = f"{lower_bound}-{upper_bound}"
 
+            #change!!!
             if prediction == 2:
                 print("------ モデルの予測結果：unreadable ------")
                 if is_js_file:
@@ -299,7 +300,7 @@ def ExplainingPipeline():
             if not os.path.exists(save_dir):
                 os.makedirs(save_dir)
 
-        #    '''説明をしないためコメントアウト
+            '''説明をしないためコメントアウト
 
              # ----- モジュール: explainerの読み込み ------
             explainer = SubgraphX(
@@ -339,7 +340,7 @@ def ExplainingPipeline():
             t_end_data = time.time()
             print(f"処理にかかった時間({data_raw['graph_name']}): {t_end_data - t_start_data:.3f} 秒")
             print("")
-        #    '''
+            '''
     
     sorted_results = sorted(result_list, key=lambda x: x['score'], reverse=True)
     print("----- モデルの予測結果一覧 (スコア順) -----")

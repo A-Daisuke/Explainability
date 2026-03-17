@@ -1,0 +1,19 @@
+function __method_wrapper__() {
+test('return cors headers if env vars specify wildcard', async (t) => {
+	const url = new URL('/api', await base)
+
+	const restore = mockedEnv({
+		ACKEE_ALLOW_ORIGIN: '*',
+	})
+
+	const { headers } = await fetch(url.href)
+
+	t.is(headers.get('Access-Control-Allow-Origin'), '*')
+	t.is(headers.get('Access-Control-Allow-Methods'), 'GET, POST, PATCH, OPTIONS')
+	t.is(headers.get('Access-Control-Allow-Headers'), 'Content-Type, Authorization, Time-Zone')
+	t.is(headers.get('Access-Control-Allow-Credentials'), 'true')
+	t.is(headers.get('Access-Control-Max-Age'), '3600')
+
+	restore()
+})
+}
