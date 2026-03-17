@@ -302,20 +302,33 @@ class PlotUtils(object):
         pos = nx.kamada_kawai_layout(graph, scale=10)
         pos_nodelist = {k: v for k, v in pos.items() if k in nodelist}
 
+        # Filter colors to match nodelist
+        # Assuming 'colors' input corresponds to list(graph.nodes())
+        if isinstance(colors, list) and len(colors) == graph.number_of_nodes():
+            node_to_color = {node: color for node, color in zip(graph.nodes(), colors)}
+            filtered_colors = [node_to_color[node] for node in nodelist]
+        else:
+            # If colors is a single string or mismatch, handle gracefully (though mismatch caused the error)
+            filtered_colors = colors
+
         nx.draw_networkx_nodes(
-            graph, pos, nodelist=list(graph.nodes()), node_color=colors, node_size=300
+            graph, pos, nodelist=nodelist, node_color=filtered_colors, node_size=300
         )
 
-        nx.draw_networkx_edges(
-            graph,
-            pos,
-            edgelist=edgelist,
-            width=3,
-            edge_color=edge_color,
-            arrows=True,
-            arrowstyle="->",
-            arrowsize=10,
-        )
+        #nx.draw_networkx_nodes(
+        #    graph, pos, nodelist=list(graph.nodes()), node_color=colors, node_size=300
+        #)
+
+        # nx.draw_networkx_edges(
+        #     graph,
+        #     pos,
+        #     edgelist=edgelist,
+        #     width=3,
+        #     edge_color=edge_color,
+        #     arrows=True,
+        #     arrowstyle="->",
+        #     arrowsize=10,
+        # )
 
         nx.draw_networkx_edges(
             graph,
@@ -329,7 +342,11 @@ class PlotUtils(object):
         )
 
         if labels is not None:
-            nx.draw_networkx_labels(graph, pos, labels)
+            # Filter labels to include only those in nodelist
+            filtered_labels = {k: v for k, v in labels.items() if k in nodelist}
+            #nx.draw_networkx_labels(graph, pos, labels)
+            nx.draw_networkx_labels(graph, pos, filtered_labels)
+            
 
         plt.axis("off")
         if title_sentence is not None:

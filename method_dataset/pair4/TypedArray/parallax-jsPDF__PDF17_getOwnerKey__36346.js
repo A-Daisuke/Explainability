@@ -1,0 +1,21 @@
+const __obj__ = {
+            getOwnerKey: function PDF17_getOwnerKey(
+              password,
+              ownerKeySalt,
+              userBytes,
+              ownerEncryption
+            ) {
+              var hashData = new Uint8Array(password.length + 56);
+              hashData.set(password, 0);
+              hashData.set(ownerKeySalt, password.length);
+              hashData.set(userBytes, password.length + ownerKeySalt.length);
+              var key = calculateSHA256(hashData, 0, hashData.length);
+              var cipher = new AES256Cipher(key);
+              return cipher.decryptBlock(
+                ownerEncryption,
+                false,
+                new Uint8Array(16)
+              );
+            },
+
+};

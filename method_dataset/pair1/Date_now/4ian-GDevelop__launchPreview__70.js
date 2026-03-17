@@ -1,0 +1,172 @@
+function __method_wrapper__() {
+  launchPreview = async (previewOptions: PreviewOptions): Promise<any> => {
+    const { project, layout, externalLayout, numberOfWindows } = previewOptions;
+    this.setState({
+      error: null,
+    });
+
+    const debuggerIds = this.getPreviewDebuggerServer().getExistingDebuggerIds();
+    const lastDebuggerId = debuggerIds.length
+      ? debuggerIds[debuggerIds.length - 1]
+      : null;
+    const shouldHotReload = previewOptions.hotReload && lastDebuggerId !== null;
+
+    // We abuse the "hot reload" to choose if we open a new window or replace
+    // the content of an existing one. But hot reload is NOT implemented (yet -
+    // it would need to generate the preview in the same place and trigger a reload
+    // of the scripts).
+    const existingPreviewWindow = shouldHotReload
+      ? getExistingPreviewWindowForDebuggerId(lastDebuggerId)
+      : null;
+
+    const previewWindows = existingPreviewWindow
+      ? [existingPreviewWindow]
+      : Array.from({ length: numberOfWindows }, () => {
+          try {
+            return immediatelyOpenNewPreviewWindow(project);
+          } catch (error) {
+            console.error(
+              'Unable to open a new preview window - this window will be ignored:',
+              error
+            );
+            return null;
+          }
+        }).filter(Boolean);
+
+    try {
+      await this.getPreviewDebuggerServer().startServer({
+        origin: new URL(getBaseUrl()).origin,
+      });
+    } catch (err) {
+      // Ignore any error when running the debugger server - the preview
+      // can still work without it.
+      console.error(
+        'Unable to start the Debugger Server for the preview:',
+        err
+      );
+    }
+
+    try {
+      const {
+        exporter,
+        outputDir,
+        browserS3FileSystem,
+      } = await this._prepareExporter();
+
+      const previewExportOptions = new gd.PreviewExportOptions(
+        project,
+        outputDir
+      );
+      previewExportOptions.setLayoutName(layout.getName());
+      previewExportOptions.setIsDevelopmentEnvironment(Window.isDev());
+      if (externalLayout) {
+        previewExportOptions.setExternalLayoutName(externalLayout.getName());
+      }
+
+      if (isNativeMobileApp()) {
+        previewExportOptions.useMinimalDebuggerClient();
+      } else {
+        previewExportOptions.useWindowMessageDebuggerClient();
+      }
+
+      // Scripts generated from extensions keep the same URL even after being modified.
+      // Use a cache bursting parameter to force the browser to reload them.
+      previewExportOptions.setNonRuntimeScriptsCacheBurst(Date.now());
+
+      previewExportOptions.setFullLoadingScreen(
+        previewOptions.fullLoadingScreen
+      );
+
+      previewExportOptions.setNativeMobileApp(isNativeMobileApp());
+      previewExportOptions.setGDevelopVersionWithHash(getIDEVersionWithHash());
+      previewExportOptions.setCrashReportUploadLevel(
+        this.props.crashReportUploadLevel
+      );
+      previewExportOptions.setPreviewContext(this.props.previewContext);
+      previewExportOptions.setProjectTemplateSlug(project.getTemplateSlug());
+      previewExportOptions.setSourceGameId(this.props.sourceGameId);
+
+      if (previewOptions.inAppTutorialMessageInPreview) {
+        previewExportOptions.setInAppTutorialMessageInPreview(
+          previewOptions.inAppTutorialMessageInPreview,
+          previewOptions.inAppTutorialMessagePositionInPreview
+        );
+      }
+
+      if (previewOptions.fallbackAuthor) {
+        previewExportOptions.setFallbackAuthor(
+          previewOptions.fallbackAuthor.id,
+          previewOptions.fallbackAuthor.username
+        );
+      }
+      if (previewOptions.authenticatedPlayer) {
+        previewExportOptions.setAuthenticatedPlayer(
+          previewOptions.authenticatedPlayer.playerId,
+          previewOptions.authenticatedPlayer.playerUsername,
+          previewOptions.authenticatedPlayer.playerToken
+        );
+      }
+      if (previewOptions.captureOptions.screenshots) {
+        previewOptions.captureOptions.screenshots.forEach(screenshot => {
+          previewExportOptions.addScreenshotCapture(
+            screenshot.delayTimeInSeconds,
+            screenshot.signedUrl,
+            screenshot.publicUrl
+          );
+        });
+      }
+
+      // The token, if any, to be used to read resources on GDevelop Cloud buckets.
+      const gdevelopResourceToken = getGDevelopResourceJwtToken();
+      if (gdevelopResourceToken)
+        previewExportOptions.setGDevelopResourceToken(gdevelopResourceToken);
+
+      exporter.exportProjectForPixiPreview(previewExportOptions);
+      previewExportOptions.delete();
+      exporter.delete();
+
+      // Upload any file that must be exported for the preview.
+      await browserS3FileSystem.uploadPendingObjects();
+
+      // Change the HTML file displayed by the preview window so that it starts loading
+      // the game.
+      previewWindows.forEach((previewWindow: WindowProxy) => {
+        previewWindow.location = outputDir + '/index.html';
+        try {
+          previewWindow.focus();
+        } catch (e) {}
+      });
+
+      // If the preview windows are new, register them so that they can be accessed
+      // by the debugger and for the captures to be detected when they close.
+      if (!existingPreviewWindow) {
+        previewWindows.forEach((previewWindow: WindowProxy) => {
+          const debuggerId = registerNewPreviewWindow(previewWindow);
+          browserPreviewDebuggerServer.registerCallbacks({
+            onErrorReceived: () => {},
+            onServerStateChanged: () => {},
+            onConnectionClosed: async ({ id }) => {
+              if (id !== debuggerId) {
+                return;
+              }
+
+              if (previewOptions.captureOptions) {
+                await this.props.onCaptureFinished(
+                  previewOptions.captureOptions
+                );
+              }
+            },
+            onConnectionOpened: () => {},
+            onConnectionErrored: () => {},
+            onHandleParsedMessage: () => {},
+          });
+        });
+      }
+    } catch (error) {
+      this.setState({
+        error,
+      });
+    }
+  };
+
+}

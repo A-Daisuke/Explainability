@@ -57,7 +57,7 @@ def Classification(model, dataset, graph_index):
     """
     # 各グラフを取得
     data_input, data_raw = dataset[graph_index]
-    print("分析対象のデータ: ", data_raw["graph_name"])
+    print(f"分析対象のデータ ({graph_index+1}/{len(dataset)}): {data_raw['graph_name']}")    
     
     # 説明および可視化のためにグラフを選択
     probs, _ = model(data_input)
@@ -216,8 +216,8 @@ def ExplainingPipeline():
 
     #change!!!
     # 指定某データディレクトリ（必要に応じて切り替え）
-    #data_dir = "Dataset_js"
-    data_dir = "Dataset_js_repository"
+    data_dir = "Dataset_js"
+    #data_dir = "Dataset_js_repository"
     # data_dir = "Dataset/Readable"
     # data_dir = "Dataset/Neutral"
     # data_dir = "Dataset/Unreadable"
@@ -232,7 +232,7 @@ def ExplainingPipeline():
     # データセット内の200個のグラフをループ
     loader = DataLoader(dataset, batch_size=1, shuffle=False, collate_fn=lambda x: x[0])
     for i, (data_input, data_raw) in enumerate(loader):
-#        t_start_data = time.time()
+        t_start_data = time.time()
         # 説明および可視化のためにグラフを選択
         if os.path.exists(os.path.join(data_dir, data_raw["graph_name"])):
             
@@ -261,27 +261,40 @@ def ExplainingPipeline():
                 "mediTime": mediTime
             })
 
-            #予測結果に応じて保存先ディレクトリを設定
+            # 予測結果に応じて保存先ディレクトリを設定
             is_js_file = data_raw["graph_name"].endswith(".js")
 
+            # スコアに基づくサブディレクトリ名の決定
+            score_val = int(prediction_score * 100)
+            if score_val == 100:
+                score_range_dir = "100"
+            else:
+                lower_bound = (score_val // 10) * 10
+                upper_bound = lower_bound + 9
+                score_range_dir = f"{lower_bound}-{upper_bound}"
+
+            #change!!!
             if prediction == 2:
                 print("------ モデルの予測結果：unreadable ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Unreadable")
+                    save_dir = os.path.join("newResults_js", "Unreadable", score_range_dir)
+                    #save_dir = os.path.join("newResults_js_repository", "Unreadable", score_range_dir)
                 else:
-                    save_dir = os.path.join("newResults", "unreadable")
+                    save_dir = os.path.join("newResults", "unreadable", score_range_dir)
             elif prediction == 1:
                 print("------ モデルの予測結果：neutral ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Neutral")
+                    save_dir = os.path.join("newResults_js", "Neutral", score_range_dir)
+                    #save_dir = os.path.join("newResults_js_repository", "Neutral", score_range_dir)
                 else:
-                    save_dir = os.path.join("newResults", "neutral")
+                    save_dir = os.path.join("newResults", "neutral", score_range_dir)
             elif prediction == 0:
                 print("------ モデルの予測結果：readable ------")
                 if is_js_file:
-                    save_dir = os.path.join("newResults_js", "Readable")
+                    save_dir = os.path.join("newResults_js", "Readable", score_range_dir)
+                    #save_dir = os.path.join("newResults_js_repository", "Readable", score_range_dir)
                 else:
-                    save_dir = os.path.join("newResults", "readable")
+                    save_dir = os.path.join("newResults", "readable", score_range_dir)
             print(f"予測スコア: {prediction_score:.4f}")
 
             if not os.path.exists(save_dir):
@@ -331,11 +344,13 @@ def ExplainingPipeline():
     
     sorted_results = sorted(result_list, key=lambda x: x['score'], reverse=True)
     print("----- モデルの予測結果一覧 (スコア順) -----")
-    print("ファイル名, 予測結果, 予測スコア, 実行時間の差（fast-slow）")
+    #print("ファイル名, 予測結果, 予測スコア, 実行時間の差（fast-slow）")
+    print("ファイル名, 予測結果, 予測スコア")
     
     sorted_export_data = []
     for i, res in enumerate(sorted_results):
-        print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}, {res['mediTime']}")
+        #print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}, {res['mediTime']}")
+        print(f"{i+1}. {res['name']}, {res['label']}, {res['score']:.4f}")
         sorted_export_data.append({
             "Rank": i + 1,
             "File Name": res['name'],
