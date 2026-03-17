@@ -221,7 +221,8 @@ def ExplainingPipeline():
     # data_dir = "Dataset/Readable"
     # data_dir = "Dataset/Neutral"
     # data_dir = "Dataset/Unreadable"
-    data_dir = "method_dataset/pair1/Date_now"
+    data_dir = "method_dataset/pair3/string_literal_star"
+    output_base_dir = "newResults_method/pair3/string_literal_star"
 
     data_record = []
     y_true_list = []#実際の正解
@@ -280,7 +281,7 @@ def ExplainingPipeline():
                 if is_js_file:
                     #save_dir = os.path.join("newResults_js", "Unreadable", score_range_dir)
                     #save_dir = os.path.join("newResults_js_repository", "Unreadable", score_range_dir)
-                    save_dir = os.path.join("method_dataset/pair1/Date_now", "Unreadable", score_range_dir)
+                    save_dir = os.path.join(output_base_dir, "Unreadable", score_range_dir)
                 else:
                     save_dir = os.path.join("newResults", "unreadable", score_range_dir)
             elif prediction == 1:
@@ -288,7 +289,7 @@ def ExplainingPipeline():
                 if is_js_file:
                     #save_dir = os.path.join("newResults_js", "Neutral", score_range_dir)
                     #save_dir = os.path.join("newResults_js_repository", "Neutral", score_range_dir)
-                    save_dir = os.path.join("method_dataset/pair1/Date_now", "Neutral", score_range_dir)
+                    save_dir = os.path.join(output_base_dir, "Neutral", score_range_dir)
                 else:
                     save_dir = os.path.join("newResults", "neutral", score_range_dir)
             elif prediction == 0:
@@ -296,7 +297,7 @@ def ExplainingPipeline():
                 if is_js_file:
                     #save_dir = os.path.join("newResults_js", "Readable", score_range_dir)
                     #save_dir = os.path.join("newResults_js_repository", "Readable", score_range_dir)
-                    save_dir = os.path.join("method_dataset/pair1/Date_now", "Readable", score_range_dir)
+                    save_dir = os.path.join(output_base_dir, "Readable", score_range_dir)
                 else:
                     save_dir = os.path.join("newResults", "readable", score_range_dir)
             print(f"予測スコア: {prediction_score:.4f}")
@@ -391,10 +392,13 @@ def ExplainingPipeline():
 
     # Excel出力
     try:
-        with pd.ExcelWriter('explanation_results.xlsx') as writer:
+        if not os.path.exists(output_base_dir):
+            os.makedirs(output_base_dir)
+        excel_file_path = os.path.join(output_base_dir, 'explanation_results.xlsx')
+        with pd.ExcelWriter(excel_file_path) as writer:
             pd.DataFrame(sorted_export_data).to_excel(writer, sheet_name='Sorted Results', index=False)
             pd.DataFrame(pair_export_data).to_excel(writer, sheet_name='Pair Differences', index=False)
-        print("\nExcel file 'explanation_results.xlsx' has been generated.")
+        print(f"\nExcel file '{excel_file_path}' has been generated.")
     except Exception as e:
         print(f"\nFailed to generate Excel file: {e}")
 

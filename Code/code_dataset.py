@@ -698,7 +698,7 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     #JS_PATH = os.path.join(script_dir, "../Dataset_js")
     #JS_PATH = os.path.join(script_dir, "../Dataset_js_repository")
-    JS_PATH = os.path.join(script_dir, "../method_dataset/pair1/Date_now")
+    JS_PATH = os.path.join(script_dir, "../method_dataset/pair3/string_literal_star")
     
     tokenizer = AutoTokenizer.from_pretrained("microsoft/codebert-base")
     model = AutoModel.from_pretrained("microsoft/codebert-base")
