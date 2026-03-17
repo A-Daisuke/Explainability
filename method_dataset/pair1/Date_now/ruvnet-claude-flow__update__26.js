@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   update(key, newValue) {
     const existing = this.data.get(key);
     if (!existing) throw new Error('Key not found');

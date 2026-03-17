@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   static async getPersonalizedShelves(library, user, include, limit) {
     const fullStart = Date.now() // Used for testing load times
 

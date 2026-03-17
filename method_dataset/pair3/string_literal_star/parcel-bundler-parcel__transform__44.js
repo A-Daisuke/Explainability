@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async transform({asset, config, options, logger}) {
     // Normalize the asset's environment so that properties that only affect JS don't cause CSS to be duplicated.
     // For example, with ESModule and CommonJS targets, only a single shared CSS bundle should be produced.

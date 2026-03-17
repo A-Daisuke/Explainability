@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     def_to_moz(AST_Export, function To_Moz_ExportDeclaration(M) {
         if (M.exported_names) {
             var first_exported = M.exported_names[0];

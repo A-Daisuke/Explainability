@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static bufferToTensor(buffer, options) {
         if (buffer === undefined) {
             throw new Error('Image buffer must be defined');

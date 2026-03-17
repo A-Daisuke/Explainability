@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _onWillDispose(model) {
         const modelId = MODEL_ID(model.uri);
         const modelData = this._models[modelId];

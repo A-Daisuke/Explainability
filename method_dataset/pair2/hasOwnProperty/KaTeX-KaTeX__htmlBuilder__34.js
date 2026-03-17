@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     htmlBuilder(group, options) {
         if (regularSpace.hasOwnProperty(group.text)) {
             const className = regularSpace[group.text].className || "";

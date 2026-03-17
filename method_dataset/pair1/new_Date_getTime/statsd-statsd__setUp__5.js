@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   setUp: function (callback) {
     this.time_stamp = Math.round(new Date().getTime() / 1000);
 
@@ -21,4 +21,4 @@ function __method_wrapper__() {
     callback();
   },
 
-}
+};

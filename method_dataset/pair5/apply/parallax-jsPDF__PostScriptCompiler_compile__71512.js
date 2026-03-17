@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             compile: function PostScriptCompiler_compile(code, domain, range) {
               var stack = [];
               var i, ii;
@@ -224,4 +224,4 @@ function __method_wrapper__() {
               return result.join("\n");
             }
 
-}
+};

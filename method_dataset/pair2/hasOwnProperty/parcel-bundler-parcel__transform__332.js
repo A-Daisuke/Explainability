@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async transform({asset, config, options, logger}) {
     let [code, originalMap] = await Promise.all([
       asset.getBuffer(),

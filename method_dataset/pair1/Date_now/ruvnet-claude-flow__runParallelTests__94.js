@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async runParallelTests() {
     console.log('\n⚡ PARALLEL EXECUTION MODE');
     console.log('═'.repeat(60));

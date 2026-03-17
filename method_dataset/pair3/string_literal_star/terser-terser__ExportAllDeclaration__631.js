@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
         ExportAllDeclaration: function(M) {
             var foreign_name = M.exported == null ?
                 new AST_SymbolExportForeign({ name: "*" }) :
@@ -19,4 +19,4 @@ function __method_wrapper__() {
             });
         },
 
-}
+};

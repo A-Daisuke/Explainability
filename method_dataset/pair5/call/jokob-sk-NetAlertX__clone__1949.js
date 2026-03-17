@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	clone: function () {
 		// NOTE(SB): using node-clone creates a dependency to Buffer when using browserify,
 		// making the final build way to big to embed in Chart.js. So let's do it manually,
@@ -26,4 +26,4 @@ function __method_wrapper__() {
 		return result;
 	}
 
-}
+};

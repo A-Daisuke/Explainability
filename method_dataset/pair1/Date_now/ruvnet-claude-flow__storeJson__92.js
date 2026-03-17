@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async storeJson(key, value, namespace, metadata) {
     const data = await this.loadJsonData();
     

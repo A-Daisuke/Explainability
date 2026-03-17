@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	constructor( data ) {
 
 		this.name = EXTENSIONS.KHR_BINARY_GLTF;

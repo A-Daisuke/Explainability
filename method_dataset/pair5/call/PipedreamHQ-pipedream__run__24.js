@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run() {
     let offset = this.getOffset();
     const limit = constants.MAX_LIMIT;

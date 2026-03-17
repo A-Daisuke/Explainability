@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 describe("Screenshotter item", function() {
     for (const key in data) {
         if (data.hasOwnProperty(key)) {

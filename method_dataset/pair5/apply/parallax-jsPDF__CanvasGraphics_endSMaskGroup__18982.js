@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             endSMaskGroup: function CanvasGraphics_endSMaskGroup() {
               var groupCtx = this.ctx;
               this.groupLevel--;
@@ -20,4 +20,4 @@ function __method_wrapper__() {
               this.ctx.transform.apply(this.ctx, deltaTransform);
             },
 
-}
+};

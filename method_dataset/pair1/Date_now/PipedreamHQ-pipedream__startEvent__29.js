@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async startEvent(maxResults = false) {
       const lastDate = this._getLastDate();
       let count = 0;

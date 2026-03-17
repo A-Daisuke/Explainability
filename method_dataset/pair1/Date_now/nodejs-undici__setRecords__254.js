@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   setRecords (origin, addresses) {
     const timestamp = Date.now()
     const records = { records: { 4: null, 6: null } }

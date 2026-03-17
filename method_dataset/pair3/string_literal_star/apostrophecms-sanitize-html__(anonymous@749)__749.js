@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should allow transform on all tags using \'*\'', function () {
     assert.equal(
       sanitizeHtml(

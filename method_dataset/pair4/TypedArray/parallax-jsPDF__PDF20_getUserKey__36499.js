@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             getUserKey: function PDF20_getUserKey(
               password,
               userKeySalt,
@@ -16,4 +16,4 @@ function __method_wrapper__() {
               );
             }
 
-}
+};

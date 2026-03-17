@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     toIndentRanges(model) {
         const limit = this._foldingRangesLimit.limit;
         if (this._length <= limit) {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static collect(child, stopAt) {
         const result = [];
         let resultLen = 0;

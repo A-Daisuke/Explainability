@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async sendMessage(message, opts = {}) {
     if (opts.clientOptions && typeof opts.clientOptions === 'object') {
       this.setOptions(opts.clientOptions)

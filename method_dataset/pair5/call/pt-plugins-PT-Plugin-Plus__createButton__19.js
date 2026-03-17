@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     createButton(parent) {
       if (this.status == 1) {
         return;

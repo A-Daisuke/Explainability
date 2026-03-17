@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     probeDynamicHeight(index) {
         var _a, _b, _c;
         const item = this.items[index];

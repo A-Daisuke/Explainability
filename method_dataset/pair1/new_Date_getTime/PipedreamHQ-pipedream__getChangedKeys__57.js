@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getChangedKeys(dbObject, queryObject) {
       const changedKeys = [];
       for (const key in dbObject) {

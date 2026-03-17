@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_over: function( event ) {
 
 		var draggable = $.ui.ddmanager.current;
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

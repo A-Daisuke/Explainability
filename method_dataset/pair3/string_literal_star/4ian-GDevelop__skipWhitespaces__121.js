@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   static skipWhitespaces() {
     while (this.currentCharacterCode <= 32) this.parserPosition++;
     // Comments go everywhere whitespaces go and must be skipped as if it were whitespace

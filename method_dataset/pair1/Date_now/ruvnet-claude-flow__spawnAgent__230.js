@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async spawnAgent(swarmId, index) {
     const agentTypes = ['researcher', 'coder', 'analyst', 'tester', 'coordinator'];
     const agentType = agentTypes[index % agentTypes.length];

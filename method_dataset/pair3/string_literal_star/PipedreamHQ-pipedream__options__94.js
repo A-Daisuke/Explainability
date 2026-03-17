@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       async options({
         page, prevContext: { hasMore },
       }) {

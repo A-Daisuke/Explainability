@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async runTest(test) {
     this.log(`Starting: ${test.name} - ${test.description}`);
     

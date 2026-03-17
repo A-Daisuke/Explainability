@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   addExternal(
     dep: Dependency,
     replacements?: Map<string, string>,

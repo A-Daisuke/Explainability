@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	renderFormOptions: function(s) {
 		var o;
 
@@ -23,4 +23,4 @@ function __method_wrapper__() {
 		s.taboption('advanced', form.Value, 'vendorid', _('Vendor Class to send when requesting DHCP'));
 	}
 
-}
+};

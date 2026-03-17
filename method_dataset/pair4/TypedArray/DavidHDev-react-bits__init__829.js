@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       init() {
         const options = this.options;
         const geometry = new THREE.PlaneGeometry(1, 1);

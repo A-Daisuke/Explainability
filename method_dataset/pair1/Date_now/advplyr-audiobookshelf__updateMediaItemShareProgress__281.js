@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async updateMediaItemShareProgress(req, res) {
     if (!req.cookies.share_session_id) {
       return res.status(404).send('Share session not set')

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	renderWidget: function(section_id, option_index, cfgvalue) {
 		var values = L.toArray((cfgvalue != null) ? cfgvalue : this.default),
 		    choices = {},
@@ -137,4 +137,4 @@ function __method_wrapper__() {
 		return widget.render();
 	},
 
-}
+};

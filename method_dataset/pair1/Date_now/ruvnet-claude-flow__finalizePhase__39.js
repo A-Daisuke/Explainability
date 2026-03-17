@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async finalizePhase() {
     this.endTime = Date.now();
     const duration = this.endTime - this.startTime;

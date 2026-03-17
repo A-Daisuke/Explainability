@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     addMessage(role, content, isWelcome = false) {
         const messageElement = document.createElement('div');
         messageElement.className = `bella-message bella-message-${role}`;

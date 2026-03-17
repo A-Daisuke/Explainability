@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   daa_agent_create(config) {
     const agentId = `daa_agent_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
     const agent = {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   evaluateBinaryExpression(node, environment) {
     const left = this.evaluate(node.left, environment);
     switch (node.operator.value) {

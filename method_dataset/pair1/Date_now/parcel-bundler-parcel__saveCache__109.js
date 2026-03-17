@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async saveCache(fs: MemoryFS) {
     const files = (await fs.readdir(YARN_CACHE_DIR)).map(name => [
       name,

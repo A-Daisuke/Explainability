@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeTask(task, workflow) {
     const startTime = Date.now();
     

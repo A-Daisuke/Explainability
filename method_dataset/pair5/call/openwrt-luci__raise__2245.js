@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		raise(type, fmt, ...args) {
 			let e = null;
 			const msg = fmt ? String.prototype.format.call(fmt, ...args) : null;

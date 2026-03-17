@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     cleanCache(cacheObj) {
       console.log("Initiating cache check-up...");
       const timeout = Date.now() - NAME_CACHE_TIMEOUT;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     checkSaveLocations(locationString) {
       const maxSizeInBytes = 3000000 // Allow epub locations to take up to 3MB of space
       const newLocationsSize = JSON.stringify({ lastAccessed: Date.now(), locations: locationString }).length * 2

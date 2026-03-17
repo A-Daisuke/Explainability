@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     withInserted(insertTokens) {
         if (insertTokens.length === 0) {
             return this;

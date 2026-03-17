@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(
       runtimeObject: gdjs.Cube3DRuntimeObject,
       instanceContainer: gdjs.RuntimeInstanceContainer

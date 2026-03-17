@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function(data) {
 		var self = this;
 		insertCss(cssContent); // Insert CSS styles
@@ -433,4 +433,4 @@ function __method_wrapper__() {
 		return viewContainer;
 	},
 
-}
+};

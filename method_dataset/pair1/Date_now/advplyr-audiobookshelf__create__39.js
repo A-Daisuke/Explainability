@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async create(req, res) {
     if (!req.user.isAdminOrUp) {
       Logger.error(`[PodcastController] Non-admin user "${req.user.username}" attempted to create podcast`)

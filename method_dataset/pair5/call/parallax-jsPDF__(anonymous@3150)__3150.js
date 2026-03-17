@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   define("ace/range", ["require", "exports", "module"], function(e, t, n) {
     "use strict";
     var r = function(e, t) {

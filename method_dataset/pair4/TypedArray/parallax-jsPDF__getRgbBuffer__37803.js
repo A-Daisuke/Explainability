@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function getRgbBuffer(
                   src,
                   srcOffset,
@@ -55,4 +55,4 @@ function __method_wrapper__() {
                   }
                 }
 
-}
+};

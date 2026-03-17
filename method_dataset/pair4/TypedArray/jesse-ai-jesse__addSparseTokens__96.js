@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     addSparseTokens(lineNumber, aTokens) {
         if (aTokens.getLineContent().length === 0) {
             // Don't do anything for empty lines

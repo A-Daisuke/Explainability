@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async scan(library, forceRescan = false) {
     if (this.isLibraryScanning(library.id)) {
       Logger.error(`[LibraryScanner] Already scanning ${library.id}`)

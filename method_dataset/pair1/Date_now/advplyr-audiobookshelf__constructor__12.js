@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor(dailyLogDirPath) {
     this.id = date.format(new Date(), 'YYYY-MM-DD')
 

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   define("ace/lib/regexp", ["require", "exports", "module"], function(e, t, n) {
     "use strict";
     function o(e) {

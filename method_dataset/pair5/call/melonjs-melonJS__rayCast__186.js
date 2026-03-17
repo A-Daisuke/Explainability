@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	rayCast(line, result = []) {
 		let collisionCounter = 0;
 

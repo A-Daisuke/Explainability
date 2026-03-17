@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		unique(subvalidator, subargs) {
 			const ctx = this;
 			const option = findParent(ctx.field, '[data-widget][data-name]');

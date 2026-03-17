@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async orchestrateTask(task, strategy = 'parallel', metadata = {}) {
     const taskId = metadata.taskId || `task-${Date.now()}`;
     const swarmId = metadata.swarmId || 'default-swarm';

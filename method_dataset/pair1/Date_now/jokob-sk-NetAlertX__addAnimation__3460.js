@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	addAnimation: function(chart, animation, duration, lazy) {
 		var animations = this.animations;
 		var i, ilen;
@@ -26,4 +26,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

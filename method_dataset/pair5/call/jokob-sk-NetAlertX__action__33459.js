@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		action: function (e, dt, node, config) {
 			var items = this.select.items();
 			var mod = config.selectorModifier;
@@ -15,4 +15,4 @@ function __method_wrapper__() {
 			}
 		}
 
-}
+};

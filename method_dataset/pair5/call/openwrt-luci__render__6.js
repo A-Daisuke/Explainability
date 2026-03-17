@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function() {
 		var form = document.querySelector('form'),
 		    btn = document.querySelector('button');
@@ -26,4 +26,4 @@ function __method_wrapper__() {
 		return '';
 	},
 
-}
+};

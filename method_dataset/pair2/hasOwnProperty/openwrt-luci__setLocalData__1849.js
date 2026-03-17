@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		setLocalData(key, value) {
 			if (key == null)
 				return false;

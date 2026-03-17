@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async saveResults() {
     const timestamp = new Date().toISOString();
     const results = {

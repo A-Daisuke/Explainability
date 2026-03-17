@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async _findBestWorkerAsync(task) {
     const availableWorkers = Array.from(this.state.workers.values()).filter(
       (w) => w.status === 'idle',

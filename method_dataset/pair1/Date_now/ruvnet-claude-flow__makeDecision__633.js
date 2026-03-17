@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async makeDecision(topic, options, workerVotes = {}) {
     const decision = {
       topic,

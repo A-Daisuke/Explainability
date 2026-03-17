@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             paintChar: function paintChar(character, x, y, patternTransform) {
               var ctx = this.ctx;
               var current = this.current;
@@ -71,4 +71,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

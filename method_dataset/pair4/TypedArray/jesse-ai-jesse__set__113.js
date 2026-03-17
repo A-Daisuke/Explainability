@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     set(idx, value) {
         if (idx < 0) {
             idx = -idx - 1;

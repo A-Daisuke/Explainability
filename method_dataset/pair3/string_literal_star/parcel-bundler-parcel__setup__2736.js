@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
         async setup() {
           let pkgFile = path.join(inputDir, 'package.json');
           let pkg = JSON.parse(await overlayFS.readFile(pkgFile));

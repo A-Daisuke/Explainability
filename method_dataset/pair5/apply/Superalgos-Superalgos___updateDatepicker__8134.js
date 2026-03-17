@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_updateDatepicker: function( inst ) {
 		this.maxRows = 4; //Reset the max number of rows being displayed (see #7043)
 		datepicker_instActive = inst; // for delegate hover events
@@ -47,4 +47,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	poll_status: function(nodes, data) {
 		const element = document.getElementById('tinyproxystatusid');
 		if (element) {
@@ -21,4 +21,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

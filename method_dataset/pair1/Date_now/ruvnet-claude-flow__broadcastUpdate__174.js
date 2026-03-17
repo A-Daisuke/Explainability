@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   broadcastUpdate(viewName, updateData) {
     const queue = this.updateQueues.get(viewName);
     if (!queue) return;

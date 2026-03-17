@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_setupHandles: function() {
 		var o = this.options, handle, i, n, hname, axis, that = this;
 		this.handles = o.handles ||
@@ -103,4 +103,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

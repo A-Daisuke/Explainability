@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		displayStatus(type, content) {
 			if (type) {
 				const message = UI.prototype.showModal('', '');

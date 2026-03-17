@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   processSandboxCommand: function(command, deferred) {
     // I'm tempted to do cancel case conversion, but there are
     // some exceptions to the rule
@@ -30,4 +30,4 @@ function __method_wrapper__() {
     method.apply(this, [command, deferred]);
   },
 
-}
+};

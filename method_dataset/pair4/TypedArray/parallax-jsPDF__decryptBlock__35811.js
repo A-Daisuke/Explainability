@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function decryptBlock(data, finalize) {
                   var iv =
                     arguments.length > 2 && arguments[2] !== undefined
@@ -34,4 +34,4 @@ function __method_wrapper__() {
                   return this.decryptBlock(data, finalize);
                 }
 
-}
+};

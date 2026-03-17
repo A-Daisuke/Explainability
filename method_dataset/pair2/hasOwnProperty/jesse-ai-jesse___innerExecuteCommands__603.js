@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _innerExecuteCommands(ctx, commands) {
         if (this._arrayIsEmpty(commands)) {
             return null;

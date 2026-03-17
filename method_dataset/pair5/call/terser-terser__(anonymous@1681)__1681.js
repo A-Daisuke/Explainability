@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 def_optimize(AST_Call, function(self, compressor) {
     var exp = self.expression;
     var fn = exp;

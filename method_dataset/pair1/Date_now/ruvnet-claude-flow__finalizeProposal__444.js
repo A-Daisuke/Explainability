@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async finalizeProposal(proposalId) {
     const proposal = this.proposals.get(proposalId);
     if (!proposal || proposal.status !== 'active') {

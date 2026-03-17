@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async spawnAgent(type, name = null) {
     if (!this.swarmActive) {
       this.ui.addLog('warning', 'Swarm not active - cannot spawn agent');

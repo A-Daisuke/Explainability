@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async recordLearning(learningData) {
     if (!this.options.neuralLearning) return;
 

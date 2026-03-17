@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	initFromMarkup(node) {
 		if (!dom.elem(node))
 			node = document.querySelector(node);

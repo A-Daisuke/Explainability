@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     onTouchEnd(targetWindow, e) {
         const timestamp = Date.now(); // use Date.now() because on FF e.timeStamp is not epoch based.
         const activeTouchCount = Object.keys(this.activeTouches).length;

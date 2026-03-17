@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor(agents = [], options = {}) {
     this.agents = new Map();
     this.options = {

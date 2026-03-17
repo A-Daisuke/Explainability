@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   define("ace/mode/behaviour", ["require", "exports", "module"], function(
     e,
     t,

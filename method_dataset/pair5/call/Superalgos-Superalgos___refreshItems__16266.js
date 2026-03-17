@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_refreshItems: function( event ) {
 
 		this.items = [];
@@ -49,4 +49,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

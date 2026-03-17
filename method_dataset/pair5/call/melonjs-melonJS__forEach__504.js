@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	forEach(callback, thisArg) {
 		let i = 0;
 		const shapes = this.shapes;

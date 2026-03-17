@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _parseForward() {
     if (!this.peekKeyword("@forward")) {
       return null;

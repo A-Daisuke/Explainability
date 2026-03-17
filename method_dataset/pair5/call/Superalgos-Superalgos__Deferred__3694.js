@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	Deferred: function( func ) {
 		var tuples = [
 
@@ -295,4 +295,4 @@ function __method_wrapper__() {
 		return deferred;
 	},
 
-}
+};

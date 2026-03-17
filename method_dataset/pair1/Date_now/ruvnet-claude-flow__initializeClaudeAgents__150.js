@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async initializeClaudeAgents(agents) {
     if (!agents || agents.length === 0) {
       return;

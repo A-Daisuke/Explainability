@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   workflow_template(args) {
     const action = args.action || 'list';
     const template = args.template || {};

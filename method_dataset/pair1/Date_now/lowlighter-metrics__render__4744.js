@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     render(bars) {
         if (this.#end || !isTTY) return;
         const now = Date.now();

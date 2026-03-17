@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   createNewInstanceRenderer: function(
     project: gdProject,
     instance: gdInitialInstance,
@@ -77,4 +77,4 @@ function __method_wrapper__() {
     }
   },
 
-}
+};

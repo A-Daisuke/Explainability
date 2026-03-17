@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   detectByzantineBehavior(proposal, voteRecord) {
     const { agentId, vote, confidence } = voteRecord;
     const agent = this.agents.get(agentId);

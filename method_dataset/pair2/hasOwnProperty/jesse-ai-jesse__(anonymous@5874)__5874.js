@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     function(module) {
       var regexp_has_sticky = RegExp.prototype.hasOwnProperty("sticky");
       function InputScanner(input_string) {

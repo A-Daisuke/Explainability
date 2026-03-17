@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should render sequenceFlows without source', function() {
 
     var xml = require('./BpmnRenderer.sequenceFlow-no-source.bpmn');

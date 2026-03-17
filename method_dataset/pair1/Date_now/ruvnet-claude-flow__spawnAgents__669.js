@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async spawnAgents(types, swarmId) {
     if (!Array.isArray(types) || types.length === 0) {
       return [];

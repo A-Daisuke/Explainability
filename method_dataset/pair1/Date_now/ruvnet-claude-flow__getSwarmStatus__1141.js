@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async getSwarmStatus(params = {}) {
     try {
       // Don't reinitialize if we already have storage

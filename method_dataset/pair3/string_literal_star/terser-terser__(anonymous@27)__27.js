@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     it("Should return the correct token for class methods", async function() {
         var tests = [
             {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   updateDisplay() {
     const elapsed = Math.floor((Date.now() - this.startTime) / 1000);
     const progress = Math.floor(((this.completed + this.failed) / this.totalProjects) * 100);

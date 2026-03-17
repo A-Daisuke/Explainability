@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	dispatch: function( nativeEvent ) {
 
 		var i, j, ret, matched, handleObj, handlerQueue,
@@ -67,4 +67,4 @@ function __method_wrapper__() {
 		return event.result;
 	},
 
-}
+};

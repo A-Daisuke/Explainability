@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async saveToDisk() {
     if (!this.isDirty && this.persistenceQueue.length === 0) {
       return;

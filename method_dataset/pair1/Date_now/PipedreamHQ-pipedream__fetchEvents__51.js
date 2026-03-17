@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async fetchEvents() {
       // Get streamer id
       const res = await this.twitch.getMultipleUsers({

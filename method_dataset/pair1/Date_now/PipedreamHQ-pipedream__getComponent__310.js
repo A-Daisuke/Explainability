@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async getComponent(key: string) {
     // Check single component cache first
     const cachedComponent = singleComponentCache[key]

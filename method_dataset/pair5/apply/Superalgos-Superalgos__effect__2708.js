@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	effect: function( /* effect, options, speed, callback */ ) {
 		var args = _normalizeArguments.apply( this, arguments ),
 			effectMethod = $.effects.effect[ args.effect ],
@@ -107,4 +107,4 @@ function __method_wrapper__() {
 			this.queue( queueName, prefilter ).queue( queueName, run );
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	declare(options) {
 		return Function.prototype.bind.call(function(rpc, options, ...args) {
 			return new Promise((resolve, reject) => {

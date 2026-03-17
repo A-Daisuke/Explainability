@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async activate() {
       console.log("Activating: fetching pages and properties");
       this._setLastUpdatedTimestamp(Date.now());

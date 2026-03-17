@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async runTestSuite() {
     console.log('🔬 Starting Hive Mind Performance Test Suite...\n');
 

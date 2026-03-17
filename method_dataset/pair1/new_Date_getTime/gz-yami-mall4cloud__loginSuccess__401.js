@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   loginSuccess: async function (loginRes, isRefreshToken) {
     uni.setStorageSync('cloudToken', loginRes.accessToken)
     uni.setStorageSync('cloudLoginResult', loginRes) // 保存整个登录数据
@@ -69,4 +69,4 @@ function __method_wrapper__() {
     }
   },
 
-}
+};

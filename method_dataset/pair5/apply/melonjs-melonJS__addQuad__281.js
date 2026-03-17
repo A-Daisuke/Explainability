@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	addQuad(texture, x, y, w, h, u0, v0, u1, v1, tint, reupload = false) {
 		const vertexData = this.vertexData;
 

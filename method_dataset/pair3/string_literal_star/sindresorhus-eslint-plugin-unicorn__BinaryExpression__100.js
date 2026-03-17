@@ -1,3 +1,4 @@
+class __C__ {
 	* BinaryExpression(binaryExpression) {
 		if (
 			binaryExpression.operator !== '-'
@@ -15,3 +16,5 @@
 			}
 		}
 	},
+
+}

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	update: function() {
 		var me = this;
 		var options = me.options;
@@ -19,4 +19,4 @@ function __method_wrapper__() {
 		return core_scale.prototype.update.apply(me, arguments);
 	},
 
-}
+};

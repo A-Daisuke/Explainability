@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _massageTokens(topLevelLanguageId, lineTextLength, _tokens) {
         const tokens = _tokens ? toUint32Array(_tokens) : null;
         if (lineTextLength === 0) {

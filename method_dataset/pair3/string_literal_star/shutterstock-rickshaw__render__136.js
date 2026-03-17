@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function() {
 
 		this.graph.series.forEach( function(series) {
@@ -24,4 +24,4 @@ function __method_wrapper__() {
 		});
 	}
 
-}
+};

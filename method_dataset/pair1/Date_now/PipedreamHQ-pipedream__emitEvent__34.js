@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async emitEvent(event) {
       const { body } = event;
       if (!body || !body.events) return;

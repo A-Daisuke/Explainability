@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   push(data) {
     if (data === null) {
       cleanupRequests(this);

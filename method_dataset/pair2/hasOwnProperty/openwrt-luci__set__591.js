@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	set(conf, sid, opt, val) {
 		const v = this.state.values;
 		const n = this.state.creates;

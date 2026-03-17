@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async loadState() {
     try {
       const content = await fs.readFile(this.stateFile, 'utf8');

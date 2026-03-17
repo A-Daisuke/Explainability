@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		map: function ( fn )
 		{
 			var a = [];
@@ -16,4 +16,4 @@ function __method_wrapper__() {
 			return new _Api( this.context, a );
 		},
 
-}
+};

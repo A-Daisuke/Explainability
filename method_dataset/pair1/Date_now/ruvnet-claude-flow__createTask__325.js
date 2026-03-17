@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createTask(description, priority = 5, metadata = {}) {
     const timestamp = Date.now();
     const randomPart = Math.random().toString(36).substring(2, 11); // Use substring instead of substr

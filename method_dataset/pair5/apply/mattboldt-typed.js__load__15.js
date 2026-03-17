@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   load(self, options, elementId) {
     // chosen element to manipulate text
     if (typeof elementId === 'string') {

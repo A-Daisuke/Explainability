@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             _onReceiveData: function PDFDataTransportStream_onReceiveData(
               args
             ) {
@@ -25,4 +25,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

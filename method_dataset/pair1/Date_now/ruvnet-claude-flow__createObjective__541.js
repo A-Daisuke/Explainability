@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createObjective(description) {
     try {
       this.log(`Creating objective: ${description}`);

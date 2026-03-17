@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async storeKnowledge(domain, key, value, metadata = {}) {
     return this.store(
       `knowledge:${domain}:${key}`,

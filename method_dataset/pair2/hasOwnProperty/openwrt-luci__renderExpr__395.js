@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	renderExpr: function(expr, table) {
 		var kind, spec;
 
@@ -140,4 +140,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     it('define exports in the outermost scope', async function () {
       let b = await bundle(
         path.join(

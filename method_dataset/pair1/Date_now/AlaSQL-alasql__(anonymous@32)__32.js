@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	it('3. Calculate PI with streaming function', function (done) {
 		var n = 10000;
 

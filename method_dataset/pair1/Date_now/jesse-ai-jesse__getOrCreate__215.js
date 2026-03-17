@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async getOrCreate(textModel, token) {
         const registry = this._languageFeaturesService.documentSymbolProvider;
         const provider = registry.ordered(textModel);

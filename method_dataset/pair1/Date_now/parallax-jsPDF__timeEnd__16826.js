@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function timeEnd(name) {
                   if (!this.enabled) {
                     return;
@@ -16,4 +16,4 @@ function __method_wrapper__() {
                   delete this.started[name];
                 }
 
-}
+};

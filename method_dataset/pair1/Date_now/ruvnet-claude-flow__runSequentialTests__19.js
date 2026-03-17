@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async runSequentialTests() {
     console.log('\n🔄 SEQUENTIAL EXECUTION MODE');
     console.log('═'.repeat(60));

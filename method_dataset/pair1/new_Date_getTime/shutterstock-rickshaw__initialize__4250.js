@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	initialize: function (data, palette, options) {
 
 		options = options || {};
@@ -47,4 +47,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

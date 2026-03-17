@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static compositionEndWithInterceptors(prevEditOperationType, config, model, compositions, selections, autoClosedCharacters) {
         if (!compositions) {
             // could not deduce what the composition did

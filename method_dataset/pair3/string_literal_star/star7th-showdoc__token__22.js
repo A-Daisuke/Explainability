@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
       token: function (stream, state) {
         if (!stream) return;
 
@@ -83,4 +83,4 @@ function __method_wrapper__() {
         return null;
       }
 
-}
+};

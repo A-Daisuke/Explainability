@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getProcessedLine(lineNumber, newIndentation) {
         var _a, _b;
         const replaceIndentation = (line, newIndentation) => {

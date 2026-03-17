@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	prepareOffsets: function( t, event ) {
 
 		var i, j,
@@ -42,4 +42,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	buildView: function (params) {
 		var baseTextLines = params.baseTextLines;
 		var newTextLines = params.newTextLines;
@@ -150,4 +150,4 @@ function __method_wrapper__() {
 		return node;
 	}
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	highlightAllUnder: function(container, async, callback) {
 		var env = {
 			callback: callback,
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

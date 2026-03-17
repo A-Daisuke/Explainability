@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_showDatepicker: function( input ) {
 		input = input.target || input;
 		if ( input.nodeName.toLowerCase() !== "input" ) { // find from button/image trigger
@@ -82,4 +82,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

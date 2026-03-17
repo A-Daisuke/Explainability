@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     it('should bailout with a non-static member access on a namespace', async function () {
       let b = await bundle(
         path.join(

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     it('with di', function() {
 
       var xml = require('./DataInputOutput.bpmn');

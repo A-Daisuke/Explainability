@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     maybeCreateAndThrowError(name, message) {
       const errorClass = global[name];
 

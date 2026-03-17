@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -1747,4 +1747,4 @@ break;
 }
 },
 
-}
+};

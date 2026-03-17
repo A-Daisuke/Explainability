@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _createBackgroundFillData(WIDTH, HEIGHT, background) {
         const backgroundR = background.r;
         const backgroundG = background.g;

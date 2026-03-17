@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     compute_segments(
         mask_probs,
         pred_scores,

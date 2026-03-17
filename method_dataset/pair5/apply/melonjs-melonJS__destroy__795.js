@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	destroy() {
 		// allow recycling object properties
 		matrix2dPool.release(this.currentTransform);

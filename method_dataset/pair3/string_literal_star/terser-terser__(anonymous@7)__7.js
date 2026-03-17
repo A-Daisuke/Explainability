@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     it("Should parse export directives", async function() {
         var inputs = [
             ['export * from "a.js"', ['*'], "a.js"],

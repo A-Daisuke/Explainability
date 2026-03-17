@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	formatDate: function( format, date, settings ) {
 		if ( !date ) {
 			return "";
@@ -89,4 +89,4 @@ function __method_wrapper__() {
 		return output;
 	},
 
-}
+};

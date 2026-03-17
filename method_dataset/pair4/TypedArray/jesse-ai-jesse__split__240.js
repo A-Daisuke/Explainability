@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     split(startDeltaLine, startChar, endDeltaLine, endChar) {
         const tokens = this._tokens;
         const tokenCount = this._tokenCount;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             create: function FontRendererFactory_create(
               font,
               seacAnalysisEnabled
@@ -60,4 +60,4 @@ function __method_wrapper__() {
               );
             }
 
-}
+};

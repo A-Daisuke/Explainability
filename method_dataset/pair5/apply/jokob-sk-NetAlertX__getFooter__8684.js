@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	getFooter: function() {
 		var me = this;
 		var callbacks = me._options.callbacks;
@@ -15,4 +15,4 @@ function __method_wrapper__() {
 		return lines;
 	},
 
-}
+};

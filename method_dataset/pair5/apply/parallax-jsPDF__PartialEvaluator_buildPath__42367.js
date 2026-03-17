@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             buildPath: function PartialEvaluator_buildPath(
               operatorList,
               fn,
@@ -22,4 +22,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	query: function(filter, group, order) {
 		var keys = [], columns = {}, records = {}, result = [];
 
@@ -53,4 +53,4 @@ function __method_wrapper__() {
 		return result;
 	},
 
-}
+};

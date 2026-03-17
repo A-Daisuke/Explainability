@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     checkMinimumInterval(files) {
       const interval = this.perFileInterval;
       if (!interval) return files;

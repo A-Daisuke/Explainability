@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	when: function( singleValue ) {
 		var
 
@@ -47,4 +47,4 @@ function __method_wrapper__() {
 		return primary.promise();
 	}
 
-}
+};

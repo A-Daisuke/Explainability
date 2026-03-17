@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async getAndProcessData(emit = false) {
       const topics = await this.meetingpulse.getTopics({
         meetingId: this.meetingId,

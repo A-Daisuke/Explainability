@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	each: function( obj, callback ) {
 		var length, i = 0;
 
@@ -20,4 +20,4 @@ function __method_wrapper__() {
 		return obj;
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run({ $ }) {
     const start = new Date(+this.start || this.start).getTime();
     const end = new Date(+this.end || this.end).getTime();

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	value(value, title, description) {
 		if (description) {
 			CBIListValue.prototype.value.call(this, value, E([], [

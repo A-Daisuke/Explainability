@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async fetchEvents() {
       const params = this.getParams();
       const data = [];

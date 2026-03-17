@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 def_optimize(AST_UnaryPrefix, function(self, compressor) {
     var e = self.expression;
     if (

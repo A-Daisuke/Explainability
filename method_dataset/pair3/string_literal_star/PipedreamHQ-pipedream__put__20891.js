@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async put (request, response) {
     webidl.brandCheck(this, Cache)
     webidl.argumentLengthCheck(arguments, 2, { header: 'Cache.put' })

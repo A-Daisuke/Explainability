@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	addUVs(atlas, name, w, h) {
 		// ignore if using the Canvas Renderer
 		if (typeof renderer.gl !== "undefined") {

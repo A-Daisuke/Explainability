@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	renderAccountRow: function(account) {
 		var properties = [];
 		for(var key in account.properties) {
@@ -18,4 +18,4 @@ function __method_wrapper__() {
 		return row;
 	},
 
-}
+};

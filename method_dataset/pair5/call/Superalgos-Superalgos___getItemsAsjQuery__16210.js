@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_getItemsAsjQuery: function( connected ) {
 
 		var i, j, cur, inst,
@@ -40,4 +40,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

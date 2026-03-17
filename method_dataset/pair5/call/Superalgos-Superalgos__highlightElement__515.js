@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	highlightElement: function(element, async, callback) {
 		// Find language
 		var language = _.util.getLanguage(element);
@@ -67,4 +67,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

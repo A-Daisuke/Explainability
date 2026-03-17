@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               value: function dispatch(eventName) {
                 var eventListeners = this._listeners[eventName];
 
@@ -22,4 +22,4 @@ function __method_wrapper__() {
                 }
               }
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeParallel(toolCalls) {
     if (!this.config.parallel) {
       // Execute sequentially if parallel is disabled

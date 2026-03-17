@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async onTimerTrigger() {
       const { repoFullname } = this;
       const timestamp = this._getLastTimestamp();

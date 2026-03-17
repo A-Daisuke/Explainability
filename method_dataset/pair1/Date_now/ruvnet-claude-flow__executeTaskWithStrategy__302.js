@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeTaskWithStrategy(task, strategy) {
     const startTime = Date.now();
     const checks = {};

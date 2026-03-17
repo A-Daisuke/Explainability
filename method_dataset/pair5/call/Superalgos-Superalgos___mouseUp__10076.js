@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_mouseUp: function( event ) {
 		this._unblockFrames();
 
@@ -19,4 +19,4 @@ function __method_wrapper__() {
 		return $.ui.mouse.prototype._mouseUp.call( this, event );
 	},
 
-}
+};

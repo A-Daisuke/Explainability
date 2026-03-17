@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	it('4. Join Using', function (done) {
 		var t1 = [
 			{Email: 'A', ID: new String('s1')},

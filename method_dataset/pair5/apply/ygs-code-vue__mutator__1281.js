@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
         def(arrayMethods, method, function mutator() {
             console.log('==def_original==')
             console.log(original)

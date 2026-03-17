@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     smarty: function(stream, state) {
       if (stream.match(settings.leftDelimiter, false)) {
         if (stream.match(regs.smartyComment, false)) {
@@ -15,4 +15,4 @@ function __method_wrapper__() {
       return helpers.maybeBackup(stream, settings.rightDelimiter, smartyMode.token(stream, state.localState));
     },
 
-}
+};

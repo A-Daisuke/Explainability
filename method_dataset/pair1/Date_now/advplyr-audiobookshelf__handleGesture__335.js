@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     handleGesture() {
       // Touch must be less than 1s. Must be > 60px drag and X distance > Y distance
       const touchTimeMs = Date.now() - this.touchstartTime

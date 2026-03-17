@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             parseCharStrings: function parseCharStrings(_ref) {
               var charStrings = _ref.charStrings,
                 localSubrIndex = _ref.localSubrIndex,
@@ -85,4 +85,4 @@ function __method_wrapper__() {
               };
             },
 
-}
+};

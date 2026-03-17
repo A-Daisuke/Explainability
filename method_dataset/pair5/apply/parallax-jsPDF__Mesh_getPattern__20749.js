@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               getPattern: function Mesh_getPattern(ctx, owner, shadingFill) {
                 var scale;
 
@@ -56,4 +56,4 @@ function __method_wrapper__() {
                 );
               }
 
-}
+};

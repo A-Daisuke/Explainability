@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _call(audio) {
         validate_audio_inputs(audio, 'Wav2Vec2FeatureExtractor');
 

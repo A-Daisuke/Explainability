@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             toArray: function OpenTypeFileBuilder_toArray() {
               var sfnt = this.sfnt;
               var tables = this.tables;
@@ -67,4 +67,4 @@ function __method_wrapper__() {
               return file;
             },
 
-}
+};

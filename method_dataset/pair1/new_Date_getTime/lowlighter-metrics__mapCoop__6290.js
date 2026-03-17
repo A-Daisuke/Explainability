@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async mapCoop({ gradeBefore , groupInfo , detail  }) {
         const { dangerRate , resultWave , bossResult , myResult , memberResults , scale , playedTime , enemyResults , smellMeter , waveResults  } = detail;
         const startedAt = Math.floor(new Date(playedTime).getTime() / 1000);

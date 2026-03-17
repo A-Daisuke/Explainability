@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async cleanup() {
     const now = Date.now();
     let cleaned = 0;

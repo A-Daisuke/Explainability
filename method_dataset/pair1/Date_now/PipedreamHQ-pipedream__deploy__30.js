@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async deploy() {
       // Emits sample events on the first run during deploy.
       const config = {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static from(cookieStr) {
         const options = {
             name: undefined,

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async coordinateCIPipeline(options = {}) {
     printInfo('🔄 Coordinating CI/CD pipeline setup...');
 

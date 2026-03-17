@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _extract_token_timestamps(generate_outputs, alignment_heads, num_frames = null, time_precision = 0.02) {
         if (!generate_outputs.cross_attentions) {
             throw new Error(

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   static async generateInvoicePDF(orderId) {
     // In a real application, this would generate an actual PDF
     const order = await Order.findById(orderId)

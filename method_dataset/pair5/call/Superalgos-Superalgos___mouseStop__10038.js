@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_mouseStop: function( event ) {
 
 		//If we are using droppables, inform the manager about the drop
@@ -37,4 +37,4 @@ function __method_wrapper__() {
 		return false;
 	},
 
-}
+};

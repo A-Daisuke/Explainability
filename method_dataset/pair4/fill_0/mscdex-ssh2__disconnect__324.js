@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   disconnect(reason) {
     const pktLen = 1 + 4 + 4 + 4;
     // We don't use _packetRW.write.* here because we need to make sure that

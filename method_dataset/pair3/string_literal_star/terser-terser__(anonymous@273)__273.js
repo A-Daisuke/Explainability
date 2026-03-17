@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 def_eval(AST_Binary, function (compressor, depth) {
     if (!non_converting_binary.has(this.operator))
         depth++;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   registerEditorConfiguration: function(
     objectType: string,
     editorConfiguration: any
@@ -32,4 +32,4 @@ function __method_wrapper__() {
     this.editorConfigurations[objectType] = editorConfiguration;
   },
 
-}
+};

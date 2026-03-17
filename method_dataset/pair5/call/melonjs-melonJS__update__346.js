@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	update(dt: number) {
 		// the original Tween implementation expect
 		// a timestamp and not a time delta

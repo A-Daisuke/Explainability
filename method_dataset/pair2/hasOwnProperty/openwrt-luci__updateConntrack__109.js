@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	updateConntrack: function(conn) {
 		var lookup_queue = [ ];
 		var rows = [];
@@ -88,4 +88,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

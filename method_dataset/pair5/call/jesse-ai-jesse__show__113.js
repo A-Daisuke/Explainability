@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     show(delegate) {
         var _a, _b, _c;
         if (this.isVisible()) {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(user, container, virtualDelegate, renderers, _options = DefaultOptions) {
         var _a, _b, _c, _d;
         this.user = user;

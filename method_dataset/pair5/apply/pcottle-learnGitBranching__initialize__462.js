@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   initialize: function(options) {
     options = options || {};
     var nextLevelName = (options.nextLevel) ?
@@ -41,4 +41,4 @@ function __method_wrapper__() {
     NextLevelConfirm.__super__.initialize.apply(this, [options]);
   }
 
-}
+};

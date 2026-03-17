@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async emitHistoricalEvents(messages) {
       for (const message of messages) {
         const event = await this.processEvent({

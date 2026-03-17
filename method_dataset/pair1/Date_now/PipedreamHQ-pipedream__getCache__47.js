@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getCache() {
       let cacheObj = this._getNameCache();
 

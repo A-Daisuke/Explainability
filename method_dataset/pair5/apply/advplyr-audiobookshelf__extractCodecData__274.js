@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   extractCodecData: function (command, stderrLine, codecsObject) {
     var inputPattern = /Input #[0-9]+, ([^ ]+),/;
     var durPattern = /Duration\: ([^,]+)/;
@@ -42,4 +42,4 @@ function __method_wrapper__() {
     return false;
   },
 
-}
+};

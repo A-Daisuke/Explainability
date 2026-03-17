@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async recordRollback(targetId, rollbackType, phase = null) {
     const result = {
       success: true,

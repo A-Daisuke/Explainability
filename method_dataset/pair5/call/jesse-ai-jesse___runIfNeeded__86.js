@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _runIfNeeded() {
         var _a, _b, _c;
         if (this.state === 3 /* AutorunState.upToDate */) {

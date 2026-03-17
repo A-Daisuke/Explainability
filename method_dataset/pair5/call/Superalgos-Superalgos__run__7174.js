@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	run: function( percent ) {
 		var eased,
 			hooks = Tween.propHooks[ this.prop ];
@@ -24,4 +24,4 @@ function __method_wrapper__() {
 		return this;
 	}
 
-}
+};

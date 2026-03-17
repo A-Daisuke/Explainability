@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   scheduleMediaItemShare(mediaItemShare) {
     if (!mediaItemShare?.expiresAt) return
 

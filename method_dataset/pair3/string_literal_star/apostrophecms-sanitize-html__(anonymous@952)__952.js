@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('text from transformTags should not specify tags', function() {
     const input = '<input value="&lt;script&gt;alert(1)&lt;/script&gt;">';
     const want = '<u class="inlined-input">&lt;script&gt;alert(1)&lt;/script&gt;</u>';

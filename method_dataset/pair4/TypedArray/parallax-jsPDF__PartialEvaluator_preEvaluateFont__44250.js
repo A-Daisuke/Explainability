@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             preEvaluateFont: function PartialEvaluator_preEvaluateFont(dict) {
               var baseDict = dict;
               var type = dict.get("Subtype");
@@ -110,4 +110,4 @@ function __method_wrapper__() {
               };
             },
 
-}
+};

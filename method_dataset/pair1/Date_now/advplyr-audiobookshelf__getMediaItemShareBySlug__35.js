@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async getMediaItemShareBySlug(req, res) {
     const { slug } = req.params
     // Optional start time

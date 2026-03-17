@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   comment() {
     // Single line
     if ('/' == this.str[0] && '/' == this.str[1]) {

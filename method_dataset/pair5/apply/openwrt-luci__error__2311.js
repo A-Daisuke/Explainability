@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		error(type, fmt /*, ...*/) {
 			try {
 				LuCI.prototype.raise.apply(LuCI.prototype,

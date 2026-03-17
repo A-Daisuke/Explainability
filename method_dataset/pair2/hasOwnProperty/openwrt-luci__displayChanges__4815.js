@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		displayChanges() {
 			const list = E('div', { 'class': 'uci-change-list' });
 

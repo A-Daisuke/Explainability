@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     openShare() {
       if (!this.newShareSlug) {
         this.$toast.error(this.$strings.ToastSlugRequired)

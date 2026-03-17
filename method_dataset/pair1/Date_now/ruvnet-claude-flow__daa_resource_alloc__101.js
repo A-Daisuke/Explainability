@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   daa_resource_alloc(args) {
     const resources = args.resources || {};
     const agents = args.agents || [];

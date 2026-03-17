@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _parseUse() {
     if (!this.peekKeyword("@use")) {
       return null;

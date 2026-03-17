@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(renderer, modelProvider, onDidChangeCollapseState, activeNodes, renderedIndentGuides, options = {}) {
         var _a;
         this.renderer = renderer;

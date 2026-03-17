@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   registerAgent(agentId, metadata = {}) {
     const agent = {
       id: agentId,

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             fillOpacity: function fillOpacity(
               rgbaBuf,
               width,
@@ -95,4 +95,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

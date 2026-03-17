@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async jwtAuthCheck(jwt_payload, done) {
     if (jwt_payload.type === 'api') {
       // Api key based authentication

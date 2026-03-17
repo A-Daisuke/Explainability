@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async store(key, value, options = {}) {
     this._ensureInitialized();
 

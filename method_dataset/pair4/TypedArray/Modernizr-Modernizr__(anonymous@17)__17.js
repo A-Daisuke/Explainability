@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 define(['Modernizr', 'prefixed', 'is'], function(Modernizr, prefixed, is) {
   // In Safari <=5.0 `window.crypto` exists (for some reason) but is `undefined`, so we have to check
   // it’s truthy before checking for existence of `getRandomValues`

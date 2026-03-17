@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   execute (data) {
     assert(this.ptr != null)
     assert(currentParser == null)

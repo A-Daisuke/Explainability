@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 def_optimize(AST_Binary, function(self, compressor) {
     function reversible() {
         return self.left.is_constant()

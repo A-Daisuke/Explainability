@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	parse( data, path, onLoad, onError ) {
 
 		let json;

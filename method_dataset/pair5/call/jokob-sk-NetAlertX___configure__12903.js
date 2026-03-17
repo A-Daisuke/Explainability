@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_configure: function() {
 		var me = this;
 		var ticks = me.getTicks();
@@ -18,4 +18,4 @@ function __method_wrapper__() {
 		me._valueRange = end - start;
 	}
 
-}
+};

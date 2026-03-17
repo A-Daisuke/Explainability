@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getAllEbookLocationData() {
       const locations = []
       let totalSize = 0 // Total in bytes

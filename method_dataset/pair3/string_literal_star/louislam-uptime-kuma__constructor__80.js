@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor() {
         // Set axios default user-agent to Uptime-Kuma/version
         axios.defaults.headers.common["User-Agent"] = this.getUserAgent();

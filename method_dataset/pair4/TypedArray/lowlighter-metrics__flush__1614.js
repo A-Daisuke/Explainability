@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     flush() {
         if (this.err !== null) throw this.err;
         if (this.usedBufferBytes === 0) return;

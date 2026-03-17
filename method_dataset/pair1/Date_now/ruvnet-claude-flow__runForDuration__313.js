@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async runForDuration() {
     this.log(`Phase 4: Running load test for ${this.config.duration / 1000}s`);
     

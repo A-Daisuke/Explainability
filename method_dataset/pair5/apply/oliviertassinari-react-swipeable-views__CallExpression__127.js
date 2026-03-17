@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       CallExpression(path, _ref4) {
         var filename = _ref4.file.opts.filename;
 

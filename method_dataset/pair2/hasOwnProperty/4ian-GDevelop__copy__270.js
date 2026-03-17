@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   static copy(source, target, merge) {
     if (!merge) target.clearChildren();
     target.castTo(source.getType());

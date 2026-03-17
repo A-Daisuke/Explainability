@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	parseIptablesDump: function(is_ipv6, table, s) {
 		var current_chain = null;
 		var current_rules = [];
@@ -123,4 +123,4 @@ function __method_wrapper__() {
 		}, this));
 	},
 
-}
+};

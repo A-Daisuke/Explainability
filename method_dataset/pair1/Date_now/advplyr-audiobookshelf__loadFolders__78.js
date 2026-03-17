@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   loadFolders({ state, commit }) {
     if (state.folders.length) {
       const lastCheck = Date.now() - state.folderLastUpdate

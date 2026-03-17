@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _updateLayersCameraCoordinates(scale: float) {
       this._layersCameraCoordinates = this._layersCameraCoordinates || {};
       for (const name in this._layers.items) {

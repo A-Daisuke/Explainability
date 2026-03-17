@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 def_eval(AST_Call, function (compressor, depth) {
     var exp = this.expression;
 

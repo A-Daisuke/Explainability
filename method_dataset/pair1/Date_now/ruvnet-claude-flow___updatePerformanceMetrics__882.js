@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async _updatePerformanceMetrics() {
     // Calculate performance metrics
     const completionRate = this.state.metrics.tasksCompleted / this.state.metrics.tasksCreated;

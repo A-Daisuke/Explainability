@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             beginGroup: function CanvasGraphics_beginGroup(group) {
               this.save();
               var currentCtx = this.ctx;
@@ -103,4 +103,4 @@ function __method_wrapper__() {
               this.current.activeSMask = null;
             },
 
-}
+};

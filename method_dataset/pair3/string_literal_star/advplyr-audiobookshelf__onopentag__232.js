@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     onopentag: function (name, attribs) {
       // If `enforceHtmlBoundary` is `true` and this has found the opening
       // `html` tag, reset the state.
@@ -291,4 +291,4 @@ function __method_wrapper__() {
       }
     },
 
-}
+};

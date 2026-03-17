@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeTool(toolName, parameters = {}, options = {}) {
     const executionId = `exec_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 

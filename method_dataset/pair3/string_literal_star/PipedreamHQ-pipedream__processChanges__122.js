@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async processChanges() {
       const lastFileCreatedTime = this._getLastFileCreatedTime();
       const timeString = new Date(lastFileCreatedTime).toISOString();

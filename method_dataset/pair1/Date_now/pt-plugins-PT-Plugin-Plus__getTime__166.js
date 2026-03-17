@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getTime(timeStr) {
       let timeRegex = timeStr.match(
         /((\d+).+?(minute|hour|day|week|month|year)s?.*?(\,|and))?.*?(\d+).+?(minute|hour|day|week|month|year)s?/

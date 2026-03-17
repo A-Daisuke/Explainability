@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeParallelTasks() {
     console.log('🚀 PARALLEL AGENT EXECUTION TEST');
     console.log('═'.repeat(60));

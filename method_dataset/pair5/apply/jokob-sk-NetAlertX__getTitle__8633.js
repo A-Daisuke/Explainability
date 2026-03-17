@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	getTitle: function() {
 		var me = this;
 		var opts = me._options;
@@ -16,4 +16,4 @@ function __method_wrapper__() {
 		return lines;
 	},
 
-}
+};

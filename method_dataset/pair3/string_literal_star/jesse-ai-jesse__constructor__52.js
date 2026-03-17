@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(modelService, configurationService, logService, languageConfigurationService, languageFeaturesService) {
         super();
         this._modelService = modelService;

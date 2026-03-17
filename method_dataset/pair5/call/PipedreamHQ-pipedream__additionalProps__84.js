@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async additionalProps(existingProps) {
     await common.additionalProps.call(this, existingProps);
     const props = {};

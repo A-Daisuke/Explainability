@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
         inserted: function inserted(el, binding, vnode, oldVnode) {
 
             if (vnode.tag === 'select') {
@@ -29,4 +29,4 @@ function __method_wrapper__() {
             }
         },
 
-}
+};

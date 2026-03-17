@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                     value: function __pullSteps() {
                       var stream = this._controlledReadableStream;
                       assert(ReadableStreamHasDefaultReader(stream) === true);
@@ -56,4 +56,4 @@ function __method_wrapper__() {
                       return promise;
                     }
 
-}
+};

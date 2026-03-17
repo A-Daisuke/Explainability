@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     pad_image(pixelData, imgDims, padSize, {
         mode = 'constant',
         center = false,

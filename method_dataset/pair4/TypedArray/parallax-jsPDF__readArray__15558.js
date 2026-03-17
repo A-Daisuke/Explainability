@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     readArray(size, type) {
       const bytes = typedArrays[type].BYTES_PER_ELEMENT * size;
       const offset = this.byteOffset + this.offset;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static fromFoldRanges(ranges) {
         const rangesLength = ranges.length;
         const startIndexes = new Uint32Array(rangesLength);

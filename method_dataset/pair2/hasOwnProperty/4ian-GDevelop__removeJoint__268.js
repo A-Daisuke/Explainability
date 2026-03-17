@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     removeJoint(jointId: integer | string) {
       // Cast to string
       jointId = jointId.toString(10);

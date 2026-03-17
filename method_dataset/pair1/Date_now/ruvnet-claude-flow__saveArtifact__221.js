@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async saveArtifact(filename, content) {
     try {
       const fs = await import('fs/promises');

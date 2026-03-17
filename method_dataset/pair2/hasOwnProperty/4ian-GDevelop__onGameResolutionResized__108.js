@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     onGameResolutionResized() {
       const oldGameResolutionOriginX = this.getViewportOriginX();
       const oldGameResolutionOriginY = this.getViewportOriginY();

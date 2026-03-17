@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async loadConfig({config, options}) {
     let pkg = await config.getPackage();
     let isJSX,

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	sections(conf, type, cb) {
 		const sa = [ ];
 		const v = this.state.values[conf];

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               value: function _scrollIntoView(_ref) {
                 var _this2 = this;
 
@@ -36,4 +36,4 @@ function __method_wrapper__() {
                 };
               }
 
-}
+};

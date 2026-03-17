@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_generic: function(opts, host, plugin, plugin_instance, dtype, index) {
 		var defs = [],
 		    gopts = this.opts,
@@ -358,4 +358,4 @@ function __method_wrapper__() {
 		return defs;
 	},
 
-}
+};

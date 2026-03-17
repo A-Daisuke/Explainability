@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run(event) {
     // Default to polling if triggerType is not webhook
     if (this.triggerType !== "webhook") {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_hideDatepicker: function( input ) {
 		var showAnim, duration, postProcess, onClose,
 			inst = this._curInst;
@@ -44,4 +44,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

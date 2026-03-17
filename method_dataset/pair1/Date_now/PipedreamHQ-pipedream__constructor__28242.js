@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor (blobLike, fileName, options = {}) {
     // TODO: argument idl type check
 

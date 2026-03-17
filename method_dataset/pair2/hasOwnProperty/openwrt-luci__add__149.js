@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	add(config, sectiontype, sectionname) {
 		let num_sections_type = 0;
 		let next_index = 0;

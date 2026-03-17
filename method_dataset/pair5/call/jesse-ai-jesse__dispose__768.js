@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     dispose() {
         var _a, _b, _c, _d;
         if (!this._disposed) {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _typeInterceptorElectricChar(prevEditOperationType, config, model, selection, ch) {
         if (!config.electricChars.hasOwnProperty(ch) || !selection.isEmpty()) {
             return null;

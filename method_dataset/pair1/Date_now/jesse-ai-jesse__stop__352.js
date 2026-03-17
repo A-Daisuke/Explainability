@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     stop() {
         const dur = Date.now() - this._start;
         Trace._totals += dur;

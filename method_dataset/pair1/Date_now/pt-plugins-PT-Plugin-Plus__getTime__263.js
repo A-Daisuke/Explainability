@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getTime(cell) {
       let time = cell.find("span[title],time[title]").attr("title");
       if (!time) {

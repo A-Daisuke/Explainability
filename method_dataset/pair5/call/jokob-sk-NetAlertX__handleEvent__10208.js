@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	handleEvent: function(e) {
 		var me = this;
 		var options = me.options || {};
@@ -43,4 +43,4 @@ function __method_wrapper__() {
 		return changed;
 	}
 
-}
+};

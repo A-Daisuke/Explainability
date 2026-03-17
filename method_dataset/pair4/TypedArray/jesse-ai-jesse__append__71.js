@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static append(lineTokens, _otherTokens) {
         if (_otherTokens === EMPTY_LINE_TOKENS) {
             return lineTokens;

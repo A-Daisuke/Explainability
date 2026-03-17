@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async initializeSwarm(topology = 'hierarchical', maxAgents = 8) {
     try {
       // Check if ruv-swarm is available

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   load({ state, commit, rootState }) {
     if (!rootState.user || !rootState.user.user) {
       console.error('libraries/load - User not set')

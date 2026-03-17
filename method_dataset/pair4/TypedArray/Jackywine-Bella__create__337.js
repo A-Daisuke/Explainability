@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static async create(arg0, arg1, arg2, arg3) {
         // either load from a file or buffer
         let filePathOrUint8Array;

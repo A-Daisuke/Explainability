@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	remove: function( elem, types, handler, selector, mappedTypes ) {
 
 		var j, origCount, tmp,
@@ -72,4 +72,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

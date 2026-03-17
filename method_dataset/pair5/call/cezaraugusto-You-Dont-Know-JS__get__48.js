@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 			get: function(keys) {
 				var ret = {};
 
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 				return ret;
 			},
 
-}
+};

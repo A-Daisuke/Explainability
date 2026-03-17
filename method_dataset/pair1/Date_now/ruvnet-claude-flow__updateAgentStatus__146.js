@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async updateAgentStatus(agentId, status, metrics = {}) {
     const agent = await this.retrieve(`agent:${agentId}`, { namespace: 'agents' });
     if (!agent) return null;

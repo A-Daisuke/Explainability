@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       _freeAllNodes() {
         if (this._nodeCache.length <= 32000) {
           for (const i in this._allNodes) {

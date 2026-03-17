@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   updateCoordinationMetrics(phaseName, result, validation) {
     this.metrics.phaseExecutions += 1;
 

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   setData(rssPodcastEpisode, libraryItem, isAutoDownload, libraryId) {
     this.id = uuidv4()
     this.rssPodcastEpisode = rssPodcastEpisode

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	it('6. ORDER BY two columns', function (done) {
 		var t4 = [
 			{Email: new String('A'), ID: new String('s1')},

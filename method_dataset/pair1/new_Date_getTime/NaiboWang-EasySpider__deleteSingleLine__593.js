@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     deleteSingleLine: function (event) { //删除单行元素
       let at = new Date().getTime()
       //流程图送元素的时候，默认的使用不固定循环列表，但是一旦有删除元素的操作发生，则按照固定元素列表采集元素
@@ -20,4 +20,4 @@ function __method_wrapper__() {
       console.log("delete:", at2, at, at2 - at);
     },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _toBinaryTokens(languageIdCodec, tokens) {
         const languageId = languageIdCodec.encodeLanguageId(this._languageId);
         const tokenTheme = this._standaloneThemeService.getColorTheme().tokenTheme;

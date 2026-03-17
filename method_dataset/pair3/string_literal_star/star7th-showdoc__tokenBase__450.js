@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
       tokenBase: function(stream, state) {
         var vxIndent = 0, style = false;
         var svxisOperatorChar = /[\[\]=:]/;
@@ -68,4 +68,4 @@ function __method_wrapper__() {
         return style;
       },
 
-}
+};

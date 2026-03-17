@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     submitCreateBookmark() {
       if (!this.newBookmarkTitle) {
         this.newBookmarkTitle = this.$formatDatetime(Date.now(), this.dateFormat, this.timeFormat)

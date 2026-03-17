@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createTasks() {
     this.log(`Phase 3: Creating ${this.config.tasksPerSwarm} tasks per swarm`);
     

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async applyProgressUpdate(progressPayload) {
     if (!this.extraData) this.extraData = {}
     if (progressPayload.isFinished !== undefined) {

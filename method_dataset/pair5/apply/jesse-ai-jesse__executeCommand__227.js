@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     executeCommand(id, ...args) {
         const command = CommandsRegistry.getCommand(id);
         if (!command) {

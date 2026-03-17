@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getTextData(clipboardData) {
         const text = clipboardData.getData(Mimes.text);
         let metadata = null;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async getAndProcessData(emit = true) {
       const lastId = this._getLastId();
       const { result } = await this.reputationLyncs.listCustomers({

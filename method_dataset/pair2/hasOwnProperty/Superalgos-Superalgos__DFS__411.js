@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		DFS: function DFS(o, callback, type, visited) {
 			visited = visited || {};
 
@@ -23,4 +23,4 @@ function __method_wrapper__() {
 			}
 		}
 
-}
+};

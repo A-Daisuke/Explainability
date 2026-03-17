@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_rrdtool: function(def, rrd, timespan, width, height, cache) {
 		var cmdline = [
 			'graph', '-', '-a', 'PNG',
@@ -29,4 +29,4 @@ function __method_wrapper__() {
 		return fs.exec_direct('/usr/bin/rrdtool', cmdline, 'blob', true);
 	},
 
-}
+};

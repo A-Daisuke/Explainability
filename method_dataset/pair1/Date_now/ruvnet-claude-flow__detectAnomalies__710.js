@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async detectAnomalies() {
     const now = Date.now();
     const recentMessages = this.messageHistory.filter(m => now - m.timestamp < 5000); // Last 5 seconds

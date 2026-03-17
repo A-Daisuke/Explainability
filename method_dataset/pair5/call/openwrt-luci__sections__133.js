@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	sections(config, sectiontype, callback) {
 		const rv = [];
 

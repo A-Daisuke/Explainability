@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             from: function from(arrayLike) {
               var O = toObject(arrayLike);
               var C = typeof this == "function" ? this : Array;
@@ -41,4 +41,4 @@ function __method_wrapper__() {
               return result;
             }
 
-}
+};

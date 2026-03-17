@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	index: function( elem ) {
 
 		// No argument, return index in parent
@@ -19,4 +19,4 @@ function __method_wrapper__() {
 		);
 	},
 
-}
+};

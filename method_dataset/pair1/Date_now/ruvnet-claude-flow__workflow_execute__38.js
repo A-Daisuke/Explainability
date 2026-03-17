@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   workflow_execute(args) {
     const workflowId = args.workflowId || args.workflow_id;
     const workflow = this.workflows.get(workflowId);

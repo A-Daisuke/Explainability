@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _resolveCodeLensesInViewport() {
         var _a;
         (_a = this._resolveCodeLensesPromise) === null || _a === void 0 ? void 0 : _a.cancel();

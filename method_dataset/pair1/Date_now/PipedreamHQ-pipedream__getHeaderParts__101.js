@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getHeaderParts(header) {
       const tolerance = 300; // seconds
       const headerParts = header?.split(",")

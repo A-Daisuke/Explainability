@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	dequeue: function( elem, type ) {
 		type = type || "fx";
 
@@ -34,4 +34,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

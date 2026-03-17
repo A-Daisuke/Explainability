@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async getAndProcessData() {
       const currentRun: number = Date.now();
       const lastRun: Date = this.getLastRun();

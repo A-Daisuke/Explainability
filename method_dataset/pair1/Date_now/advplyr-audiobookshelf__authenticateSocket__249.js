@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async authenticateSocket(socket, token) {
     // we don't use passport to authenticate the jwt we get over the socket connection.
     // it's easier to directly verify/decode it.

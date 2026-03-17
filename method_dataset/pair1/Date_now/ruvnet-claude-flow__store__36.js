@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async store(key: string, value: string, namespace: string = 'default') {
     await this.load();
 

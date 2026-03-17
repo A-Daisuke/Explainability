@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async checkLimit() {
     const now = Date.now();
     this.requests = this.requests.filter(time => now - time < this.windowMs);

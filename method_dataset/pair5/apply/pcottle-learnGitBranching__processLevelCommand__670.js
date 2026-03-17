@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   processLevelCommand: function(command, defer) {
     var methodMap = {
       'show goal': this.showGoal,
@@ -16,4 +16,4 @@ function __method_wrapper__() {
     method.apply(this, [command, defer]);
   }
 
-}
+};

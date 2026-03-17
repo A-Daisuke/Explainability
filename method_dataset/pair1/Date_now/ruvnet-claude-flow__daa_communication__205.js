@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   daa_communication(args) {
     const from = args.from;
     const to = args.to;

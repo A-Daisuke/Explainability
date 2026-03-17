@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             set: function reactiveSetter(newVal) {
                 var value = getter ? getter.call(obj) : val;
                 /* eslint-disable no-self-compare  新旧值比较 如果是一样则不执行了*/
@@ -26,4 +26,4 @@ function __method_wrapper__() {
                 dep.notify();
             }
 
-}
+};

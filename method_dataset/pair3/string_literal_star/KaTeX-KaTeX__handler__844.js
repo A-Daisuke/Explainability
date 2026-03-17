@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     handler(context) {
         const delimiters = {
             "matrix": null,

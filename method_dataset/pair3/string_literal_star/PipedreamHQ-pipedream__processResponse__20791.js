@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
         processResponse (response) {
           // 1.
           if (response.type === 'error' || response.status === 206 || response.status < 200 || response.status > 299) {

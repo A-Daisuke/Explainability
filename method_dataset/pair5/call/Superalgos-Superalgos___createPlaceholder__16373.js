@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_createPlaceholder: function( that ) {
 		that = that || this;
 		var className, nodeName,
@@ -78,4 +78,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

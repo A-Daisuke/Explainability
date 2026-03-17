@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	setUpdateEvents(targetNode, ...events) {
 		const datatype = this.options.datatype;
 		const optional = this.options.hasOwnProperty('optional') ? this.options.optional : true;

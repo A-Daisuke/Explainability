@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 test_match:function(match, indexed_rule) {
         var token,
             lines,
@@ -70,4 +70,4 @@ test_match:function(match, indexed_rule) {
         return false;
     },
 
-}
+};

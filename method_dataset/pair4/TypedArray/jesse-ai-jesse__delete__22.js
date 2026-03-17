@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static delete(lineTokens, fromChIndex, toChIndex) {
         if (lineTokens === null || lineTokens === EMPTY_LINE_TOKENS || fromChIndex === toChIndex) {
             return lineTokens;

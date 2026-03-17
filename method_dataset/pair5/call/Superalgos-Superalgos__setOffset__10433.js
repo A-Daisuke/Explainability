@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	setOffset: function( elem, options, i ) {
 		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
 			position = jQuery.css( elem, "position" ),
@@ -49,4 +49,4 @@ function __method_wrapper__() {
 		}
 	}
 
-}
+};

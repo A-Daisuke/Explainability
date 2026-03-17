@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     equip(itemName, equip) {
       if (!this._items.hasOwnProperty(itemName)) {
         return false;

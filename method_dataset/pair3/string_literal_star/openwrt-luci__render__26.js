@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function (data) {
 		var reply = {
 			platform: (data[0] && data[0][pkg.Name]) || {
@@ -423,4 +423,4 @@ function __method_wrapper__() {
 		return Promise.all([status.render(), m.render()]);
 	},
 
-}
+};

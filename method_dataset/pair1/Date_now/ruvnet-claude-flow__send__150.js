@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async send(toAgentId, message, type = 'query') {
     const messageId = this._generateMessageId();
     const timestamp = Date.now();

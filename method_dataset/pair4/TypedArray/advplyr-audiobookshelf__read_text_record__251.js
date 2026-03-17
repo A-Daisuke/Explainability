@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   read_text_record(i) {
     var flags = this.mobi_header.extra_flags;
     var begin = this.reclist[i].offset;

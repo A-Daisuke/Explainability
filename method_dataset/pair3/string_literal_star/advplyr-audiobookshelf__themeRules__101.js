@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     themeRules() {
       const theme = this.ereaderSettings.theme
       const isDark = theme === 'dark'

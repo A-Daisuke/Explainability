@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_updateContent: function( target, event ) {
 		var content,
 			contentOption = this.options.content,
@@ -37,4 +37,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

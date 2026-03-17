@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async checkLibraryItemData(existingLibraryItem, libraryScan) {
     const keysToCompare = ['libraryFolderId', 'ino', 'path', 'relPath', 'isFile']
     this.hasChanges = false

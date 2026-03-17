@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     collisionWith(otherObjectsTable) {
       if (this._box2DBody === null) {
         this.createBody();

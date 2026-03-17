@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     handleCodeExecution(ws, params, id) {
         const { code, language = 'javascript', timeout = 5000 } = params;
         const startTime = Date.now();

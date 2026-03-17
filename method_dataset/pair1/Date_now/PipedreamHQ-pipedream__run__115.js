@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run(event) {
     // self subscribe only on the first time
     if (!this._hasDeployed()) {

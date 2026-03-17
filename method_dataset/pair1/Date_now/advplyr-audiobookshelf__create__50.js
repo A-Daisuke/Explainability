@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async create(req, res) {
     if (!req.body.name || typeof req.body.name !== 'string') {
       Logger.warn(`[ApiKeyController] create: Invalid name: ${req.body.name}`)

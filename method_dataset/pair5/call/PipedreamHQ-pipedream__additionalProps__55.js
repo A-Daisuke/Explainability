@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async additionalProps() {
     const folderProps = await additionalFolderProps.call(this);
     const props = {

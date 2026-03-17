@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async generateTrainingTasks(complexity = 'medium') {
     const taskId = Date.now();
     const taskDir = path.join(this.realTasksDir, `task-${taskId}`);

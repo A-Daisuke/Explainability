@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		PSEUDO: function( pseudo, argument ) {
 
 			// pseudo-class names are case-insensitive
@@ -37,4 +37,4 @@ function __method_wrapper__() {
 			return fn;
 		}
 
-}
+};

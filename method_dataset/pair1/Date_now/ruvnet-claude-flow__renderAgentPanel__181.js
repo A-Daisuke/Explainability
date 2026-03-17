@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   renderAgentPanel(agent, width, spinner) {
     const lines = [];
     

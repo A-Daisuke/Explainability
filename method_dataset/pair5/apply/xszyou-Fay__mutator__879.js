@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     def(arrayMethods, method, function mutator () {
       var args = [], len = arguments.length;
       while ( len-- ) args[ len ] = arguments[ len ];

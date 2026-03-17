@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	pull(name, ...args) {
 		const className = this.objectClass[name];
 		if (className) {

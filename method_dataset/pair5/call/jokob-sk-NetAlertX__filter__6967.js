@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		filter: function ( fn )
 		{
 			var a = [];
@@ -18,4 +18,4 @@ function __method_wrapper__() {
 			return new _Api( this.context, a );
 		},
 
-}
+};

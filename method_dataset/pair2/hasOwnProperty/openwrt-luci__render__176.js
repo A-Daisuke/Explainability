@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function(data) {
 		ui.addNotification(null, E('p', [
 			_('The LuCI ACL management is in an experimental stage! It does not yet work reliably with all applications')
@@ -163,4 +163,4 @@ function __method_wrapper__() {
 		return m.render();
 	}
 
-}
+};

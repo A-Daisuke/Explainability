@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeMockTool(toolName, parameters) {
     // Simulate processing time
     await this.delay(Math.random() * 1000 + 500);

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function onReceiveProgressiveData(data) {
                   var position = this.progressiveDataLength;
                   var beginChunk = Math.floor(position / this.chunkSize);
@@ -22,4 +22,4 @@ function __method_wrapper__() {
                   }
                 }
 
-}
+};

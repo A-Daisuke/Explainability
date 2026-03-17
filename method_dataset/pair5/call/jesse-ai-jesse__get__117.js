@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     get() {
         var _a;
         if (this.observers.size === 0) {

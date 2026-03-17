@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async getFilterData(mediaType, libraryId) {
     const cachedFilterData = Database.libraryFilterData[libraryId]
     if (cachedFilterData) {

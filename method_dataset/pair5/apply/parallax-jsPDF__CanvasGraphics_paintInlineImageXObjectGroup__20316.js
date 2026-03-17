@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             paintInlineImageXObjectGroup: function CanvasGraphics_paintInlineImageXObjectGroup(
               imgData,
               map
@@ -46,4 +46,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

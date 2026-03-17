@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function _expandKey(cipherKey) {
                   var b = 240;
                   var s = this._s;
@@ -44,4 +44,4 @@ function __method_wrapper__() {
                   return result;
                 }
 
-}
+};

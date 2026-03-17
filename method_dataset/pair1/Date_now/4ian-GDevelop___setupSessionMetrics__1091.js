@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _setupSessionMetrics() {
       if (this._sessionMetricsInitialized) {
         return;

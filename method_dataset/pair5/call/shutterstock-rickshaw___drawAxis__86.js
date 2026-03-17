@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_drawAxis: function(scale) {
 		var axis = d3.svg.axis().scale(scale).orient(this.orientation);
 		axis.tickFormat(this.tickFormat);
@@ -22,4 +22,4 @@ function __method_wrapper__() {
 		return axis;
 	},
 
-}
+};

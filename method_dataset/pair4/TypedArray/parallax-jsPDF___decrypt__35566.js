@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function _decrypt(input, key) {
                   var t, u, v;
                   var state = new Uint8Array(16);
@@ -83,4 +83,4 @@ function __method_wrapper__() {
                   return state;
                 }
 
-}
+};

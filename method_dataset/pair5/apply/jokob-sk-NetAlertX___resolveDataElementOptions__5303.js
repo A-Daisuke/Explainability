@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_resolveDataElementOptions: function(point, index) {
 		var me = this;
 		var chart = me.chart;
@@ -31,4 +31,4 @@ function __method_wrapper__() {
 		return values;
 	}
 
-}
+};

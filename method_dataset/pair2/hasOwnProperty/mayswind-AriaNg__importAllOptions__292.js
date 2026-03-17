@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             importAllOptions: function (options) {
                 var finalOptions = angular.copy(ariaNgDefaultOptions);
 
@@ -38,4 +38,4 @@ function __method_wrapper__() {
                 setOptions(finalOptions);
             },
 
-}
+};

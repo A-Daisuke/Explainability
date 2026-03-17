@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               value: function _scrollIntoView(_ref) {
                 var pageDiv = _ref.pageDiv,
                   _ref$pageSpot = _ref.pageSpot,
@@ -37,4 +37,4 @@ function __method_wrapper__() {
                 });
               }
 
-}
+};

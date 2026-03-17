@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getHeaders(args = {}) {
       const {
         secret_key: secretKey,

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		load: function(section_id) {
 			var cfgvalue = L.toArray(this.super('load', [section_id]) || this.default).sort();
 
@@ -30,4 +30,4 @@ function __method_wrapper__() {
 			return cfgvalue;
 		},
 
-}
+};

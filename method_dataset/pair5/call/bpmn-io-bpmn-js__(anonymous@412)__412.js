@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should render collapsed subprocess marker centered', function() {
     var xml = require('../../fixtures/bpmn/draw/activity-markers-simple.bpmn');
 

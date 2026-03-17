@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	handleCallReply(req, msg) {
 		const type = Object.prototype.toString;
 		let ret = null;

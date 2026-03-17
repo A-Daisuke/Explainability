@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async _assignTask(workerId, taskId) {
     const worker = this.state.workers.get(workerId);
     const task = this.state.tasks.get(taskId);

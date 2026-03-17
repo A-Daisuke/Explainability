@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run(event) {
     const signature = event.headers["upstash-signature"];
     const currentSigningKey = this.db.get("currentSigningKey");

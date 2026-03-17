@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createBookmark(libraryItemId, time, title) {
     const existingBookmark = this.findBookmark(libraryItemId, time)
     if (existingBookmark) {

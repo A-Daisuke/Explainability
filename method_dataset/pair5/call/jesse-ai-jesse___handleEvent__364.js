@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _handleEvent(eventName, arg) {
         if (!this._requestHandler) {
             throw new Error(`Missing requestHandler`);

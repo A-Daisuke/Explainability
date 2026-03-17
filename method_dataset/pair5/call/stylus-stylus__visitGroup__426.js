@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   visitGroup(group) {
     var stack = this.keyframe ? [] : this.stack
       , comma = this.compress ? ',' : ',\n';

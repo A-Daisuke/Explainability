@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   resetInstanceRenderersFor(objectName: string) {
     for (let s in this.renderedInstances) {
       let i = Number(s);

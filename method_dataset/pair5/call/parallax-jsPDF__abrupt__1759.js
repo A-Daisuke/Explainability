@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               abrupt: function abrupt(type, arg) {
                 for (var i = this.tryEntries.length - 1; i >= 0; --i) {
                   var entry = this.tryEntries[i];
@@ -35,4 +35,4 @@ function __method_wrapper__() {
                 return this.complete(record);
               },
 
-}
+};

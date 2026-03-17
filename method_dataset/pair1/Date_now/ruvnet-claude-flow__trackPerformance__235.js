@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async trackPerformance(operation, duration, success = true, metadata = {}) {
     const perfData = {
       operation,

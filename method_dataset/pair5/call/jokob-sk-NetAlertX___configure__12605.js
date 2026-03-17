@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_configure: function() {
 		var me = this;
 		var offset = me.options.offset;
@@ -19,4 +19,4 @@ function __method_wrapper__() {
 		me._valueRange = Math.max(ticks.length - (offset ? 0 : 1), 1);
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _trackAccess(key, operation) {
     const pattern = this.state.accessPatterns.get(key) || {
       reads: 0,

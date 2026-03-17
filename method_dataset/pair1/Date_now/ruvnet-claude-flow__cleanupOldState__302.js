@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async cleanupOldState(daysToKeep = 7) {
     const result = {
       success: true,

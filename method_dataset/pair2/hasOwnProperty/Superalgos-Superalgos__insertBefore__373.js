@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		insertBefore: function (inside, before, insert, root) {
 			root = root || /** @type {any} */ (_.languages);
 			var grammar = root[inside];
@@ -36,4 +36,4 @@ function __method_wrapper__() {
 			return ret;
 		},
 
-}
+};

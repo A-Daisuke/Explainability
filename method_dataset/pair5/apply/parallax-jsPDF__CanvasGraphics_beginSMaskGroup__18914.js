@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             beginSMaskGroup: function CanvasGraphics_beginSMaskGroup() {
               var activeSMask = this.current.activeSMask;
               var drawnWidth = activeSMask.canvas.width;
@@ -30,4 +30,4 @@ function __method_wrapper__() {
               this.groupLevel++;
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             createImageData: function createImageData() {
               var forceRGBA =
                 arguments.length > 0 && arguments[0] !== undefined
@@ -143,4 +143,4 @@ function __method_wrapper__() {
               return imgData;
             },
 
-}
+};

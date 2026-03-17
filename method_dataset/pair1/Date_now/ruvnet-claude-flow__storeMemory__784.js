@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async storeMemory(swarmId, key, value, type = 'knowledge') {
     try {
       // Don't reinitialize if we already have storage

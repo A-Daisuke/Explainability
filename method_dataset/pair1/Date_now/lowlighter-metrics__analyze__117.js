@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async analyze(path, {commits = []} = {}) {
     const cache = {files: {}, languages: {}}
     const start = Date.now()

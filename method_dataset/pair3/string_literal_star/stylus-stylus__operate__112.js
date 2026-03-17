@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   operate(op, right) {
     var type = this.type || right.first.type;
 

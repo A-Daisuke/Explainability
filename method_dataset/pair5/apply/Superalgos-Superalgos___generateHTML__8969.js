@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_generateHTML: function( inst ) {
 		var maxDraw, prevText, prev, nextText, next, currentText, gotoDate,
 			controls, buttonPanel, firstDay, showWeek, dayNames, dayNamesMin,
@@ -257,4 +257,4 @@ function __method_wrapper__() {
 		return html;
 	},
 
-}
+};

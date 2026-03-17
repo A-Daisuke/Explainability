@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	exprToKey: function(expr) {
 		var kind, spec;
 
@@ -28,4 +28,4 @@ function __method_wrapper__() {
 		return null;
 	},
 
-}
+};

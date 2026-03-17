@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async watchObjectsAndEmitChanges(objectType, objectsToEmit, queryTypes) {
       // Get the timestamp of the last run, if available. Else set the start time to 1 day ago
       const lastRun = this._getLastMaxTimestamp() ?? +Date.now() - (1000 * 60 * 60 * 24);

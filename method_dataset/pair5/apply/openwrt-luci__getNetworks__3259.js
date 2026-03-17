@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	getNetworks: function() {
 		if (this.networks == null) {
 			this.networks = [];
@@ -15,4 +15,4 @@ function __method_wrapper__() {
 		return this.networks;
 	},
 
-}
+};

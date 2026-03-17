@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	trigger: function( event, data, elem, onlyHandlers ) {
 
 		var i, cur, tmp, bubbleType, ontype, handle, special, lastElement,
@@ -144,4 +144,4 @@ function __method_wrapper__() {
 		return event.result;
 	},
 
-}
+};

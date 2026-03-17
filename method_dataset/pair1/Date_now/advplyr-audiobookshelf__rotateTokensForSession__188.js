@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async rotateTokensForSession(session, user, req, res) {
     // Generate new tokens
     const newAccessToken = this.generateTempAccessToken(user)

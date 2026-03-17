@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async deploy() {
       const { content: form } = await this.jotform.getForm(this.formId, this.teamId);
       const { content: submissions } = await this.jotform.getFormSubmissions({

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     updateFocus(fromRight, preventScroll, forceFocus = false) {
         var _a, _b;
         if (typeof this.focusedItem === 'undefined') {

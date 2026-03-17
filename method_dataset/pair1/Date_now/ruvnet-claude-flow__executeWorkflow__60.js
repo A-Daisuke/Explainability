@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeWorkflow(workflowData, variables = {}) {
     try {
       // Store workflow for reference

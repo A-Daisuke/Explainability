@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     indent: function(state, textAfter, fullLine) {
       var context = state.context;
       // Indent multi-line strings (e.g. css).
@@ -46,4 +46,4 @@ function __method_wrapper__() {
       else return 0;
     },
 
-}
+};

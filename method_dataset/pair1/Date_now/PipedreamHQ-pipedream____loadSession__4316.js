@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async __loadSession() {
         this._debug('#__loadSession()', 'begin');
         if (!this.lockAcquired) {

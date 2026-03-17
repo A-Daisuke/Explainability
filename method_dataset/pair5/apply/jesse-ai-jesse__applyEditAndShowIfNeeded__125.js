@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async applyEditAndShowIfNeeded(ranges, edits, canShowWidget, resolve, token) {
         const model = this._editor.getModel();
         if (!model || !ranges.length) {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		data(node, key, val) {
 			if (!node?.getAttribute)
 				return null;

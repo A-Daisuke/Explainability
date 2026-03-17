@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _removeZone(whitespaceAccessor, id) {
         if (this._zones.hasOwnProperty(id)) {
             const zone = this._zones[id];

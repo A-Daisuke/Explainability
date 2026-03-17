@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             indexObjects: function XRef_indexObjects() {
               var TAB = 0x9,
                 LF = 0xa,
@@ -246,4 +246,4 @@ function __method_wrapper__() {
               throw new _util.InvalidPDFException("Invalid PDF structure");
             },
 
-}
+};

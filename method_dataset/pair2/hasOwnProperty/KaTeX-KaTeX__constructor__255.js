@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(options: SettingsOptions) {
         // allow null options
         options = options || {};

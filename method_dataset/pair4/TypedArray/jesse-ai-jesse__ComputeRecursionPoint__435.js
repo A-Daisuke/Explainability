@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     ComputeRecursionPoint(originalStart, originalEnd, modifiedStart, modifiedEnd, midOriginalArr, midModifiedArr, quitEarlyArr) {
         let originalIndex = 0, modifiedIndex = 0;
         let diagonalForwardStart = 0, diagonalForwardEnd = 0;

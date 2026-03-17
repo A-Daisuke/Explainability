@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       async pull (controller) {
         const { value, done } = await iterator.next()
         if (done) {

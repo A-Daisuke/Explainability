@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   shouldUpdate() {
     const now = Date.now();
     const delta = now - this._lastFrameTime;

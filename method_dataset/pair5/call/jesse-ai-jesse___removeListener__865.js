@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _removeListener(listener) {
         var _a, _b, _c, _d;
         (_b = (_a = this._options) === null || _a === void 0 ? void 0 : _a.onWillRemoveListener) === null || _b === void 0 ? void 0 : _b.call(_a, this);

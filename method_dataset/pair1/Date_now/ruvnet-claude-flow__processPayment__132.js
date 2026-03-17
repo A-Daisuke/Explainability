@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   static async processPayment(paymentDetails) {
     // In a real application, this would integrate with payment providers
     // For now, we'll simulate payment processing

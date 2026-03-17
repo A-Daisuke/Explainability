@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
           numbers_iwa_doit(cfb, deps, 2, function(ai) {
             var mlist = parse_shallow(ai.messages[0].data);
             mlist[3].push({ type: 2, data: write_shallow([

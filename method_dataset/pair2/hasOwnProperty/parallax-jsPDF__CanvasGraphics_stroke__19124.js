@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             stroke: function CanvasGraphics_stroke(consumePath) {
               consumePath =
                 typeof consumePath !== "undefined" ? consumePath : true;
@@ -30,4 +30,4 @@ function __method_wrapper__() {
               ctx.globalAlpha = this.current.fillAlpha;
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             dispatchException: function dispatchException(exception) {
               if (this.done) {
                 throw exception;
@@ -52,4 +52,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

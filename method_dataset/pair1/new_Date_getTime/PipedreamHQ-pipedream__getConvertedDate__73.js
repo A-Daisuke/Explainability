@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getConvertedDate(date, fieldName) {
       let converted = null;
       if (!this.isFieldEmptyOrNull(date)) {

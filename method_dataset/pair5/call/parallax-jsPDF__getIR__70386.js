@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             getIR: function getIR(_ref2) {
               var xref = _ref2.xref,
                 isEvalSupported = _ref2.isEvalSupported,
@@ -31,4 +31,4 @@ function __method_wrapper__() {
               });
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_info: function () {
 		if (!this.s.dt.oFeatures.bInfo) {
 			return;
@@ -81,4 +81,4 @@ function __method_wrapper__() {
 		});
 	},
 
-}
+};

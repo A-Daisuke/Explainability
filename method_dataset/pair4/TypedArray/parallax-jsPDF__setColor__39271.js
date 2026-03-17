@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function setColor(color) {
                   var rgbColor = new Uint8ClampedArray(3);
 
@@ -51,4 +51,4 @@ function __method_wrapper__() {
                   }
                 }
 
-}
+};

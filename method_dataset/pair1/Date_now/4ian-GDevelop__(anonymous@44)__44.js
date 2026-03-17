@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 describeIfOnline('Firebase extension end-to-end tests', function () {
   // Increase the timeout to work on low connections as well.
   this.timeout('5s');

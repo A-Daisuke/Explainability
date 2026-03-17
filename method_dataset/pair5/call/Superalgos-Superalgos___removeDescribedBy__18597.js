@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_removeDescribedBy: function( elem ) {
 		var id = elem.data( "ui-tooltip-id" ),
 			describedby = ( elem.attr( "aria-describedby" ) || "" ).split( /\s+/ ),
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

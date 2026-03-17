@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   processBatchedUpdates(viewName) {
     const queue = this.updateQueues.get(viewName);
     if (!queue || queue.length === 0) return;

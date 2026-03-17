@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async doGetSymbolPicks(symbolsPromise, query, options, token, model) {
         var _a, _b;
         const symbols = await symbolsPromise;

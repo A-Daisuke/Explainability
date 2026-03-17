@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 				applyPatch: function (oldStr, uniDiff) {
 					var diffstr = uniDiff.split('\n');
 					var diff = [];
@@ -52,4 +52,4 @@ function __method_wrapper__() {
 					return str.join('\n');
 				},
 
-}
+};

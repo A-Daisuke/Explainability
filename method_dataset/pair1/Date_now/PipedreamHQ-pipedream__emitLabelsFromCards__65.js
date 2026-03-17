@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async emitLabelsFromCards(cards) {
       for (const card of cards) {
         const labelIds = card.idLabels;

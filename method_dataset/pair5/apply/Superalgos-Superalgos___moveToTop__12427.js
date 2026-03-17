@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_moveToTop: function( event, silent ) {
 		var moved = false,
 			zIndices = this.uiDialog.siblings( ".ui-front:visible" ).map( function() {
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 		return moved;
 	},
 
-}
+};

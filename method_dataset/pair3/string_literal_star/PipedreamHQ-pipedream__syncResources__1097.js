@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async syncResources(db, resourceTypes, $ = null) {
       const syncToken = db
         ? this._getSyncToken(db) || "*"

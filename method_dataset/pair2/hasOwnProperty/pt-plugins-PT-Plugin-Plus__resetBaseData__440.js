@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     resetBaseData(result: any) {
       var fillOpacity = 0.3;
       var datas = [

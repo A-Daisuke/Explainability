@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async getAndProcessData(emit = true) {
       const savedIds = this._getSavedIds();
       const items = await this.getItems();

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	reset() {
 		// add all defined cameras
 		this.settings.cameras.forEach((camera) => {

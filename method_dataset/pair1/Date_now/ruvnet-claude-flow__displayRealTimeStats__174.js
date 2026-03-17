@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   displayRealTimeStats() {
     if (!this.enabled) return;
 

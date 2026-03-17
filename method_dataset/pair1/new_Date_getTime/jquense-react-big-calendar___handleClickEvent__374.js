@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _handleClickEvent(e) {
     const { pageX, pageY, clientX, clientY } = getEventCoordinates(e)
     const now = new Date().getTime()

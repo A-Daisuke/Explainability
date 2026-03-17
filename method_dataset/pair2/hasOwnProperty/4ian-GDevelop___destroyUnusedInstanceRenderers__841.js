@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _destroyUnusedInstanceRenderers() {
     for (let s in this.renderedInstances) {
       let i = Number(s);

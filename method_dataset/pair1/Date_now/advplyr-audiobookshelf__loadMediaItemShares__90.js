@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async loadMediaItemShares() {
     /** @type {import('../models/MediaItemShare').MediaItemShareModel[]} */
     const mediaItemShares = await Database.models.mediaItemShare.findAll()

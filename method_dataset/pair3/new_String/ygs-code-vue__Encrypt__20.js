@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
         Encrypt: function (Text) {
             this.num = this.num + 1;
             output = new String;
@@ -17,4 +17,4 @@ function __method_wrapper__() {
             return output;
         },
 
-}
+};

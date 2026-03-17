@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	describe('Test 186 - Linq Syntax', function () {
 		it('1. empty alasql()', function (done) {
 			var data1 = [

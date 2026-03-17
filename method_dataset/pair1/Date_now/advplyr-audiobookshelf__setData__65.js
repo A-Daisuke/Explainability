@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   setData(backupDirPath) {
     this.id = date.format(new Date(), 'YYYY-MM-DD[T]HHmm')
     this.key = 'sqlite'

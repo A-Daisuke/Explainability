@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_configure: function() {
 		var me = this;
 		var start = me.min;
@@ -16,4 +16,4 @@ function __method_wrapper__() {
 		me._valueRange = (log10(me.max) - log10(start)) / (1 - offset);
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       sendMessage(to: string, type: string, content: any) {
         const message: AgentMessage = {
           id: `msg-${Date.now()}-${Math.random()}`,

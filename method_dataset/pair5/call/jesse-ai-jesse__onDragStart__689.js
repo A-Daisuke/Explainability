@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     onDragStart(element, uri, event) {
         var _a, _b;
         if (!event.dataTransfer) {

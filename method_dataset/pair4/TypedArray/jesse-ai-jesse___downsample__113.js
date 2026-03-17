@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _downsample(data, scale) {
         const pixelsPerCharacter = 2 /* Constants.BASE_CHAR_HEIGHT */ * scale * 1 /* Constants.BASE_CHAR_WIDTH */ * scale;
         const resultLen = pixelsPerCharacter * 96 /* Constants.CHAR_COUNT */;

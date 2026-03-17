@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   forEach (callbackFn, thisArg = globalThis) {
     webidl.brandCheck(this, Headers)
 

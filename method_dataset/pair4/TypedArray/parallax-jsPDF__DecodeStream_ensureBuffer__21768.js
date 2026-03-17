@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             ensureBuffer: function DecodeStream_ensureBuffer(requested) {
               var buffer = this.buffer;
 
@@ -17,4 +17,4 @@ function __method_wrapper__() {
               return (this.buffer = buffer2);
             },
 
-}
+};

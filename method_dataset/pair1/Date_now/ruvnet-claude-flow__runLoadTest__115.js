@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async runLoadTest() {
     this.log(`Starting ${this.config.description}`);
     this.log(`Configuration: ${this.config.swarms} swarms, ${this.config.agentsPerSwarm} agents/swarm, ${this.config.tasksPerSwarm} tasks/swarm`);

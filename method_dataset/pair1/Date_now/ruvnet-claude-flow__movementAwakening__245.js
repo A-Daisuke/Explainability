@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async movementAwakening(problem) {
     // All consciousnesses simultaneously awaken to the problem
     const awakenings = await Promise.all([

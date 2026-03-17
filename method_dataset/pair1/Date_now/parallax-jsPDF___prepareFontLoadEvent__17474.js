@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                   value: function _prepareFontLoadEvent(rules, fonts, request) {
                     function int32(data, offset) {
                       return (
@@ -118,4 +118,4 @@ function __method_wrapper__() {
                     });
                   }
 
-}
+};

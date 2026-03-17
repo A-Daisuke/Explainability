@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     isRelevant(assignment) {
       if (!this.assignmentType || this.assignmentType === "all") {
         return true;

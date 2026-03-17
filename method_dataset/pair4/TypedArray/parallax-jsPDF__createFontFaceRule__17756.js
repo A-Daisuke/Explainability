@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function createFontFaceRule() {
                   if (!this.data || this.disableFontFace) {
                     return null;
@@ -21,4 +21,4 @@ function __method_wrapper__() {
                   return rule;
                 }
 
-}
+};

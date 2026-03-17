@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   registerEvent: function(
     eventType: string,
     renderFunction: ComponentType<EventRendererProps>
@@ -15,4 +15,4 @@ function __method_wrapper__() {
     this.components[eventType] = renderFunction;
   },
 
-}
+};

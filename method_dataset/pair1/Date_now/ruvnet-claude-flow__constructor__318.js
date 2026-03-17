@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor(
     private config: Config,
     private terminalManager: ITerminalManager,

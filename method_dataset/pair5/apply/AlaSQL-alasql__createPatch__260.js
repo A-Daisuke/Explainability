@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 				createPatch: function (fileName, oldStr, newStr, oldHeader, newHeader) {
 					var ret = [];
 
@@ -105,4 +105,4 @@ function __method_wrapper__() {
 					return ret.join('\n') + '\n';
 				},
 
-}
+};

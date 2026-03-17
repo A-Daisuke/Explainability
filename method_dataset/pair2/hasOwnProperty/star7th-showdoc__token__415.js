@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     token: function(stream, state) {
       if (stream.sol()) {
         if (!state.lexical.hasOwnProperty("align"))
@@ -16,4 +16,4 @@ function __method_wrapper__() {
       return parse(state, stream, style);
     },
 
-}
+};

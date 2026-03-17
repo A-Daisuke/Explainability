@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	validate() {
 		/* element is detached */
 		if (!findParent(this.field, 'body') && !findParent(this.field, '[data-field]'))

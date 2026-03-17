@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   multicast(agentIds, message, type = 'query') {
     const messageId = this._generateMessageId();
     const timestamp = Date.now();

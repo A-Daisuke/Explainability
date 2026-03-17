@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   getThumbnail: function(
     project: gdProject,
     objectConfiguration: gdObjectConfiguration
@@ -25,4 +25,4 @@ function __method_wrapper__() {
     }
   },
 
-}
+};

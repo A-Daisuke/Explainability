@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(_debugNameData, _runFn, createChangeSummary, _handleChange) {
         var _a, _b;
         this._debugNameData = _debugNameData;

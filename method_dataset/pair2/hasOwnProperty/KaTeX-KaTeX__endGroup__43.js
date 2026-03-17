@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     endGroup() {
         if (this.undefStack.length === 0) {
             throw new ParseError("Unbalanced namespace destruction: attempt " +

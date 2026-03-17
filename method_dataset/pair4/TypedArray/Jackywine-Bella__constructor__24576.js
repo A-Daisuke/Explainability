@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(fft_length) {
         // Helper variables
         const a = 2 * (fft_length - 1);

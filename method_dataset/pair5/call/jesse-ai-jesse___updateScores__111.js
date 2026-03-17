@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _updateScores(model) {
         var _a, _b;
         const notebookInfo = (_a = this._notebookInfoResolver) === null || _a === void 0 ? void 0 : _a.call(this, model.uri);

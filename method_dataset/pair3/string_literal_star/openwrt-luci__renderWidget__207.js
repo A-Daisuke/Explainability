@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	renderWidget: function(section_id, option_index, cfgvalue) {
 		var widget = new ui.Dropdown(cfgvalue || ['-'], {
 			'-': E([], [
@@ -111,4 +111,4 @@ function __method_wrapper__() {
 		return E('div', { 'style': 'display:inline-block' }, node);
 	},
 
-}
+};

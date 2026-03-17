@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run() {
     const lastDateSynced = this._getLastDateSynced() ?? new Date().getTime();
     this._setLastDateSynced(new Date().getTime());

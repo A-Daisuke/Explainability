@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		handler: function( event ) {
 			var result,
 				saved = dataPriv.get( this, type );
@@ -62,4 +62,4 @@ function __method_wrapper__() {
 			}
 		}
 
-}
+};

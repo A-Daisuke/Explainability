@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     submitForm() {
       if (!this.textInput || !this.textInput.trim?.()) return
 

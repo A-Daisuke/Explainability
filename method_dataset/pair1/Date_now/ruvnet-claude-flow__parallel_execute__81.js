@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   parallel_execute(args) {
     const tasks = args.tasks || [];
     const jobId = `parallel_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;

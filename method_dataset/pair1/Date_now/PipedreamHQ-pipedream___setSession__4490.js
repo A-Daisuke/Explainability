@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _setSession(currentSession) {
         try {
             if (!currentSession.access_token || !currentSession.refresh_token) {

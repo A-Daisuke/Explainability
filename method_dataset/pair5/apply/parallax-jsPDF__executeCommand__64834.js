@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             executeCommand: function executeCommand(
               howManyArgs,
               command,
@@ -40,4 +40,4 @@ function __method_wrapper__() {
               return false;
             }
 
-}
+};

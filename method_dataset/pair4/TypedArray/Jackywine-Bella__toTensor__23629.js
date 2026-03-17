@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     toTensor(channel_format = 'CHW') {
         let tensor = new _tensor_js__WEBPACK_IMPORTED_MODULE_2__.Tensor(
             'uint8',

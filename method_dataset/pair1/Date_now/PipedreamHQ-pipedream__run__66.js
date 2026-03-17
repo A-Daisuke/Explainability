@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run(event) {
     const { body } = event;
     let { content: submission } = await this.jotform.getFormSubmission({

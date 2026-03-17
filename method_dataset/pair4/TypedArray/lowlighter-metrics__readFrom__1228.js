@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async readFrom(r) {
         let n = 0;
         const tmp = new Uint8Array(MIN_READ);

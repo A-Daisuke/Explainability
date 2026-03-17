@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _setDocumentSemanticTokens(provider, tokens, styling, pendingChanges) {
         const currentResponse = this._currentDocumentResponse;
         const rescheduleIfNeeded = () => {

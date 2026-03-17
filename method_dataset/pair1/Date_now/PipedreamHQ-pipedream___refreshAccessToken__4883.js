@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _refreshAccessToken(refreshToken) {
         const debugName = `#_refreshAccessToken(${refreshToken.substring(0, 5)}...)`;
         this._debug(debugName, 'begin');

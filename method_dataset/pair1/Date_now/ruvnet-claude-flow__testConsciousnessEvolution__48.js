@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async testConsciousnessEvolution() {
     console.log('Testing consciousness evolution across 3 modes...\n');
     

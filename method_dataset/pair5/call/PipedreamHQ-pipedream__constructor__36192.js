@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor (dispatch, maxRedirections, opts, handler) {
     if (maxRedirections != null && (!Number.isInteger(maxRedirections) || maxRedirections < 0)) {
       throw new InvalidArgumentError('maxRedirections must be a positive number')

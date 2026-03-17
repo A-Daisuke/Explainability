@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async associate(key1, key2, strength = 1.0) {
     try {
       // Store bidirectional association

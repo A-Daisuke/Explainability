@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             getOwnerKey: function PDF20_getOwnerKey(
               password,
               ownerKeySalt,
@@ -18,4 +18,4 @@ function __method_wrapper__() {
               );
             },
 
-}
+};

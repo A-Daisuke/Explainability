@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     render(ctx) {
         const visibleWhitespaces = ctx.viewportData.whitespaceViewportData;
         const visibleZones = {};

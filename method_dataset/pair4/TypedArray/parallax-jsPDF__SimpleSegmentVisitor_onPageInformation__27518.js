@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             onPageInformation: function SimpleSegmentVisitor_onPageInformation(
               info
             ) {
@@ -15,4 +15,4 @@ function __method_wrapper__() {
               this.buffer = buffer;
             },
 
-}
+};

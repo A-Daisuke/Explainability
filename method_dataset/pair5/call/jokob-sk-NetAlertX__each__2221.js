@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	each: function(loopable, fn, thisArg, reverse) {
 		var i, len, keys;
 		if (helpers.isArray(loopable)) {
@@ -21,4 +21,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

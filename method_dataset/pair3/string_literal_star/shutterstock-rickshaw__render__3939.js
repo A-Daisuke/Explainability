@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function(args) {
 
 		args = args || {};
@@ -51,4 +51,4 @@ function __method_wrapper__() {
 		}, this);
 	}
 
-}
+};

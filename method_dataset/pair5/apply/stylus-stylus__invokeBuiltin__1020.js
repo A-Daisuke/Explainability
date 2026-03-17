@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   invokeBuiltin(fn, args) {
     // Map arguments to first node
     // providing a nicer js api for

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	isActionExpression: function(expr) {
 		for (var k in expr) {
 			if (expr.hasOwnProperty(k)) {
@@ -27,4 +27,4 @@ function __method_wrapper__() {
 		return false;
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_trigger: function( type, event, data ) {
 		var prop, orig;
 		var callback = this.options[ type ];
@@ -29,4 +29,4 @@ function __method_wrapper__() {
 			event.isDefaultPrevented() );
 	}
 
-}
+};

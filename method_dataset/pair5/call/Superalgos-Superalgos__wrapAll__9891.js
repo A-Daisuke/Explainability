@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	wrapAll: function( html ) {
 		var wrap;
 
@@ -28,4 +28,4 @@ function __method_wrapper__() {
 		return this;
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function onReceiveData(begin, chunk) {
                   var chunkSize = this.chunkSize;
 
@@ -28,4 +28,4 @@ function __method_wrapper__() {
                   }
                 }
 
-}
+};

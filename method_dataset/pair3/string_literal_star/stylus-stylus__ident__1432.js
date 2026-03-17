@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   ident() {
     var i = 2
       , la = this.lookahead(i).type;

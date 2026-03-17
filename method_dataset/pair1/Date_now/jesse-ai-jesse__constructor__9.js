@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(targetWindow, e) {
         this.timestamp = Date.now();
         this.browserEvent = e;

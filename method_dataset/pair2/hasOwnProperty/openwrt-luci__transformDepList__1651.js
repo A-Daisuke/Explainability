@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	transformDepList(section_id, deplist) {
 		const list = deplist ?? this.deps;
 		const deps = [];

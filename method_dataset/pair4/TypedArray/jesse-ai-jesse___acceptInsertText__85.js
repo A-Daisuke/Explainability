@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _acceptInsertText(position, insertText) {
         if (insertText.length === 0) {
             // Nothing to insert

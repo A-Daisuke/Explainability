@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async deploy() {
       const response = await this.drata.listVendors({
         paginate: true,

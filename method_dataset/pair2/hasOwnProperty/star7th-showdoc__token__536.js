@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
       token: function(stream, state) {
         if (stream.sol()) {
           state.indented = stream.indentation();
@@ -18,4 +18,4 @@ function __method_wrapper__() {
         return styleMap.hasOwnProperty(style) ? styleMap[style] : style;
       },
 
-}
+};

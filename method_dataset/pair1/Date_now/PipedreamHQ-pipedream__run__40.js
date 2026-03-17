@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run() {
     const resp = await this.app.getOutput({ //always there is one last output for an agent
       params: {

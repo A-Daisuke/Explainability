@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       final (callback) {
         let entries = store.#entries.get(topLevelKey)
         if (!entries) {

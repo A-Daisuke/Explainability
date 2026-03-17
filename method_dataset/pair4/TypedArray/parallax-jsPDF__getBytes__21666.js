@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             getBytes: function getBytes(length) {
               var forceClamped =
                 arguments.length > 1 && arguments[1] !== undefined
@@ -27,4 +27,4 @@ function __method_wrapper__() {
               return forceClamped ? new Uint8ClampedArray(subarray) : subarray;
             },
 
-}
+};

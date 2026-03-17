@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _call(audio, {
         padding = true,
         pad_to_multiple_of = 2,

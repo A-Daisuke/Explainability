@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   initialize: function(options) {
     options = options || {};
     options.level = options.level || {};
@@ -22,4 +22,4 @@ function __method_wrapper__() {
     LevelActions.setIsSolvingLevel(true);
   },
 
-}
+};

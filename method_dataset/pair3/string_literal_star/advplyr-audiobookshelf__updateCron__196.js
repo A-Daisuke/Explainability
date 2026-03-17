@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     updateCron() {
       if (this.selectedInterval === 'custom') {
         if (!this.minuteIsValid || !this.hourIsValid || !this.selectedWeekdays.length) {

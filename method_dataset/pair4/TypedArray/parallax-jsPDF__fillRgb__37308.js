@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                   value: function fillRgb(
                     dest,
                     originalWidth,
@@ -114,4 +114,4 @@ function __method_wrapper__() {
                     }
                   }
 
-}
+};

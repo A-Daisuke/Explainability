@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		extend(properties) {
 			const props = {
 				__id__: { value: classIndex },

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_mouseDrag: function( event ) {
 
 		var data, props,
@@ -42,4 +42,4 @@ function __method_wrapper__() {
 		return false;
 	},
 
-}
+};

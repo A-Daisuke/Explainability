@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   handleConnection(ws, req) {
     const clientId = nanoid();
     const clientInfo = {

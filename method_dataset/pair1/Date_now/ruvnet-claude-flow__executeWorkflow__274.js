@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeWorkflow(workflow, options = {}) {
     const workflowId = `workflow_${Date.now()}`;
     const context = {}; // Shared context between steps

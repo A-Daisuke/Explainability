@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	searchHEX(pattern) {
 		// Remove spaces and validate hex string
 		const cleanedPattern = pattern.replace(/\s+/g, '');

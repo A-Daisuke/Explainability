@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
         inject(function(canvas, copyPaste, elementRegistry, modeling) {
 
           // given

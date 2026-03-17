@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 			menufocus: function( event, ui ) {
 				var label, item;
 
@@ -34,4 +34,4 @@ function __method_wrapper__() {
 				}
 			},
 
-}
+};

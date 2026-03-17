@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function encrypt(data, iv) {
                   var sourceLength = data.length;
                   var buffer = this.buffer,
@@ -51,4 +51,4 @@ function __method_wrapper__() {
                   return output;
                 }
 
-}
+};

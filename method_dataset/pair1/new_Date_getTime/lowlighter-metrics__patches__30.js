@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async patches() {
     //Fetch commits from recent activity
     this.debug(`fetching patches from last ${this.days || ""} days up to ${this.load || "∞"} events`)

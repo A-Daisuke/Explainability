@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async sendToDingDing(notification, params) {
         let timestamp = Date.now();
 

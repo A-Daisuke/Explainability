@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async processResults(after, params) {
       if (this.skipFirstRun && !after) {
         this._setAfter(Date.now());

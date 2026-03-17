@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createCheckpoint(phase, data) {
     const result = {
       success: true,

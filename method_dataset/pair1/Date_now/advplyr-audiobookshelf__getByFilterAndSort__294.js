@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   static async getByFilterAndSort(library, user, options) {
     let start = Date.now()
     const { libraryItems, count } = await libraryFilters.getFilteredLibraryItems(library.id, user, options)

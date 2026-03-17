@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeTool(toolName, params = {}) {
     const startTime = Date.now();
     let lastError = null;

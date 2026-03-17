@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   daa_consensus(args) {
     const agents = args.agents || [];
     const proposal = args.proposal || {};

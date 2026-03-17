@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _recomputeIfNeeded() {
         var _a, _b;
         if (this.state === 3 /* DerivedState.upToDate */) {

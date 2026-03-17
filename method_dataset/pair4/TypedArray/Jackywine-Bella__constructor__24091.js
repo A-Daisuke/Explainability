@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(size) {
         this.size = size | 0; // convert to a 32-bit signed integer
         if (this.size <= 1 || !isPowerOfTwo(this.size))

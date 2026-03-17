@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   displayTaskBoard(taskStatuses, highlightTasks = []) {
     // In quiet mode, just show simple progress
     if (this.options.logLevel === 'quiet') {

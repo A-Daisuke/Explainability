@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async initializePhase() {
     this.startTime = Date.now();
     console.log(`🚀 Initializing ${this.phaseName} phase`);

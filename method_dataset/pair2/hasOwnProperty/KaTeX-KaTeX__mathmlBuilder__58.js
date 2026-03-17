@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     mathmlBuilder(group, options) {
         let node;
 

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static deserialize(source) {
         const b = new Uint8Array(source);
         let offset = 0;

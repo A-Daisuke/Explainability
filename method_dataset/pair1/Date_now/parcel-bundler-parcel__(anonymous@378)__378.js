@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     it('should rebuild when .babelrc changes', async function () {
       if (process.platform !== 'linux') {
         // This test is flaky outside of Linux. Skip it for now.

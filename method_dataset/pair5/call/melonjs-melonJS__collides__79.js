@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	collides(bodyA, bodyB, response = this.response) {
 		// for each shape in body A
 		for (

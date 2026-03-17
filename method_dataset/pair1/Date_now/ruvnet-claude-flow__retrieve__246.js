@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async retrieve(key, options = {}) {
     const namespace = options.namespace || 'default';
     const fullKey = `${namespace}:${key}`;

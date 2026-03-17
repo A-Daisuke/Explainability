@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async activate() {
       const version = "2.0.0";
       const response = await this.wise.createWebhook({

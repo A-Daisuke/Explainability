@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   handleGetStatus(clientId, message) {
     const client = this.clients.get(clientId);
     if (!client) return;

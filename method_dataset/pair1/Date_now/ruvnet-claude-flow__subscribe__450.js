@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
       subscribe: async function* (parent, args, context) {
         const severityFilter = args.severity || ['HIGH', 'CRITICAL'];
         
@@ -22,4 +22,4 @@ function __method_wrapper__() {
         }
       },
 
-}
+};

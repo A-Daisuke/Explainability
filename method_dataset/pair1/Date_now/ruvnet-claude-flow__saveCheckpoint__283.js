@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async saveCheckpoint(sessionId, checkpointName, checkpointData) {
     await this.ensureInitialized();
     

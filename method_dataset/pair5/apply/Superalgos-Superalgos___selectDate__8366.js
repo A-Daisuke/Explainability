@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_selectDate: function( id, dateStr ) {
 		var onSelect,
 			target = $( id ),
@@ -29,4 +29,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

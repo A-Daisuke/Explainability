@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             compileCharStrings: function CFFCompiler_compileCharStrings(
               charStrings
             ) {
@@ -18,4 +18,4 @@ function __method_wrapper__() {
               return this.compileIndex(charStringsIndex);
             },
 
-}
+};

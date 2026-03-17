@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		handleSwitch: function(section_id, option_index, ev) {
 			var maskopt = this.map.lookupOption('netmask', section_id);
 
@@ -28,4 +28,4 @@ function __method_wrapper__() {
 			}
 		},
 
-}
+};

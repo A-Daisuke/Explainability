@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async loadHistoricalData() {
       const tags = await this.bitbucket.getTags({
         workspaceId: this.workspaceId,

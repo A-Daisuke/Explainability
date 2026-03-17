@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	drag: function( event, ui, inst ) {
 
 		var ts, bs, ls, rs, l, r, t, b, i, first,
@@ -110,4 +110,4 @@ function __method_wrapper__() {
 
 	}
 
-}
+};

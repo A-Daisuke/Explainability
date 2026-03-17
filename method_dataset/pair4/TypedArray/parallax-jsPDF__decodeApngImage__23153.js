@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     decodeApngImage() {
       this._apng.width = this._png.width;
       this._apng.height = this._png.height;

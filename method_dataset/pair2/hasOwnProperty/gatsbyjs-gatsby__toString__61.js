@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     toString() {
         let cmdStr = CMD_STRING + this.command;
         if (this.properties && Object.keys(this.properties).length > 0) {

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	initialize: function() {
 		var me = this;
 		var meta, scaleOpts;
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 		deprecated('bar chart', scaleOpts.maxBarThickness, 'scales.[x/y]Axes.maxBarThickness', 'dataset.maxBarThickness');
 	},
 
-}
+};

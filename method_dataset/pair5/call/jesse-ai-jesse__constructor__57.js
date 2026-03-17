@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(source) {
         var _a;
         this._standardKeyboardEventBrand = true;

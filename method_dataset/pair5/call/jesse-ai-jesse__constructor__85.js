@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(_debugNameData, _computeFn, createChangeSummary, _handleChange, _handleLastObserverRemoved = undefined, _equalityComparator) {
         var _a, _b;
         super();

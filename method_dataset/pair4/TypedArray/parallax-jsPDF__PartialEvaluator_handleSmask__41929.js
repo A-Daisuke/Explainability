@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             handleSMask: function PartialEvaluator_handleSmask(
               smask,
               resources,
@@ -37,4 +37,4 @@ function __method_wrapper__() {
               );
             },
 
-}
+};

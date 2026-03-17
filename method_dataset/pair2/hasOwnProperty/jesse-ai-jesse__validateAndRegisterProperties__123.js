@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     validateAndRegisterProperties(configuration, validate = true, extensionInfo, restrictedProperties, scope = 3 /* ConfigurationScope.WINDOW */, bucket) {
         var _a;
         scope = types.isUndefinedOrNull(configuration.scope) ? scope : configuration.scope;

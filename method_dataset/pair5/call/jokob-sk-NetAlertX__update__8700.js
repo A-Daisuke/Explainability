@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	update: function(changed) {
 		var me = this;
 		var opts = me._options;
@@ -111,4 +111,4 @@ function __method_wrapper__() {
 		return me;
 	},
 
-}
+};

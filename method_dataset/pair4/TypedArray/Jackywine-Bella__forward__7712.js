@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async forward(model_inputs) {
         if (!model_inputs.image_embeddings || !model_inputs.image_positional_embeddings) {
             // Compute the image embeddings if they are missing

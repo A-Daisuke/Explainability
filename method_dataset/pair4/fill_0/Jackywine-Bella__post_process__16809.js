@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     post_process(tokens, tokens_pair = null, {
         add_special_tokens = true,
     } = {}) {

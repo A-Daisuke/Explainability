@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       init() {
         const options = this.options;
         let curve = new THREE.LineCurve3(new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, -1));

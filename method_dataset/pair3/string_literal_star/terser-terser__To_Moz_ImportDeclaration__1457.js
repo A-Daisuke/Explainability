@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     def_to_moz(AST_Import, function To_Moz_ImportDeclaration(M) {
         var specifiers = [];
         if (M.imported_name) {

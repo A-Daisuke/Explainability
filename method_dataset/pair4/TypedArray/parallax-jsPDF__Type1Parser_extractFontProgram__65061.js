@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             extractFontProgram: function Type1Parser_extractFontProgram() {
               var stream = this.stream;
               var subrs = [],
@@ -161,4 +161,4 @@ function __method_wrapper__() {
               return program;
             },
 
-}
+};

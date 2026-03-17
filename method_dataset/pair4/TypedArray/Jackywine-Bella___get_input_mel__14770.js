@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _get_input_mel(waveform, max_length, truncation, padding) {
 
         /** @type {{ data: Float32Array; dims: number[]}} */

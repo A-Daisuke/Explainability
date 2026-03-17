@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   registerAgent(agentId, initialWeight = 1.0, capabilities = []) {
     this.agents.set(agentId, {
       id: agentId,

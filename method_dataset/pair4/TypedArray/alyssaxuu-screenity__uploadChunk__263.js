@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async uploadChunk(chunk) {
     const data = new Uint8Array(await chunk.arrayBuffer());
 

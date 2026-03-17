@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	renderHostDetail: function(node, tooltip) {
 		var key = node.getAttribute('href').substr(1),
 		    col = node.getAttribute('data-col'),
@@ -135,4 +135,4 @@ function __method_wrapper__() {
 		return false;
 	},
 
-}
+};

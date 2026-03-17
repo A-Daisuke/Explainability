@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async logSessionEvent(sessionId, logLevel, message, agentId = null, data = null) {
     await this.ensureInitialized();
     

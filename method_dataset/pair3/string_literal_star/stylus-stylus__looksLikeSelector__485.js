@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   looksLikeSelector(fromProperty) {
     var i = 1
       , node

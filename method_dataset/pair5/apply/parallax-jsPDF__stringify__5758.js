@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               stringify: function stringify(it) {
                 var args = [it];
                 var i = 1;
@@ -21,4 +21,4 @@ function __method_wrapper__() {
                 return _stringify.apply($JSON, args);
               }
 
-}
+};

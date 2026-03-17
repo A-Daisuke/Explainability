@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     grayscale() {
         if (this.channels === 1) {
             return this;

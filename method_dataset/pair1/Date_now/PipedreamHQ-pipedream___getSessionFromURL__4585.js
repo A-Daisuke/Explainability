@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _getSessionFromURL(params, callbackUrlType) {
         try {
             if (!(0, helpers_1.isBrowser)())

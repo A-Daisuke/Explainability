@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should render call activity', function() {
     var xml = require('../../fixtures/bpmn/draw/call-activity.bpmn');
 

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	ajax: function( url, options ) {
 
 		// If url is an object, simulate pre-1.5 signature
@@ -447,4 +447,4 @@ function __method_wrapper__() {
 		return jqXHR;
 	},
 
-}
+};

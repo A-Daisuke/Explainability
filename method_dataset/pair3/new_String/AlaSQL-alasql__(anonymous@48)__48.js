@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	it('3. Inner Select', function (done) {
 		var t1 = [{Email: new String('A')}, {Email: new String('B')}];
 		var t2 = [

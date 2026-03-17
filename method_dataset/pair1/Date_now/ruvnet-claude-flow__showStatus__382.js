@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async showStatus() {
     const duration = Math.floor((Date.now() - this.startTime) / 1000 / 60);
     

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	removeChildNow(child, keepalive) {
 		if (this.hasChild(child) && this.getChildIndex(child) >= 0) {
 			if (typeof child.onDeactivateEvent === "function") {

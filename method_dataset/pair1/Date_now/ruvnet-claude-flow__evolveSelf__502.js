@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async evolveSelf(code) {
     // The generator evolves based on what it created
     this.evolutionHistory.push({

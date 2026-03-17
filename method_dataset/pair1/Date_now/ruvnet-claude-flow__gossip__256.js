@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   gossip(message, type = 'sync') {
     const messageId = this._generateMessageId();
     const timestamp = Date.now();

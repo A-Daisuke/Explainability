@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function(data) {
 		var view = E('div'),
 		    nft = data[0],
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 		return view;
 	},
 
-}
+};

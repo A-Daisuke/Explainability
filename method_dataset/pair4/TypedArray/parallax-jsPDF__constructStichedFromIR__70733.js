@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             constructStichedFromIR: function constructStichedFromIR(_ref11) {
               var xref = _ref11.xref,
                 isEvalSupported = _ref11.isEvalSupported,
@@ -54,4 +54,4 @@ function __method_wrapper__() {
               };
             },
 
-}
+};

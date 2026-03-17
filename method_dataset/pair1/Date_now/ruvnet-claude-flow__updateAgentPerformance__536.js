@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async updateAgentPerformance(phaseName, result, validation) {
     const phaseAgents = this.phaseAgents.get(phaseName) || [];
 

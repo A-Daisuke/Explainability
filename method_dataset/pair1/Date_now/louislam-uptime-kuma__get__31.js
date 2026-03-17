@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static async get(key) {
 
         // Start cache clear if not started yet

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeTask(task) {
     const taskObj = {
       id: generateId('task'),

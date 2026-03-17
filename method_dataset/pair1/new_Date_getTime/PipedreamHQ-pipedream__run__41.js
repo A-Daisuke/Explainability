@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run() {
     let newLastFetchTime = this.getLastFetchTime();
     const resourcesStream = utils.getResourcesStream({

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		handle: function( event ) {
 			var ret,
 				target = this,
@@ -15,4 +15,4 @@ function __method_wrapper__() {
 			return ret;
 		}
 
-}
+};

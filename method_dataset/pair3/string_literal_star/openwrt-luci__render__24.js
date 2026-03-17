@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function(data) {
 		var wireless_devices = data[1];
 
@@ -188,4 +188,4 @@ function __method_wrapper__() {
 		return m.render();
 	},
 
-}
+};

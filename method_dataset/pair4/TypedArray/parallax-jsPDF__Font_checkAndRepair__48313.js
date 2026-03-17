@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             checkAndRepair: function Font_checkAndRepair(
               name,
               font,
@@ -1778,4 +1778,4 @@ function __method_wrapper__() {
               return builder.toArray();
             },
 
-}
+};

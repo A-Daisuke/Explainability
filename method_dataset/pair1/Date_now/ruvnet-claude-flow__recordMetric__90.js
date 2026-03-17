@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async recordMetric(metricName, value, metadata = {}) {
     const timestamp = Date.now();
     const metricKey = `metric:${metricName}:${timestamp}`;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     DEFPRINT(AST_Import, function(self, output) {
         output.print("import");
         output.space();

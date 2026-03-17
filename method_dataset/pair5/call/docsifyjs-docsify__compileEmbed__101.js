@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   compileEmbed(href, title) {
     const { str, config } = getAndRemoveConfig(title);
     let embed;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   advance() {
     var column = this.column
       , line = this.lineno

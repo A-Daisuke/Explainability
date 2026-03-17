@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	fmt: function(fmtstr, args, values) {
 		var repl = [],
 		    wrap = false,
@@ -155,4 +155,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

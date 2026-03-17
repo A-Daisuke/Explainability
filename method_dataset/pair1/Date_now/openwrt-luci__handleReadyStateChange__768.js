@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		handleReadyStateChange(resolveFn, rejectFn, ev) {
 			const xhr = this.xhr, duration = Date.now() - this.start;
 

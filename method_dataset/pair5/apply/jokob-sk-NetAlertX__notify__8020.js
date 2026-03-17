@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	notify: function(chart, hook, args) {
 		var descriptors = this.descriptors(chart);
 		var ilen = descriptors.length;
@@ -20,4 +20,4 @@ function __method_wrapper__() {
 		return true;
 	},
 
-}
+};

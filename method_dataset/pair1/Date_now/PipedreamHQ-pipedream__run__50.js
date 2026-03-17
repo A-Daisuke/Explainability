@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run({ $ }) {
     const date = !this.date
       ? Math.floor(Date.now() / 1000)

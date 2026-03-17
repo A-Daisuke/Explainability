@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             apply: function (target, thisArg, argumentsList) {
                 let fetchReqUrl = '';
                 let fetchReqOptions = {};
@@ -101,4 +101,4 @@ function __method_wrapper__() {
                 });
             }
 
-}
+};

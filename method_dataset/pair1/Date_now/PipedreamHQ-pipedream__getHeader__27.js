@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getHeader(method, path, parameters) {
       const timestamp = Date.now();
       const queryString = method === "GET" || method === "DELETE" ?

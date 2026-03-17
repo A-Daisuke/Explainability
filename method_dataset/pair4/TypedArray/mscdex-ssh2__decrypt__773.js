@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   decrypt(data, p, dataLen) {
     // `data` === encrypted data
 

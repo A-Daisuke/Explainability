@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async downloadMultiple(req, res) {
     if (!req.user.canDownload) {
       Logger.warn(`User "${req.user.username}" attempted to download without permission`)

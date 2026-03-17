@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should add random ID suffix to marker ID', function() {
 
     var xml = require('../../fixtures/bpmn/simple.bpmn');

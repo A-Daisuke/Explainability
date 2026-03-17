@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async handleInput() {
     // Simple input reading
     const decoder = new TextDecoder();

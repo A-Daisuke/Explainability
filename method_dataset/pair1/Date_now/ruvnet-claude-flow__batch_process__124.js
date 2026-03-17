@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   batch_process(args) {
     const items = args.items || [];
     const operation = args.operation || 'process';

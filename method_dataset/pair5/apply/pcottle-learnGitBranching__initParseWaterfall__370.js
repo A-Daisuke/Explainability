@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   initParseWaterfall: function(options) {
     Level.__super__.initParseWaterfall.apply(this, [options]);
 
@@ -25,4 +25,4 @@ function __method_wrapper__() {
     }
   },
 
-}
+};

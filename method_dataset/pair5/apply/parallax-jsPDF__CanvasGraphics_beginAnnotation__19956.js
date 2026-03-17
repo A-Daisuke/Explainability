@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             beginAnnotation: function CanvasGraphics_beginAnnotation(
               rect,
               transform,
@@ -20,4 +20,4 @@ function __method_wrapper__() {
               this.transform.apply(this, matrix);
             },
 
-}
+};

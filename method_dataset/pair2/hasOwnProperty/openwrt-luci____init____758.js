@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	__init__(value, choices, options) {
 		if (!L.isObject(choices))
 			choices = {};

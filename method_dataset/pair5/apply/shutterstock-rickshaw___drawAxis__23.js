@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   _drawAxis: function($super, scale) {
     // Adjust scale's domain to compensate for adjustments to the
     // renderer's domain (e.g. padding).
@@ -30,4 +30,4 @@ function __method_wrapper__() {
     return $super(adjustedScale);
   },
 
-}
+};

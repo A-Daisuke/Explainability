@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
         UnEncrypt: function (Text) {
             if (this.num > 0) {
                 this.num = this.num - 1;
@@ -18,4 +18,4 @@ function __method_wrapper__() {
             }
         }
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             paintFormXObjectBegin: function CanvasGraphics_paintFormXObjectBegin(
               matrix,
               bbox
@@ -21,4 +21,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

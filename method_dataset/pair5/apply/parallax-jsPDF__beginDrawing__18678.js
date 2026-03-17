@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             beginDrawing: function beginDrawing(_ref) {
               var transform = _ref.transform,
                 viewport = _ref.viewport,
@@ -47,4 +47,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	makeArray: function( arr, results ) {
 		var ret = results || [];
 
@@ -16,4 +16,4 @@ function __method_wrapper__() {
 		return ret;
 	},
 
-}
+};

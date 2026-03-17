@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     tokenizer: function(stream, state) {
       if (stream.match(settings.leftDelimiter, true)) {
         if (stream.eat("*")) {
@@ -23,4 +23,4 @@ function __method_wrapper__() {
       }
     },
 
-}
+};

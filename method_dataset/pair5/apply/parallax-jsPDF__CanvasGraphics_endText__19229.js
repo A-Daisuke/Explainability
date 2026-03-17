@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             endText: function CanvasGraphics_endText() {
               var paths = this.pendingTextPaths;
               var ctx = this.ctx;
@@ -24,4 +24,4 @@ function __method_wrapper__() {
               delete this.pendingTextPaths;
             },
 
-}
+};

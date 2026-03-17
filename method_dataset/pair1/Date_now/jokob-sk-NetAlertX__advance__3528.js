@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	advance: function() {
 		var animations = this.animations;
 		var animation, chart, numSteps, nextStep;
@@ -28,4 +28,4 @@ function __method_wrapper__() {
 		}
 	}
 
-}
+};

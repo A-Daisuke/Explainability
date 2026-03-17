@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   logAccess(key, agent, operation) {
     this.accessLog.set(key, {
       key,

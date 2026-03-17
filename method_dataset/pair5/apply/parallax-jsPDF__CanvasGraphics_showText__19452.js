@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             showText: function CanvasGraphics_showText(glyphs) {
               var current = this.current;
               var font = current.font;
@@ -165,4 +165,4 @@ function __method_wrapper__() {
               ctx.restore();
             },
 
-}
+};

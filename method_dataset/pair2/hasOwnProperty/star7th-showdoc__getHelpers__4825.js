@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     getHelpers: function(pos, type) {
       var found = [];
       if (!helpers.hasOwnProperty(type)) return helpers;
@@ -23,4 +23,4 @@ function __method_wrapper__() {
       return found;
     },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async getAndProcessItems(emit = true) {
       const savedItems = this._getSavedItems();
       const items = await this.outscraper.getRequests();

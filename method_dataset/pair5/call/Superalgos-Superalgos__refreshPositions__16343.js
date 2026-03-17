@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	refreshPositions: function( fast ) {
 
 		// Determine whether items are being displayed horizontally
@@ -29,4 +29,4 @@ function __method_wrapper__() {
 		return this;
 	},
 
-}
+};

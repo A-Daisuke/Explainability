@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             constructPostScriptFromIR: function constructPostScriptFromIR(
               _ref13
             ) {
@@ -88,4 +88,4 @@ function __method_wrapper__() {
               };
             }
 
-}
+};

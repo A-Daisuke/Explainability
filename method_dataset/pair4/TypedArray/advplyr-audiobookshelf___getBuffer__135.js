@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _getBuffer(n) {
     const ret = Buffer.allocUnsafe(n)
     const retLen = n

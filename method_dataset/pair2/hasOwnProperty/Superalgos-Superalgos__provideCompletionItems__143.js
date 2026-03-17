@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             provideCompletionItems: function (model, position, token) {
                 // Split everything the user has typed on the current line up at each space, and only look at the last word
                 let last_chars = model.getValueInRange({
@@ -79,4 +79,4 @@ function __method_wrapper__() {
                 };
             }
 
-}
+};

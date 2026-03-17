@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_mergerIf: function(key, target, source) {
 		if (!isValidKey(key)) {
 			// We want to ensure we do not copy prototypes over
@@ -16,4 +16,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

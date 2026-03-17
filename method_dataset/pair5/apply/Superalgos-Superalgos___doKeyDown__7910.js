@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_doKeyDown: function( event ) {
 		var onSelect, dateStr, sel,
 			inst = $.datepicker._getInst( event.target ),
@@ -100,4 +100,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

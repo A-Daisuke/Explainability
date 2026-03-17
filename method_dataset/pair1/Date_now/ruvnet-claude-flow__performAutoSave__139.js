@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async performAutoSave() {
     if (this.pendingChanges.length === 0) {
       return;

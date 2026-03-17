@@ -54,6 +54,11 @@ for (const file of files) {
       ],
       ranges: true,
       locations: true,
+      allowReturnOutsideFunction: true,  // ← 追加
+      allowSuperOutsideMethod: true,     // ← 追加
+      allowUndeclaredExports: true,      // ← 追加
+      allowImportExportEverywhere: true, // ← 追加（モジュール構文への対応）
+      errorRecovery: true,               // ← 追加（パースエラーでも続行）
     });
 
     // JSON書き出し

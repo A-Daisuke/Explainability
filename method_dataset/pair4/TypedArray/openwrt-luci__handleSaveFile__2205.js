@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	handleSaveFile: function(filePath) {
 		var self = this;
 		var contentBlob;
@@ -107,4 +107,4 @@ function __method_wrapper__() {
 		});
 	},
 
-}
+};

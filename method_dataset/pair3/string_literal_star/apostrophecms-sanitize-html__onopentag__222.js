@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     onopentag: function(name, attribs) {
       if (options.onOpenTag) {
         options.onOpenTag(name, attribs);
@@ -301,4 +301,4 @@ function __method_wrapper__() {
       frame.openingTagLength = result.length - frame.tagPosition;
     },
 
-}
+};

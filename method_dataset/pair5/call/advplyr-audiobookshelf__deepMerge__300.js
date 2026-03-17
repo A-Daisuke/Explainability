@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     deepMerge(target, override) {
       // deep merge the object into the target object
       for (let prop in override) {

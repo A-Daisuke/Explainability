@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     getMeta(spreadsheet, worksheet) {
       const {
         sheetId: worksheetId,

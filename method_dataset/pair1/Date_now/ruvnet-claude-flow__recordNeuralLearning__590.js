@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async recordNeuralLearning(phaseName, result, validation) {
     try {
       const learningData = {

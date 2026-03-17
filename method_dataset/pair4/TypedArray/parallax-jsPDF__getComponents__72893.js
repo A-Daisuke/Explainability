@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             getComponents: function getComponents(buffer) {
               var bpc = this.bpc;
 
@@ -79,4 +79,4 @@ function __method_wrapper__() {
               return output;
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _call(images) {
         const result = await super._call(images);
 

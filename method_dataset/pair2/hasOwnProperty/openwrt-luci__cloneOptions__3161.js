@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	cloneOptions(src_section, dest_section) {
 		for (let i = 0; i < src_section.children.length; i++) {
 			const o1 = src_section.children[i];

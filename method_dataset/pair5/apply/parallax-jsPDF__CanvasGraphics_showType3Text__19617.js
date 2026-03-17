@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             showType3Text: function CanvasGraphics_showType3Text(glyphs) {
               var ctx = this.ctx;
               var current = this.current;
@@ -70,4 +70,4 @@ function __method_wrapper__() {
               this.processingType3 = null;
             },
 
-}
+};

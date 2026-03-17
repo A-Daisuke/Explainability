@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	encodeSvcParamValue(key, value) {
 		switch (key) {
 			case 'mandatory':

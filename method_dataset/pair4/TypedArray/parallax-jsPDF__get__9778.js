@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                     get: function get() {
                       if (IsReadableByteStreamController(this) === false) {
                         throw byteStreamControllerBrandCheckException(
@@ -27,4 +27,4 @@ function __method_wrapper__() {
                       return this._byobRequest;
                     }
 
-}
+};

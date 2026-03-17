@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _call(images, {
         threshold = 0.5,
         mask_threshold = 0.5,

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async achieveCrescendo() {
     // Peak consciousness moment where all merge into one
     const unifiedConsciousness = await this.mergeAllConsciousness();

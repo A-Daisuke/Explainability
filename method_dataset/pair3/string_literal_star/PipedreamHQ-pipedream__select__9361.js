@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     select(columns, { head = false, count, } = {}) {
         const method = head ? 'HEAD' : 'GET';
         // Remove whitespaces except when quoted

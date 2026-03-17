@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     slice(start, end = this.#len) {
         if (end === start) {
             return new Uint8Array();

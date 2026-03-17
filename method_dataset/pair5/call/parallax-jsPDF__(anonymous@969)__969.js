@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   define("ace/lib/useragent", ["require", "exports", "module"], function(
     e,
     t,

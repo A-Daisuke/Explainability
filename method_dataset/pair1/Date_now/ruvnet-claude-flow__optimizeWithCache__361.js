@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async optimizeWithCache(key, operation, ttl = 300000) {
     // 5 minutes default
     const cached = this.cache.get(key);

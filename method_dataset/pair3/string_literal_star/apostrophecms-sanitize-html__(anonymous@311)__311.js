@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
         each(attribs, function(value, a) {
           if (!VALID_HTML_ATTRIBUTE_NAME.test(a)) {
             // This prevents part of an attribute name in the output from being

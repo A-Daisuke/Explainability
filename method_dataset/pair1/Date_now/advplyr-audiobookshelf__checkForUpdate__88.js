@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   checkForUpdate({ commit }) {
     const VERSION_CHECK_BUFF = 1000 * 60 * 5 // 5 minutes
     var lastVerCheck = localStorage.getItem('lastVerCheck') || 0

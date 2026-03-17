@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_clear: function( event, noPropagation ) {
 
 		this.reverting = false;
@@ -123,4 +123,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

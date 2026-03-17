@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   setData(libraryItem, userId, mediaPlayer, deviceInfo, startTime, episodeId = null) {
     this.id = uuidv4()
     this.userId = userId

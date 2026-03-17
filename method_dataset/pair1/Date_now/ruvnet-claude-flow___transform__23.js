@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _transform(chunk, encoding, callback) {
     this.buffer += chunk.toString();
     const lines = this.buffer.split('\n');

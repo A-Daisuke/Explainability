@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run({ $ }) {
     if ((!this.url && !this.html) || (this.url && this.html)) {
       throw new ConfigurationError("You must provide either URL or HTML.");

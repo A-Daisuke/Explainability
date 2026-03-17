@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeTddCycles(specification, pseudocode, architecture) {
     const cycles = [];
     const requirements = specification.requirements || [];

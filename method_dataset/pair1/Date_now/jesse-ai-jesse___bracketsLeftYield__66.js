@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _bracketsLeftYield(resolve, round, model, pos, ranges, bucket) {
         const counts = new Map();
         const t1 = Date.now();

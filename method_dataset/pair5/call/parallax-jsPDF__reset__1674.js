@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               reset: function reset(skipTempReset) {
                 this.prev = 0;
                 this.next = 0;
@@ -22,4 +22,4 @@ function __method_wrapper__() {
                 }
               },
 
-}
+};

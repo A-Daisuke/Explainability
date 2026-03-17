@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	exprToString: function(expr, hint) {
 		var kind, spec;
 
@@ -91,4 +91,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

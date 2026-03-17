@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	constructor() {
 		let body = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 		let opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};

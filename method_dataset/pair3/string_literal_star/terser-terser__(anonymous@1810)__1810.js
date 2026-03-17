@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     DEFPRINT(AST_NameMapping, function(self, output) {
         var is_import = output.parent() instanceof AST_Import;
         var definition = self.name.definition();

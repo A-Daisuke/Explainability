@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	constructor(hexeditDomObject) {
 		this.hexedit = _fillHexeditDom(hexeditDomObject);
 		this.offsets = this.hexedit.querySelector('.offsets');

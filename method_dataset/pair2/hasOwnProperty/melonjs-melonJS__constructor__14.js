@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	constructor(tileset) {
 		// tile properties (collidable, etc..)
 		this.TileProperties = [];

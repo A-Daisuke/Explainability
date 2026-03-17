@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   startPlayInterval() {
     clearInterval(this.playInterval)
     let lastTick = Date.now()

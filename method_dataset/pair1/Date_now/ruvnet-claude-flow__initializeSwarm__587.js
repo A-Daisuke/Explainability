@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async initializeSwarm(config) {
     const swarmId = config.swarmId || `swarm-${Date.now()}`;
     const startTime = Date.now();

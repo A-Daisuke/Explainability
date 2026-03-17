@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   execute (chunk) {
     assert(currentParser === null)
     assert(this.ptr != null)

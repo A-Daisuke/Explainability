@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   name(reqid, names) {
     if (!this.server)
       throw new Error('Server-only method called in client mode');

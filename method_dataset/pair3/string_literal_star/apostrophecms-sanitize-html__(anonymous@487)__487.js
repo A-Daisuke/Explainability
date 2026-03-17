@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should allow all classes that are allowlisted for a single tag or all tags', function() {
     assert.equal(
       sanitizeHtml(

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     post_process_semantic_segmentation(outputs, target_sizes = null) {
 
         const logits = outputs.logits;

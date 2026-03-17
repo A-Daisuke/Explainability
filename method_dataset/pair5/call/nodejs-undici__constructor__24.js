@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor (origin, opts) {
     if (!opts || !opts.agent || typeof opts.agent.dispatch !== 'function') {
       throw new InvalidArgumentError('Argument opts.agent must implement Agent')

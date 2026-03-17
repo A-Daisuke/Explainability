@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   registerInstanceRenderer: function(objectType: string, renderer: any) {
     if (!renderer.getThumbnail) {
       console.warn(
@@ -21,4 +21,4 @@ function __method_wrapper__() {
     this.renderers[objectType] = renderer;
   },
 
-}
+};

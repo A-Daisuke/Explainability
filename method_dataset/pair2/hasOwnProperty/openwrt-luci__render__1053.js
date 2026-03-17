@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	render() {
 		const sb = E('div', {
 			'id': this.options.id,

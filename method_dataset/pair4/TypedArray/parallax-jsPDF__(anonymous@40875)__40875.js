@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
             function(context, i) {
               var MIN_IMAGES_IN_BLOCK = 3;
               var MAX_IMAGES_IN_BLOCK = 1000;

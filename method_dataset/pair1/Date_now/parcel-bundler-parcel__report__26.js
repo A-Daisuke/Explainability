@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async report({event, options}) {
     if (event.type === 'buildProgress') {
       let value = getValue(options.instanceId);

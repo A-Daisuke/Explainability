@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run() {
     const eventTypes = this.eventTypes.includes("*")
       ? options.ALL_EVENT_TYPES

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     def_is_constant_expression(AST_Class, function(scope) {
         if (this.extends && !this.extends.is_constant_expression(scope)) {
             return false;

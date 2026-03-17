@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                   value: function _readDocumentOutline() {
                     var obj = this.catDict.get("Outlines");
 
@@ -102,4 +102,4 @@ function __method_wrapper__() {
                     return root.items.length > 0 ? root.items : null;
                   }
 
-}
+};

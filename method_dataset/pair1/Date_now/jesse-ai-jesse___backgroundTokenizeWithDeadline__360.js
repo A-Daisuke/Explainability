@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     _backgroundTokenizeWithDeadline(deadline) {
         // Read the time remaining from the `deadline` immediately because it is unclear
         // if the `deadline` object will be valid after execution leaves this function.

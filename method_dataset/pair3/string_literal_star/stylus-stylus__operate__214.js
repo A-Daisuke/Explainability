@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   operate(op, right) {
     if ('in' != op) right = right.first
 

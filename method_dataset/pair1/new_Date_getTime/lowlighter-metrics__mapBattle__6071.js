@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async mapBattle({ groupInfo , challengeProgress , bankaraMatchChallenge , listNode , detail: vsDetail , rankBeforeState , rankState  }) {
         const { knockout , vsRule: { rule  } , myTeam , otherTeams , bankaraMatch , leagueMatch , festMatch , playedTime  } = vsDetail;
         const self = vsDetail.myTeam.players.find((i)=>i.isMyself);

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   constructor(mode) {
     const windowBits = Z_DEFAULT_WINDOWBITS;
     const level = Z_DEFAULT_COMPRESSION;

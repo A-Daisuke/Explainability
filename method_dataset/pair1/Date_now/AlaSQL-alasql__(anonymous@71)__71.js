@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		it('3.Complex test', function (done) {
 			alasql(`
     DROP LOCALSTORAGE DATABASE IF EXISTS test001;

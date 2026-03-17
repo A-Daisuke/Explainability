@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             fill: function CanvasGraphics_fill(consumePath) {
               consumePath =
                 typeof consumePath !== "undefined" ? consumePath : true;
@@ -34,4 +34,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

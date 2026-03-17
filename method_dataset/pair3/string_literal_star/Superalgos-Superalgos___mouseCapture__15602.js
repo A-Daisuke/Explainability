@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_mouseCapture: function( event, overrideHandle ) {
 		var currentItem = null,
 			validHandle = false,
@@ -46,4 +46,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   pickFamily (origin, ipFamily) {
     const records = this.storage.get(origin.hostname)?.records
     if (!records) {

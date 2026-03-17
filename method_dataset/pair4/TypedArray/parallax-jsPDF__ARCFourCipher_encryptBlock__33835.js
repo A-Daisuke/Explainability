@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             encryptBlock: function ARCFourCipher_encryptBlock(data) {
               var i,
                 n = data.length,
@@ -24,4 +24,4 @@ function __method_wrapper__() {
               return output;
             }
 
-}
+};

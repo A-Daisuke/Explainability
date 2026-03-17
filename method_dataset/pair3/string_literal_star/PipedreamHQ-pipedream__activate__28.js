@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async activate() {
       const { data } = await this.outreach.createHook({
         data: {

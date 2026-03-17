@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	pointerMove(event) {
 		if (this.released === false) {
 			const x = event.gameScreenX + event.width / 2;

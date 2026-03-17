@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     render(completed, options = {}) {
         if (this.isCompleted || !isTTY1) return;
         if (completed < 0) {

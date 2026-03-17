@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             suspendSMaskGroup: function CanvasGraphics_endSMaskGroup() {
               var groupCtx = this.ctx;
               this.groupLevel--;
@@ -31,4 +31,4 @@ function __method_wrapper__() {
               groupCtx.restore();
             },
 
-}
+};

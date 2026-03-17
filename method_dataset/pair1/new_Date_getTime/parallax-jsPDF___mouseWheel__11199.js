@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
               value: function _mouseWheel(evt) {
                 if (!this.active) {
                   return;
@@ -41,4 +41,4 @@ function __method_wrapper__() {
                 }
               }
 
-}
+};

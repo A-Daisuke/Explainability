@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	pie: function(id, data) {
 		var total = data.reduce(function(n, d) { return n + d.value }, 0);
 
@@ -34,4 +34,4 @@ function __method_wrapper__() {
 		return chartRegistry[key];
 	},
 
-}
+};

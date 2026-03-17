@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	cfgvalue: function(section_id) {
 		var ports = L.toArray(uci.get('network', section_id, 'ports'));
 
@@ -16,4 +16,4 @@ function __method_wrapper__() {
 		return ['-'];
 	},
 
-}
+};

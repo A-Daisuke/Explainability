@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             executeOperatorList: function CanvasGraphics_executeOperatorList(
               operatorList,
               executionStartIdx,
@@ -65,4 +65,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     onTouchMove(e) {
         const timestamp = Date.now(); // use Date.now() because on FF e.timeStamp is not epoch based.
         for (let i = 0, len = e.changedTouches.length; i < len; i++) {

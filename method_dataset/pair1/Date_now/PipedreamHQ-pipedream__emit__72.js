@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     emit(isNew, newData, oldData, changedKeys) {
       const event = {
         newData,

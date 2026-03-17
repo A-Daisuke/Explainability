@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async submitVote(proposalId, agentId, vote, reasoning = '') {
     const proposal = this.proposals.get(proposalId);
     if (!proposal) {

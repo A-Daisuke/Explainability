@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function getOperatorList(evaluator, task, renderForms) {
                   if (renderForms || this.appearance) {
                     return _get(
@@ -29,4 +29,4 @@ function __method_wrapper__() {
                     });
                 }
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     showHover(element) {
         var _a, _b, _c;
         if (this._lastHover && !this._lastHover.isDisposed) {

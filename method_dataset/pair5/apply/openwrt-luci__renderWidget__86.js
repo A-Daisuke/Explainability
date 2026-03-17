@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		renderWidget: function(section_id, option_index, cfgvalue) {
 			var maskopt = this.map.lookupOption('netmask', section_id),
 			    widget = isCIDR(cfgvalue) ? 'DynamicList' : 'Value';
@@ -24,4 +24,4 @@ function __method_wrapper__() {
 			return node;
 		},
 
-}
+};

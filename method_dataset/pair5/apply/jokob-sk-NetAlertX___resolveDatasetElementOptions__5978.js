@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_resolveDatasetElementOptions: function(element) {
 		var me = this;
 		var config = me._config;
@@ -18,4 +18,4 @@ function __method_wrapper__() {
 		return values;
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async _emitLastSubscriptions(maxResults = 50) {
       let nextPageToken;
       do {

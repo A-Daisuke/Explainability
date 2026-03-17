@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async addToBatch(batchKey, item, processor) {
     if (!this.batches.has(batchKey)) {
       this.batches.set(batchKey, {

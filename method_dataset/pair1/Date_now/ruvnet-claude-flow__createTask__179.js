@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createTask(description, priority = 'medium', assignedTo = null) {
     if (!this.swarmActive) {
       this.ui.addLog('warning', 'Swarm not active - cannot create task');

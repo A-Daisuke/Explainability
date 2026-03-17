@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	resize(vertexCount) {
 		while (vertexCount > this.maxVertex) {
 			// double the vertex size

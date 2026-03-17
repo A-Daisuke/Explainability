@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	update(data, placeholderText) {
 		const placeholder = placeholderText ?? this.options.placeholder ?? _('No data', 'empty table placeholder');
 		const sorting = this.getActiveSortState();

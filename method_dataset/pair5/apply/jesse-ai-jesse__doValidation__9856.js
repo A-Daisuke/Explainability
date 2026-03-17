@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   doValidation(document, stylesheet, settings = this.settings) {
     if (settings && settings.validate === false) {
       return [];

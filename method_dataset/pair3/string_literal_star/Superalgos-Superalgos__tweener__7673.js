@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	tweener: function( props, callback ) {
 		if ( isFunction( props ) ) {
 			callback = props;
@@ -18,4 +18,4 @@ function __method_wrapper__() {
 		}
 	},
 
-}
+};

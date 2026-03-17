@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function _encrypt(input, key) {
                   var s = this._s;
                   var t, u, v;
@@ -84,4 +84,4 @@ function __method_wrapper__() {
                   return state;
                 }
 
-}
+};

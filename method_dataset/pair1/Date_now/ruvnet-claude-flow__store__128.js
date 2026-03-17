@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async store(key, value, options = {}) {
     if (!this.initialized) {
       throw new Error('Memory system not initialized');

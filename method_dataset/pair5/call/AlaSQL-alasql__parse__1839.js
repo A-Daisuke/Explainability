@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 parse: function parse (input) {
     var self = this,
         stack = [0],
@@ -238,4 +238,4 @@ _handle_error:
     return true;
 }};
 
-}
+};

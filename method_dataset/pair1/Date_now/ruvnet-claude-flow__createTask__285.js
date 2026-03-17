@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createTask(swarmId, index) {
     const taskStartTime = Date.now();
     

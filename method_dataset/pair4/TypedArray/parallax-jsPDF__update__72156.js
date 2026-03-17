@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function update(input) {
                   var data, length;
 
@@ -84,4 +84,4 @@ function __method_wrapper__() {
                   this.h2 = h2;
                 }
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     handler({parser, funcName}, args) {
         const nameGroup = args[0];
         if (nameGroup.type !== "ordgroup") {

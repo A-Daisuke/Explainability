@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             compileCharset: function CFFCompiler_compileCharset(
               charset,
               numGlyphs,
@@ -51,4 +51,4 @@ function __method_wrapper__() {
               return this.compileTypedArray(out);
             },
 
-}
+};

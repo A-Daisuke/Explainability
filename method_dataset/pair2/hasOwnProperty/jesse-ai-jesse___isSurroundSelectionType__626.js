@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _isSurroundSelectionType(config, model, selections, ch) {
         if (!TypeOperations._shouldSurroundChar(config, ch) || !config.surroundingPairs.hasOwnProperty(ch)) {
             return false;

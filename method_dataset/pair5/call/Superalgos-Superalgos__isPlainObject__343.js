@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	isPlainObject: function( obj ) {
 		var proto, Ctor;
 
@@ -20,4 +20,4 @@ function __method_wrapper__() {
 		return typeof Ctor === "function" && fnToString.call( Ctor ) === ObjectFunctionString;
 	},
 
-}
+};

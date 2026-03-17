@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   updateTaskStatus(taskId: string, status: HiveTask['status'], result?: any) {
     const task = this.tasks.get(taskId);
     if (!task) throw new Error(`Task ${taskId} not found`);

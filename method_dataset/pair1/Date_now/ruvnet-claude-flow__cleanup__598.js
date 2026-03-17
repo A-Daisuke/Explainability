@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   cleanup() {
     const now = Date.now();
     const maxAge = 24 * 60 * 60 * 1000; // 24 hours

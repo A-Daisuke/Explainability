@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     static _merge(a, b, c) {
         const aLen = (a !== null ? a.length : 0);
         const bLen = b.length;

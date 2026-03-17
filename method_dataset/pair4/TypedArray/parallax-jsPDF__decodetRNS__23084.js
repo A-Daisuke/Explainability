@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     decodetRNS(length) {
       switch (this._colorType) {
         case ColorType.GREYSCALE:

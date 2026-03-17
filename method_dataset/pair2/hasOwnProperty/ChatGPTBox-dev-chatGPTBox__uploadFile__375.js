@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async uploadFile(file) {
     const { content, isText } = await readAsText(file)
     if (isText) {

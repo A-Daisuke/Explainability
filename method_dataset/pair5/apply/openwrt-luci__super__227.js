@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 			super(key, ...callArgs) {
 				if (key == null)
 					return null;

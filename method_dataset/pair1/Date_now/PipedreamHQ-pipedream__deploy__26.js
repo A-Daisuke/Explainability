@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async deploy() {
       const { webinars } = await this.app.listWebinars({
         params: {

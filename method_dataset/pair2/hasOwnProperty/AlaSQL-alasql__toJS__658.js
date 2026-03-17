@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		toJS(context, tableid, defcols) {
 			if (this.right instanceof Column && this.op === '#') {
 				return `(alasql.databases[alasql.useid].objects['${this.right.columnid}'])`;

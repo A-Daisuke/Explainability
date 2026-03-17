@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     dispose() {
         var _a, _b;
         for (const item of this.items) {

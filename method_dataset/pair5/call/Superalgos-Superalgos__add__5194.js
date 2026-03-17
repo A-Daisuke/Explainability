@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	add: function( elem, types, handler, data, selector ) {
 
 		var handleObjIn, eventHandle, tmp,
@@ -113,4 +113,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function makeStream(dict, cipherTransform) {
                   var lexer = this.lexer;
                   var stream = lexer.stream;
@@ -97,4 +97,4 @@ function __method_wrapper__() {
                   return stream;
                 }
 
-}
+};

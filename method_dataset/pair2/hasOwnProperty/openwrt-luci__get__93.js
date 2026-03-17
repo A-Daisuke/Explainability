@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	get(config, section, option) {
 		if (section == null)
 			return null;

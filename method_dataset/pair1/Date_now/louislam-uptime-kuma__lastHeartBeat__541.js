@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
         lastHeartBeat() {
             // Also trigger screenshot refresh here
             // eslint-disable-next-line vue/no-side-effects-in-computed-properties

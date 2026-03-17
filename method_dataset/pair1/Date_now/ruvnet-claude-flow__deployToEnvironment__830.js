@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async deployToEnvironment(environment, refinement) {
     const envDeployment = {
       name: environment.name,

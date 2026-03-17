@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	populateIfacesOptions: function(s, tab, data) {
 		var o;
 		var net_devices = data[3];
@@ -40,4 +40,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

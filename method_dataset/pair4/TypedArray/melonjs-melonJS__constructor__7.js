@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	constructor(vertex_size, vertex_per_obj) {
 		// the size of one vertex in float
 		this.vertexSize = vertex_size;

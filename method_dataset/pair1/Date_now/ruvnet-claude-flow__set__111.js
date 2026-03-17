@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   set(key, data, size = 0) {
     // Estimate size if not provided
     if (!size) {

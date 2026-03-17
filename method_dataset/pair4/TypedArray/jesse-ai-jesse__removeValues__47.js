@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     removeValues(startIndex, count) {
         startIndex = toUint32(startIndex);
         count = toUint32(count);

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async pollingImgRequest(pollingUrl, onProgress) {
     let polling = true
     let body

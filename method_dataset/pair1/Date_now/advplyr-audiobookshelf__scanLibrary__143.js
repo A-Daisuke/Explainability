@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async scanLibrary(libraryScan, forceRescan) {
     // Make sure library filter data is set
     //   this is used to check for existing authors & series

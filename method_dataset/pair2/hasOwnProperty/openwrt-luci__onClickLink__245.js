@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             onClickLink: function(l) {
                 var overlay = d3.select(".njg-overlay"),
                     overlayInner = d3.select(".njg-overlay > .njg-inner"),
@@ -19,4 +19,4 @@ function __method_wrapper__() {
                 d3.select(this).classed("njg-open", true);
             }
 
-}
+};

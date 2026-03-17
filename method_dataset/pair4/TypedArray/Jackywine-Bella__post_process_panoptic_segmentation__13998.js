@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     post_process_panoptic_segmentation(
         outputs,
         threshold = 0.5,

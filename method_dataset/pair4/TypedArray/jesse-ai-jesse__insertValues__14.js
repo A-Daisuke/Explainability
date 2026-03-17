@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     insertValues(insertIndex, insertValues) {
         insertIndex = toUint32(insertIndex);
         const oldValues = this.values;

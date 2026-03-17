@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   render() {
     const now = Date.now();
     this.spinnerIndex = (this.spinnerIndex + 1) % this.spinnerFrames.length;

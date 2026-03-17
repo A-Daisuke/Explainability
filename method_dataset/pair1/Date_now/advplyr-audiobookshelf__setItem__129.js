@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     setItem(itemText) {
       if (!this.items.find((i) => i.name.toLowerCase() !== val.toLowerCase())) {
         var newItem = {

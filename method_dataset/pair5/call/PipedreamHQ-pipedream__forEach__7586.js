@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	forEach(callback) {
 		let thisArg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
 

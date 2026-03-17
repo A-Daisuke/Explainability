@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async fetchEvents(fetchFunction, ...fetchFunctionParams) {
       let page = 1;
       const emittedEvents = this.getEmittedEvents();

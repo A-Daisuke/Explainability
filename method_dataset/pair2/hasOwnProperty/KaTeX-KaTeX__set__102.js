@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     set(name: string, value: ?Value, global: boolean = false) {
         if (global) {
             // Global set is equivalent to setting in all groups.  Simulate this

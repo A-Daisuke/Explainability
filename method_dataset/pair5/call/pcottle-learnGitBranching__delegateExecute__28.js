@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   delegateExecute: function(config, engine, commandObj) {
     // we have delegated to another vcs command, so lets
     // execute that and get the result
@@ -22,4 +22,4 @@ function __method_wrapper__() {
     }
   },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   it('should properly render colored markers', function() {
     var xml = require('./BpmnRenderer.colors.bpmn');
 

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   visitRuleSet(node) {
     const declarations = node.getDeclarations();
     if (!declarations) {

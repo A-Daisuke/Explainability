@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_createHelper: function( event ) {
 
 		var o = this.options,
@@ -32,4 +32,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

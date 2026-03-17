@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     go: function (input, stateMachine) {
       if (!input) { return []; }
       if (stateMachine === undefined) { stateMachine = 'ce'; }
@@ -118,4 +118,4 @@ function __method_wrapper__() {
       }
     },
 
-}
+};

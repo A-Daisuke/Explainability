@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   stmt() {
     var tok = this.peek(), selector;
     switch (tok.type) {

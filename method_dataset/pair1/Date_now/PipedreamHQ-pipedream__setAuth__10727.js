@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async setAuth(token = null) {
         let tokenToSend = token ||
             (this.accessToken && (await this.accessToken())) ||

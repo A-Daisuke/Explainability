@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       function(cmd, parameters, stream) {
         switch(cmd) {
           case "help":

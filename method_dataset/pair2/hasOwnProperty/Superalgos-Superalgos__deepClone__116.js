@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		clone: function deepClone(o, visited) {
 			visited = visited || {};
 
@@ -39,4 +39,4 @@ function __method_wrapper__() {
 			}
 		},
 
-}
+};

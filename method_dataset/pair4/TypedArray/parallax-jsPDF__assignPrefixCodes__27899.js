@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             assignPrefixCodes: function assignPrefixCodes(lines) {
               var linesLength = lines.length,
                 prefixLengthMax = 0,
@@ -44,4 +44,4 @@ function __method_wrapper__() {
               }
             }
 
-}
+};

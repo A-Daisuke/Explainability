@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   buildExportedSymbols() {
     if (
       (!this.bundle.env.isLibrary && this.bundle.env.isBrowser()) ||

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async executeStreamChain(task, strategy, options) {
     const startTime = Date.now();
     const steps = this.decomposeTask(task, strategy.name);

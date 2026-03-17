@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             get: function reactiveGetter() {
 
                 var value = getter ? getter.call(obj) : val;
@@ -15,4 +15,4 @@ function __method_wrapper__() {
                 return value
             },
 
-}
+};

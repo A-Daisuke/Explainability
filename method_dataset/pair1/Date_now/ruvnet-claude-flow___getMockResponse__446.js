@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _getMockResponse(toolName, params) {
     // Mock responses for different tool types
     const mockResponses = {

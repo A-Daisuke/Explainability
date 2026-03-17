@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     select(columns) {
         // Remove whitespaces except when quoted
         let quoted = false;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             compileFDSelect: function CFFCompiler_compileFDSelect(fdSelect) {
               var format = fdSelect.format;
               var out, i;
@@ -46,4 +46,4 @@ function __method_wrapper__() {
               return this.compileTypedArray(out);
             },
 
-}
+};

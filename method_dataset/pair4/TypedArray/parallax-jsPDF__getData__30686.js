@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             getData: function getData(_ref3) {
               var width = _ref3.width,
                 height = _ref3.height,
@@ -51,4 +51,4 @@ function __method_wrapper__() {
               return data;
             }
 
-}
+};

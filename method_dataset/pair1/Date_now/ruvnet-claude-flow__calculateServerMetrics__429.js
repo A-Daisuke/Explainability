@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   calculateServerMetrics() {
     const now = Date.now();
     const clients = Array.from(this.clients.values());

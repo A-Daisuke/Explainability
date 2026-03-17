@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
                 value: function _decryptBlock2(data, finalize) {
                   var sourceLength = data.length;
                   var buffer = this.buffer,
@@ -69,4 +69,4 @@ function __method_wrapper__() {
                   return output;
                 }
 
-}
+};

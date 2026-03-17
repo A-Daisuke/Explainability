@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     constructor(domNode, renderLineInput, characterMapping) {
         this._cachedWidth = -1;
         this.domNode = domNode;

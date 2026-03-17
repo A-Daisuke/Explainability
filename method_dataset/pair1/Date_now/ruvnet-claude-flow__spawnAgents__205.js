@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async spawnAgents() {
     this.log(`Phase 2: Spawning ${this.config.agentsPerSwarm} agents per swarm`);
     

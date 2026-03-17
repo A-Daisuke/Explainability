@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   _getClient() {
     this._lastUsedTime = Date.now();
     if (!this._client) {

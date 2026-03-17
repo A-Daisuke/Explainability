@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     createTransitions: function (o) {
       var pattern, state;
       /** @type {string[]} */
@@ -60,4 +60,4 @@ function __method_wrapper__() {
       return transitions;
     },
 
-}
+};

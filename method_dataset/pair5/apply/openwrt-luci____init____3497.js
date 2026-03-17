@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	__init__(captions, options, placeholder) {
 		if (!Array.isArray(captions)) {
 			this.initFromMarkup(captions);

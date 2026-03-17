@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async deploy() {
       const daysAgo = new Date();
       daysAgo.setDate(daysAgo.getDate() - 30);

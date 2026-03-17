@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   detectCoAccessPatterns(entry) {
     const recentAccesses = Array.from(this.accessLog.entries())
       .filter(([_, log]) => Date.now() - log.timestamp < 3600000) // Last hour

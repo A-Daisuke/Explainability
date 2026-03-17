@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     token: function (stream, state) {
       if (state.indentStack == null && stream.sol()) {
         // update indentation, but only if indentStack is empty
@@ -62,4 +62,4 @@ function __method_wrapper__() {
       return returnType;
     },
 
-}
+};

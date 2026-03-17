@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     setVisible(visible, size) {
         var _a, _b;
         if (visible === this.visible) {

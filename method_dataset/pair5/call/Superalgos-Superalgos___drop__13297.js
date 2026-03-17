@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_drop: function( event, custom ) {
 
 		var draggable = custom || $.ui.ddmanager.current,
@@ -49,4 +49,4 @@ function __method_wrapper__() {
 
 	},
 
-}
+};

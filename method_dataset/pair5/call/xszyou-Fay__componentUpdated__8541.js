@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
     componentUpdated: function componentUpdated (el, binding, vnode) {
       if (vnode.tag === 'select') {
         setSelected(el, binding, vnode.context);
@@ -21,4 +21,4 @@ function __method_wrapper__() {
       }
     }
 
-}
+};

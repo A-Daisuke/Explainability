@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   workflow_create(args) {
     const workflowId = `workflow_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`;
     const workflow = {

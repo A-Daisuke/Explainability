@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 		iterator: function ( flatten, type, fn, alwaysNew ) {
 			var
 				a = [], ret,
@@ -70,4 +70,4 @@ function __method_wrapper__() {
 			return this;
 		},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   graph(type, data, {area = true, points = true, text = true, low = NaN, high = NaN, match = null, labels = null, width = 480, height = 315, ticks = 0} = {}) {
     //Generate SVG
     const margin = {top: 10, left: 10, right: 10, bottom: 45}

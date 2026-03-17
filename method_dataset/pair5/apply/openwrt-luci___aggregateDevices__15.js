@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	_aggregateDevices: function(fn, first) {
 		var devices = this.network ? this.network.getDevices() : [],
 		    rv = 0;
@@ -17,4 +17,4 @@ function __method_wrapper__() {
 		return first ? null : [ rv, devices.length ];
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             parse: function parse(data) {
               var _ref2 =
                   arguments.length > 1 && arguments[1] !== undefined
@@ -388,4 +388,4 @@ function __method_wrapper__() {
               this.numComponents = this.components.length;
             },
 
-}
+};

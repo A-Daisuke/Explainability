@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	inherits: function(extensions) {
 		var me = this;
 		var ChartElement = (extensions && extensions.hasOwnProperty('constructor')) ? extensions.constructor : function() {
@@ -21,4 +21,4 @@ function __method_wrapper__() {
 		return ChartElement;
 	},
 
-}
+};

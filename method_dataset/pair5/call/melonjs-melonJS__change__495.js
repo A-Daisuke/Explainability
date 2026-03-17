@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	change(state, forceChange = false) {
 		// Protect against undefined Stage
 		if (typeof _stages[state] === "undefined") {

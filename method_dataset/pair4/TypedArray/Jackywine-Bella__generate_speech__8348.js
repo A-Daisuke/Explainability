@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async generate_speech(input_values, speaker_embeddings, {
         threshold = 0.5,
         minlenratio = 0.0,

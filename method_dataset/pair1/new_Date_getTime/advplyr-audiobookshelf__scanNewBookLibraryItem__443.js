@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async scanNewBookLibraryItem(libraryItemData, librarySettings, libraryScan) {
     // Scan audio files found
     let scannedAudioFiles = await AudioFileScanner.executeMediaFileScans(libraryItemData.mediaType, libraryItemData, libraryItemData.audioLibraryFiles)

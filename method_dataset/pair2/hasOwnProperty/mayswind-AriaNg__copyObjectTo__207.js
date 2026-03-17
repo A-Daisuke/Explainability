@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             copyObjectTo: function (from, to) {
                 if (!to) {
                     return from;
@@ -24,4 +24,4 @@ function __method_wrapper__() {
                 return to;
             },
 
-}
+};

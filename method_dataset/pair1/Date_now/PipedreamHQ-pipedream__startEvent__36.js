@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     async startEvent() {
       const { taskId } = this;
       const lastStatusName = this._getLastStatusName();

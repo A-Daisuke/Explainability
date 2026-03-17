@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             createPatternCanvas: function TilinPattern_createPatternCanvas(
               owner
             ) {
@@ -59,4 +59,4 @@ function __method_wrapper__() {
               return tmpCanvas.canvas;
             },
 
-}
+};

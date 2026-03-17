@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async postPhase(phaseName, result) {
     if (!this.swarmEnabled) return;
 

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		getLocalData(key) {
 			try {
 				const sid = this.getID();

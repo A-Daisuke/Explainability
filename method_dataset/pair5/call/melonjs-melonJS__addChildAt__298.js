@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 	addChildAt(child, index) {
 		if (index >= 0 && index < this.getChildren().length) {
 			if (child.ancestor instanceof Container) {

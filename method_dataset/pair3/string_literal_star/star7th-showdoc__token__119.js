@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
       token: function(stream, state) {
         if(state.tokenize != null) {
           return state.tokenize(stream, state);
@@ -60,4 +60,4 @@ function __method_wrapper__() {
         return state.tokenize(stream, state);
       },
 
-}
+};

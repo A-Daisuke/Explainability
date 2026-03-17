@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	render: function (data) {
 		let m, s, o;
 
@@ -139,4 +139,4 @@ function __method_wrapper__() {
 		return m.render();
 	},
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async run() {
     const teams = await this.asana.getTeams(this.organization);
 

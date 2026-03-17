@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   async createTokensAndSession(user, req) {
     const ipAddress = requestIp.getClientIp(req)
     const userAgent = req.headers['user-agent']

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
   initialize: function(options) {
     options = options || {};
     options.level = {};
@@ -34,4 +34,4 @@ function __method_wrapper__() {
     delete this.solved;
   },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	call: function( instance, name, args, allowDisconnected ) {
 		var i,
 			set = instance.plugins[ name ];
@@ -19,4 +19,4 @@ function __method_wrapper__() {
 		}
 	}
 
-}
+};

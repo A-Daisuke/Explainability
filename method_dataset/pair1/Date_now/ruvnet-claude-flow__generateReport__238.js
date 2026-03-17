@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   generateReport() {
     const totalTime = Date.now() - this.startTime;
     const results = Array.from(this.results.values());

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
 		attr(node, key, val) {
 			if (!this.elem(node))
 				return null;

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
 	determineDataLimits: function() {
 		var me = this;
 		var chart = me.chart;
@@ -73,4 +73,4 @@ function __method_wrapper__() {
 		};
 	},
 
-}
+};

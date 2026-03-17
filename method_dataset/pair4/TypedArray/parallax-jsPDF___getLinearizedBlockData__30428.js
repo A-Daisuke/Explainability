@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             _getLinearizedBlockData: function _getLinearizedBlockData(
               width,
               height
@@ -74,4 +74,4 @@ function __method_wrapper__() {
               return data;
             },
 
-}
+};

@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     init() {
       this.selectedInterval = 'custom'
       this.selectedHour = 0

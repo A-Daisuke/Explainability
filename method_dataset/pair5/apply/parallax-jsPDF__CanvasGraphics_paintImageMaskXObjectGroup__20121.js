@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             paintImageMaskXObjectGroup: function CanvasGraphics_paintImageMaskXObjectGroup(
               images
             ) {
@@ -42,4 +42,4 @@ function __method_wrapper__() {
               }
             },
 
-}
+};

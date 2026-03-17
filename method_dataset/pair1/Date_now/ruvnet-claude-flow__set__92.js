@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
   set(key, data) {
     const size = this._estimateSize(data);
 

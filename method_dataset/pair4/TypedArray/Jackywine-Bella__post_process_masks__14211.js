@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
     post_process_masks(masks, original_sizes, reshaped_input_sizes, {
         mask_threshold = 0.0,
         binarize = true,

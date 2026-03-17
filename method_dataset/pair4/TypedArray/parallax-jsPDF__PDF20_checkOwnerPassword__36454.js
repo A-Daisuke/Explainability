@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+const __obj__ = {
             checkOwnerPassword: function PDF20_checkOwnerPassword(
               password,
               ownerValidationSalt,
@@ -16,4 +16,4 @@ function __method_wrapper__() {
               return compareByteArrays(result, ownerPassword);
             },
 
-}
+};

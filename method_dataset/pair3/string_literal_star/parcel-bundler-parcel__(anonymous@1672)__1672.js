@@ -1,4 +1,4 @@
-function __method_wrapper__() {
+class __C__ {
       it('supports tree shaking statically analyzable dynamic import: namespace await declaration bailout', async function () {
         let b = await bundle(
           path.join(
